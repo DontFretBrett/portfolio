@@ -1,4 +1,4 @@
-import { Calendar, Award } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
 const experiences: {
   company: string;
@@ -68,7 +68,7 @@ export default function Experience() {
             <div key={exp.company} className="border-l-4 border-blue-600 pl-6">
               <div className="flex items-center gap-4 mb-4">
                 <h3 className="text-2xl font-semibold text-gray-800">{exp.company}</h3>
-                <span className="text-gray-500 flex items-center gap-1">
+                <span className="text-gray-500 flex items-center gap-1 whitespace-nowrap">
                   <Calendar size={16} />
                   {exp.period}
                 </span>
@@ -79,7 +79,7 @@ export default function Experience() {
                   <div key={role.title} className="ml-4">
                     <div className="flex items-center gap-4 mb-3">
                       <h4 className="text-xl font-medium text-gray-700">{role.title}</h4>
-                      <span className="text-gray-500 flex items-center gap-1">
+                      <span className="text-gray-500 flex items-center gap-1 whitespace-nowrap">
                         <Calendar size={14} />
                         {role.period}
                       </span>
