@@ -3,15 +3,23 @@ import { motion } from 'framer-motion';
 export default function Summary() {
   return (
     <motion.section 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
+      id="summary"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
       className="py-16 bg-white"
     >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8 text-gray-800">Summary</h2>
         <p className="text-lg text-gray-600 leading-relaxed">
-          IT professional with strong leadership abilities and an extensive background in senior full stack software engineer positions primarily in the financial sector. Over a decade of experience successfully bringing projects from concept to completion. Strong understanding of best practices, objected oriented programming, software delivery life cycle, design patterns, continuous integration, continuous delivery, high performance solutions, solution architecting, agile methodology, and ADA.
+          Started obsessively coding as a 12-year-old building tools and games before YouTube, StackOverflow, and AI. 
+          Hobby turned career, I quickly learned my skills and talent provide significant value to companies which I find 
+          immensely rewarding. Now a technology leader with over 15 years of experience mostly in the financial sector 
+          in roles from developer to director. Expertise in hands on building, architecting, planning, and leading projects 
+          from concept to completion, on time and under budget. I'm passionate about building high quality maintainable 
+          systems, efficiency, common sense, automation, sharing my knowledge and experience, mentoring, and 
+          fostering high performing teams. Proficient in a wide range of full stack technologies including SQL Server, 
+          Node.js, C# .NET, Angular, Web and Azure/AWS cloud services.
         </p>
       </div>
     </motion.section>
