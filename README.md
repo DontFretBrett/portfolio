@@ -49,8 +49,3 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
    ```bash
    npm run preview
    ```
-
-### Additional Considerations
-- **SEO and Accessibility**: The `index.html` file includes meta tags for SEO and mentions accessibility compliance, which aligns with the `README.md` features.
-- **Dark Theme Header**: The `Header.tsx` component confirms the use of a dark theme with a gradient (lines 5-6).
-- **Interactive Skill Cards**: The `Skills.tsx` component uses Framer Motion for animations, supporting the interactive feature (lines 1-62).
