@@ -1,14 +1,20 @@
 import { Calendar } from 'lucide-react';
 
-const experiences: {
+// Add interfaces at the top of the file
+interface Role {
+  title: string;
+  period?: string;
+  description: string;
+}
+
+interface Experience {
   company: string;
   period: string;
-  roles: {
-    title: string;
-    period?: string;
-    description: string;
-  }[];
-}[] = [
+  roles: Role[];
+}
+
+// Update the experiences array to use the interface
+const experiences: Experience[] = [
   {
     company: 'Truist Bank (LightStream division)',
     period: 'June 2016 – Present',

@@ -1,8 +1,11 @@
+import { lazy, Suspense } from 'react';
 import Header from './components/Header';
 import Summary from './components/Summary';
 import Skills from './components/Skills';
-import Experience from './components/Experience';
-import Certifications from './components/Certifications';
+
+// Lazy load larger components
+const Experience = lazy(() => import('./components/Experience'));
+const Certifications = lazy(() => import('./components/Certifications'));
 
 function App() {
   return (
@@ -11,8 +14,10 @@ function App() {
       <main>
         <Summary />
         <Skills />
-        <Certifications />
-        <Experience />
+        <Suspense fallback={<div className="p-16 text-center">Loading...</div>}>
+          <Certifications />
+          <Experience />
+        </Suspense>
       </main>
     </div>
   );
