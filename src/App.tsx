@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import Header from './components/Header';
 import Summary from './components/Summary';
 import Skills from './components/Skills';
+import BackToTop from './components/BackToTop';
 
 // Lazy load larger components
 const Experience = lazy(() => import('./components/Experience'));
@@ -19,6 +20,7 @@ function App() {
           <Experience />
         </Suspense>
       </main>
+      <BackToTop />
     </div>
   );
 }
