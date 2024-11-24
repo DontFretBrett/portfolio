@@ -9,8 +9,6 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - Section-based layout with animations
 - SEO optimized with meta tags and semantic HTML
 - Accessibility compliant
-- Dark theme header with gradient
-- Interactive skill cards
 - Timeline-based experience section
 - Grid-based certifications display
 
