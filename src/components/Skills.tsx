@@ -15,7 +15,7 @@ const skillCategories = [
   {
     icon: <Layout />,
     title: 'Client Side',
-    skills: 'Angular 6-17, Angular Forms Reactive/Template-Driven, SPA, JavaScript, TypeScript, CSS/SASS Grid/Flexbox, CSS Variables, HTML, Foundation/Bootstrap CSS, Media Queries, Responsiveness, Razor syntax'
+    skills: 'React, Vite, Angular 6-17, Angular Forms Reactive/Template-Driven, SPA, JavaScript, TypeScript, CSS/SASS Grid/Flexbox, CSS Variables, HTML, Foundation/Bootstrap CSS, Media Queries, Responsiveness, Razor syntax'
   },
   {
     icon: <Wrench />,
