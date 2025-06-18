@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Summary from './components/Summary';
 import Skills from './components/Skills';
 import BackToTop from './components/BackToTop';
+import Chatbot from './components/Chatbot';
 
 // Lazy load larger components
 const Experience = lazy(() => import('./components/Experience'));
@@ -21,6 +22,7 @@ function App() {
         </Suspense>
       </main>
       <BackToTop />
+      <Chatbot />
     </div>
   );
 }
