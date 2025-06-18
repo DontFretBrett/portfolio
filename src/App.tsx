@@ -4,6 +4,7 @@ import Summary from './components/Summary';
 import Skills from './components/Skills';
 import BackToTop from './components/BackToTop';
 import Chatbot from './components/Chatbot';
+import { FEATURE_FLAGS } from './config/features';
 
 // Lazy load larger components
 const Experience = lazy(() => import('./components/Experience'));
@@ -22,7 +23,7 @@ function App() {
         </Suspense>
       </main>
       <BackToTop />
-      <Chatbot />
+      {FEATURE_FLAGS.ENABLE_CHATBOT && <Chatbot />}
     </div>
   );
 }
