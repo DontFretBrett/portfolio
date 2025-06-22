@@ -1,21 +1,61 @@
 import { MapPin, Github, Linkedin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 
 export default function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Try to play the video
+    const tryToPlay = async () => {
+      try {
+        await video.play();
+      } catch (error) {
+        console.log('Autoplay was prevented:', error);
+        
+        // Listen for user interaction to start the video
+        const startVideo = () => {
+          video.play().catch(() => {});
+          document.removeEventListener('touchstart', startVideo);
+          document.removeEventListener('click', startVideo);
+        };
+        
+        document.addEventListener('touchstart', startVideo, { passive: true });
+        document.addEventListener('click', startVideo, { passive: true });
+      }
+    };
+
+    // Small delay to ensure video is loaded
+    const timer = setTimeout(tryToPlay, 100);
+    
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
   
   return (
     <header className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20 overflow-hidden">
       {/* Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
+        webkit-playsinline="true"
+        preload="auto"
+        controls={false}
+        disablePictureInPicture
+        poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
         className="absolute top-0 left-0 w-full h-full object-cover opacity-50 mix-blend-normal"
       >
         <source src="/brettsandersbillboard.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
 
       {/* Existing content with relative positioning */}
