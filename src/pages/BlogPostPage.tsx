@@ -64,7 +64,7 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <div className="max-w-4xl mx-auto px-4 pt-8">
         <Link
           to="/blog"

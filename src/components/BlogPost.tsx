@@ -12,7 +12,7 @@ interface BlogPostProps {
 
 export default function BlogPost({ post }: BlogPostProps) {
   return (
-    <article className="max-w-4xl mx-auto px-4 py-8">
+    <article className="max-w-4xl mx-auto px-4 py-8 overflow-hidden">
       {/* Header */}
       <header className="mb-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
@@ -102,13 +102,13 @@ export default function BlogPost({ post }: BlogPostProps) {
                   {children}
                 </code>
               ) : (
-                <code className="block bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+                <code className="block bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto max-w-full">
                   {children}
                 </code>
               );
             },
             pre: ({ children }) => (
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
+              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-6 max-w-full">
                 {children}
               </pre>
             ),
