@@ -1,6 +1,39 @@
+/* Syntax highlighting styles for code blocks */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Basic syntax highlighting */
+.hljs {
+  background: #1f2937 !important;
+  color: #f9fafb !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  overflow-x: auto !important;
+}
+
+.hljs-keyword,
+.hljs-built_in {
+  color: #60a5fa !important;
+}
+
+.hljs-string {
+  color: #34d399 !important;
+}
+
+.hljs-comment {
+  color: #9ca3af !important;
+  font-style: italic !important;
+}
+
+.hljs-number {
+  color: #fbbf24 !important;
+}
+
+.hljs-function {
+  color: #a78bfa !important;
+}
 
 @layer base {
   html {

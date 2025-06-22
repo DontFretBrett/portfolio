@@ -1,6 +1,10 @@
 import { MapPin, Github, Linkedin } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   return (
     <header className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20 overflow-hidden">
       {/* Video Background */}
@@ -62,7 +66,19 @@ export default function Header() {
             </a>
           </div>
           <nav aria-label="Page sections" className="flex flex-wrap justify-center md:justify-start gap-3">
-            {['summary', 'skills', 'certifications', 'experience'].map((section) => (
+            <Link
+              to="/"
+              className="px-4 py-2 bg-gray-800/50 hover:bg-gray-700 rounded-full transition-colors text-gray-300 hover:text-white"
+            >
+              Home
+            </Link>
+            <Link
+              to="/blog"
+              className="px-4 py-2 bg-gray-800/50 hover:bg-gray-700 rounded-full transition-colors text-gray-300 hover:text-white"
+            >
+              Blog
+            </Link>
+            {isHomePage && ['summary', 'skills', 'certifications', 'experience'].map((section) => (
               <a
                 key={section}
                 href={`#${section}`}
