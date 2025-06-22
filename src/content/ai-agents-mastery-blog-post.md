@@ -5,7 +5,7 @@ tags: ["AI", "Agents", "Python", "OpenAI", "CrewAI", "LangGraph", "AutoGen", "MC
 excerpt: "A comprehensive review of the Complete Agentic AI Engineering Course, covering all 6 modules from foundations to advanced autonomous AI systems implementation."
 ---
 
-After completing **The Complete Agentic AI Engineering Course**, I've gained comprehensive expertise in designing, building, and deploying Autonomous AI Agents, opening up new career and commercial opportunities.
+After completing **[The Complete Agentic AI Engineering Course](https://www.udemy.com/share/10dasB3@524mVYxKc66sy1e-ghCt5pA0t89I3K0epEEWLzjfn5rPHQ9yCerIlUTNHf5b-Valgw==/)**, I've gained comprehensive expertise in designing, building, and deploying Autonomous AI Agents, opening up new career and commercial opportunities.
 
 As the course description states: *"2025 is the year that Agents enter the workforce. This is nothing short of a watershed moment for Artificial Intelligence."* This intensive 6-week program equipped me to master Agentic AI through a hands-on approach. Starting with foundational expertise connecting LLMs using proven design patterns, each week brought new frameworks: OpenAI Agents SDK, CrewAI, LangGraph, and AutoGen. The course culminated with exploring the remarkable opportunities opened up by Anthropic's Model Context Protocol (MCP).
 
