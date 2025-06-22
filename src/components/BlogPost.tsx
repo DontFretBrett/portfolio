@@ -17,7 +17,7 @@ export default function BlogPost({ post }: BlogPostProps) {
       <header className="mb-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
         
-        <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-6">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-gray-600 mb-6">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
             <time dateTime={post.date}>{formatDate(post.date)}</time>
@@ -29,13 +29,13 @@ export default function BlogPost({ post }: BlogPostProps) {
           </div>
           
           {post.tags && post.tags.length > 0 && (
-            <div className="flex items-center gap-2">
-              <Tag className="w-4 h-4" />
-              <div className="flex gap-2">
+            <div className="flex items-start gap-2 w-full sm:w-auto">
+              <Tag className="w-4 h-4 mt-1 flex-shrink-0" />
+              <div className="flex flex-wrap gap-2 min-w-0">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                    className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full whitespace-nowrap"
                   >
                     {tag}
                   </span>
