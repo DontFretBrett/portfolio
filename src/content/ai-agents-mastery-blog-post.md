@@ -5,8 +5,6 @@ tags: ["AI", "Agents", "Python", "OpenAI", "CrewAI", "LangGraph", "AutoGen", "MC
 excerpt: "A comprehensive review of the Complete Agentic AI Engineering Course, covering all 6 modules from foundations to advanced autonomous AI systems implementation."
 ---
 
-# The Complete Agentic AI Engineering Course: Mastering Autonomous AI Systems for 2025
-
 After completing **The Complete Agentic AI Engineering Course**, I've gained comprehensive expertise in designing, building, and deploying Autonomous AI Agents, opening up new career and commercial opportunities.
 
 As the course description states: *"2025 is the year that Agents enter the workforce. This is nothing short of a watershed moment for Artificial Intelligence."* This intensive 6-week program equipped me to master Agentic AI through a hands-on approach. Starting with foundational expertise connecting LLMs using proven design patterns, each week brought new frameworks: OpenAI Agents SDK, CrewAI, LangGraph, and AutoGen. The course culminated with exploring the remarkable opportunities opened up by Anthropic's Model Context Protocol (MCP).
@@ -181,8 +179,6 @@ The course didn't just teach me how to use existing tools—it taught me how to 
 
 Most importantly, the course positioned me at the forefront of a technological revolution. As the course description noted, 2025 is indeed the year that agents enter the workforce. Having completed this intensive program, I'm not just prepared for that future—I'm equipped to help build it.
 
+I must also give special recognition to instructor **[Ed Donner](https://edwarddonner.com)**, who brought exceptional energy and expertise to every session. Ed's well-spoken delivery, genuine enthusiasm for the subject matter, and engaging teaching style made even the most complex concepts accessible and enjoyable to learn. His passion for Agentic AI is infectious, and his ability to break down sophisticated technical topics while maintaining momentum throughout the course was truly impressive. Learning from Ed was an absolute joy and significantly enhanced the overall educational experience.
+
 For anyone serious about AI and automation, this course represents an invaluable investment in both technical skills and future career prospects. The hands-on approach, comprehensive curriculum, and focus on real-world applications make it essential education for the AI-driven future that's already arriving.
-
----
-
-*This post represents my journey through a comprehensive AI agents engineering course. The skills and projects described demonstrate practical experience with cutting-edge AI technologies and frameworks that are reshaping how we think about software development and business automation.* 
