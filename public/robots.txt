@@ -1,2 +1,16 @@
 User-agent: *
-Allow: / 
+Allow: /
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://www.brettsanders.com/sitemap.xml
+
+# Block common spam bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: / 

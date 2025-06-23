@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import BlogList from '../components/BlogList';
 import { getAllBlogPosts } from '../data/blogPosts';
 import type { BlogPost } from '../types/blog';
@@ -33,5 +34,49 @@ export default function BlogPage() {
     );
   }
 
-  return <BlogList posts={posts} />;
+  return (
+    <>
+      <Helmet>
+        <title>Blog - Brett Sanders | Technology Leadership & Software Engineering</title>
+        <meta name="description" content="Read Brett Sanders' blog on technology leadership, full-stack development, AI engineering, and career insights from 15+ years in the financial sector." />
+        <meta name="keywords" content="Technology Blog, Software Engineering Blog, AI Blog, Leadership Blog, Full Stack Development, AWS, React, Node.js" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Blog - Brett Sanders | Technology Leadership & Software Engineering" />
+        <meta property="og:description" content="Read Brett Sanders' blog on technology leadership, full-stack development, AI engineering, and career insights from 15+ years in the financial sector." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.brettsanders.com/blog" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Blog - Brett Sanders | Technology Leadership & Software Engineering" />
+        <meta name="twitter:description" content="Read Brett Sanders' blog on technology leadership, full-stack development, AI engineering, and career insights." />
+        
+        <link rel="canonical" href="https://www.brettsanders.com/blog" />
+        
+        {/* Structured Data for Blog */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Brett Sanders Blog",
+            "description": "Technology leadership, full-stack development, AI engineering, and career insights",
+            "url": "https://www.brettsanders.com/blog",
+            "author": {
+              "@type": "Person",
+              "name": "Brett Sanders",
+              "url": "https://www.brettsanders.com"
+            },
+            "publisher": {
+              "@type": "Person",
+              "name": "Brett Sanders",
+              "url": "https://www.brettsanders.com"
+            }
+          })}
+        </script>
+      </Helmet>
+      
+      <BlogList posts={posts} />
+    </>
+  );
 } 
