@@ -1,21 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import ViteImageOptimize from 'vite-plugin-imagemin';
 
 export default defineConfig({
   plugins: [
     react(),
-    ViteImageOptimize({
-      gifsicle: { optimizationLevel: 7 },
-      mozjpeg: { quality: 85 },
-      pngquant: { quality: [0.8, 0.9], speed: 4 },
-      svgo: {
-        plugins: [
-          { name: 'removeViewBox', active: false },
-          { name: 'removeEmptyAttrs', active: false }
-        ]
-      }
-    })
+    // Removed vite-plugin-imagemin due to security vulnerabilities
+    // Images should be pre-optimized before committing to repo
   ],
   define: {
     global: 'globalThis',
