@@ -205,8 +205,9 @@ After implementing these optimizations, I expect to see:
 1. **Measure First**: Lighthouse audits provide actionable insights into real performance bottlenecks
 2. **Think in Chunks**: Modern bundlers excel at code splitting when you give them logical boundaries
 3. **Lazy Load Strategically**: Not everything needs to be available immediately
-4. **Optimize the Critical Path**: Preload what matters, defer what doesn't
-5. **Micro-optimizations Matter**: Small improvements in event handling and state management add up
+4. **Trust Your Platform**: Let hosting providers handle compression and caching automatically
+5. **Optimize Images**: Modern formats like WebP provide significant size reductions
+6. **Micro-optimizations Matter**: Small improvements in event handling and state management add up
 
 ## The Bigger Picture
 
