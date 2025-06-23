@@ -61,18 +61,20 @@ export default function Header() {
 
       {/* Existing content with relative positioning */}
       <div className="container mx-auto px-4 flex flex-col items-center justify-center md:flex-row md:items-start relative z-10">
-        <picture>
-          <source srcSet="/me.webp" type="image/webp" />
-          <img
-            src="/me.jpeg"
-            alt="Brett Sanders"
-            className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-6"
-            loading="eager"
-            decoding="async"
-            width="128"
-            height="128"
-          />
-        </picture>
+        <Link to="/" className="group">
+          <picture>
+            <source srcSet="/me.webp" type="image/webp" />
+            <img
+              src="/me.jpeg"
+              alt="Brett Sanders"
+              className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-6 cursor-pointer transition-transform duration-200 group-hover:scale-105"
+              loading="eager"
+              decoding="async"
+              width="128"
+              height="128"
+            />
+          </picture>
+        </Link>
         <div className="text-center md:text-left">
           <h1 className="text-5xl font-bold mb-4">Brett Sanders</h1>
           <h2 className="text-2xl text-gray-300 mb-6">
