@@ -84,7 +84,7 @@ export default function BlogList({ posts }: BlogListProps) {
               className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors"
               aria-label={`Read full article: ${post.title}`}
             >
-              Read more
+              Read "{post.title}"
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
 
