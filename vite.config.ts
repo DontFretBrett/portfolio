@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import ViteImageOptimize from 'vite-plugin-imagemin';
-// import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig({
   plugins: [
@@ -16,20 +15,7 @@ export default defineConfig({
           { name: 'removeEmptyAttrs', active: false }
         ]
       }
-    }),
-    // Temporarily disabled compression plugins - Vercel handles compression automatically
-    // viteCompression({
-    //   algorithm: 'gzip',
-    //   ext: '.gz',
-    //   threshold: 1024, // Only compress files larger than 1KB
-    //   deleteOriginFile: false
-    // }),
-    // viteCompression({
-    //   algorithm: 'brotliCompress',
-    //   ext: '.br',
-    //   threshold: 1024,
-    //   deleteOriginFile: false
-    // })
+    })
   ],
   define: {
     global: 'globalThis',

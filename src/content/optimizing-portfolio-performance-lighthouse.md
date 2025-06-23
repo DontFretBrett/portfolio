@@ -229,29 +229,26 @@ While these optimizations should significantly improve my Lighthouse scores, per
 
 After the initial optimizations, I tackled the remaining Lighthouse diagnostics with a comprehensive approach.
 
-### Text Compression
+### Text Compression: Learning from Mistakes
 
-I implemented both Gzip and Brotli compression using Vite plugins:
+**Important Update**: I initially tried implementing manual compression using Vite plugins, but this approach caused significant issues on Vercel:
 
 ```typescript
-plugins: [
-  // ... other plugins
-  viteCompression({
-    algorithm: 'gzip',
-    ext: '.gz',
-    threshold: 1024, // Only compress files larger than 1KB
-    deleteOriginFile: false
-  }),
-  viteCompression({
-    algorithm: 'brotliCompress',
-    ext: '.br',
-    threshold: 1024,
-    deleteOriginFile: false
-  })
-]
+// DON'T DO THIS - Causes MIME type conflicts on Vercel
+viteCompression({
+  algorithm: 'gzip',
+  ext: '.gz',
+  threshold: 1024,
+  deleteOriginFile: false
+})
 ```
 
-I also configured Vercel headers for proper compression and caching:
+**The Problem**: Manual compression plugins can interfere with Vercel's automatic compression system, causing:
+- Wrong MIME types (`application/octet-stream` instead of `text/javascript`)
+- Content decoding failures  
+- JavaScript modules failing to load completely
+
+**The Solution**: Let Vercel handle compression automatically. It's more efficient and avoids conflicts. I configured clean headers for caching without manual compression:
 
 ```json
 {
@@ -264,6 +261,8 @@ I also configured Vercel headers for proper compression and caching:
   ]
 }
 ```
+
+**Key Lesson**: Modern hosting platforms like Vercel, Netlify, and Cloudflare handle compression intelligently based on client capabilities. Adding manual compression plugins often creates more problems than benefits.
 
 ### Modern Image Formats
 
@@ -313,9 +312,9 @@ This prevents the video from loading until the user actually visits the page, dr
 After implementing all optimizations, the improvements were substantial:
 
 ### Performance Gains
-- **Text Compression**: ~275 KiB reduction in transfer sizes
+- **Compression Strategy**: Letting Vercel handle compression automatically eliminated MIME type conflicts while still achieving excellent compression ratios
 - **JavaScript Minification**: ~366 KiB reduction through aggressive Terser settings
-- **Image Optimization**: ~110 KiB reduction via WebP conversion
+- **Image Optimization**: ~110 KiB reduction via WebP conversion  
 - **Network Payloads**: Significant reduction through lazy video loading
 - **Caching Efficiency**: Faster repeat visits with optimized cache policies
 
