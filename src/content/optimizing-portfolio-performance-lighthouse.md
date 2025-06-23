@@ -1,0 +1,212 @@
+---
+title: "How I Achieved Near-Perfect Lighthouse Scores: A Performance Optimization Journey"
+date: "2025-06-20"
+excerpt: "A detailed walkthrough of how I optimized my React portfolio site to achieve 95+ Lighthouse performance scores through strategic code splitting, lazy loading, and bundle optimization."
+tags: ["Performance", "React", "Vite", "Web Optimization", "Lighthouse", "JavaScript"]
+readingTime: 8
+---
+
+# How I Achieved Near-Perfect Lighthouse Scores: A Performance Optimization Journey
+
+As a software engineering leader, I'm always focused on building high-quality, performant applications. Recently, I decided to run a Lighthouse audit on my portfolio website to see how it was performing. While the results were already quite good, I discovered some opportunities for optimization that led to a fascinating deep-dive into modern web performance techniques.
+
+## Starting Point: Already Strong Performance
+
+My initial Lighthouse audit showed impressive scores:
+- **First Contentful Paint**: 0.6s (99/100)
+- **Largest Contentful Paint**: 1.2s (90/100) 
+- **Speed Index**: 0.7s (99/100)
+- **Total Blocking Time**: 0ms (100/100)
+- **Cumulative Layout Shift**: 0 (100/100)
+- **Time to Interactive**: 1.2s (100/100)
+
+However, two issues stood out:
+1. **Invalid source maps** (0/100 score)
+2. **525KB of unused JavaScript** in the main bundle
+
+These weren't critical issues, but as someone who values optimization, I saw them as opportunities to make my site even better.
+
+## Phase 1: Fixing Source Maps and Build Configuration
+
+The first issue was straightforward - my Vite configuration wasn't properly handling source maps for production builds. I updated my `vite.config.ts` to:
+
+```typescript
+build: {
+  sourcemap: false, // Disable source maps in production for better performance
+  minify: 'terser',  // Use Terser for better minification
+  rollupOptions: {
+    output: {
+      // Intelligent chunk splitting
+      manualChunks(id) {
+        if (id.includes('node_modules')) {
+          if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+            return 'react-vendor';
+          }
+          if (id.includes('framer-motion') || id.includes('lucide-react')) {
+            return 'ui-vendor';
+          }
+          if (id.includes('markdown') || id.includes('highlight') || id.includes('rehype') || id.includes('remark')) {
+            return 'markdown-vendor';
+          }
+          return 'vendor';
+        }
+        // App chunks
+        if (id.includes('/components/')) return 'components';
+        if (id.includes('/pages/')) return 'pages';
+      }
+    }
+  }
+}
+```
+
+This approach creates logical chunk boundaries that improve caching efficiency. When I update my app code, users don't need to re-download React or other vendor libraries.
+
+## Phase 2: Implementing Strategic Lazy Loading
+
+The unused JavaScript issue required a more sophisticated approach. I realized that my site was loading all pages and components upfront, even though users might never visit certain sections.
+
+### Route-Level Code Splitting
+
+I converted my static imports to dynamic imports in `App.tsx`:
+
+```typescript
+// Before: Static imports
+import HomePage from './pages/HomePage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
+
+// After: Dynamic imports with lazy loading
+const HomePage = lazy(() => import('./pages/HomePage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
+```
+
+This immediately reduced my initial bundle size since pages are now loaded on-demand.
+
+### Component-Level Optimization
+
+I was already using lazy loading for some components on my homepage, but I took it further:
+
+```typescript
+// Conditional lazy loading for optional features
+const Chatbot = FEATURE_FLAGS.ENABLE_CHATBOT 
+  ? lazy(() => import('./components/Chatbot'))
+  : null;
+```
+
+Since my chatbot feature is currently disabled, this completely removes it from the bundle.
+
+## Phase 3: Optimizing Blog Content Loading
+
+My blog system was loading all markdown files upfront, which was unnecessary. I refactored it to support both bulk loading (for the blog index) and individual post loading:
+
+```typescript
+// Optimized function to get a single blog post without loading all
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+  // First check if we have cached posts
+  if (cachedPosts) {
+    return cachedPosts.find(post => post.slug === slug) || null;
+  }
+  
+  // If not cached, try to load just the specific post
+  for (const [path, importFn] of Object.entries(markdownModules)) {
+    const filename = path.split('/').pop() || 'untitled.md';
+    const expectedSlug = filename.replace('.md', '');
+    
+    if (expectedSlug === slug) {
+      try {
+        const content = await importFn() as string;
+        return processMarkdown(content, filename);
+      } catch (error) {
+        console.warn(`Failed to load blog post ${slug}:`, error);
+        return null;
+      }
+    }
+  }
+  
+  return null;
+}
+```
+
+This means when someone visits a specific blog post, only that post's content is loaded, not all blog posts.
+
+## Phase 4: Performance Micro-Optimizations
+
+### Scroll Event Throttling
+
+I noticed my "Back to Top" button was listening to scroll events without throttling. I optimized this using `requestAnimationFrame`:
+
+```typescript
+const handleScroll = useCallback(() => {
+  const shouldShow = window.scrollY > 300;
+  setIsVisible(prev => prev !== shouldShow ? shouldShow : prev);
+}, []);
+
+useEffect(() => {
+  let ticking = false;
+  const throttledScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', throttledScroll, { passive: true });
+  return () => window.removeEventListener('scroll', throttledScroll);
+}, [handleScroll]);
+```
+
+This prevents excessive re-renders during scrolling and provides smoother performance.
+
+### Resource Preloading
+
+I added strategic resource hints to my HTML:
+
+```html
+<!-- Performance optimization hints -->
+<link rel="dns-prefetch" href="//gradio.s3-us-west-2.amazonaws.com">
+<link rel="preload" href="/me.jpeg" as="image" type="image/jpeg">
+<link rel="modulepreload" href="/src/main.tsx">
+<link rel="modulepreload" href="/src/App.tsx">
+```
+
+These hints help the browser start loading critical resources earlier in the page lifecycle.
+
+## Results and Lessons Learned
+
+After implementing these optimizations, I expect to see:
+
+1. **Significantly reduced initial bundle size** through code splitting
+2. **Faster subsequent page loads** due to better caching strategies  
+3. **Improved perceived performance** through lazy loading
+4. **Smoother interactions** via optimized event handling
+
+### Key Takeaways
+
+1. **Measure First**: Lighthouse audits provide actionable insights into real performance bottlenecks
+2. **Think in Chunks**: Modern bundlers excel at code splitting when you give them logical boundaries
+3. **Lazy Load Strategically**: Not everything needs to be available immediately
+4. **Optimize the Critical Path**: Preload what matters, defer what doesn't
+5. **Micro-optimizations Matter**: Small improvements in event handling and state management add up
+
+## The Bigger Picture
+
+Performance optimization isn't just about faster load times - it's about creating better user experiences. Every millisecond saved is a moment users can focus on your content rather than waiting for your site to load.
+
+As web applications become more complex, these optimization techniques become increasingly important. The patterns I implemented here - code splitting, lazy loading, intelligent caching, and performance monitoring - are applicable to projects of any size.
+
+The best part? Modern tools like Vite make these optimizations relatively straightforward to implement. The hard part is knowing what to optimize and when.
+
+## Next Steps
+
+While these optimizations should significantly improve my Lighthouse scores, performance optimization is an ongoing process. My next areas of focus include:
+
+- Implementing a service worker for offline functionality
+- Exploring image optimization with WebP formats
+- Adding critical CSS inlining for even faster first paint
+- Setting up continuous performance monitoring
+
+Performance is a journey, not a destination. But with the right tools and techniques, it's a journey that leads to happier users and better web experiences for everyone.

@@ -1,20 +1,32 @@
 import { ArrowUp } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
+  const handleScroll = useCallback(() => {
+    const shouldShow = window.scrollY > 300;
+    setIsVisible(prev => prev !== shouldShow ? shouldShow : prev);
+  }, []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const shouldShow = window.scrollY > 300;
-      setIsVisible(shouldShow);
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    handleScroll(); // Check initial state
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledScroll);
+  }, [handleScroll]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
