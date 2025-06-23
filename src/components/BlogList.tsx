@@ -11,7 +11,7 @@ export default function BlogList({ posts }: BlogListProps) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <header className="mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Technology Blog</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
         <p className="text-lg text-gray-600">
           Insights on AI engineering, software development, and technology leadership from Brett Sanders
         </p>
