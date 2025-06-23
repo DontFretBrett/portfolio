@@ -40,7 +40,7 @@ export default function Header() {
   
   return (
     <header className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20 overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background - Lazy loaded */}
       <video
         ref={videoRef}
         autoPlay
@@ -48,11 +48,12 @@ export default function Header() {
         loop
         playsInline
         webkit-playsinline="true"
-        preload="auto"
+        preload="none"
         controls={false}
         disablePictureInPicture
         poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
         className="absolute top-0 left-0 w-full h-full object-cover opacity-50 mix-blend-normal"
+        style={{ willChange: 'auto' }}
       >
         <source src="/brettsandersbillboard.mp4" type="video/mp4" />
         Your browser does not support the video tag.
@@ -60,11 +61,18 @@ export default function Header() {
 
       {/* Existing content with relative positioning */}
       <div className="container mx-auto px-4 flex flex-col items-center justify-center md:flex-row md:items-start relative z-10">
-        <img
-          src="/me.jpeg"
-          alt="Brett Sanders"
-          className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-6"
-        />
+        <picture>
+          <source srcSet="/me.webp" type="image/webp" />
+          <img
+            src="/me.jpeg"
+            alt="Brett Sanders"
+            className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-6"
+            loading="eager"
+            decoding="async"
+            width="128"
+            height="128"
+          />
+        </picture>
         <div className="text-center md:text-left">
           <h1 className="text-5xl font-bold mb-4">Brett Sanders</h1>
           <h2 className="text-2xl text-gray-300 mb-6">
