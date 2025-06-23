@@ -6,11 +6,15 @@ export interface BlogPost {
   date: string;
   readingTime: number;
   tags?: string[];
+  description?: string;
+  keywords?: string;
 }
 
 export interface BlogMetadata {
   title: string;
   date: string;
   excerpt?: string;
+  description?: string;
+  keywords?: string;
   tags?: string[];
 } 

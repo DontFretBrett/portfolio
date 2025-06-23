@@ -69,7 +69,9 @@ export function processMarkdown(markdownContent: string, filename: string): Blog
     content,
     date: metadata.date || new Date().toISOString(),
     readingTime,
-    tags: metadata.tags || []
+    tags: metadata.tags || [],
+    description: metadata.description,
+    keywords: metadata.keywords
   };
 }
 

@@ -65,7 +65,12 @@ const experiences: Experience[] = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-16 bg-white">
+    <section 
+      id="experience" 
+      className="py-16 bg-white"
+      itemScope
+      itemType="https://schema.org/Person"
+    >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-12 text-gray-800">Professional Experience</h2>
         
@@ -75,25 +80,43 @@ export default function Experience() {
               <div className="flex items-center gap-4 mb-4">
                 <h3 className="text-2xl font-semibold text-gray-800">{exp.company}</h3>
                 <span className="text-gray-500 flex items-center gap-1 whitespace-nowrap">
-                  <Calendar size={16} />
+                  <Calendar size={16} aria-hidden="true" />
                   {exp.period}
                 </span>
               </div>
               
               <div className="space-y-8">
                 {exp.roles.map((role) => (
-                  <div key={role.title} className="ml-4">
+                  <div 
+                    key={role.title} 
+                    className="ml-4"
+                    itemScope
+                    itemType="https://schema.org/OrganizationRole"
+                  >
                     <div className="flex items-center gap-4 mb-3">
-                      <h4 className="text-xl font-medium text-gray-700">{role.title}</h4>
-                      <span className="text-gray-500 flex items-center gap-1 whitespace-nowrap">
-                        <Calendar size={14} />
-                        {role.period}
-                      </span>
+                      <h4 className="text-xl font-medium text-gray-700" itemProp="roleName">
+                        {role.title}
+                      </h4>
+                      {role.period && (
+                        <span className="text-gray-500 flex items-center gap-1 whitespace-nowrap">
+                          <Calendar size={14} aria-hidden="true" />
+                          <time itemProp="startDate">{role.period}</time>
+                        </span>
+                      )}
                     </div>
                     
                     {role.description && (
-                      <p className="text-gray-600 mb-4">{role.description}</p>
+                      <p className="text-gray-600 mb-4" itemProp="description">
+                        {role.description}
+                      </p>
                     )}
+                    
+                    {/* Hidden structured data */}
+                    <div className="hidden">
+                      <span itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
+                        <span itemProp="name">{exp.company}</span>
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>

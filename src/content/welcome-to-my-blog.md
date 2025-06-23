@@ -1,8 +1,10 @@
 ---
 title: "Welcome to My Blog: A Journey Through Technology Leadership"
 date: "2025-06-21"
-tags: ["Introduction", "Career", "Technology", "Leadership"]
+tags: ["Introduction", "Career", "Technology", "Leadership", "Software Engineering", "Full Stack Development", "AI", "Truist Bank"]
 excerpt: "Welcome to my corner of the internet! I'm Brett Sanders, and I'm excited to share my journey through technology leadership, full-stack development, and the evolving world of AI."
+description: "Brett Sanders introduces his blog sharing insights on technology leadership, career growth from developer to director, and the latest in AI engineering and software development."
+keywords: "Brett Sanders, Technology Leadership, Software Engineering Director, Full Stack Developer, Career Journey, AI Engineering, Blog Introduction"
 ---
 
 Welcome to my corner of the internet! I'm Brett Sanders, and I'm excited to share my journey through technology leadership, full-stack development, and the evolving world of AI.
