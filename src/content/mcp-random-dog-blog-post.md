@@ -9,6 +9,8 @@ keywords: "Model Context Protocol, MCP, AI Agents, FastMCP, Python, Gradio, Hugg
 
 Recently, I dove deep into the **Model Context Protocol (MCP)** by building a complete Random Dog Image MCP that demonstrates the power and flexibility of this emerging standard. What started as a learning exercise evolved into a full-stack implementation with multiple components, from server/client architecture to a production-ready web application deployed on Hugging Face Spaces.
 
+> 🐕 **Try it yourself!** Check out the [live Random Dog Image MCP](/ai-projects/mcp-random-dog) in my AI projects to interact with the application and see the MCP protocol in action.
+
 ## What is the Model Context Protocol?
 
 The Model Context Protocol (MCP) is a standardized way for AI applications to connect with external data sources and tools. Think of it as a universal translator that allows AI agents to seamlessly interact with APIs, databases, and other services while maintaining security, observability, and composability.
