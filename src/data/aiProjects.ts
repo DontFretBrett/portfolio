@@ -10,12 +10,11 @@ export const aiProjects: AIProject[] = [
     tags: ['MCP', 'Python', 'FastMCP', 'Gradio', 'Hugging Face', 'AI Agents', 'Protocol Design'],
     githubUrl: 'https://github.com/brettsanders/agents',
     liveUrl: 'https://dontfretbrett-random-dog.hf.space',
-    embedCode: `<script
-	type="module"
-	src="https://gradio.s3-us-west-2.amazonaws.com/5.34.2/gradio.js"
-></script>
-
-<gradio-app src="https://dontfretbrett-random-dog.hf.space"></gradio-app>`,
+    embedCode: `<iframe
+	src="https://dontfretbrett-random-dog.hf.space"
+	frameborder="0"
+	style="width: 100%; min-height: 450px; border-radius: 8px;"
+></iframe>`,
     content: `# MCP-Powered Random Dog Application
 
 A complete implementation of the Model Context Protocol (MCP) demonstrating end-to-end integration from server/client architecture to production deployment.

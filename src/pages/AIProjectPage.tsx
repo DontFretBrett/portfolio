@@ -53,7 +53,7 @@ export default function AIProjectPage() {
         <link rel="canonical" href={`https://www.brettsanders.com/ai-projects/${project.slug}`} />
       </Helmet>
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl">
+      <main className="container mx-auto px-4 py-8 max-w-6xl">
         <Link 
           to="/ai-projects"
           className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors"
@@ -63,7 +63,7 @@ export default function AIProjectPage() {
         </Link>
 
         <article className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <header className="p-8 border-b border-gray-200">
+          <header className="p-4 md:p-8 border-b border-gray-200">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
               {project.title}
             </h1>
@@ -98,25 +98,24 @@ export default function AIProjectPage() {
 
           {/* Embedded Application */}
           {project.embedCode && (
-            <section className="p-8 border-b border-gray-200">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Interactive Demo</h2>
-              <div className="w-full min-h-[500px] bg-gray-50 rounded-lg overflow-hidden border-2 border-dashed border-gray-300 relative">
-                <div 
-                  className="w-full h-full"
-                  dangerouslySetInnerHTML={{ __html: project.embedCode }}
-                />
-                <div className="absolute top-4 right-4 text-xs text-gray-500 bg-white px-2 py-1 rounded">
-                  Powered by Hugging Face Spaces
+            <section className="p-4 md:p-8 border-b border-gray-200">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Interactive Demo</h2>
+              <div className="w-full bg-gray-50 rounded-lg p-2 md:p-4">
+                <div className="w-full flex justify-center">
+                  <div 
+                    className="w-full max-w-full [&>iframe]:w-full [&>iframe]:max-w-full [&>iframe]:h-auto [&>iframe]:min-h-[300px] md:[&>iframe]:min-h-[450px]"
+                    dangerouslySetInnerHTML={{ __html: project.embedCode }}
+                  />
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mt-2">
-                ⚠️ Note: The embedded demo may take a moment to load. If you see console errors in development, they're related to cross-origin restrictions and are normal.
+              <p className="text-sm text-gray-600 mt-3 text-center">
+                🚀 Live demo powered by Hugging Face Spaces
               </p>
             </section>
           )}
 
-                     {/* Project Content */}
-           <section className="p-8">
+                               {/* Project Content */}
+          <section className="p-4 md:p-8">
              <div className="prose prose-lg prose-gray max-w-none">
                <ReactMarkdown
                  remarkPlugins={[remarkGfm]}
