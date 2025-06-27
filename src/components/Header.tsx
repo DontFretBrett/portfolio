@@ -123,6 +123,12 @@ export default function Header() {
               Home
             </Link>
             <Link
+              to="/ai-projects"
+              className="px-4 py-2 bg-gray-800/50 hover:bg-gray-700 rounded-full transition-colors text-gray-300 hover:text-white"
+            >
+              AI Projects
+            </Link>
+            <Link
               to="/blog"
               className="px-4 py-2 bg-gray-800/50 hover:bg-gray-700 rounded-full transition-colors text-gray-300 hover:text-white"
             >

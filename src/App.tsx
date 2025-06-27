@@ -7,6 +7,8 @@ import { FEATURE_FLAGS } from './config/features';
 
 // Lazy load pages to reduce initial bundle size
 const HomePage = lazy(() => import('./pages/HomePage'));
+const AIProjectsPage = lazy(() => import('./pages/AIProjectsPage'));
+const AIProjectPage = lazy(() => import('./pages/AIProjectPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 
@@ -31,6 +33,8 @@ function App() {
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/ai-projects" element={<AIProjectsPage />} />
+              <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
             </Routes>
