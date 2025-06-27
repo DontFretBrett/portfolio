@@ -1,13 +1,13 @@
 ---
-title: "Building an MCP-Powered Random Dog Application: From Protocol to Production"
-date: "2024-12-01"
+title: "Building an MCP-Powered Random Dog Image MCP: From Protocol to Production"
+date: "2025-06-26"
 tags: ["MCP", "AI Agents", "Python", "FastMCP", "Gradio", "Hugging Face", "Protocol Design", "Full Stack Development"]
 excerpt: "Deep dive into the Model Context Protocol (MCP) by building a complete random dog image application that demonstrates the power and flexibility of this emerging standard."
 description: "Brett Sanders builds a complete MCP-powered random dog application, exploring protocol design, server/client architecture, AI agent integration, and production deployment on Hugging Face Spaces."
-keywords: "Model Context Protocol, MCP, AI Agents, FastMCP, Python, Gradio, Hugging Face, Protocol Design, Server Architecture, Client Development"
+keywords: "Model Context Protocol, MCP, AI Agents, FastMCP, Python, Gradio, Hugging Face, Protocol Design, Server Architecture, Client Development, Brett Sanders"
 ---
 
-Recently, I dove deep into the **Model Context Protocol (MCP)** by building a complete random dog image application that demonstrates the power and flexibility of this emerging standard. What started as a learning exercise evolved into a full-stack implementation with multiple components, from server/client architecture to a production-ready web application deployed on Hugging Face Spaces.
+Recently, I dove deep into the **Model Context Protocol (MCP)** by building a complete Random Dog Image MCP that demonstrates the power and flexibility of this emerging standard. What started as a learning exercise evolved into a full-stack implementation with multiple components, from server/client architecture to a production-ready web application deployed on Hugging Face Spaces.
 
 ## What is the Model Context Protocol?
 
@@ -246,14 +246,10 @@ Whether you're interested in AI protocols, modern web development, or just love 
 
 ## Code & Resources
 
-The complete implementation is available in my [agents repository](https://github.com/brettsanders/agents), featuring:
+The complete implementation is available in my [agents repository](https://github.com/DontFretBrett/agents/tree/main/6_mcp/community_contributions/random_dog_mcp_server_client), featuring:
 
 - **📚 Interactive Tutorial**: Jupyter notebook with step-by-step explanations
 - **🔧 Production Code**: Server, client, and web application implementations  
 - **🧪 Test Suite**: Comprehensive testing framework
 - **📝 Documentation**: Detailed setup and deployment instructions
 - **🚀 Live Demo**: Working application on Hugging Face Spaces
-
----
-
-*Want to try the live demo? Check it out on [Hugging Face Spaces](https://dontfretbrett-random-dog.hf.space)! All code is open source and available for exploration, learning, and contribution.* 

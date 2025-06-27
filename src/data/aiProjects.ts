@@ -3,19 +3,19 @@ import type { AIProject } from '../types/projects';
 export const aiProjects: AIProject[] = [
   {
     slug: 'mcp-random-dog',
-    title: 'MCP-Powered Random Dog Application',
-    description: 'A complete random dog image application demonstrating the Model Context Protocol (MCP) from server/client architecture to production deployment on Hugging Face Spaces.',
-    excerpt: 'Deep dive into the Model Context Protocol (MCP) by building a complete random dog image application that demonstrates the power and flexibility of this emerging standard.',
-    date: '2024-12-01',
+    title: 'Random Dog Image MCP',
+    description: 'A complete Random Dog Image MCP implementation demonstrating the Model Context Protocol from server/client architecture to production deployment on Hugging Face Spaces.',
+    excerpt: 'Deep dive into the Model Context Protocol (MCP) by building a complete Random Dog Image MCP that demonstrates the power and flexibility of this emerging standard.',
+    date: '2025-06-26',
     tags: ['MCP', 'Python', 'FastMCP', 'Gradio', 'Hugging Face', 'AI Agents', 'Protocol Design'],
     githubUrl: 'https://github.com/brettsanders/agents',
     liveUrl: 'https://dontfretbrett-random-dog.hf.space',
     embedCode: `<iframe
 	src="https://dontfretbrett-random-dog.hf.space"
 	frameborder="0"
-	style="width: 100%; min-height: 450px; border-radius: 8px;"
+	style="width: 100%; min-height: 900px; border-radius: 8px;"
 ></iframe>`,
-    content: `# MCP-Powered Random Dog Application
+    content: `# Random Dog Image MCP
 
 A complete implementation of the Model Context Protocol (MCP) demonstrating end-to-end integration from server/client architecture to production deployment.
 

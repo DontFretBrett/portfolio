@@ -103,7 +103,7 @@ export default function AIProjectPage() {
               <div className="w-full bg-gray-50 rounded-lg p-2 md:p-4">
                 <div className="w-full flex justify-center">
                   <div 
-                    className="w-full max-w-full [&>iframe]:w-full [&>iframe]:max-w-full [&>iframe]:h-auto [&>iframe]:min-h-[300px] md:[&>iframe]:min-h-[450px]"
+                    className="w-full max-w-full [&>iframe]:w-full [&>iframe]:max-w-full [&>iframe]:h-auto [&>iframe]:min-h-[600px] md:[&>iframe]:min-h-[900px]"
                     dangerouslySetInnerHTML={{ __html: project.embedCode }}
                   />
                 </div>
