@@ -1,6 +1,6 @@
 ---
 title: "The Complete Agentic AI Engineering Course: Mastering Autonomous AI Systems for 2025"
-date: "2025-06-22"
+date: "2025-06-27"
 tags: ["AI", "Agents", "Python", "OpenAI", "CrewAI", "LangGraph", "AutoGen", "MCP", "AI Engineering", "Machine Learning", "Automation", "Course Review"]
 excerpt: "A comprehensive review of the Complete Agentic AI Engineering Course, covering all 6 modules from foundations to advanced autonomous AI systems implementation."
 description: "Detailed review of The Complete Agentic AI Engineering Course by Ed Donner. Learn about building autonomous AI agents with OpenAI SDK, CrewAI, LangGraph, AutoGen, and Model Context Protocol (MCP)."

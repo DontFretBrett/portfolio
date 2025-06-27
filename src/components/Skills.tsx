@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Database, Server, Layout, Wrench, Cloud } from 'lucide-react';
+import { Database, Server, Layout, Wrench, Cloud, Brain } from 'lucide-react';
 
 const skillCategories = [
   {
@@ -27,9 +27,15 @@ const skillCategories = [
     itemProp: 'knowsAbout'
   },
   {
+    icon: <Brain />,
+    title: 'AI Agents & Automation',
+    skills: 'OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, Model Context Protocol (MCP), FastMCP, Gradio, Python async programming, Multi-agent systems, Agent workflows, Protocol design, AI automation, Anthropic Claude, OpenAI GPT, Prompt engineering',
+    itemProp: 'knowsAbout'
+  },
+  {
     icon: <Cloud />,
-    title: 'Cloud & AI Technologies',
-    skills: 'AWS Console, IAM, S3, EC2, EBS, Lambda, Azure VM, SQL, App Services, Storage, Virtual Network, SSL, OpenAI ChatGPT APIs, Microsoft Copilot, Google Gemini, Anthropic Claude, Cursor IDE, Midjourney, Prompt engineering',
+    title: 'Cloud & Deployment',
+    skills: 'AWS Console, IAM, S3, EC2, EBS, Lambda, Azure VM, SQL, App Services, Storage, Virtual Network, SSL, Hugging Face Spaces, Docker, CI/CD pipelines, Infrastructure as Code',
     itemProp: 'knowsAbout'
   }
 ];
