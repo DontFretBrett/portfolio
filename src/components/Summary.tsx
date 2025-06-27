@@ -25,9 +25,14 @@ export default function Summary() {
             from concept to completion, on time and under budget.
           </p>
           <p className="mt-4">
-            I'm passionate about building high quality maintainable systems, efficiency, common sense, automation, 
+            Most recently, I've been diving deep into the world of <strong>AI agents and autonomous systems</strong>, exploring 
+            cutting-edge frameworks like OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). 
+            I believe we're at a pivotal moment where AI will fundamentally transform how we build and interact with software systems.
+          </p>
+          <p className="mt-4">
+            I'm passionate about building high quality maintainable systems, efficiency, automation, 
             sharing my knowledge and experience, mentoring, and fostering high performing teams. Proficient in a wide range of 
-            full stack technologies including <span itemProp="knowsAbout">SQL Server, Node.js, C# .NET, Angular, Web and Azure/AWS cloud services</span>.
+            full stack technologies including <span itemProp="knowsAbout">SQL Server, Node.js, C# .NET, Angular, Web and Azure/AWS cloud services, and cutting-edge AI agent frameworks</span>.
           </p>
         </div>
       </div>
