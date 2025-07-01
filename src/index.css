@@ -65,13 +65,13 @@
 /* Animated code background animations */
 @keyframes float-code {
   0% {
-    transform: translateY(100vh) translateX(0) rotate(0deg);
+    transform: translateY(20vh) translateX(0) rotate(0deg);
     opacity: 0;
   }
-  10% {
+  5% {
     opacity: 1;
   }
-  90% {
+  95% {
     opacity: 1;
   }
   100% {
@@ -82,17 +82,17 @@
 
 @keyframes float-particle {
   0% {
-    transform: translateY(100vh) translateX(0) scale(0);
+    transform: translateY(20vh) translateX(0) scale(0);
     opacity: 0;
   }
-  10% {
+  5% {
     opacity: 1;
-    transform: translateY(90vh) translateX(0) scale(1);
+    transform: translateY(15vh) translateX(0) scale(1);
   }
   50% {
     transform: translateY(50vh) translateX(20px) scale(1.2);
   }
-  90% {
+  95% {
     opacity: 1;
   }
   100% {

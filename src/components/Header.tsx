@@ -24,6 +24,24 @@ export default function Header() {
       {/* Animated Code Background */}
       <div className="absolute inset-0 overflow-hidden opacity-40">
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent z-10"></div>
+        
+        {/* Immediate visible code snippets for instant activity */}
+        {codeSnippets.slice(0, 3).map((snippet, index) => (
+          <div
+            key={`immediate-${index}`}
+            className="absolute text-green-400/60 font-mono text-sm whitespace-nowrap"
+            style={{
+              left: `${20 + Math.random() * 60}%`,
+              top: `${30 + Math.random() * 40}%`,
+              transform: `rotate(${Math.random() * 6 - 3}deg)`,
+              animation: `pulse 3s ease-in-out infinite ${index * 0.5}s`
+            }}
+          >
+            {snippet}
+          </div>
+        ))}
+        
+        {/* Floating animated code snippets */}
         {codeSnippets.map((snippet, index) => (
           <div
             key={index}
@@ -31,7 +49,7 @@ export default function Header() {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${index * 2}s`,
+              animationDelay: `${index * 0.3}s`,
               animationDuration: `${15 + Math.random() * 10}s`,
               transform: `rotate(${Math.random() * 10 - 5}deg)`
             }}
@@ -50,7 +68,7 @@ export default function Header() {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 20}s`,
+              animationDelay: `${Math.random() * 3}s`,
               animationDuration: `${20 + Math.random() * 15}s`
             }}
           />
