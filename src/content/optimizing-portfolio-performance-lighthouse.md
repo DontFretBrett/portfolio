@@ -290,24 +290,6 @@ This reduced the image size from 74KB to 28KB - a **62% reduction**! I then impl
 </picture>
 ```
 
-### Video Optimization
-
-The 10MB background video was contributing to enormous network payloads. I optimized this by changing the preload strategy:
-
-```typescript
-// Before: preload="auto" (loads entire video immediately)
-// After: preload="none" (loads only when needed)
-<video
-  preload="none"
-  autoPlay
-  muted
-  loop
-  // ... other attributes
->
-```
-
-This prevents the video from loading until the user actually visits the page, dramatically reducing initial payload size.
-
 ## Final Results and Impact
 
 After implementing all optimizations, the improvements were substantial:
@@ -316,7 +298,6 @@ After implementing all optimizations, the improvements were substantial:
 - **Compression Strategy**: Letting Vercel handle compression automatically eliminated MIME type conflicts while still achieving excellent compression ratios
 - **JavaScript Minification**: ~366 KiB reduction through aggressive Terser settings
 - **Image Optimization**: ~110 KiB reduction via WebP conversion  
-- **Network Payloads**: Significant reduction through lazy video loading
 - **Caching Efficiency**: Faster repeat visits with optimized cache policies
 
 ### Bundle Analysis
