@@ -18,13 +18,13 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['buffer'],
+    include: ['buffer', 'lucide-react'],
   },
   build: {
     // Generate proper source maps for production
     sourcemap: true, // Enable source maps temporarily to debug
     // Minify for production with aggressive settings
-    minify: 'terser',
+    minify: false, // Disable minification temporarily to debug
     terserOptions: {
       compress: {
         drop_console: false, // Keep console logs temporarily
@@ -43,8 +43,11 @@ export default defineConfig({
             if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
               return 'react-vendor';
             }
-            if (id.includes('framer-motion') || id.includes('lucide-react')) {
-              return 'ui-vendor';
+            if (id.includes('framer-motion')) {
+              return 'framer-vendor';
+            }
+            if (id.includes('lucide-react')) {
+              return 'lucide-vendor';
             }
             if (id.includes('markdown') || id.includes('highlight') || id.includes('rehype') || id.includes('remark')) {
               return 'markdown-vendor';
