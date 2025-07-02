@@ -11,6 +11,7 @@ const AIProjectsPage = lazy(() => import('./pages/AIProjectsPage'));
 const AIProjectPage = lazy(() => import('./pages/AIProjectPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Conditionally lazy load Chatbot only if enabled
 const Chatbot = FEATURE_FLAGS.ENABLE_CHATBOT 
@@ -37,6 +38,7 @@ function App() {
               <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
           <BackToTop />
