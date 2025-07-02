@@ -5,6 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import type { BlogPost } from '../types/blog';
 import { formatDate } from '../utils/blog';
 import { Clock, Calendar, Tag } from 'lucide-react';
+import GiscusComments from './Giscus';
 
 interface BlogPostProps {
   post: BlogPost;
@@ -133,6 +134,9 @@ export default function BlogPost({ post }: BlogPostProps) {
           {post.content}
         </ReactMarkdown>
       </div>
+      
+      {/* Comments Section */}
+      <GiscusComments term={post.slug} />
     </article>
   );
 } 
