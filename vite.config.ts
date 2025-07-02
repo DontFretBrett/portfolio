@@ -5,9 +5,7 @@ export default defineConfig({
   plugins: [
     react({
       jsxRuntime: 'automatic'
-    }),
-    // Removed vite-plugin-imagemin due to security vulnerabilities
-    // Images should be pre-optimized before committing to repo
+    })
   ],
   define: {
     global: 'globalThis',
@@ -18,7 +16,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['buffer', 'lucide-react'],
+    include: ['buffer', 'react', 'react-dom', 'react/jsx-runtime'],
   },
   build: {
     // Generate proper source maps for production
@@ -36,34 +34,7 @@ export default defineConfig({
     // Enable tree shaking and compression
     rollupOptions: {
       output: {
-        // Better chunk splitting for optimal loading
-        manualChunks(id) {
-          // Vendor chunks
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-              return 'react-vendor';
-            }
-            if (id.includes('framer-motion')) {
-              return 'framer-vendor';
-            }
-            if (id.includes('lucide-react')) {
-              return 'lucide-vendor';
-            }
-            if (id.includes('markdown') || id.includes('highlight') || id.includes('rehype') || id.includes('remark')) {
-              return 'markdown-vendor';
-            }
-            // Other vendor libraries
-            return 'vendor';
-          }
-          // App chunks
-          if (id.includes('/components/')) {
-            return 'components';
-          }
-          if (id.includes('/pages/')) {
-            return 'pages';
-          }
-        },
-        // Compress output
+        // Let Vite handle chunking automatically
         compact: true
       }
     }
