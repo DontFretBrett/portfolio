@@ -1,39 +1,40 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Database, Server, Layout, Wrench, Cloud, Brain } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 
 const skillCategories = [
   {
-    icon: <Database />,
+    icon: LucideIcons.Database,
     title: 'Database Technologies',
     skills: 'SQL Server, SQL, SSMS, SSRS, ETL, Entity Framework, ADO.NET, AWS RDS, DynamoDB',
     itemProp: 'knowsAbout'
   },
   {
-    icon: <Server />,
+    icon: LucideIcons.Server,
     title: 'Server-Side Development',
     skills: 'Node.js, Express, C# .NET (Framework/Core), ASP.NET, MVC, Microservices, SOA, IIS, RESTful APIs, PowerShell, Gulp',
     itemProp: 'knowsAbout'
   },
   {
-    icon: <Layout />,
+    icon: LucideIcons.Layout,
     title: 'Front-End Development',
     skills: 'React, Vite, Angular 6-17, Angular Forms Reactive/Template-Driven, SPA, JavaScript, TypeScript, CSS/SASS Grid/Flexbox, CSS Variables, HTML, Foundation/Bootstrap CSS, Media Queries, Responsiveness, Razor syntax',
     itemProp: 'knowsAbout'
   },
   {
-    icon: <Wrench />,
+    icon: LucideIcons.Wrench,
     title: 'Development Tools',
     skills: 'Visual Studio, VS Code, TeamCity CI, Octopus CD, Postman, Artifactory, Proget, TFS/Git, GitHub, Azure DevOps, npm, nuget, TS Lint, Miro, Figma, Invision, AirTable, Slack, Teams, Discord, Confluence, Discourse',
     itemProp: 'knowsAbout'
   },
   {
-    icon: <Brain />,
+    icon: LucideIcons.Brain,
     title: 'AI Agents & Automation',
     skills: 'OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, Model Context Protocol (MCP), FastMCP, Gradio, Python async programming, Multi-agent systems, Agent workflows, Protocol design, AI automation, Anthropic Claude, OpenAI GPT, Prompt engineering',
     itemProp: 'knowsAbout'
   },
   {
-    icon: <Cloud />,
+    icon: LucideIcons.Cloud,
     title: 'Cloud & Deployment',
     skills: 'AWS Console, IAM, S3, EC2, EBS, Lambda, Azure VM, SQL, App Services, Storage, Virtual Network, SSL, Hugging Face Spaces, Docker, CI/CD pipelines, Infrastructure as Code',
     itemProp: 'knowsAbout'
@@ -63,7 +64,9 @@ export default function Skills() {
               className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-blue-600" aria-hidden="true">{category.icon}</span>
+                <span className="text-blue-600" aria-hidden="true">
+                  {React.createElement(category.icon, { size: 24 })}
+                </span>
                 <h3 className="text-xl font-semibold text-gray-800">{category.title}</h3>
               </div>
               <p className="text-gray-600 leading-relaxed" itemProp={category.itemProp}>
