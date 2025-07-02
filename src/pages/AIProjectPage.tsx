@@ -11,12 +11,7 @@ import { formatDate } from '../utils/blog';
 
 export default function AIProjectPage() {
   const { slug } = useParams<{ slug: string }>();
-  
-  if (!slug) {
-    return <Navigate to="/ai-projects" replace />;
-  }
-
-  const project = getAIProjectBySlug(slug);
+  const project = slug ? getAIProjectBySlug(slug) : null;
 
   useEffect(() => {
     // Load Gradio script if embed code is present
@@ -34,6 +29,10 @@ export default function AIProjectPage() {
       };
     }
   }, [project?.embedCode]);
+  
+  if (!slug) {
+    return <Navigate to="/ai-projects" replace />;
+  }
 
   if (!project) {
     return <Navigate to="/ai-projects" replace />;

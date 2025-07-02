@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Summary from '../components/Summary';
 import Skills from '../components/Skills';
-import { FEATURE_FLAGS } from '../config/features';
 
 // Lazy load larger components
 const Experience = lazy(() => import('../components/Experience'));

@@ -16,7 +16,7 @@ export function generateSlug(title: string): string {
 }
 
 // Simple frontmatter parser that works in the browser
-function parseFrontmatter(markdownContent: string): { data: any; content: string } {
+function parseFrontmatter(markdownContent: string): { data: Record<string, string | string[]>; content: string } {
   const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/;
   const match = markdownContent.match(frontmatterRegex);
   
@@ -25,7 +25,7 @@ function parseFrontmatter(markdownContent: string): { data: any; content: string
   }
   
   const [, frontmatterStr, content] = match;
-  const data: any = {};
+  const data: Record<string, string | string[]> = {};
   
   // Parse YAML-like frontmatter
   const lines = frontmatterStr.split('\n');
@@ -55,7 +55,7 @@ function parseFrontmatter(markdownContent: string): { data: any; content: string
 // Function to process markdown content
 export function processMarkdown(markdownContent: string, filename: string): BlogPost {
   const { data, content } = parseFrontmatter(markdownContent);
-  const metadata = data as BlogMetadata;
+  const metadata = data as unknown as BlogMetadata;
   
   const title = metadata.title || filename.replace(/\.md$/, '');
   const slug = generateSlug(title);
