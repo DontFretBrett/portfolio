@@ -16,6 +16,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **Syntax Highlighting**: Code blocks with highlight.js
 - **Dynamic Content Loading**: Lazy-loaded blog posts with caching
 - **SEO Optimized Posts**: Individual meta tags and structured data per post
+- **Comments System**: GitHub Discussions-powered comments via Giscus integration
 
 ### AI Projects Showcase
 - **Project Gallery**: Dedicated AI projects section
@@ -133,6 +134,22 @@ The project is configured for seamless deployment on Vercel with:
 ### Feature Flags
 Configure features in `src/config/features.ts`:
 - `ENABLE_CHATBOT`: Toggle chatbot functionality
+
+### Comments Configuration
+The portfolio uses Giscus for comments, powered by GitHub Discussions:
+- **Repository**: Comments are stored in GitHub Discussions
+- **Mapping**: Comments are mapped to specific pages using unique terms
+- **Theme**: Light theme by default
+- **Position**: Comment box positioned at the top
+- **Language**: English (configurable)
+
+To configure Giscus for your own repository:
+1. Install the Giscus GitHub app on your repository
+2. Update the configuration in `src/components/Giscus.tsx` with your:
+   - Repository name
+   - Repository ID
+   - Category ID
+   - Mapping preferences
 
 ### Content Management
 - **Blog Posts**: Add markdown files to `src/content/`
