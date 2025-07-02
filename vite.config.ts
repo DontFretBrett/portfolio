@@ -3,7 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      jsxRuntime: 'automatic'
+    }),
     // Removed vite-plugin-imagemin due to security vulnerabilities
     // Images should be pre-optimized before committing to repo
   ],
@@ -20,18 +22,13 @@ export default defineConfig({
   },
   build: {
     // Generate proper source maps for production
-    sourcemap: false, // Disable source maps in production for better performance
+    sourcemap: true, // Enable source maps temporarily to debug
     // Minify for production with aggressive settings
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true, // Remove console.log statements
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.warn'],
-        passes: 2 // Multiple passes for better compression
-      },
-      mangle: {
-        toplevel: true // More aggressive variable name mangling
+        drop_console: false, // Keep console logs temporarily
+        drop_debugger: false,
       }
     },
     // Reduce chunk size limit warnings
