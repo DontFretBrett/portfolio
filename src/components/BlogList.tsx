@@ -9,10 +9,10 @@ interface BlogListProps {
 
 export default function BlogList({ posts }: BlogListProps) {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen transition-colors duration-200">
       <header className="mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
-        <p className="text-lg text-gray-600">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 transition-colors duration-200">Blog</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 transition-colors duration-200">
           Insights on AI engineering, software development, and technology leadership from Brett Sanders
         </p>
       </header>
@@ -21,22 +21,22 @@ export default function BlogList({ posts }: BlogListProps) {
         {posts.map((post) => (
           <article
             key={post.slug}
-            className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200"
+            className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg dark:hover:shadow-gray-900/50 transition-all duration-200"
             itemScope
             itemType="https://schema.org/BlogPosting"
           >
             <header className="mb-4">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-3" itemProp="headline">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-3 transition-colors duration-200" itemProp="headline">
                 <Link
                   to={`/blog/${post.slug}`}
-                  className="hover:text-blue-600 transition-colors"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   itemProp="url"
                 >
                   {post.title}
                 </Link>
               </h2>
               
-              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 transition-colors duration-200">
                 <div className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" aria-hidden="true" />
                   <time dateTime={post.date} itemProp="datePublished">
@@ -58,14 +58,14 @@ export default function BlogList({ posts }: BlogListProps) {
                       {post.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                          className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full transition-colors duration-200"
                           itemProp="keywords"
                         >
                           {tag}
                         </span>
                       ))}
                       {post.tags.length > 3 && (
-                        <span className="text-gray-500 text-xs">
+                        <span className="text-gray-500 dark:text-gray-400 text-xs transition-colors duration-200">
                           +{post.tags.length - 3} more
                         </span>
                       )}
@@ -75,13 +75,13 @@ export default function BlogList({ posts }: BlogListProps) {
               </div>
             </header>
 
-            <div className="text-gray-700 leading-relaxed mb-4 overflow-hidden" itemProp="description">
+            <div className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4 overflow-hidden transition-colors duration-200" itemProp="description">
               {post.excerpt}
             </div>
 
             <Link
               to={`/blog/${post.slug}`}
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors"
+              className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
               aria-label={`Read full article: ${post.title}`}
             >
               Read "{post.title}"
@@ -103,7 +103,7 @@ export default function BlogList({ posts }: BlogListProps) {
 
       {posts.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-600 text-lg">No blog posts yet. Check back soon!</p>
+          <p className="text-gray-600 dark:text-gray-400 text-lg transition-colors duration-200">No blog posts yet. Check back soon!</p>
         </div>
       )}
     </div>

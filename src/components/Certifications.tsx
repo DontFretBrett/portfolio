@@ -45,12 +45,12 @@ export default function Certifications() {
   return (
     <section 
       id="certifications" 
-      className="py-16 bg-gray-50"
+      className="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-200"
       itemScope
       itemType="https://schema.org/Person"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-gray-800">Certifications & Training</h2>
+        <h2 className="text-3xl font-bold mb-12 text-gray-800 dark:text-gray-100 transition-colors duration-200">Certifications & Training</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {certifications.map((cert, index) => (
             <motion.div
@@ -58,21 +58,21 @@ export default function Certifications() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md dark:shadow-gray-900/20 dark:hover:shadow-gray-900/40 transition-all duration-200 border border-gray-100 dark:border-gray-700"
               itemScope
               itemType="https://schema.org/EducationalOccupationalCredential"
             >
               <div className="flex items-center gap-3 mb-2">
-                <Award className="text-blue-600" size={20} aria-hidden="true" />
-                <time className="text-gray-500" itemProp="dateCreated">{cert.year}</time>
+                <Award className="text-blue-600 dark:text-blue-400 transition-colors duration-200" size={20} aria-hidden="true" />
+                <time className="text-gray-500 dark:text-gray-400 transition-colors duration-200" itemProp="dateCreated">{cert.year}</time>
               </div>
-              <h3 className="text-lg font-medium text-gray-800" itemProp="name">
+              <h3 className="text-lg font-medium text-gray-800 dark:text-gray-100 transition-colors duration-200" itemProp="name">
                 {cert.url ? (
                   <a 
                     href={cert.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline transition-colors duration-200"
                   >
                     {cert.title}
                   </a>

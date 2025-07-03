@@ -78,12 +78,12 @@ export default function Skills() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.4 }}
-      className="py-16 bg-gray-50"
+      className="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-200"
       itemScope
       itemType="https://schema.org/Person"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-gray-800">Technical Skills & Expertise</h2>
+        <h2 className="text-3xl font-bold mb-12 text-gray-800 dark:text-gray-100 transition-colors duration-200">Technical Skills & Expertise</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
             <motion.div
@@ -91,15 +91,15 @@ export default function Skills() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md dark:shadow-gray-900/20 dark:hover:shadow-gray-900/40 transition-all duration-200 border border-gray-100 dark:border-gray-700"
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-blue-600" aria-hidden="true">
+                <span className="text-blue-600 dark:text-blue-400 transition-colors duration-200" aria-hidden="true">
                   {category.icon}
                 </span>
-                <h3 className="text-xl font-semibold text-gray-800">{category.title}</h3>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-200">{category.title}</h3>
               </div>
-              <p className="text-gray-600 leading-relaxed" itemProp={category.itemProp}>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-200" itemProp={category.itemProp}>
                 {category.skills}
               </p>
             </motion.div>

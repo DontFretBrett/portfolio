@@ -13,6 +13,12 @@
   overflow-x: auto !important;
 }
 
+/* Dark mode enhanced syntax highlighting */
+.dark .hljs {
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+}
+
 .hljs-keyword,
 .hljs-built_in {
   color: #60a5fa !important;
@@ -25,6 +31,10 @@
 .hljs-comment {
   color: #9ca3af !important;
   font-style: italic !important;
+}
+
+.dark .hljs-comment {
+  color: #64748b !important;
 }
 
 .hljs-number {
@@ -42,8 +52,13 @@
   }
 
   body {
-    @apply text-gray-900 bg-gray-50;
+    @apply text-gray-900 bg-gray-50 dark:text-gray-100 dark:bg-gray-900 transition-colors duration-200;
     overflow-x: hidden;
+  }
+
+  /* Ensure smooth theme transitions */
+  * {
+    @apply transition-colors duration-200;
   }
 }
 
@@ -59,6 +74,15 @@
   
   .text-shadow-strong {
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Dark mode text shadows */
+  .dark .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 0.6);
+  }
+  
+  .dark .text-shadow-strong {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5);
   }
 }
 

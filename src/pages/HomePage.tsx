@@ -67,10 +67,15 @@ export default function HomePage() {
         </script>
       </Helmet>
       
-      <main>
+      <main className="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
         <Summary />
         <Skills />
-        <Suspense fallback={<div className="p-16 text-center">Loading...</div>}>
+        <Suspense fallback={
+          <div className="p-16 text-center bg-gray-50 dark:bg-gray-900">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
+            <p className="mt-4 text-gray-600 dark:text-gray-400">Loading...</p>
+          </div>
+        }>
           <Certifications />
           <Experience />
         </Suspense>
