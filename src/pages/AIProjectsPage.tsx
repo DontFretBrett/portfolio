@@ -22,10 +22,10 @@ export default function AIProjectsPage() {
         <link rel="canonical" href="https://www.brettsanders.com/ai-projects" />
       </Helmet>
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl">
+      <main className="container mx-auto px-4 py-8 max-w-4xl dark:bg-gray-900 min-h-screen">
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Projects</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">AI Projects</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Exploring the frontiers of artificial intelligence through hands-on projects, protocol implementations, and innovative applications.
           </p>
         </header>
@@ -34,17 +34,17 @@ export default function AIProjectsPage() {
           {projects.map((project) => (
             <article
               key={project.slug}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700"
             >
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+                    <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                       <Link to={`/ai-projects/${project.slug}`}>
                         {project.title}
                       </Link>
                     </h2>
-                    <div className="flex items-center text-sm text-gray-500 mb-3">
+                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
                       <Calendar size={16} className="mr-2" />
                       <time dateTime={project.date}>
                         {formatDate(project.date)}
@@ -53,7 +53,7 @@ export default function AIProjectsPage() {
                   </div>
                 </div>
 
-                <p className="text-gray-700 mb-4 leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                   {project.excerpt}
                 </p>
 
@@ -62,7 +62,7 @@ export default function AIProjectsPage() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 transition-colors duration-200"
                       >
                         <Tag size={12} className="mr-1" />
                         {tag}
@@ -74,7 +74,7 @@ export default function AIProjectsPage() {
                 <div className="flex items-center justify-start">
                   <Link
                     to={`/ai-projects/${project.slug}`}
-                    className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200"
                   >
                     View Project
                     <ExternalLink size={16} className="ml-2" />
@@ -87,7 +87,7 @@ export default function AIProjectsPage() {
 
         {projects.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No projects available yet. Check back soon!</p>
+            <p className="text-gray-500 dark:text-gray-400 text-lg">No projects available yet. Check back soon!</p>
           </div>
         )}
       </main>
