@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 
 const certifications = [
   {
+    year: '2025',
+    title: 'The Complete Agentic AI Engineering Course',
+    url: 'https://www.udemy.com/certificate/UC-816bd9d7-4ad1-4bef-b670-782fabc9ec94/'
+  },
+  {
     year: '2023',
     title: 'AWS Certified Cloud Practitioner'
   },
@@ -62,7 +67,18 @@ export default function Certifications() {
                 <time className="text-gray-500" itemProp="dateCreated">{cert.year}</time>
               </div>
               <h3 className="text-lg font-medium text-gray-800" itemProp="name">
-                {cert.title}
+                {cert.url ? (
+                  <a 
+                    href={cert.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                  >
+                    {cert.title}
+                  </a>
+                ) : (
+                  cert.title
+                )}
               </h3>
               
               {/* Hidden structured data */}
@@ -71,7 +87,8 @@ export default function Certifications() {
                 <span itemProp="recognizedBy" itemScope itemType="https://schema.org/Organization">
                   <span itemProp="name">
                     {cert.title.includes('AWS') ? 'Amazon Web Services' : 
-                     cert.title.includes('SAFe') ? 'Scaled Agile Inc.' : 'Professional Training'}
+                     cert.title.includes('SAFe') ? 'Scaled Agile Inc.' :
+                     cert.title.includes('Agentic AI Engineering Course') ? 'Udemy' : 'Professional Training'}
                   </span>
                 </span>
               </div>
