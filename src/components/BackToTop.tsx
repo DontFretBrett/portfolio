@@ -1,16 +1,17 @@
 import { ArrowUp } from 'lucide-react';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleScroll = useCallback(() => {
-    const shouldShow = window.scrollY > 300;
-    setIsVisible(prev => prev !== shouldShow ? shouldShow : prev);
-  }, []);
-
   useEffect(() => {
+    // React 19 automatically optimizes this function, no need for useCallback
+    const handleScroll = () => {
+      const shouldShow = window.scrollY > 300;
+      setIsVisible(prev => prev !== shouldShow ? shouldShow : prev);
+    };
+
     // Throttle scroll events for better performance
     let ticking = false;
     const throttledScroll = () => {
@@ -26,16 +27,45 @@ export default function BackToTop() {
     handleScroll(); // Check initial state
     window.addEventListener('scroll', throttledScroll, { passive: true });
     return () => window.removeEventListener('scroll', throttledScroll);
-  }, [handleScroll]);
+  }, []); // Empty dependency array now since handleScroll is defined inside
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // React 19 enhanced ref callback with cleanup
+  const scrollButtonRef = (element: HTMLButtonElement | null) => {
+    if (element) {
+      // Setup element-specific logic
+      element.setAttribute('data-component', 'back-to-top');
+      console.log('Back to top button mounted');
+      
+      // Add focus management for accessibility
+      element.addEventListener('focus', () => {
+        element.style.outline = '2px solid #3b82f6';
+      });
+      
+      element.addEventListener('blur', () => {
+        element.style.outline = 'none';
+      });
+    }
+    
+    // Return cleanup function (React 19 feature)
+    return () => {
+      if (element) {
+        console.log('Back to top button cleanup');
+        element.removeAttribute('data-component');
+        // Cleanup is handled automatically for event listeners on the element
+        // but we can do additional cleanup here if needed
+      }
+    };
   };
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.button
+          ref={scrollButtonRef}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}

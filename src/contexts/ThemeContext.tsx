@@ -58,9 +58,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
+  // React 19 simplified provider syntax - use Context directly
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext value={{ theme, toggleTheme }}>
       {children}
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }; 
