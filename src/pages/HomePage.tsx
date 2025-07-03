@@ -67,7 +67,7 @@ export default function HomePage() {
         </script>
       </Helmet>
       
-      <main className="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+      <main className="bg-gray-50 dark:bg-gray-900">
         <Summary />
         <Skills />
         <Suspense fallback={

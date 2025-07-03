@@ -21,7 +21,7 @@ export default function Header() {
   ];
   
   return (
-    <header className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-20 overflow-hidden transition-colors duration-200">
+    <header className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-20 overflow-hidden">
       {/* Theme Toggle - positioned absolutely in top right */}
       <div className="absolute top-4 right-4 z-30">
         <ThemeToggle />

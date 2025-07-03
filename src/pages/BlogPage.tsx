@@ -25,10 +25,10 @@ export default function BlogPage() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen transition-colors duration-200">
+      <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto transition-colors duration-200"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 transition-colors duration-200">Loading blog posts...</p>
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading blog posts...</p>
         </div>
       </div>
     );

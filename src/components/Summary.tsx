@@ -7,13 +7,13 @@ export default function Summary() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="py-16 bg-white dark:bg-gray-800 transition-colors duration-200"
+      className="py-16 bg-white dark:bg-gray-800"
       itemScope
       itemType="https://schema.org/Person"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100 transition-colors duration-200">About Brett Sanders</h2>
-        <div className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-200" itemProp="description">
+        <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">About Brett Sanders</h2>
+        <div className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed" itemProp="description">
           <p>
             Started obsessively coding as a 12-year-old building tools and games before YouTube, StackOverflow, and AI. 
             Hobby turned career, I quickly learned my skills and talent provide significant value to companies which I find 

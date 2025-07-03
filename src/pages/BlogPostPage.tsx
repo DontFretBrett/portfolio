@@ -35,10 +35,10 @@ export default function BlogPostPage() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen transition-colors duration-200">
+      <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto transition-colors duration-200"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 transition-colors duration-200">Loading blog post...</p>
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading blog post...</p>
         </div>
       </div>
     );
@@ -52,10 +52,10 @@ export default function BlogPostPage() {
           <meta name="description" content="The blog post you're looking for doesn't exist." />
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
-        <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen transition-colors duration-200">
+        <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 transition-colors duration-200">Post Not Found</h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-8 transition-colors duration-200">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Post Not Found</h1>
+            <p className="text-gray-600 dark:text-gray-400 mb-8">
               The blog post you're looking for doesn't exist.
             </p>
             <Link
@@ -147,7 +147,7 @@ export default function BlogPostPage() {
       </Helmet>
       
       <div className="overflow-x-hidden">
-        <div className="max-w-4xl mx-auto px-4 pt-8 dark:bg-gray-900 transition-colors duration-200">
+        <div className="max-w-4xl mx-auto px-4 pt-8 dark:bg-gray-900">
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors mb-8"

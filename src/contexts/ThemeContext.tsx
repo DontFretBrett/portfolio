@@ -21,15 +21,20 @@ interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-// Function to get initial theme from localStorage
+// Function to get initial theme from localStorage or OS preference
 const getInitialTheme = (): Theme => {
   if (typeof window !== 'undefined') {
     const savedTheme = localStorage.getItem('theme') as Theme;
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
       return savedTheme;
     }
+    
+    // If no saved theme, check OS preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
   }
-  return 'light'; // Default to light mode
+  return 'light'; // Default to light mode as final fallback
 };
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {

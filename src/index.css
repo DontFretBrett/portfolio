@@ -4,45 +4,91 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Basic syntax highlighting */
+/* Light mode syntax highlighting */
 .hljs {
-  background: #1f2937 !important;
-  color: #f9fafb !important;
-  padding: 1rem !important;
-  border-radius: 0.5rem !important;
-  overflow-x: auto !important;
+  background: transparent !important;
+  color: #374151 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  overflow-x: visible !important;
 }
 
-/* Dark mode enhanced syntax highlighting */
+/* Dark mode syntax highlighting */
 .dark .hljs {
-  background: #0f172a !important;
+  background: transparent !important;
   color: #f1f5f9 !important;
 }
 
+/* Keywords and built-ins */
 .hljs-keyword,
 .hljs-built_in {
-  color: #60a5fa !important;
+  color: #7c3aed !important;
+  font-weight: 600 !important;
 }
 
+.dark .hljs-keyword,
+.dark .hljs-built_in {
+  color: #a78bfa !important;
+}
+
+/* Strings */
 .hljs-string {
+  color: #059669 !important;
+}
+
+.dark .hljs-string {
   color: #34d399 !important;
 }
 
+/* Comments */
 .hljs-comment {
-  color: #9ca3af !important;
+  color: #6b7280 !important;
   font-style: italic !important;
 }
 
 .dark .hljs-comment {
-  color: #64748b !important;
+  color: #9ca3af !important;
 }
 
+/* Numbers */
 .hljs-number {
+  color: #dc2626 !important;
+}
+
+.dark .hljs-number {
   color: #fbbf24 !important;
 }
 
+/* Functions */
 .hljs-function {
-  color: #a78bfa !important;
+  color: #2563eb !important;
+}
+
+.dark .hljs-function {
+  color: #60a5fa !important;
+}
+
+/* Variables and attributes */
+.hljs-variable,
+.hljs-attr {
+  color: #7c2d12 !important;
+}
+
+.dark .hljs-variable,
+.dark .hljs-attr {
+  color: #fb923c !important;
+}
+
+/* Types and classes */
+.hljs-type,
+.hljs-class {
+  color: #be185d !important;
+  font-weight: 600 !important;
+}
+
+.dark .hljs-type,
+.dark .hljs-class {
+  color: #f472b6 !important;
 }
 
 @layer base {
