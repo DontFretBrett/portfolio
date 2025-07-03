@@ -6,6 +6,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 ### Core Portfolio Features
 - **Responsive Design**: Works seamlessly on all devices
+- **Light/Dark Mode Toggle**: Professional theme switching with lightbulb icon and localStorage persistence
 - **Smooth Navigation**: React Router with smooth scroll navigation
 - **Section-based Layout**: Home page with Summary, Skills, Experience, and Certifications
 - **Timeline Experience**: Professional timeline with detailed work history
@@ -39,6 +40,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 ### Developer Experience
 - **TypeScript**: Full type safety throughout the application
+- **React Context API**: Theme management with localStorage persistence
 - **Feature Flags**: Configurable features (e.g., chatbot)
 - **Modular Architecture**: Clean separation of concerns
 - **Error Handling**: Comprehensive error boundaries and fallbacks
@@ -49,7 +51,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **React 19** - Latest React with concurrent features
 - **TypeScript** - Full type safety
 - **Vite** - Fast build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
+- **Tailwind CSS** - Utility-first CSS framework with class-based dark mode
 
 ### Routing & Navigation
 - **React Router DOM** - Client-side routing
