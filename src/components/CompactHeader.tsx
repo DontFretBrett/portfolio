@@ -1,8 +1,47 @@
 import { Github, Linkedin, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 
 export default function CompactHeader() {
+  const location = useLocation();
+  
+  // Determine the appropriate back link based on current route
+  const getBackLink = () => {
+    const path = location.pathname;
+    
+    if (path.startsWith('/ai-projects/')) {
+      // Individual AI project page - back to AI projects list
+      return {
+        to: '/ai-projects',
+        text: 'Back to Projects',
+        shortText: 'Projects'
+      };
+    } else if (path.startsWith('/blog/')) {
+      // Individual blog post - back to blog list
+      return {
+        to: '/blog',
+        text: 'Back to Blog',
+        shortText: 'Blog'
+      };
+    } else if (path === '/ai-projects' || path === '/blog') {
+      // AI projects list or blog list - back to home
+      return {
+        to: '/',
+        text: 'Back to Home',
+        shortText: 'Home'
+      };
+    }
+    
+    // Default fallback - back to home
+    return {
+      to: '/',
+      text: 'Back to Home',
+      shortText: 'Home'
+    };
+  };
+
+  const backLink = getBackLink();
+
   return (
     <header className="relative bg-gradient-to-r from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-4 border-b border-gray-700/50 dark:border-gray-600/50">
       {/* Theme Toggle - positioned with more space from right edge */}
@@ -12,15 +51,15 @@ export default function CompactHeader() {
 
       {/* Compact content with padding to avoid theme toggle overlap */}
       <div className="container mx-auto px-4 pr-16 flex items-center justify-between relative z-20">
-        {/* Left side - Back to blog + compact branding */}
+        {/* Left side - Dynamic back link + compact branding */}
         <div className="flex items-center gap-3 min-w-0 flex-1">
           <Link
-            to="/blog"
+            to={backLink.to}
             className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium flex-shrink-0"
           >
             <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-            <span className="hidden sm:inline">Back to Blog</span>
-            <span className="sm:hidden">Blog</span>
+            <span className="hidden sm:inline">{backLink.text}</span>
+            <span className="sm:hidden">{backLink.shortText}</span>
           </Link>
           
           <div className="hidden sm:block text-gray-400 flex-shrink-0">•</div>
