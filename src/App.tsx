@@ -36,7 +36,12 @@ function PageLoader() {
 // Component to conditionally render header based on route
 function ConditionalHeader() {
   const location = useLocation();
-  const isBlogPost = location.pathname.startsWith('/blog/') && location.pathname !== '/blog';
+  
+  // Normalize pathname by removing trailing slashes and query parameters
+  const normalizedPath = (location.pathname || '').replace(/\/$/, '').split('?')[0] || '';
+  
+  // Check if this is a blog post page (not the blog index)
+  const isBlogPost = normalizedPath.startsWith('/blog/') && normalizedPath !== '/blog';
   
   return isBlogPost ? <CompactHeader /> : <Header />;
 }
