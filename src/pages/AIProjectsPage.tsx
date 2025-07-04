@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, ExternalLink, Tag } from 'lucide-react';
 import { getAllAIProjects } from '../data/aiProjects';
 import { formatDate } from '../utils/blog';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 export default function AIProjectsPage() {
   const projects = getAllAIProjects();
@@ -22,13 +23,15 @@ export default function AIProjectsPage() {
         <link rel="canonical" href="https://www.brettsanders.com/ai-projects" />
       </Helmet>
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl dark:bg-gray-900 min-h-screen">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">AI Projects</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Exploring the frontiers of artificial intelligence through hands-on projects, protocol implementations, and innovative applications.
-          </p>
-        </header>
+      <main className="container mx-auto px-4 py-8 max-w-6xl dark:bg-gray-900 min-h-screen">
+        <Breadcrumbs 
+          items={[
+            { label: 'AI Projects', isLast: true }
+          ]}
+          className="mb-6"
+        />
+        
+        <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-gray-100">AI Projects</h1>
 
         <div className="space-y-8">
           {projects.map((project) => (

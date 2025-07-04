@@ -8,6 +8,23 @@ export function calculateReadingTime(content: string): number {
   return Math.ceil(words / wordsPerMinute);
 }
 
+// Function to strip markdown formatting for clean excerpts
+function stripMarkdown(text: string): string {
+  return text
+    // Remove headers (# ## ###)
+    .replace(/^#{1,6}\s+/gm, '')
+    // Remove bold and italic (**text** *text*)
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    // Remove links [text](url)
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    // Remove inline code `code`
+    .replace(/`([^`]+)`/g, '$1')
+    // Remove extra whitespace
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 // Function to generate slug from title
 export function generateSlug(title: string): string {
   return title
@@ -60,26 +77,27 @@ export function processMarkdown(markdownContent: string, filename: string): Blog
   const { data, content } = parseFrontmatter(markdownContent);
   const metadata = data as unknown as BlogMetadata;
   
-  const title = metadata.title || filename.replace(/\.md$/, '');
-  const slug = generateSlug(title);
+  const title = (typeof metadata.title === 'string' ? metadata.title : filename.replace(/\.md$/, ''));
+  // Use filename-based slug for consistency with file system
+  const slug = filename.replace(/\.md$/, '');
   const readingTime = calculateReadingTime(content);
-  const excerpt = metadata.excerpt || content.substring(0, 200) + '...';
+  const excerpt = (typeof metadata.excerpt === 'string' ? metadata.excerpt : stripMarkdown(content.substring(0, 200)) + '...');
   
   const blogPost: BlogPost = {
     slug,
     title,
     excerpt,
     content,
-    date: metadata.date || new Date().toISOString(),
+    date: (typeof metadata.date === 'string' ? metadata.date : new Date().toISOString()),
     readingTime,
-    tags: metadata.tags || [],
+    tags: (Array.isArray(metadata.tags) ? metadata.tags : []),
   };
   
   // Only add optional properties if they exist
-  if (metadata.description) {
+  if (typeof metadata.description === 'string') {
     blogPost.description = metadata.description;
   }
-  if (metadata.keywords) {
+  if (Array.isArray(metadata.keywords)) {
     blogPost.keywords = metadata.keywords;
   }
   
@@ -98,7 +116,8 @@ export function formatDate(dateString: string): string {
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
-    const post = blogPosts.find(p => p.slug === slug);
+    const posts = await blogPosts;
+    const post = posts.find(p => p.slug === slug);
     
     if (!post) {
       return null;
@@ -112,10 +131,13 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 }
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
-  // Simulate async loading
-  await new Promise(resolve => setTimeout(resolve, 50));
-  
-  return blogPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  try {
+    const posts = await blogPosts;
+    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  } catch (error) {
+    console.error('Error loading blog posts:', error);
+    return [];
+  }
 }
 
 // React 19 use() hook compatible promise creators

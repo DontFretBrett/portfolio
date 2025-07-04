@@ -51,7 +51,18 @@ export default function HomePage() {
               "React",
               "TypeScript",
               "Team Leadership",
-              "AI Engineering"
+              "AI Engineering",
+              "AI Agents",
+              "Model Context Protocol",
+              "AutoGen Framework",
+              "LangGraph",
+              "CrewAI",
+              "OpenAI",
+              "Machine Learning",
+              "System Architecture",
+              "DevOps",
+              "Agile Methodologies",
+              "Financial Technology"
             ],
             "worksFor": {
               "@type": "Organization",
@@ -62,7 +73,112 @@ export default function HomePage() {
               "addressLocality": "San Diego",
               "addressRegion": "CA",
               "addressCountry": "US"
-            }
+            },
+            "alumniOf": {
+              "@type": "Organization",
+              "name": "Professional Development in Technology"
+            },
+            "hasCredential": [
+              {
+                "@type": "EducationalOccupationalCredential",
+                "name": "AWS Certified Solutions Architect",
+                "credentialCategory": "Professional Certification"
+              },
+              {
+                "@type": "EducationalOccupationalCredential", 
+                "name": "SAFe Certified Agile Framework Practitioner",
+                "credentialCategory": "Professional Certification"
+              }
+            ],
+            "award": [
+              "Technology Leadership Excellence",
+              "Full Stack Development Expertise",
+              "AI Engineering Innovation"
+            ]
+          })}
+        </script>
+        
+        {/* FAQ Schema for AI Overview Optimization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is Brett Sanders' expertise in software engineering?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Brett Sanders is a Software Engineering Director with 15+ years of experience in the financial sector. He specializes in full stack development, AWS cloud services, team leadership, and cutting-edge AI engineering including AI agents, Model Context Protocol (MCP), and frameworks like AutoGen, LangGraph, and CrewAI."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What AI technologies does Brett Sanders work with?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Brett Sanders works with advanced AI frameworks including OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). He builds AI agents and autonomous systems, combining machine learning with practical software engineering to create production-ready AI applications."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What programming languages and technologies does Brett Sanders use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Brett Sanders is proficient in a wide range of technologies including SQL Server, Node.js, C# .NET, Angular, React, TypeScript, Python, AWS and Azure cloud services, and modern AI frameworks. He focuses on building maintainable, scalable systems with emphasis on performance and reliability."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What kind of leadership experience does Brett Sanders have?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Brett Sanders has extensive leadership experience as a Software Engineering Director, leading teams from concept to completion on time and under budget. He is passionate about mentoring, fostering high-performing teams, and sharing knowledge through technical blog posts and AI project demonstrations."
+                }
+              }
+            ]
+          })}
+        </script>
+        
+        {/* Enhanced WebSite Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Brett Sanders - Engineering Leader Portfolio",
+            "url": "https://www.brettsanders.com",
+            "description": "Portfolio and blog of Brett Sanders, Software Engineering Director specializing in AI agents, full stack development, and technology leadership",
+            "author": {
+              "@type": "Person",
+              "name": "Brett Sanders"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.brettsanders.com/blog?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            },
+            "mainEntity": {
+              "@type": "Person",
+              "name": "Brett Sanders"
+            },
+            "about": [
+              {
+                "@type": "Thing",
+                "name": "Software Engineering"
+              },
+              {
+                "@type": "Thing",
+                "name": "AI Engineering"
+              },
+              {
+                "@type": "Thing",
+                "name": "Technology Leadership"
+              },
+              {
+                "@type": "Thing",
+                "name": "Full Stack Development"
+              }
+            ]
           })}
         </script>
       </Helmet>
