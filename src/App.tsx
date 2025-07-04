@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
+import CompactHeader from './components/CompactHeader';
 import BackToTop from './components/BackToTop';
 import ScrollToTop from './components/ScrollToTop';
 import { FEATURE_FLAGS } from './config/features';
@@ -32,31 +33,47 @@ function PageLoader() {
   );
 }
 
+// Component to conditionally render header based on route
+function ConditionalHeader() {
+  const location = useLocation();
+  const isBlogPost = location.pathname.startsWith('/blog/') && location.pathname !== '/blog';
+  
+  return isBlogPost ? <CompactHeader /> : <Header />;
+}
+
+function AppContent() {
+  return (
+    <>
+      <ScrollToTop />
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <ConditionalHeader />
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/ai-projects" element={<AIProjectsPage />} />
+            <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+        <BackToTop />
+        {FEATURE_FLAGS.ENABLE_CHATBOT && Chatbot && (
+          <Suspense fallback={null}>
+            <Chatbot />
+          </Suspense>
+        )}
+      </div>
+    </>
+  );
+}
+
 function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
         <Router>
-          <ScrollToTop />
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-            <Header />
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/ai-projects" element={<AIProjectsPage />} />
-                <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/blog/:slug" element={<BlogPostPage />} />
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            </Suspense>
-            <BackToTop />
-            {FEATURE_FLAGS.ENABLE_CHATBOT && Chatbot && (
-              <Suspense fallback={null}>
-                <Chatbot />
-              </Suspense>
-            )}
-          </div>
+          <AppContent />
         </Router>
       </ThemeProvider>
     </HelmetProvider>

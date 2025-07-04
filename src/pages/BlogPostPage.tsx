@@ -3,7 +3,7 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import BlogPost from '../components/BlogPost';
 import { getBlogPost } from '../data/blogPosts';
-import { ArrowLeft } from 'lucide-react';
+
 
 // React 19 component that uses the use() hook
 function BlogPostContent({ slug }: { slug: string }) {
@@ -29,8 +29,7 @@ function BlogPostContent({ slug }: { slug: string }) {
               to="/blog"
               className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
             >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Blog
+              ← Back to Blog
             </Link>
           </div>
         </div>
@@ -141,15 +140,6 @@ function BlogPostContent({ slug }: { slug: string }) {
       </Helmet>
       
       <div className="overflow-x-hidden">
-        <div className="max-w-4xl mx-auto px-4 pt-8 dark:bg-gray-900">
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Blog
-          </Link>
-        </div>
         <BlogPost post={post} />
       </div>
     </>
