@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, Tag, ArrowLeft } from 'lucide-react';
@@ -8,28 +8,12 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import { getAIProjectBySlug } from '../data/aiProjects';
 import { formatDate } from '../utils/blog';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 export default function AIProjectPage() {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? getAIProjectBySlug(slug) : null;
 
-  useEffect(() => {
-    // Load Gradio script if embed code is present
-    if (project?.embedCode && project.embedCode.includes('gradio')) {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'https://gradio.s3-us-west-2.amazonaws.com/5.34.2/gradio.js';
-      document.head.appendChild(script);
-
-      return () => {
-        // Cleanup script when component unmounts
-        if (document.head.contains(script)) {
-          document.head.removeChild(script);
-        }
-      };
-    }
-  }, [project?.embedCode]);
-  
   if (!slug) {
     return <Navigate to="/ai-projects" replace />;
   }
@@ -53,6 +37,14 @@ export default function AIProjectPage() {
       </Helmet>
 
       <main className="container mx-auto px-4 py-8 max-w-6xl dark:bg-gray-900 min-h-screen">
+        <Breadcrumbs 
+          items={[
+            { label: 'AI Projects', href: '/ai-projects' },
+            { label: project.title, isLast: true }
+          ]}
+          className="mb-6"
+        />
+
         <Link 
           to="/ai-projects"
           className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6"

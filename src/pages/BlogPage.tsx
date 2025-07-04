@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '../components/BlogList';
+import Breadcrumbs from '../components/Breadcrumbs';
 import { getAllBlogPosts } from '../data/blogPosts';
 import type { BlogPost } from '../types/blog';
 
@@ -76,6 +77,14 @@ export default function BlogPage() {
         </script>
       </Helmet>
       
+      <div className="max-w-4xl mx-auto px-4 py-4">
+        <Breadcrumbs 
+          items={[
+            { label: 'Blog', isLast: true }
+          ]}
+          className="mb-6"
+        />
+      </div>
       <BlogList posts={posts} />
     </>
   );

@@ -1,15 +1,43 @@
-import { use, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import BlogPost from '../components/BlogPost';
+import Breadcrumbs from '../components/Breadcrumbs';
 import { getBlogPost } from '../data/blogPosts';
+import type { BlogPost as BlogPostType } from '../types/blog';
 
 
-// React 19 component that uses the use() hook
+// Component that loads blog post data
 function BlogPostContent({ slug }: { slug: string }) {
-  // React 19 use() hook - getBlogPost is memoized to prevent redundant requests
-  // The promise is cached by slug, making this safe for React's use() hook
-  const post = use(getBlogPost(slug));
+  const [post, setPost] = useState<BlogPostType | null | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadPost() {
+      try {
+        const blogPost = await getBlogPost(slug);
+        setPost(blogPost);
+      } catch (error) {
+        console.error('Failed to load blog post:', error);
+        setPost(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    loadPost();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading blog post...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -115,16 +143,33 @@ function BlogPostContent({ slug }: { slug: string }) {
               "@type": "Person",
               "name": "Brett Sanders",
               "url": "https://www.brettsanders.com",
+              "jobTitle": "Software Engineering Director",
+              "description": "Technology leader with 15+ years of experience in financial sector specializing in AI engineering and full stack development",
+              "image": "https://www.brettsanders.com/me.jpeg",
               "sameAs": [
                 "https://www.linkedin.com/in/imbrett/",
                 "https://github.com/DontFretBrett",
                 "https://x.com/WontFretBrett"
+              ],
+              "knowsAbout": [
+                "Software Engineering",
+                "AI Engineering", 
+                "Full Stack Development",
+                "Technology Leadership",
+                "AWS",
+                "React",
+                "TypeScript",
+                "Node.js"
               ]
             },
             "publisher": {
               "@type": "Person",
               "name": "Brett Sanders",
-              "url": "https://www.brettsanders.com"
+              "url": "https://www.brettsanders.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.brettsanders.com/me.jpeg"
+              }
             },
             "mainEntityOfPage": {
               "@type": "WebPage",
@@ -134,29 +179,49 @@ function BlogPostContent({ slug }: { slug: string }) {
             "wordCount": post.content.split(' ').length,
             "timeRequired": `PT${post.readingTime}M`,
             "articleSection": "Technology",
-            "inLanguage": "en-US"
+            "inLanguage": "en-US",
+            "about": post.tags?.map(tag => ({
+              "@type": "Thing",
+              "name": tag
+            })) || [],
+            "mentions": post.tags?.map(tag => ({
+              "@type": "Thing",
+              "name": tag
+            })) || [],
+            "isAccessibleForFree": true,
+            "creativeWorkStatus": "Published",
+            "copyrightHolder": {
+              "@type": "Person",
+              "name": "Brett Sanders"
+            },
+            "copyrightYear": new Date(post.date).getFullYear(),
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "educationalLevel": "Professional",
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Software Engineers, Technology Leaders, AI Engineers"
+            }
           })}
         </script>
       </Helmet>
       
       <div className="overflow-x-hidden">
+        <div className="max-w-4xl mx-auto px-4 py-4">
+          <Breadcrumbs 
+            items={[
+              { label: 'Blog', href: '/blog' },
+              { label: post.title, isLast: true }
+            ]}
+            className="mb-6"
+          />
+        </div>
         <BlogPost post={post} />
       </div>
     </>
   );
 }
 
-// Loading fallback component
-function BlogPostLoading() {
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
-        <p className="mt-4 text-gray-600 dark:text-gray-400">Loading blog post...</p>
-      </div>
-    </div>
-  );
-}
+
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -165,9 +230,5 @@ export default function BlogPostPage() {
     return <Navigate to="/blog" replace />;
   }
 
-  return (
-    <Suspense fallback={<BlogPostLoading />}>
-      <BlogPostContent slug={slug} />
-    </Suspense>
-  );
+  return <BlogPostContent slug={slug} />;
 } 

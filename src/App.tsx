@@ -33,34 +33,35 @@ function PageLoader() {
   );
 }
 
-// Component to conditionally render header based on route
+// Conditional header based on route
 function ConditionalHeader() {
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
   
-  // Normalize pathname by removing trailing slashes and query parameters
-  const normalizedPath = (location.pathname || '').replace(/\/$/, '').split('?')[0] || '';
-  
-  // Check if this is a blog post page (not the blog index)
-  const isBlogPost = normalizedPath.startsWith('/blog/') && normalizedPath !== '/blog';
-  
-  return isBlogPost ? <CompactHeader /> : <Header />;
+  return isHomePage ? <Header /> : <CompactHeader />;
 }
 
 function AppContent() {
   return (
     <>
+      {/* Skip Navigation Link - WCAG 2.2 Best Practice */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <ScrollToTop />
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <ConditionalHeader />
         <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/ai-projects" element={<AIProjectsPage />} />
-            <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <main id="main-content" tabIndex={-1}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/ai-projects" element={<AIProjectsPage />} />
+              <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </main>
         </Suspense>
         <BackToTop />
         {FEATURE_FLAGS.ENABLE_CHATBOT && Chatbot && (
@@ -73,7 +74,7 @@ function AppContent() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
@@ -84,5 +85,3 @@ function App() {
     </HelmetProvider>
   );
 }
-
-export default App;
