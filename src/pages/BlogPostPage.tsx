@@ -27,7 +27,7 @@ function BlogPostContent({ slug }: { slug: string }) {
             </p>
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
             >
               ← Back to Blog
             </Link>
