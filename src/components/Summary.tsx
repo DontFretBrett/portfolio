@@ -76,7 +76,7 @@ export default function Summary() {
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-              <span>Active in tech community since 2008</span>
+              <span>Professionally active in tech community since 2008</span>
             </div>
           </div>
         </div>
