@@ -33,31 +33,35 @@ export default function BackToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // React 19 enhanced ref callback with cleanup
+  // React 19 enhanced ref callback with proper cleanup
   const scrollButtonRef = (element: HTMLButtonElement | null) => {
-    if (element) {
-      // Setup element-specific logic
-      element.setAttribute('data-component', 'back-to-top');
-      console.log('Back to top button mounted');
-      
-      // Add focus management for accessibility
-      element.addEventListener('focus', () => {
-        element.style.outline = '2px solid #3b82f6';
-      });
-      
-      element.addEventListener('blur', () => {
-        element.style.outline = 'none';
-      });
-    }
+    if (!element) return;
     
-    // Return cleanup function (React 19 feature)
+    // Setup element-specific logic
+    element.setAttribute('data-component', 'back-to-top');
+    console.log('Back to top button mounted');
+    
+    // Define event handlers that we can properly clean up
+    const handleFocus = () => {
+      element.style.outline = '2px solid #3b82f6';
+    };
+    
+    const handleBlur = () => {
+      element.style.outline = 'none';
+    };
+    
+    // Add focus management for accessibility
+    element.addEventListener('focus', handleFocus);
+    element.addEventListener('blur', handleBlur);
+    
+    // Return cleanup function (React 19 feature) - CRITICAL for memory management
     return () => {
-      if (element) {
-        console.log('Back to top button cleanup');
-        element.removeAttribute('data-component');
-        // Cleanup is handled automatically for event listeners on the element
-        // but we can do additional cleanup here if needed
-      }
+      console.log('Back to top button cleanup');
+      element.removeAttribute('data-component');
+      
+      // ✅ Properly remove event listeners to prevent memory leaks
+      element.removeEventListener('focus', handleFocus);
+      element.removeEventListener('blur', handleBlur);
     };
   };
 
