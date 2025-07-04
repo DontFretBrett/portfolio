@@ -426,7 +426,7 @@ To fully leverage React 19's capabilities, I updated my TypeScript configuration
 - **ES2022 Target**: Modern JavaScript features and optimizations
 - **Strict Type Checking**: Better error detection and type safety
 - **Exact Optional Properties**: Prevents common TypeScript gotchas
-- **Unchecked Index Access**: Safer array and object access patterns
+- **Unchecked Index Access**: Enabling this option adds stricter checks for array and object access, making them safer by preventing unchecked access to potentially undefined elements
 
 ## Measuring the Impact
 

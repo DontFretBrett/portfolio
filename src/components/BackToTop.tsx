@@ -43,11 +43,13 @@ export default function BackToTop() {
     
     // Define event handlers that we can properly clean up
     const handleFocus = () => {
-      element.style.outline = '2px solid #3b82f6';
+      // Use Tailwind classes for better theming and consistency
+      element.classList.add('outline-2', 'outline-blue-500', 'dark:outline-blue-400', 'outline-offset-2');
     };
     
     const handleBlur = () => {
-      element.style.outline = 'none';
+      // Remove focus styles cleanly
+      element.classList.remove('outline-2', 'outline-blue-500', 'dark:outline-blue-400', 'outline-offset-2');
     };
     
     // Add focus management for accessibility
