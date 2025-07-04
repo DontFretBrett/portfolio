@@ -33,14 +33,21 @@
     <meta name="twitter:image" content="https://www.brettsanders.com/me.jpeg" />
     <meta name="twitter:image:alt" content="Brett Sanders - Engineering Leader & Full Stack Software Engineer" />
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.brettsanders.com" />
+    <!-- Canonical URL will be set by individual pages -->
     
     <!-- Additional SEO meta tags -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="googlebot" content="index, follow" />
     <meta name="theme-color" content="#2563eb" />
     <meta name="msapplication-TileColor" content="#2563eb" />
+    
+    <!-- Performance optimization hints -->
+    <link rel="dns-prefetch" href="//gradio.s3-us-west-2.amazonaws.com">
+    <link rel="preload" href="/me.webp" as="image" type="image/webp">
+    <link rel="preload" href="/me.jpeg" as="image" type="image/jpeg">
+    
+    <!-- Resource hints for better caching -->
+    <meta name="format-detection" content="telephone=no">
     
     <!-- Structured Data -->
     <script type="application/ld+json">

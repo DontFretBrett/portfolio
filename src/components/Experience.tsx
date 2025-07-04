@@ -67,19 +67,19 @@ export default function Experience() {
   return (
     <section 
       id="experience" 
-      className="py-16 bg-white"
+      className="py-16 bg-white dark:bg-gray-800"
       itemScope
       itemType="https://schema.org/Person"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-gray-800">Professional Experience</h2>
+        <h2 className="text-3xl font-bold mb-12 text-gray-800 dark:text-gray-100">Professional Experience</h2>
         
         <div className="space-y-12">
           {experiences.map((exp) => (
-            <div key={exp.company} className="border-l-4 border-blue-600 pl-6">
+            <div key={exp.company} className="border-l-4 border-blue-600 dark:border-blue-400 pl-6">
               <div className="flex items-center gap-4 mb-4">
-                <h3 className="text-2xl font-semibold text-gray-800">{exp.company}</h3>
-                <span className="text-gray-500 flex items-center gap-1 whitespace-nowrap">
+                <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">{exp.company}</h3>
+                <span className="text-gray-500 dark:text-gray-400 flex items-center gap-1 whitespace-nowrap">
                   <Calendar size={16} aria-hidden="true" />
                   {exp.period}
                 </span>
@@ -94,11 +94,11 @@ export default function Experience() {
                     itemType="https://schema.org/OrganizationRole"
                   >
                     <div className="flex items-center gap-4 mb-3">
-                      <h4 className="text-xl font-medium text-gray-700" itemProp="roleName">
+                      <h4 className="text-xl font-medium text-gray-700 dark:text-gray-200" itemProp="roleName">
                         {role.title}
                       </h4>
                       {role.period && (
-                        <span className="text-gray-500 flex items-center gap-1 whitespace-nowrap">
+                        <span className="text-gray-500 dark:text-gray-400 flex items-center gap-1 whitespace-nowrap">
                           <Calendar size={14} aria-hidden="true" />
                           <time itemProp="startDate">{role.period}</time>
                         </span>
@@ -106,7 +106,7 @@ export default function Experience() {
                     </div>
                     
                     {role.description && (
-                      <p className="text-gray-600 mb-4" itemProp="description">
+                      <p className="text-gray-600 dark:text-gray-300 mb-4" itemProp="description">
                         {role.description}
                       </p>
                     )}

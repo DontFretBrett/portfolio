@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '../components/BlogList';
+import Breadcrumbs from '../components/Breadcrumbs';
 import { getAllBlogPosts } from '../data/blogPosts';
 import type { BlogPost } from '../types/blog';
 
@@ -25,10 +26,10 @@ export default function BlogPage() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading blog posts...</p>
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading blog posts...</p>
         </div>
       </div>
     );
@@ -76,6 +77,14 @@ export default function BlogPage() {
         </script>
       </Helmet>
       
+      <div className="max-w-4xl mx-auto px-4 py-4">
+        <Breadcrumbs 
+          items={[
+            { label: 'Blog', isLast: true }
+          ]}
+          className="mb-6"
+        />
+      </div>
       <BlogList posts={posts} />
     </>
   );
