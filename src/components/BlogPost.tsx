@@ -7,7 +7,7 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import type { BlogPost as BlogPostType } from '../types/blog';
 import { formatDate } from '../utils/blog';
-import Giscus from './Giscus';
+import GiscusComments from './Giscus';
 
 interface BlogPostProps {
   post: BlogPostType;
@@ -211,7 +211,7 @@ export default function BlogPost({ post }: BlogPostProps) {
 
       {/* Comments Section */}
       <div className="mt-12">
-        <Giscus />
+        <GiscusComments term={post.slug} />
       </div>
     </article>
   );
