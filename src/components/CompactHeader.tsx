@@ -18,7 +18,7 @@ export default function CompactHeader() {
             to="/blog"
             className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium flex-shrink-0"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
             <span className="hidden sm:inline">Back to Blog</span>
             <span className="sm:hidden">Blog</span>
           </Link>
