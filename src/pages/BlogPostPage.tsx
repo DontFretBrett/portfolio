@@ -18,12 +18,6 @@ function BlogPostContent({ slug }: { slug: string }) {
         <meta name="description" content="The blog post you're looking for doesn't exist." />
         <meta name="robots" content="noindex, nofollow" />
         
-        {/* Fallback to react-helmet-async for compatibility */}
-        <Helmet>
-          <title>Post Not Found - Brett Sanders Blog</title>
-          <meta name="description" content="The blog post you're looking for doesn't exist." />
-          <meta name="robots" content="noindex, nofollow" />
-        </Helmet>
         <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Post Not Found</h1>
