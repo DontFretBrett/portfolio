@@ -47,7 +47,7 @@ export default function Summary() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>AWS Certified Solutions Architect</strong> with extensive cloud architecture experience</span>
+                <span><strong>AWS Certified Cloud Practitioner</strong> with strong cloud services knowledge</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>

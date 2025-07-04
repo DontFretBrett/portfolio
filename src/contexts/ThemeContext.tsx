@@ -104,14 +104,14 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   const isSystemDark = useSystemTheme();
 
   // Type-safe theme setter with validation
-  const setTheme = (newTheme: Theme): void => {
+  const setTheme = React.useCallback((newTheme: Theme): void => {
     const themeResult = createTheme(newTheme);
     if (!themeResult.success) {
       console.error('Invalid theme:', themeResult.error);
       return;
     }
     setThemeState(themeResult.data);
-  };
+  }, []);
 
   useEffect(() => {
     // Apply theme to document immediately
@@ -131,10 +131,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     }
   }, [theme]);
 
-  const toggleTheme = (): void => {
+  const toggleTheme = React.useCallback((): void => {
     const newTheme = theme === 'light' ? ('dark' as Theme) : ('light' as Theme);
     setTheme(newTheme);
-  };
+  }, [theme, setTheme]);
 
   // Memoize context value to prevent unnecessary re-renders
   const contextValue: ThemeContextType = React.useMemo(() => ({
@@ -142,7 +142,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     toggleTheme,
     isSystemDark,
     setTheme,
-  }), [theme, isSystemDark]);
+  }), [theme, toggleTheme, isSystemDark, setTheme]);
 
   // React 19 simplified provider syntax - use Context directly
   return (
