@@ -34,6 +34,32 @@ async function loadBlogPosts(): Promise<BlogPost[]> {
 // Cache for loaded posts
 let cachedPosts: BlogPost[] | null = null;
 
+// Promise cache for individual blog posts - prevents redundant requests
+const blogPostPromiseCache = new Map<string, Promise<BlogPost | null>>();
+
+// Cache utilities for better performance monitoring and debugging
+export const cacheUtils = {
+  // Get cache stats for debugging
+  getStats() {
+    return {
+      cachedPostsCount: cachedPosts?.length || 0,
+      promiseCacheSize: blogPostPromiseCache.size,
+      cachedSlugs: Array.from(blogPostPromiseCache.keys())
+    };
+  },
+  
+  // Clear all caches (useful for testing or development)
+  clearAll() {
+    cachedPosts = null;
+    blogPostPromiseCache.clear();
+  },
+  
+  // Clear specific slug from promise cache
+  clearSlug(slug: string) {
+    blogPostPromiseCache.delete(slug);
+  }
+};
+
 // Export function to get all blog posts
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
   if (!cachedPosts) {
@@ -42,8 +68,26 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
   return cachedPosts;
 }
 
-// Optimized function to get a single blog post without loading all
-export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+// Memoized function to get a single blog post - safe for React 19 use() hook
+export function getBlogPost(slug: string): Promise<BlogPost | null> {
+  // Return cached promise if it exists
+  if (blogPostPromiseCache.has(slug)) {
+    return blogPostPromiseCache.get(slug)!;
+  }
+  
+  // Create and cache the promise with error handling
+  const promise = getBlogPostInternal(slug).catch(error => {
+    // Remove failed promise from cache so it can be retried
+    blogPostPromiseCache.delete(slug);
+    throw error;
+  });
+  
+  blogPostPromiseCache.set(slug, promise);
+  return promise;
+}
+
+// Internal function that actually loads the blog post
+async function getBlogPostInternal(slug: string): Promise<BlogPost | null> {
   // First check if we have cached posts
   if (cachedPosts) {
     return cachedPosts.find(post => post.slug === slug) || null;

@@ -1,57 +1,24 @@
-import { useState, useEffect } from 'react';
+import { use, Suspense } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import BlogPost from '../components/BlogPost';
 import { getBlogPost } from '../data/blogPosts';
 import { ArrowLeft } from 'lucide-react';
-import type { BlogPost as BlogPostType } from '../types/blog';
 
-export default function BlogPostPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<BlogPostType | null>(null);
-  const [loading, setLoading] = useState(true);
-  
-  useEffect(() => {
-    async function loadPost() {
-      if (!slug) return;
-      
-      try {
-        const blogPost = await getBlogPost(slug);
-        setPost(blogPost || null);
-      } catch (error) {
-        console.error('Failed to load blog post:', error);
-        setPost(null);
-      } finally {
-        setLoading(false);
-      }
-    }
-    
-    loadPost();
-  }, [slug]);
-  
-  if (!slug) {
-    return <Navigate to="/blog" replace />;
-  }
-
-  if (loading) {
-    return (
-      <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading blog post...</p>
-        </div>
-      </div>
-    );
-  }
+// React 19 component that uses the use() hook
+function BlogPostContent({ slug }: { slug: string }) {
+  // React 19 use() hook - getBlogPost is memoized to prevent redundant requests
+  // The promise is cached by slug, making this safe for React's use() hook
+  const post = use(getBlogPost(slug));
 
   if (!post) {
     return (
       <>
-        <Helmet>
-          <title>Post Not Found - Brett Sanders Blog</title>
-          <meta name="description" content="The blog post you're looking for doesn't exist." />
-          <meta name="robots" content="noindex, nofollow" />
-        </Helmet>
+        {/* React 19 native document metadata */}
+        <title>Post Not Found - Brett Sanders Blog</title>
+        <meta name="description" content="The blog post you're looking for doesn't exist." />
+        <meta name="robots" content="noindex, nofollow" />
+        
         <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Post Not Found</h1>
@@ -79,6 +46,33 @@ export default function BlogPostPage() {
 
   return (
     <>
+      {/* React 19 native document metadata - automatically hoisted to <head> */}
+      <title>{post.title} - Brett Sanders Blog</title>
+      <meta name="description" content={metaDescription} />
+      <meta name="keywords" content={metaKeywords} />
+      <meta name="author" content="Brett Sanders" />
+      
+      {/* Open Graph */}
+      <meta property="og:title" content={post.title} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content={postUrl} />
+      <meta property="og:site_name" content="Brett Sanders Blog" />
+      <meta property="article:author" content="Brett Sanders" />
+      <meta property="article:published_time" content={publishedDate} />
+      <meta property="article:modified_time" content={modifiedDate} />
+      <meta property="article:section" content="Technology" />
+      
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={post.title} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:creator" content="@WontFretBrett" />
+      <meta name="twitter:site" content="@WontFretBrett" />
+      
+      <link rel="canonical" href={postUrl} />
+      
+      {/* Fallback to react-helmet-async for better compatibility and structured data */}
       <Helmet>
         <title>{post.title} - Brett Sanders Blog</title>
         <meta name="description" content={metaDescription} />
@@ -159,5 +153,31 @@ export default function BlogPostPage() {
         <BlogPost post={post} />
       </div>
     </>
+  );
+}
+
+// Loading fallback component
+function BlogPostLoading() {
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
+        <p className="mt-4 text-gray-600 dark:text-gray-400">Loading blog post...</p>
+      </div>
+    </div>
+  );
+}
+
+export default function BlogPostPage() {
+  const { slug } = useParams<{ slug: string }>();
+  
+  if (!slug) {
+    return <Navigate to="/blog" replace />;
+  }
+
+  return (
+    <Suspense fallback={<BlogPostLoading />}>
+      <BlogPostContent slug={slug} />
+    </Suspense>
   );
 } 

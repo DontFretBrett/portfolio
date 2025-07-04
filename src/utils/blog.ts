@@ -1,4 +1,5 @@
 import { BlogPost, BlogMetadata } from '../types/blog';
+import { blogPosts } from '../data/blogPosts';
 
 // Function to calculate reading time
 export function calculateReadingTime(content: string): number {
@@ -28,23 +29,25 @@ function parseFrontmatter(markdownContent: string): { data: Record<string, strin
   const data: Record<string, string | string[]> = {};
   
   // Parse YAML-like frontmatter
-  const lines = frontmatterStr.split('\n');
-  for (const line of lines) {
-    const colonIndex = line.indexOf(':');
-    if (colonIndex > 0) {
-      const key = line.substring(0, colonIndex).trim();
-      const value = line.substring(colonIndex + 1).trim();
-      
-      // Handle different value types
-      if (value.startsWith('[') && value.endsWith(']')) {
-        // Array handling
-        data[key] = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, ''));
-      } else if (value.startsWith('"') && value.endsWith('"')) {
-        // String handling
-        data[key] = value.slice(1, -1);
-      } else {
-        // Plain value
-        data[key] = value.replace(/"/g, '');
+  if (frontmatterStr) {
+    const lines = frontmatterStr.split('\n');
+    for (const line of lines) {
+      const colonIndex = line.indexOf(':');
+      if (colonIndex > 0) {
+        const key = line.substring(0, colonIndex).trim();
+        const value = line.substring(colonIndex + 1).trim();
+        
+        // Handle different value types
+        if (value.startsWith('[') && value.endsWith(']')) {
+          // Array handling
+          data[key] = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, ''));
+        } else if (value.startsWith('"') && value.endsWith('"')) {
+          // String handling
+          data[key] = value.slice(1, -1);
+        } else {
+          // Plain value
+          data[key] = value.replace(/"/g, '');
+        }
       }
     }
   }
@@ -62,7 +65,7 @@ export function processMarkdown(markdownContent: string, filename: string): Blog
   const readingTime = calculateReadingTime(content);
   const excerpt = metadata.excerpt || content.substring(0, 200) + '...';
   
-  return {
+  const blogPost: BlogPost = {
     slug,
     title,
     excerpt,
@@ -70,9 +73,17 @@ export function processMarkdown(markdownContent: string, filename: string): Blog
     date: metadata.date || new Date().toISOString(),
     readingTime,
     tags: metadata.tags || [],
-    description: metadata.description,
-    keywords: metadata.keywords
   };
+  
+  // Only add optional properties if they exist
+  if (metadata.description) {
+    blogPost.description = metadata.description;
+  }
+  if (metadata.keywords) {
+    blogPost.keywords = metadata.keywords;
+  }
+  
+  return blogPost;
 }
 
 // Function to format date for display
@@ -83,4 +94,35 @@ export function formatDate(dateString: string): string {
     month: 'long',
     day: 'numeric'
   });
+}
+
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+  try {
+    const post = blogPosts.find(p => p.slug === slug);
+    
+    if (!post) {
+      return null;
+    }
+    
+    return post;
+  } catch (error) {
+    console.error('Error loading blog post:', error);
+    return null;
+  }
+}
+
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
+  // Simulate async loading
+  await new Promise(resolve => setTimeout(resolve, 50));
+  
+  return blogPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+// React 19 use() hook compatible promise creators
+export function createBlogPostPromise(slug: string): Promise<BlogPost | null> {
+  return getBlogPost(slug);
+}
+
+export function createBlogPostsPromise(): Promise<BlogPost[]> {
+  return getAllBlogPosts();
 } 
