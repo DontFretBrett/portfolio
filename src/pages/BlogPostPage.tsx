@@ -7,7 +7,8 @@ import { ArrowLeft } from 'lucide-react';
 
 // React 19 component that uses the use() hook
 function BlogPostContent({ slug }: { slug: string }) {
-  // React 19 use() hook - directly use the promise
+  // React 19 use() hook - getBlogPost is memoized to prevent redundant requests
+  // The promise is cached by slug, making this safe for React's use() hook
   const post = use(getBlogPost(slug));
 
   if (!post) {
