@@ -1,36 +1,43 @@
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { lazy, Suspense } from 'react';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import BackToTop from './components/BackToTop';
+import ScrollToTop from './components/ScrollToTop';
 import { FEATURE_FLAGS } from './config/features';
-import { ThemeProvider } from './contexts/ThemeContext';
 
-// Lazy load pages to reduce initial bundle size
-const HomePage = lazy(() => import('./pages/HomePage'));
-const AIProjectsPage = lazy(() => import('./pages/AIProjectsPage'));
-const AIProjectPage = lazy(() => import('./pages/AIProjectPage'));
-const BlogPage = lazy(() => import('./pages/BlogPage'));
-const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+// Lazy load components for better performance
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+const AIProjectsPage = React.lazy(() => import('./pages/AIProjectsPage'));
+const AIProjectPage = React.lazy(() => import('./pages/AIProjectPage'));
+const BlogPage = React.lazy(() => import('./pages/BlogPage'));
+const BlogPostPage = React.lazy(() => import('./pages/BlogPostPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
-// Conditionally lazy load Chatbot only if enabled
+// Lazy load chatbot only if enabled
 const Chatbot = FEATURE_FLAGS.ENABLE_CHATBOT 
-  ? lazy(() => import('./components/Chatbot'))
+  ? React.lazy(() => import('./components/Chatbot')) 
   : null;
 
-// Loading component for page transitions
-const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[400px]">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400"></div>
-  </div>
-);
+// Loading component for suspense fallback
+function PageLoader() {
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
+        <p className="mt-4 text-gray-600 dark:text-gray-400">Loading...</p>
+      </div>
+    </div>
+  );
+}
 
 function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
         <Router>
+          <ScrollToTop />
           <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <Header />
             <Suspense fallback={<PageLoader />}>

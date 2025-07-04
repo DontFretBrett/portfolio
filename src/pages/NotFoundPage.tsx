@@ -9,21 +9,21 @@ export default function NotFoundPage() {
         <meta name="description" content="The page you're looking for doesn't exist." />
       </Helmet>
       
-      <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4">
+      <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4 bg-gray-50 dark:bg-gray-900">
         <div className="text-center max-w-lg mx-auto">
           {/* 404 Number */}
           <div className="mb-8">
-            <h1 className="text-9xl font-bold text-gray-200 select-none">
+            <h1 className="text-9xl font-bold text-gray-300 dark:text-gray-600 select-none">
               404
             </h1>
           </div>
           
           {/* Error Message */}
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Page Not Found
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
               Sorry, the page you're looking for doesn't exist or has been moved.
             </p>
           </div>
@@ -47,7 +47,7 @@ export default function NotFoundPage() {
             
             <button
               onClick={() => window.history.back()}
-              className="inline-flex items-center px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200"
+              className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700"
             >
               <svg 
                 className="w-5 h-5 mr-2" 
@@ -62,20 +62,20 @@ export default function NotFoundPage() {
           </div>
           
           {/* Helpful Links */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-sm text-gray-500 mb-4">
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
               You might be looking for:
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <Link 
                 to="/ai-projects" 
-                className="text-blue-600 hover:text-blue-800 hover:underline"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline"
               >
                 AI Projects
               </Link>
               <Link 
                 to="/blog" 
-                className="text-blue-600 hover:text-blue-800 hover:underline"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline"
               >
                 Blog
               </Link>
