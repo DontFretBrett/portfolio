@@ -104,9 +104,6 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
       return null;
     }
     
-    // Simulate async loading like fetching from API
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
     return post;
   } catch (error) {
     console.error('Error loading blog post:', error);
