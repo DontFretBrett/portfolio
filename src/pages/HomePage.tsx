@@ -3,9 +3,19 @@ import { Helmet } from 'react-helmet-async';
 import Summary from '../components/Summary';
 import Skills from '../components/Skills';
 
-// Lazy load larger components
+// Lazy load larger components with better performance
 const Experience = lazy(() => import('../components/Experience'));
 const Certifications = lazy(() => import('../components/Certifications'));
+
+// Enhanced loading component with better UX
+function ComponentLoader({ message = "Loading..." }: { message?: string }) {
+  return (
+    <section className="p-16 text-center bg-gray-50 dark:bg-gray-900">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
+      <p className="mt-4 text-gray-600 dark:text-gray-400">{message}</p>
+    </section>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -15,20 +25,29 @@ export default function HomePage() {
         <meta name="description" content="Brett Sanders - Technology leader with 15+ years of experience in financial sector. Expertise in full stack development, AWS, and team leadership. Based in San Diego." />
         <meta name="keywords" content="Software Engineering Director, Full Stack Developer, AWS Certified, SAFe Agile, San Diego, Technology Leader, Node.js, React, TypeScript, AI Engineering" />
         
+        {/* Performance optimizations */}
+        <link rel="preload" href="/me.webp" as="image" type="image/webp" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://api.analytics.com" />
+        
         {/* Open Graph */}
         <meta property="og:title" content="Brett Sanders - Engineering Leader & Full Stack Software Engineer" />
         <meta property="og:description" content="Technology leader with 15+ years of experience in financial sector. Expertise in full stack development, AWS, and team leadership." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.brettsanders.com" />
+        <meta property="og:image" content="https://www.brettsanders.com/me.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Brett Sanders - Engineering Leader & Full Stack Software Engineer" />
         <meta name="twitter:description" content="Technology leader with 15+ years of experience in financial sector. Expertise in full stack development, AWS, and team leadership." />
+        <meta name="twitter:image" content="https://www.brettsanders.com/me.webp" />
         
         <link rel="canonical" href="https://www.brettsanders.com" />
         
-        {/* Structured Data for Person */}
+        {/* Enhanced Structured Data for Person */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -37,7 +56,7 @@ export default function HomePage() {
             "jobTitle": "Software Engineering Director",
             "description": "Technology leader with 15+ years of experience in financial sector. Expertise in full stack development, AWS, and team leadership.",
             "url": "https://www.brettsanders.com",
-            "image": "https://www.brettsanders.com/me.jpeg",
+            "image": "https://www.brettsanders.com/me.webp",
             "sameAs": [
               "https://www.linkedin.com/in/imbrett/",
               "https://github.com/DontFretBrett",
@@ -78,27 +97,27 @@ export default function HomePage() {
               "@type": "Organization",
               "name": "Professional Development in Technology"
             },
-            "hasCredential": [
-              {
-                "@type": "EducationalOccupationalCredential",
-                "name": "AWS Certified Solutions Architect",
-                "credentialCategory": "Professional Certification"
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Software Engineering Director",
+              "occupationLocation": {
+                "@type": "City",
+                "name": "San Diego, CA"
               },
-              {
-                "@type": "EducationalOccupationalCredential", 
-                "name": "SAFe Certified Agile Framework Practitioner",
-                "credentialCategory": "Professional Certification"
+              "estimatedSalary": {
+                "@type": "MonetaryAmountDistribution",
+                "name": "base",
+                "currency": "USD"
               }
-            ],
-            "award": [
-              "Technology Leadership Excellence",
-              "Full Stack Development Expertise",
-              "AI Engineering Innovation"
-            ]
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://www.brettsanders.com"
+            }
           })}
         </script>
         
-        {/* FAQ Schema for AI Overview Optimization */}
+        {/* FAQ Schema for better search results */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -106,10 +125,10 @@ export default function HomePage() {
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "What is Brett Sanders' expertise in software engineering?",
+                "name": "What is Brett Sanders' expertise?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Brett Sanders is a Software Engineering Director with 15+ years of experience in the financial sector. He specializes in full stack development, AWS cloud services, team leadership, and cutting-edge AI engineering including AI agents, Model Context Protocol (MCP), and frameworks like AutoGen, LangGraph, and CrewAI."
+                  "text": "Brett Sanders is a Software Engineering Director with expertise in full stack development, AWS cloud services, team leadership, and AI engineering. He has 15+ years of experience in the financial sector building scalable technology solutions."
                 }
               },
               {
@@ -117,15 +136,7 @@ export default function HomePage() {
                 "name": "What AI technologies does Brett Sanders work with?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Brett Sanders works with advanced AI frameworks including OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). He builds AI agents and autonomous systems, combining machine learning with practical software engineering to create production-ready AI applications."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What programming languages and technologies does Brett Sanders use?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Brett Sanders is proficient in a wide range of technologies including SQL Server, Node.js, C# .NET, Angular, React, TypeScript, Python, AWS and Azure cloud services, and modern AI frameworks. He focuses on building maintainable, scalable systems with emphasis on performance and reliability."
+                  "text": "Brett Sanders specializes in AI agents and autonomous systems, working with cutting-edge frameworks like OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP)."
                 }
               },
               {
@@ -178,23 +189,31 @@ export default function HomePage() {
                 "@type": "Thing",
                 "name": "Full Stack Development"
               }
-            ]
+            ],
+            "inLanguage": "en-US",
+            "copyrightYear": new Date().getFullYear(),
+            "publisher": {
+              "@type": "Person",
+              "name": "Brett Sanders"
+            }
           })}
         </script>
       </Helmet>
       
       <main className="bg-gray-50 dark:bg-gray-900">
+        {/* Above-the-fold content loads immediately */}
         <Summary />
         <Skills />
-        <Suspense fallback={
-          <div className="p-16 text-center bg-gray-50 dark:bg-gray-900">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">Loading...</p>
-          </div>
-        }>
-          <Certifications />
-          <Experience />
-        </Suspense>
+        
+        {/* Below-the-fold content with performance optimization */}
+        <div className="below-fold-section">
+          <Suspense fallback={<ComponentLoader message="Loading certifications..." />}>
+            <Certifications />
+          </Suspense>
+          <Suspense fallback={<ComponentLoader message="Loading experience..." />}>
+            <Experience />
+          </Suspense>
+        </div>
       </main>
     </>
   );

@@ -4,6 +4,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS 2025 Modern Features */
+
+/* Container Queries Support */
+.card-container {
+  container-type: inline-size;
+  container-name: card;
+}
+
+@container card (min-width: 400px) {
+  .card-content {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* Content Visibility for Performance */
+.below-fold-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+}
+
+/* Modern Focus Management - WCAG 2.2 Compliance */
+.focus-visible {
+  outline: 3px solid #ffbf00;
+  outline-offset: 2px;
+  z-index: 999;
+}
+
+/* Ensure focus indicators are never obscured */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+  z-index: 999;
+  position: relative;
+}
+
+/* Dark mode focus indicators */
+.dark button:focus-visible,
+.dark a:focus-visible,
+.dark input:focus-visible,
+.dark textarea:focus-visible,
+.dark [tabindex]:focus-visible {
+  outline-color: #60a5fa;
+}
+
 /* Light mode syntax highlighting */
 .hljs {
   background: transparent !important;
@@ -108,6 +157,55 @@
   }
 }
 
+/* WCAG 2.2 - Respect Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+  }
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  .button,
+  button {
+    border: 2px solid currentColor !important;
+  }
+  
+  .card {
+    outline: 1px solid currentColor;
+  }
+}
+
+/* Skip Navigation Link - WCAG 2.2 Best Practice */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.skip-link:focus {
+  transform: translateY(0%);
+}
+
 @layer components {
   .container {
     @apply max-w-7xl mx-auto;
@@ -130,9 +228,16 @@
   .dark .text-shadow-strong {
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5);
   }
+
+  /* Modern touch targets for mobile - WCAG 2.2 */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px;
+  }
 }
 
-/* Animated code background animations */
+/* Performance optimized animations */
 @keyframes float-code {
   0% {
     transform: translateY(20vh) translateX(0) rotate(0deg);
@@ -173,8 +278,16 @@
 
 .animate-float-code {
   animation: float-code linear infinite;
+  will-change: transform, opacity;
 }
 
 .animate-float-particle {
   animation: float-particle linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+.animate-float-code:not(:hover),
+.animate-float-particle:not(:hover) {
+  will-change: auto;
 }
