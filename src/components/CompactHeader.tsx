@@ -23,8 +23,8 @@ export default function CompactHeader() {
         text: 'Back to Blog',
         shortText: 'Blog'
       };
-    } else if (path === '/ai-projects' || path === '/blog') {
-      // AI projects list or blog list - back to home
+    } else if (path === '/ai-projects' || path === '/blog' || path === '/gear') {
+      // AI projects list, blog list, or gear page - back to home
       return {
         to: '/',
         text: 'Back to Home',
@@ -99,6 +99,13 @@ export default function CompactHeader() {
           >
             <span className="hidden sm:inline">AI Projects</span>
             <span className="sm:hidden">AI</span>
+          </Link>
+          <Link
+            to="/gear"
+            className="px-2 py-1.5 sm:px-3 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm"
+          >
+            <span className="hidden sm:inline">Gear</span>
+            <span className="sm:hidden">G</span>
           </Link>
           
           {/* Social links - hidden on mobile to save space */}

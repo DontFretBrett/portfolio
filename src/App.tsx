@@ -14,6 +14,7 @@ const AIProjectsPage = React.lazy(() => import('./pages/AIProjectsPage'));
 const AIProjectPage = React.lazy(() => import('./pages/AIProjectPage'));
 const BlogPage = React.lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = React.lazy(() => import('./pages/BlogPostPage'));
+const GearPage = React.lazy(() => import('./pages/GearPage'));
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
 // Lazy load chatbot only if enabled
@@ -59,6 +60,7 @@ function AppContent() {
               <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/gear" element={<GearPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
