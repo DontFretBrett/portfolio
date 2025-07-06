@@ -30,6 +30,12 @@ export const gearCategories: GearCategory[] = [
     name: 'Accessories',
     description: 'Desk accessories, cables, and productivity tools',
     icon: '🔧'
+  },
+  {
+    id: 'laptops',
+    name: 'Laptops',
+    description: 'Portable computers for work and entertainment',
+    icon: '💻'
   }
 ];
 
@@ -39,7 +45,6 @@ export const gearItems: GearItem[] = [
     name: 'Logitech MX Keys S',
     description: 'High-performance wireless keyboard engineered for comfortable, fast, fluid typing with smart illumination and programmable keys. Perfect for coding and productivity work.',
     category: 'keyboards',
-    price: '$144.99',
     affiliateUrl: 'https://amzn.to/44yDWCO',
     productUrl: 'https://www.amazon.com/dp/B0DXZ97PCG?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1',
     image: 'https://m.media-amazon.com/images/I/71cPvrmX14L._AC_SL1500_.jpg',
@@ -81,14 +86,14 @@ export const gearItems: GearItem[] = [
     dateAdded: '2025-01-10',
     tags: ['wireless', 'bluetooth', 'programmable', 'ergonomic', 'productivity', 'coding', 'multi-device'],
     inStock: true,
-    discontinued: false
+    discontinued: false,
+    price: ''
   },
   {
     id: 'stream-deck-mk2',
     name: 'Elgato Stream Deck MK.2',
     description: 'Professional 15-key customizable LCD control pad that revolutionizes your workflow. Perfect for streamers, content creators, and productivity enthusiasts who want instant control over apps, tools, and automation.',
     category: 'accessories',
-    price: '$149.99',
     affiliateUrl: 'https://amzn.to/44VXNwf',
     productUrl: 'https://www.amazon.com/Elgato-Stream-Deck-MK-2-Controller/dp/B09738CV2G',
     image: 'https://m.media-amazon.com/images/I/61gtdFnK+UL._AC_SL1500_.jpg',
@@ -131,14 +136,14 @@ export const gearItems: GearItem[] = [
     dateAdded: '2025-01-10',
     tags: ['workflow', 'automation', 'streaming', 'productivity', 'customizable', 'content-creation', 'hotkeys'],
     inStock: true,
-    discontinued: false
+    discontinued: false,
+    price: ''
   },
   {
     id: 'logitech-pebble-m350',
     name: 'Logitech Pebble M350 Wireless Mouse',
     description: 'Modern, slim, and silent portable mouse with dual connectivity options. Perfect for travel and quiet work environments with 90% less click noise and 18-month battery life.',
     category: 'mice',
-    price: '$29.99',
     affiliateUrl: 'https://amzn.to/3GphOD6',
     productUrl: 'https://www.amazon.com/dp/B084SX7HKB',
     image: 'https://m.media-amazon.com/images/I/51lMCZGIAiL._AC_SL1500_.jpg',
@@ -179,14 +184,14 @@ export const gearItems: GearItem[] = [
     rating: 4.5,
     dateAdded: '2025-01-05',
     inStock: true,
-    discontinued: false
+    discontinued: false,
+    price: ''
   },
   {
     id: 'lg-34wr55qk-b-ultrawide',
     name: 'LG 34WR55QK-B 34-inch UltraWide WQHD Curved Monitor',
     description: 'Immersive 34-inch UltraWide curved monitor with WQHD resolution, 100Hz refresh rate, HDR10, and USB-C connectivity. Perfect for multitasking, productivity, and entertainment.',
     category: 'monitors',
-    price: '$369.99',
     affiliateUrl: 'https://amzn.to/4kq31FY',
     productUrl: 'https://www.amazon.com/LG-34WR55QK-B-UltraWide-DisplayPort-Adjustable/dp/B0DQF8LRGZ/',
     image: 'https://m.media-amazon.com/images/I/61uVbiZ6UhL._AC_SL1200_.jpg',
@@ -229,7 +234,92 @@ export const gearItems: GearItem[] = [
     rating: 4.6,
     dateAdded: '2025-01-05',
     inStock: true,
-    discontinued: false
+    discontinued: false,
+    price: ''
+  },
+  {
+    id: 'anker-powerconf-s3',
+    name: 'Anker PowerConf S3 Speakerphone',
+    description: 'Professional Bluetooth speakerphone with 6-microphone array, 360° voice pickup, and Smart Voice enhancement. Perfect for conference calls, remote work, and meetings on the go.',
+    category: 'audio',
+    affiliateUrl: 'https://amzn.to/3GsKGKC',
+    productUrl: 'https://www.amazon.com/Anker-Speakerphone-Certification-Conference-Microphone/dp/B08W24YDSC/',
+    image: 'https://m.media-amazon.com/images/I/71Wrf7Cb0tL._AC_SL1500_.jpg',
+    features: [
+      '6-microphone array for 360° voice pickup',
+      'Smart Voice algorithm for enhanced clarity',
+      'Bluetooth 5.0 and USB-C connectivity',
+      'Up to 24 hours of call time',
+      'Compatible with Zoom, Skype, Google Meet, Teams, and more',
+      'Compact, portable, and travel-friendly design'
+    ],
+    specifications: {
+      'Connectivity': 'Bluetooth 5.0, USB-C',
+      'Battery Life': 'Up to 24 hours',
+      'Microphones': '6 (360° coverage)',
+      'Dimensions': '4.8 x 4.8 x 1.1 inches',
+      'Weight': '12.3 oz (350g)'
+    },
+    pros: [
+      'Excellent voice pickup and clarity',
+      'Long battery life',
+      'Plug-and-play with major conferencing apps',
+      'Portable and travel-friendly',
+      'Easy to use with both Bluetooth and USB-C'
+    ],
+    cons: [
+      'Not waterproof'
+    ],
+    tags: ['audio', 'speakerphone', 'Anker', 'conference', 'bluetooth', 'USB-C', 'portable'],
+    rating: 4.6,
+    dateAdded: '2025-01-05',
+    inStock: true,
+    discontinued: false,
+    price: ''
+  },
+  {
+    id: 'macbook-pro-m1pro-16',
+    name: 'Apple MacBook Pro (16-inch, M1 Pro, 16GB RAM, 1TB SSD)',
+    description: 'Flagship Apple laptop with M1 Pro chip, 16-inch Liquid Retina XDR display, 16GB RAM, and 1TB SSD. Built for demanding creative and professional workflows.',
+    category: 'laptops',
+    affiliateUrl: 'https://amzn.to/4eBjJB8',
+    productUrl: 'https://www.amazon.com/Late-Apple-MacBook-Space-Renewed/dp/B09NRXLCGJ/',
+    image: 'https://m.media-amazon.com/images/I/51xJTv3cCHL._AC_SL1500_.jpg',
+    features: [
+      'Apple M1 Pro chip (10-core CPU, 16-core GPU)',
+      '16-inch Liquid Retina XDR display (3456 x 2234, 120Hz ProMotion)',
+      '16GB unified memory, 1TB SSD storage',
+      'Up to 21 hours battery life',
+      '1080p FaceTime HD camera, 6-speaker sound system',
+      'Thunderbolt 4, HDMI, SDXC, MagSafe 3, headphone jack',
+      'macOS compatibility'
+    ],
+    specifications: {
+      'Display': '16.2-inch, 3456 x 2234, 120Hz ProMotion',
+      'CPU': '10-core Apple M1 Pro',
+      'GPU': '16-core Apple M1 Pro',
+      'RAM': '16GB unified memory',
+      'Storage': '1TB SSD',
+      'Battery': 'Up to 21 hours',
+      'Weight': '4.7 lbs (2.1 kg)'
+    },
+    pros: [
+      'Exceptional performance for pro workflows',
+      'Stunning display and speakers',
+      'Long battery life',
+      'Excellent build quality and keyboard',
+      'Versatile port selection'
+    ],
+    cons: [
+      'Premium price',
+      'Heavier than some ultrabooks'
+    ],
+    tags: ['laptop', 'macbook', 'apple', 'M1 Pro', '16-inch', 'retina', 'ssd', 'pro'],
+    rating: 4.8,
+    dateAdded: '2025-01-05',
+    inStock: true,
+    discontinued: false,
+    price: ''
   }
 ];
 

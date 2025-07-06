@@ -172,13 +172,11 @@ export default function GearPage() {
         <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 dark:from-blue-800 dark:via-purple-800 dark:to-blue-900 text-white py-20">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-lg">
-              My Gear & Tech Stack
+              My Gear
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-              The tools and equipment that power my daily work in software development, 
-              team leadership, and content creation. These are genuine recommendations based on real-world experience.
+              The tools and equipment that power my daily work in software development, team leadership, and content creation. These are genuine recommendations based on real-world experience.
             </p>
-
           </div>
         </section>
 

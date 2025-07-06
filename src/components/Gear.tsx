@@ -121,7 +121,17 @@ function GearCard({ item, category, onImageClick }: { item: GearItem; category: 
 
       {/* Product info */}
       <div className="mb-4">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.name}</h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+          <a
+            href={item.affiliateUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline focus:underline transition-colors"
+            aria-label={`View ${item.name} on Amazon (affiliate link)`}
+          >
+            {item.name}
+          </a>
+        </h3>
         <p className="text-gray-600 dark:text-gray-400 mb-3">{item.description}</p>
         <div className="flex items-center gap-4 mb-3">
           <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">{item.price}</span>
@@ -217,7 +227,7 @@ function GearCard({ item, category, onImageClick }: { item: GearItem; category: 
         {/* Affiliate disclaimer */}
         <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            <span className="font-medium">Affiliate Link:</span> I may earn a commission from purchases made through this link at no extra cost to you.
+            <span className="font-medium">Affiliate Link</span>
           </p>
         </div>
       </div>
@@ -251,23 +261,13 @@ export default function Gear({ items, categories, showCategories = false, limit 
   return (
     <section id="gear" className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            My Gear & Recommendations
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Tools and equipment I use daily for software development, productivity, and content creation. 
-            These are genuine recommendations from my personal experience.
-          </p>
-        </div>
-
         {/* Category overview */}
         {showCategories && (
           <div className="mb-12">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
               Browse by Category
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 gap-4">
               {categories.map((category) => (
                 <button
                   key={category.id}
