@@ -180,6 +180,56 @@ export const gearItems: GearItem[] = [
     dateAdded: '2025-01-05',
     inStock: true,
     discontinued: false
+  },
+  {
+    id: 'lg-34wr55qk-b-ultrawide',
+    name: 'LG 34WR55QK-B 34-inch UltraWide WQHD Curved Monitor',
+    description: 'Immersive 34-inch UltraWide curved monitor with WQHD resolution, 100Hz refresh rate, HDR10, and USB-C connectivity. Perfect for multitasking, productivity, and entertainment.',
+    category: 'monitors',
+    price: '$369.99',
+    affiliateUrl: 'https://amzn.to/4kq31FY',
+    productUrl: 'https://www.amazon.com/LG-34WR55QK-B-UltraWide-DisplayPort-Adjustable/dp/B0DQF8LRGZ/',
+    image: 'https://m.media-amazon.com/images/I/61uVbiZ6UhL._AC_SL1200_.jpg',
+    features: [
+      '34-inch UltraWide WQHD (3440 x 1440) curved display',
+      '100Hz refresh rate, 5ms response time',
+      'HDR10 support, Reader Mode',
+      'HDMI, DisplayPort, USB Type-C connectivity',
+      'Tilt/height adjustable ergonomic stand',
+      'sRGB 99% color gamut',
+      'VESA mount compatible (100x100mm)'
+    ],
+    specifications: {
+      'Panel Type': 'VA',
+      'Aspect Ratio': '21:9',
+      'Brightness': '300 nits (typical)',
+      'Color Gamut': 'sRGB 99%',
+      'Ports': '2x HDMI, 1x DisplayPort, 1x USB Type-C, 1x Headphone Out',
+      'VESA Mount': '100x100mm',
+      'Stand': 'Tilt/Height Adjustable',
+      'HDR': 'HDR10',
+      'Response Time': '5ms',
+      'Refresh Rate': '100Hz',
+      'Curvature': 'Curved',
+      'Dimensions': '32.1 x 9.8 x 22.4 inches (with stand)'
+    },
+    pros: [
+      'Immersive ultra-wide curved screen for multitasking',
+      'Modern connectivity (USB-C, HDMI, DP)',
+      'Adjustable ergonomic stand',
+      'Great color and clarity for work and entertainment',
+      'VESA mount support'
+    ],
+    cons: [
+      'No built-in speakers',
+      '100Hz is good but not top-tier for gaming',
+      'Large footprint on desk'
+    ],
+    tags: ['monitor', 'ultrawide', 'curved', 'LG', 'WQHD', 'USB-C', 'productivity', 'HDR'],
+    rating: 4.6,
+    dateAdded: '2025-01-05',
+    inStock: true,
+    discontinued: false
   }
 ];
 
