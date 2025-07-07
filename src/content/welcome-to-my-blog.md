@@ -7,7 +7,7 @@ description: "Brett Sanders introduces his blog sharing insights on technology l
 keywords: "Brett Sanders, Technology Leadership, Software Engineering Director, Full Stack Developer, Career Journey, AI Engineering, Blog Introduction"
 ---
 
-Welcome to my corner of the internet! I'm Brett Sanders, and I'm excited to share my journey through technology leadership, full-stack development, and the evolving world of AI.
+Hi, I’m Brett Sanders. Thanks for visiting! Here, I’ll be sharing stories and insights from my experiences in technology leadership, full-stack development, and the ever-changing world of AI.
 
 ## A Little About Me
 

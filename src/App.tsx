@@ -7,6 +7,7 @@ import CompactHeader from './components/CompactHeader';
 import BackToTop from './components/BackToTop';
 import ScrollToTop from './components/ScrollToTop';
 import { FEATURE_FLAGS } from './config/features';
+import Footer from './components/Footer';
 
 // Lazy load components for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -14,7 +15,9 @@ const AIProjectsPage = React.lazy(() => import('./pages/AIProjectsPage'));
 const AIProjectPage = React.lazy(() => import('./pages/AIProjectPage'));
 const BlogPage = React.lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = React.lazy(() => import('./pages/BlogPostPage'));
+const GearPage = React.lazy(() => import('./pages/GearPage'));
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
+const LegalPage = React.lazy(() => import('./pages/legal'));
 
 // Lazy load chatbot only if enabled
 const Chatbot = FEATURE_FLAGS.ENABLE_CHATBOT 
@@ -59,10 +62,13 @@ function AppContent() {
               <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/gear" element={<GearPage />} />
+              <Route path="/legal" element={<LegalPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
         </Suspense>
+        <Footer />
         <BackToTop />
         {FEATURE_FLAGS.ENABLE_CHATBOT && Chatbot && (
           <Suspense fallback={null}>
