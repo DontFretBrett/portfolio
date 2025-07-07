@@ -10,7 +10,7 @@ interface BlogListProps {
 export default function BlogList({ posts }: BlogListProps) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
-      <header className="text-center mb-12">
+      <header className="text-center mb-6">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Technology Blog</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Insights on <Link to="/ai-projects" className="text-blue-600 dark:text-blue-400 hover:underline">AI engineering</Link>, 
