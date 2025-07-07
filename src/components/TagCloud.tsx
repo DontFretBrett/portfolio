@@ -1,11 +1,12 @@
 import { memo, useState, useMemo, useCallback } from 'react';
 import { Cloud } from 'lucide-react';
-import type { BlogPost } from '@types/blog';
+import type { BlogPost } from '../types/blog';
 
 interface TagCloudProps {
   posts: BlogPost[];
   selectedTags: string[];
   onTagToggle: (tag: string) => void;
+  onClearAll?: () => void;
   className?: string;
   onError?: (error: Error) => void;
 }
@@ -15,12 +16,12 @@ interface TagWithCount {
   count: number;
 }
 
-const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, className = '', onError }: TagCloudProps) {
+const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onClearAll, className = '', onError }: TagCloudProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   
   // Memoize expensive computations
   const tagCounts = useMemo(() => {
-    if (!posts || !Array.isArray(posts)) {
+    if (!posts || posts.length === 0) {
       return {};
     }
     try {
@@ -33,8 +34,15 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, clas
         return acc;
       }, {});
     } catch (error) {
-      onError?.(error as Error);
-      return {};
+      if (import.meta.env.DEV) {
+        // In development, throw to aid debugging
+        throw error;
+      } else {
+        // In production, log and optionally call onError
+        console.error('Error computing tagCounts:', error);
+        onError?.(error as Error);
+        return {};
+      }
     }
   }, [posts, onError]);
 
@@ -49,20 +57,20 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, clas
     onTagToggle(tag);
   }, [onTagToggle]);
 
-  const handleKeyDown = useCallback((event: React.KeyboardEvent, tag: string) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      handleTagToggle(tag);
-    }
-  }, [handleTagToggle]);
 
   const handleClearAll = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    selectedTags.forEach(tag => handleTagToggle(tag));
-  }, [selectedTags, handleTagToggle]);
+    if (onClearAll) {
+      onClearAll();
+    } else {
+      // Fallback: capture current selected tags to avoid race conditions
+      const tagsToToggle = [...selectedTags];
+      tagsToToggle.forEach(tag => handleTagToggle(tag));
+    }
+  }, [selectedTags, handleTagToggle, onClearAll]);
 
   // Early returns after all hooks
-  if (!posts || !Array.isArray(posts)) {
+  if (!posts || posts.length === 0) {
     return (
       <div className="p-4 text-center text-gray-500 dark:text-gray-400">
         No posts available for tag filtering
@@ -148,7 +156,6 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, clas
                 <button
                   key={tag}
                   onClick={() => handleTagToggle(tag)}
-                  onKeyDown={(e) => handleKeyDown(e, tag)}
                   className={`
                     inline-flex items-center px-3 py-1 rounded-full font-medium transition-all duration-200
                     ${sizeClass}

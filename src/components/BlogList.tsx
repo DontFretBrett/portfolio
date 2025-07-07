@@ -9,9 +9,10 @@ interface BlogListProps {
   allPosts?: BlogPost[];
   selectedTags?: string[];
   onTagToggle?: (tag: string) => void;
+  onClearAllTags?: () => void;
 }
 
-export default function BlogList({ posts, allPosts, selectedTags, onTagToggle }: BlogListProps) {
+export default function BlogList({ posts, allPosts, selectedTags, onTagToggle, onClearAllTags }: BlogListProps) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-4 dark:bg-gray-900 min-h-screen">
       <header className="text-center mb-6">
@@ -28,6 +29,7 @@ export default function BlogList({ posts, allPosts, selectedTags, onTagToggle }:
             posts={allPosts}
             selectedTags={selectedTags}
             onTagToggle={onTagToggle}
+            onClearAll={onClearAllTags}
           />
         </div>
       )}

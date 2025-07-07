@@ -40,6 +40,10 @@ export default function BlogPage() {
     );
   };
 
+  const handleClearAllTags = () => {
+    setSelectedTags([]);
+  };
+
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
@@ -106,6 +110,7 @@ export default function BlogPage() {
         allPosts={posts}
         selectedTags={selectedTags}
         onTagToggle={handleTagToggle}
+        onClearAllTags={handleClearAllTags}
       />
     </>
   );
