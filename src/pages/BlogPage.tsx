@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '../components/BlogList';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -8,6 +8,7 @@ import type { BlogPost } from '../types/blog';
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   useEffect(() => {
     async function loadPosts() {
@@ -23,6 +24,25 @@ export default function BlogPage() {
     
     loadPosts();
   }, []);
+
+  const filteredPosts = useMemo(() => {
+    if (selectedTags.length === 0) return posts;
+    return posts.filter(post => 
+      post.tags?.some(tag => selectedTags.includes(tag))
+    );
+  }, [posts, selectedTags]);
+
+  const handleTagToggle = (tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) 
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    );
+  };
+
+  const handleClearAllTags = () => {
+    setSelectedTags([]);
+  };
 
   if (loading) {
     return (
@@ -85,7 +105,13 @@ export default function BlogPage() {
           className="mb-6"
         />
       </div>
-      <BlogList posts={posts} />
+      <BlogList 
+        posts={filteredPosts} 
+        allPosts={posts}
+        selectedTags={selectedTags}
+        onTagToggle={handleTagToggle}
+        onClearAllTags={handleClearAllTags}
+      />
     </>
   );
 } 
