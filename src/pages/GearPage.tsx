@@ -2,6 +2,9 @@ import { Helmet } from 'react-helmet-async';
 import Gear from '../components/Gear';
 import { gearItems, gearCategories } from '../data/gear';
 
+// Consistent dateModified to avoid SSR hydration issues
+const dateModified = "2025-01-10";
+
 export default function GearPage() {
   return (
     <>
@@ -47,43 +50,62 @@ export default function GearPage() {
               "url": "https://www.brettsanders.com"
             },
             "numberOfItems": gearItems.length,
-            "itemListElement": gearItems.map((item, index) => ({
-              "@type": "ListItem",
-              "position": index + 1,
-              "item": {
-                "@type": "Product",
-                "name": item.name,
-                "description": item.description,
-                "category": item.category,
-                "offers": {
-                  "@type": "Offer",
-                  "price": item.price.replace('$', ''),
-                  "priceCurrency": "USD",
-                  "availability": item.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-                  "url": item.affiliateUrl
-                },
-                "aggregateRating": item.rating ? {
-                  "@type": "AggregateRating",
-                  "ratingValue": item.rating,
-                  "ratingCount": 1,
-                  "reviewCount": 1
-                } : undefined,
-                "review": {
-                  "@type": "Review",
-                  "author": {
-                    "@type": "Person",
-                    "name": "Brett Sanders"
-                  },
-                  "reviewRating": item.rating ? {
-                    "@type": "Rating",
-                    "ratingValue": item.rating,
-                    "bestRating": 5,
-                    "worstRating": 1
-                  } : undefined,
-                  "reviewBody": item.description
-                }
+            "itemListElement": gearItems.map((item, index) => {
+              // Build offers object conditionally
+              const offers: {
+                "@type": string;
+                priceCurrency: string;
+                availability: string;
+                price?: string;
+                url?: string;
+              } = {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "availability": item.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+              };
+              
+              // Only include price if it exists and is not empty
+              if (item.price && item.price.trim() !== '') {
+                offers.price = item.price.replace('$', '');
               }
-            }))
+              
+              // Only include URL if it exists and is not empty
+              if (item.affiliateUrl && item.affiliateUrl.trim() !== '') {
+                offers.url = item.affiliateUrl;
+              }
+              
+              return {
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "Product",
+                  "name": item.name,
+                  "description": item.description,
+                  "category": item.category,
+                  "offers": offers,
+                  "aggregateRating": item.rating ? {
+                    "@type": "AggregateRating",
+                    "ratingValue": item.rating,
+                    "ratingCount": 1,
+                    "reviewCount": 1
+                  } : undefined,
+                  "review": {
+                    "@type": "Review",
+                    "author": {
+                      "@type": "Person",
+                      "name": "Brett Sanders"
+                    },
+                    "reviewRating": item.rating ? {
+                      "@type": "Rating",
+                      "ratingValue": item.rating,
+                      "bestRating": 5,
+                      "worstRating": 1
+                    } : undefined,
+                    "reviewBody": item.description
+                  }
+                }
+              };
+            })
           })}
         </script>
         
@@ -140,7 +162,7 @@ export default function GearPage() {
             },
             "inLanguage": "en-US",
             "datePublished": "2025-01-10",
-            "dateModified": new Date().toISOString().split('T')[0],
+            "dateModified": dateModified,
             "breadcrumb": {
               "@type": "BreadcrumbList",
               "itemListElement": [

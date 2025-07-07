@@ -83,22 +83,27 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 function GearCard({ item, category, onImageClick }: { item: GearItem; category: GearCategory; onImageClick: (src: string, alt: string) => void }) {
+  const [imageError, setImageError] = useState(false);
   return (
     <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-gray-200 dark:border-gray-700">
       {/* Product Image */}
       {item.image && (
         <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-full object-contain p-6 transition-transform hover:scale-105 cursor-pointer"
-            loading="lazy"
-            onClick={() => onImageClick(item.image!, item.name)}
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-            }}
-          />
+          {!imageError ? (
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-full object-contain p-6 transition-transform hover:scale-105 cursor-pointer"
+              loading="lazy"
+              onClick={() => onImageClick(item.image!, item.name)}
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-gray-400 dark:text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span className="text-sm">Image unavailable</span>
+            </div>
+          )}
           {/* Subtle overlay for better image presentation */}
           <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/5 dark:to-black/5 pointer-events-none"></div>
         </div>
@@ -134,7 +139,11 @@ function GearCard({ item, category, onImageClick }: { item: GearItem; category: 
         </h3>
         <p className="text-gray-600 dark:text-gray-400 mb-3">{item.description}</p>
         <div className="flex items-center gap-4 mb-3">
-          <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">{item.price}</span>
+          {item.price && item.price.trim() !== '' && (
+            <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              {item.price}
+            </span>
+          )}
           {item.inStock && (
             <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 text-sm font-medium rounded">
               <Check className="w-3 h-3" />
@@ -211,25 +220,29 @@ function GearCard({ item, category, onImageClick }: { item: GearItem; category: 
       )}
 
       {/* Action buttons */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        <a
-          href={item.affiliateUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-          aria-label={`Buy ${item.name} on Amazon (affiliate link)`}
-        >
-          <ShoppingCart className="w-4 h-4" />
-          <span>Buy on Amazon</span>
-        </a>
-      </div>
+      {item.affiliateUrl && item.affiliateUrl.trim() !== '' && (
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a
+            href={item.affiliateUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            aria-label={`Buy ${item.name} on Amazon (affiliate link)`}
+          >
+            <ShoppingCart className="w-4 h-4" />
+            <span>Buy on Amazon</span>
+          </a>
+        </div>
+      )}
 
-        {/* Affiliate disclaimer */}
+      {/* Affiliate disclaimer */}
+      {item.affiliateUrl && item.affiliateUrl.trim() !== '' && (
         <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-500 dark:text-gray-400">
             <span className="font-medium">Affiliate Link</span>
           </p>
         </div>
+      )}
       </div>
     </article>
   );
