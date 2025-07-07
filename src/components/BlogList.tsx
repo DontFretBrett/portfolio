@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, Tag, User } from 'lucide-react';
+import TagCloud from './TagCloud';
 import type { BlogPost } from '../types/blog';
 import { formatDate } from '../utils/blog';
 
 interface BlogListProps {
   posts: BlogPost[];
+  allPosts?: BlogPost[];
+  selectedTags?: string[];
+  onTagToggle?: (tag: string) => void;
 }
 
-export default function BlogList({ posts }: BlogListProps) {
+export default function BlogList({ posts, allPosts, selectedTags, onTagToggle }: BlogListProps) {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
+    <div className="max-w-4xl mx-auto px-4 py-4 dark:bg-gray-900 min-h-screen">
       <header className="text-center mb-6">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Technology Blog</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -17,6 +21,16 @@ export default function BlogList({ posts }: BlogListProps) {
           software architecture, leadership, and the latest in technology innovation.
         </p>
       </header>
+
+      {allPosts && selectedTags && onTagToggle && (
+        <div className="mb-8">
+          <TagCloud 
+            posts={allPosts}
+            selectedTags={selectedTags}
+            onTagToggle={onTagToggle}
+          />
+        </div>
+      )}
 
       <section className="space-y-8" itemScope itemType="https://schema.org/Blog">
         {posts.map((post) => (

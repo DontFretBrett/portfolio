@@ -1,4 +1,5 @@
-import { memo, useState } from 'react';
+import { memo, useState, useMemo, useCallback } from 'react';
+import { Cloud } from 'lucide-react';
 import type { BlogPost } from '@types/blog';
 
 interface TagCloudProps {
@@ -6,6 +7,7 @@ interface TagCloudProps {
   selectedTags: string[];
   onTagToggle: (tag: string) => void;
   className?: string;
+  onError?: (error: Error) => void;
 }
 
 interface TagWithCount {
@@ -13,21 +15,60 @@ interface TagWithCount {
   count: number;
 }
 
-export default memo(function TagCloud({ posts, selectedTags, onTagToggle, className = '' }: TagCloudProps) {
+const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, className = '', onError }: TagCloudProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   
-  const tagCounts = posts.reduce<Record<string, number>>((acc, post) => {
-    if (post.tags) {
-      post.tags.forEach(tag => {
-        acc[tag] = (acc[tag] || 0) + 1;
-      });
+  // Memoize expensive computations
+  const tagCounts = useMemo(() => {
+    if (!posts || !Array.isArray(posts)) {
+      return {};
     }
-    return acc;
-  }, {});
+    try {
+      return posts.reduce<Record<string, number>>((acc, post) => {
+        if (post.tags) {
+          post.tags.forEach(tag => {
+            acc[tag] = (acc[tag] || 0) + 1;
+          });
+        }
+        return acc;
+      }, {});
+    } catch (error) {
+      onError?.(error as Error);
+      return {};
+    }
+  }, [posts, onError]);
 
-  const sortedTags: TagWithCount[] = Object.entries(tagCounts)
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => b.count - a.count);
+  const sortedTags: TagWithCount[] = useMemo(() => {
+    return Object.entries(tagCounts)
+      .map(([tag, count]) => ({ tag, count }))
+      .sort((a, b) => b.count - a.count);
+  }, [tagCounts]);
+
+  // Memoize callback functions
+  const handleTagToggle = useCallback((tag: string) => {
+    onTagToggle(tag);
+  }, [onTagToggle]);
+
+  const handleKeyDown = useCallback((event: React.KeyboardEvent, tag: string) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleTagToggle(tag);
+    }
+  }, [handleTagToggle]);
+
+  const handleClearAll = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    selectedTags.forEach(tag => handleTagToggle(tag));
+  }, [selectedTags, handleTagToggle]);
+
+  // Early returns after all hooks
+  if (!posts || !Array.isArray(posts)) {
+    return (
+      <div className="p-4 text-center text-gray-500 dark:text-gray-400">
+        No posts available for tag filtering
+      </div>
+    );
+  }
 
   if (sortedTags.length === 0) {
     return null;
@@ -44,26 +85,32 @@ export default memo(function TagCloud({ posts, selectedTags, onTagToggle, classN
   const maxCount = Math.max(...sortedTags.map(t => t.count));
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden ${className}`}>
+    <div 
+      className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden ${className}`}
+      role="group"
+      aria-labelledby="tag-cloud-heading"
+    >
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
         aria-expanded={isExpanded}
         aria-controls="tag-cloud-content"
+        aria-label={`${isExpanded ? 'Collapse' : 'Expand'} tag cloud with ${sortedTags.length} tags`}
       >
         <div className="flex items-center gap-3">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Tag Cloud</h2>
+          <h2 id="tag-cloud-heading" className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <Cloud className="w-5 h-5" aria-hidden="true" />
+            Tag Cloud
+          </h2>
           {selectedTags.length > 0 && (
             <>
               <span className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-xs font-semibold px-2 py-1 rounded-full">
                 {selectedTags.length} selected
               </span>
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  selectedTags.forEach(tag => onTagToggle(tag));
-                }}
+                onClick={handleClearAll}
                 className="text-xs text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 hover:underline"
+                aria-label="Clear all selected tags"
               >
                 Clear
               </button>
@@ -100,16 +147,18 @@ export default memo(function TagCloud({ posts, selectedTags, onTagToggle, classN
               return (
                 <button
                   key={tag}
-                  onClick={() => onTagToggle(tag)}
+                  onClick={() => handleTagToggle(tag)}
+                  onKeyDown={(e) => handleKeyDown(e, tag)}
                   className={`
                     inline-flex items-center px-3 py-1 rounded-full font-medium transition-all duration-200
                     ${sizeClass}
                     ${isSelected 
-                      ? 'bg-blue-600 text-white shadow-md hover:bg-blue-700' 
-                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                      ? 'bg-blue-600 text-white shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2' 
+                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2'
                     }
                   `}
-                  aria-label={`Filter by ${tag} (${count} posts)`}
+                  aria-label={`${isSelected ? 'Remove' : 'Add'} ${tag} filter (${count} posts)`}
+                  aria-pressed={isSelected}
                 >
                   {tag}
                   <span className="ml-1 text-xs opacity-75">({count})</span>
@@ -124,8 +173,9 @@ export default memo(function TagCloud({ posts, selectedTags, onTagToggle, classN
                   {selectedTags.length} tag{selectedTags.length !== 1 ? 's' : ''} selected
                 </span>
                 <button
-                  onClick={() => selectedTags.forEach(tag => onTagToggle(tag))}
+                  onClick={handleClearAll}
                   className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                  aria-label="Clear all selected tags"
                 >
                   Clear all
                 </button>
@@ -137,3 +187,6 @@ export default memo(function TagCloud({ posts, selectedTags, onTagToggle, classN
     </div>
   );
 });
+
+TagCloud.displayName = 'TagCloud';
+export default TagCloud;

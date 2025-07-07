@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '../components/BlogList';
-import TagCloud from '../components/TagCloud';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { getAllBlogPosts } from '../data/blogPosts';
 import type { BlogPost } from '../types/blog';
@@ -101,14 +100,13 @@ export default function BlogPage() {
           ]}
           className="mb-6"
         />
-        <TagCloud 
-          posts={posts}
-          selectedTags={selectedTags}
-          onTagToggle={handleTagToggle}
-          className="mb-4"
-        />
       </div>
-      <BlogList posts={filteredPosts} />
+      <BlogList 
+        posts={filteredPosts} 
+        allPosts={posts}
+        selectedTags={selectedTags}
+        onTagToggle={handleTagToggle}
+      />
     </>
   );
 } 
