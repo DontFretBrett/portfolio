@@ -188,6 +188,60 @@ export const gearItems: GearItem[] = [
     price: ''
   },
   {
+    id: 'logitech-m720-triathlon',
+    name: 'Logitech M720 Triathlon Wireless Mouse',
+    description: 'Versatile multi-device wireless mouse with Bluetooth and USB Unifying Receiver. Features hyper-fast scrolling, 6 programmable buttons, and a comfortable ergonomic design. Ideal for productivity across multiple computers and platforms.',
+    category: 'mice',
+    affiliateUrl: 'https://amzn.to/4lKgwBv',
+    productUrl: 'https://www.amazon.com/Logitech-M720-Multi-Device-Programmable-Compatible/dp/B087Z6LSHW',
+    image: 'https://m.media-amazon.com/images/I/51pMqozCpML._AC_SL1500_.jpg',
+    features: [
+      'Connect and switch between up to 3 computers with Easy-Switch button',
+      'Dual connectivity: Bluetooth or Logitech Unifying USB receiver',
+      'Hyper-fast scroll wheel for rapid navigation',
+      '6 customizable buttons for productivity shortcuts',
+      'Ergonomic right-handed design with rubber grip',
+      'Long 24-month battery life (1 AA battery)',
+      '1000 DPI optical sensor for precise tracking',
+      'Compatible with Windows, macOS, Chrome OS, Linux, iPadOS',
+      'Durable build for heavy daily use',
+      'Works with Logitech FLOW for seamless multi-computer control'
+    ],
+    specifications: {
+      'Sensor': 'Optical, 1000 DPI',
+      'Buttons': '6 programmable',
+      'Scroll Wheel': 'Hyper-fast, instant-stop',
+      'Connectivity': 'Bluetooth, Logitech Unifying USB receiver',
+      'Battery': '1x AA (up to 24 months)',
+      'Compatibility': 'Windows, macOS, Chrome OS, Linux, iPadOS',
+      'Dimensions': '4.5 x 2.9 x 1.8 inches (115 x 74 x 45 mm)',
+      'Weight': '4.5 oz (135 g) with battery',
+      'Color': 'Black',
+      'Switching': 'Easy-Switch for 3 devices'
+    },
+    pros: [
+      'Seamless switching between multiple devices',
+      'Comfortable ergonomic grip for long sessions',
+      'Excellent battery life',
+      'Customizable buttons for workflow efficiency',
+      'Reliable wireless connection (Bluetooth or USB)',
+      'Hyper-fast scrolling for quick navigation',
+      'Works with Logitech FLOW for cross-computer control'
+    ],
+    cons: [
+      'Right-handed only (not ambidextrous)',
+      'No rechargeable battery (uses AA)',
+      'Slightly larger size may not suit all hands',
+      'No horizontal scroll wheel'
+    ],
+    rating: 4.5,
+    dateAdded: '2025-06-10',
+    tags: ['mouse', 'wireless', 'bluetooth', 'multi-device', 'logitech', 'ergonomic', 'productivity', 'scroll', 'unifying'],
+    inStock: true,
+    discontinued: false,
+    price: ''
+  },
+  {
     id: 'lg-34wr55qk-b-ultrawide',
     name: 'LG 34WR55QK-B 34-inch UltraWide WQHD Curved Monitor',
     description: 'Immersive 34-inch UltraWide curved monitor with WQHD resolution, 100Hz refresh rate, HDR10, and USB-C connectivity. Perfect for multitasking, productivity, and entertainment.',
@@ -317,6 +371,62 @@ export const gearItems: GearItem[] = [
     tags: ['laptop', 'macbook', 'apple', 'M1 Pro', '16-inch', 'retina', 'ssd', 'pro'],
     rating: 4.8,
     dateAdded: '2025-01-05',
+    inStock: true,
+    discontinued: false,
+    price: ''
+  },
+  {
+    id: 'logitech-brio-4k',
+    name: 'Logitech Brio 4K Webcam',
+    description: 'Premium 4K ultra high-definition webcam with HDR, autofocus, and dual noise-cancelling microphones. Ideal for professional video calls, streaming, and content creation. Delivers crystal-clear video and audio in any lighting condition.',
+    category: 'accessories',
+    affiliateUrl: 'https://amzn.to/44l8NUN',
+    productUrl: 'https://www.amazon.com/dp/B09NBWWP79?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2',
+    image: 'https://m.media-amazon.com/images/I/51KIsAkiqqL._AC_SL1500_.jpg',
+    features: [
+      'Ultra 4K HD resolution (up to 4096 x 2160 pixels) for stunning clarity',
+      'High Dynamic Range (HDR) for vibrant, true-to-life color',
+      'Autofocus and adjustable field of view (65°, 78°, 90°)',
+      'Dual omni-directional noise-cancelling microphones',
+      'RightLight 3 technology for optimal lighting in any environment',
+      'Windows Hello facial recognition support',
+      '5x digital zoom',
+      'Detachable privacy shutter',
+      'Plug-and-play USB connectivity',
+      'Compatible with Windows, macOS, and popular video platforms'
+    ],
+    specifications: {
+      'Resolution': '4K Ultra HD (4096 x 2160), 1080p, 720p',
+      'Frame Rate': 'Up to 90 fps (at 720p)',
+      'Field of View': 'Adjustable: 65°, 78°, 90°',
+      'Microphones': 'Dual omni-directional, noise-cancelling',
+      'Zoom': '5x digital zoom',
+      'Connectivity': 'USB 2.0/3.0',
+      'Compatibility': 'Windows 8 or later, macOS 10.10 or later, Chrome OS',
+      'Dimensions': '4.0 x 1.1 x 1.0 inches (102 x 27 x 27 mm)',
+      'Weight': '2.2 oz (63 g)',
+      'Privacy': 'Detachable privacy shutter',
+      'Facial Recognition': 'Windows Hello support'
+    },
+    pros: [
+      'Exceptional 4K video quality with HDR',
+      'Excellent low-light performance',
+      'Noise-cancelling dual microphones',
+      'Adjustable field of view and digital zoom',
+      'Plug-and-play with most operating systems',
+      'Supports Windows Hello facial recognition',
+      'Detachable privacy shutter for security',
+      'Versatile mounting options (clip, tripod)'
+    ],
+    cons: [
+      'Premium price point',
+      'Full 4K requires USB 3.0 and compatible software',
+      'Software needed for advanced customization',
+      'No built-in ring light'
+    ],
+    rating: 4.7,
+    dateAdded: '2025-06-10',
+    tags: ['webcam', '4K', 'logitech', 'video', 'streaming', 'HDR', 'autofocus', 'noise-cancelling', 'accessory'],
     inStock: true,
     discontinued: false,
     price: ''
