@@ -143,11 +143,11 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
       <div 
         id="tag-cloud-content"
         className={`transition-all duration-300 ease-in-out ${
-          isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        } overflow-hidden`}
+          isExpanded ? 'max-h-[80vh] sm:max-h-[60vh] opacity-100' : 'max-h-0 opacity-0'
+        } overflow-y-auto overflow-x-hidden`}
       >
         <div className="p-6 pt-4">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 w-full min-w-0">
             {sortedTags.map(({ tag, count }) => {
               const isSelected = selectedTags.includes(tag);
               const sizeClass = getTagSize(count, maxCount);
@@ -163,6 +163,7 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
                       ? 'bg-blue-600 text-white shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2' 
                       : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2'
                     }
+                    whitespace-nowrap max-w-full truncate min-w-0 flex-shrink
                   `}
                   aria-label={`${isSelected ? 'Remove' : 'Add'} ${tag} filter (${count} posts)`}
                   aria-pressed={isSelected}
