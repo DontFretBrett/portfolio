@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Star, ShoppingCart, Check, X } from 'lucide-react';
 import type { GearItem, GearCategory } from '../types/gear';
+import { trackGearInteraction } from '../utils/analytics';
 
 interface GearProps {
   items: GearItem[];
@@ -27,13 +28,14 @@ function ImageModal({ src, alt, isOpen, onClose }: ImageModalProps) {
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+      trackGearInteraction('Image View', alt || 'Unknown Image');
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, alt]);
 
   if (!isOpen) return null;
 
@@ -261,7 +263,8 @@ export default function Gear({ items, categories, showCategories = false, limit 
   };
 
   const handleCategoryClick = (categoryId: string) => {
-    setSelectedCategory(selectedCategory === categoryId ? null : categoryId);
+    setSelectedCategory(categoryId);
+    trackGearInteraction('Category Click', categoryId);
   };
 
   // Filter items based on selected category

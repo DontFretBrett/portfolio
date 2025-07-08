@@ -1,6 +1,7 @@
 import { Github, Linkedin, ArrowLeft } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import { trackNavigation, trackSocialClick } from '../utils/analytics';
 
 export default function CompactHeader() {
   const location = useLocation();
@@ -42,6 +43,10 @@ export default function CompactHeader() {
 
   const backLink = getBackLink();
 
+  const handleNavigation = (to: string) => {
+    trackNavigation(to, location.pathname);
+  };
+
   return (
     <header className="relative bg-gradient-to-r from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-4 border-b border-gray-700/50 dark:border-gray-600/50">
       {/* Theme Toggle - positioned with more space from right edge */}
@@ -55,6 +60,7 @@ export default function CompactHeader() {
         <div className="flex items-center gap-3 min-w-0 flex-1">
           <Link
             to={backLink.to}
+            onClick={() => handleNavigation(backLink.to)}
             className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium flex-shrink-0"
           >
             <ArrowLeft className="w-4 h-4" aria-hidden="true" />
@@ -64,7 +70,11 @@ export default function CompactHeader() {
           
           <div className="hidden sm:block text-gray-400 flex-shrink-0">•</div>
           
-          <Link to="/" className="flex items-center gap-2 group min-w-0">
+          <Link 
+            to="/" 
+            onClick={() => handleNavigation('/')}
+            className="flex items-center gap-2 group min-w-0"
+          >
             <picture className="flex-shrink-0">
               <source srcSet="/me.webp" type="image/webp" />
               <img
@@ -88,6 +98,7 @@ export default function CompactHeader() {
         <nav className="flex items-center gap-2 flex-shrink-0 ml-4">
           <Link
             to="/"
+            onClick={() => handleNavigation('/')}
             className="px-2 py-1.5 sm:px-3 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm"
           >
             <span className="hidden sm:inline">Home</span>
@@ -95,6 +106,7 @@ export default function CompactHeader() {
           </Link>
           <Link
             to="/ai-projects"
+            onClick={() => handleNavigation('/ai-projects')}
             className="px-2 py-1.5 sm:px-3 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm"
           >
             <span className="hidden sm:inline">AI Projects</span>
@@ -102,6 +114,7 @@ export default function CompactHeader() {
           </Link>
           <Link
             to="/gear"
+            onClick={() => handleNavigation('/gear')}
             className="px-2 py-1.5 sm:px-3 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm"
           >
             <span className="hidden sm:inline">Gear</span>
@@ -112,6 +125,7 @@ export default function CompactHeader() {
           <div className="hidden lg:flex items-center gap-1 ml-1">
             <a 
               href="https://github.com/DontFretBrett" 
+              onClick={() => trackSocialClick('GitHub')}
               className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
               target="_blank"
               rel="noopener noreferrer"
@@ -121,6 +135,7 @@ export default function CompactHeader() {
             </a>
             <a 
               href="https://www.linkedin.com/in/imbrett/" 
+              onClick={() => trackSocialClick('LinkedIn')}
               className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
               target="_blank"
               rel="noopener noreferrer"
@@ -130,6 +145,7 @@ export default function CompactHeader() {
             </a>
             <a 
               href="https://x.com/WontFretBrett" 
+              onClick={() => trackSocialClick('X')}
               className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
               target="_blank"
               rel="noopener noreferrer"
