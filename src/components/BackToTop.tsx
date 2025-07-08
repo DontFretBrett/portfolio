@@ -1,6 +1,7 @@
 import { ArrowUp } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackBackToTop } from '../utils/analytics';
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,6 +32,7 @@ export default function BackToTop() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    trackBackToTop();
   };
 
   // React 19 enhanced ref callback with proper cleanup

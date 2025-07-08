@@ -1,6 +1,7 @@
 import { memo, useState, useMemo, useCallback } from 'react';
 import { Cloud } from 'lucide-react';
 import type { BlogPost } from '../types/blog';
+import { trackBlogInteraction } from '../utils/analytics';
 
 interface TagCloudProps {
   posts: BlogPost[];
@@ -15,6 +16,14 @@ interface TagWithCount {
   tag: string;
   count: number;
 }
+
+const getTagSize = (count: number, maxCount: number): string => {
+  const ratio = count / maxCount;
+  if (ratio > 0.8) return 'text-lg';
+  if (ratio > 0.6) return 'text-base';
+  if (ratio > 0.4) return 'text-sm';
+  return 'text-xs';
+};
 
 const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onClearAll, className = '', onError }: TagCloudProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -54,14 +63,15 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
 
   // Memoize callback functions
   const handleTagToggle = useCallback((tag: string) => {
+    trackBlogInteraction('Tag Click', tag);
     onTagToggle(tag);
   }, [onTagToggle]);
-
 
   const handleClearAll = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (onClearAll) {
       onClearAll();
+      trackBlogInteraction('Tag Click', 'Clear All');
     } else {
       // Fallback: capture current selected tags to avoid race conditions
       const tagsToToggle = [...selectedTags];
@@ -81,14 +91,6 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
   if (sortedTags.length === 0) {
     return null;
   }
-
-  const getTagSize = (count: number, maxCount: number): string => {
-    const ratio = count / maxCount;
-    if (ratio >= 0.8) return 'text-lg';
-    if (ratio >= 0.6) return 'text-base';
-    if (ratio >= 0.4) return 'text-sm';
-    return 'text-xs';
-  };
 
   const maxCount = Math.max(...sortedTags.map(t => t.count));
 

@@ -1,7 +1,14 @@
 import { useState } from 'react';
+import { trackChatInteraction } from '../utils/analytics';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggleChat = () => {
+    const action = !isOpen ? 'open' : 'close';
+    setIsOpen(!isOpen);
+    trackChatInteraction(action);
+  };
 
   return (
     <>
@@ -14,7 +21,7 @@ const Chatbot = () => {
           }}></div>
           
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={handleToggleChat}
             className="relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white p-5 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 animate-bounce"
             style={{
               animation: 'bounce 2s infinite, jiggle 3s infinite 1s'
@@ -45,7 +52,7 @@ const Chatbot = () => {
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black bg-opacity-50"
-            onClick={() => setIsOpen(false)}
+            onClick={handleToggleChat}
           />
           
           {/* Chat Container */}
@@ -56,7 +63,7 @@ const Chatbot = () => {
                 💬 Chat with Brett
               </h3>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleToggleChat}
                 className="text-white hover:text-gray-200 transition-colors"
                 aria-label="Close chat"
               >
@@ -79,9 +86,11 @@ const Chatbot = () => {
             
             {/* Gradio App Container */}
             <div className="flex-1 overflow-hidden">
-              <gradio-app 
+              <iframe
                 src="https://dontfretbrett-career-conversation.hf.space"
-                className="w-full h-full"
+                className="w-full h-full border-0"
+                onLoad={() => trackChatInteraction('message')}
+                title="Chat with Brett"
               />
             </div>
           </div>
@@ -90,17 +99,16 @@ const Chatbot = () => {
       
       {/* Custom CSS for animations */}
       <style>{`
-        @keyframes jiggle {
-          0%, 100% { transform: rotate(0deg); }
-          25% { transform: rotate(-3deg); }
-          75% { transform: rotate(3deg); }
+        @keyframes slowPing {
+          0% { transform: scale(1); opacity: 0.75; }
+          50% { transform: scale(1.5); opacity: 0; }
+          100% { transform: scale(1); opacity: 0.75; }
         }
         
-        @keyframes slowPing {
-          75%, 100% {
-            transform: scale(2);
-            opacity: 0;
-          }
+        @keyframes jiggle {
+          0%, 100% { transform: rotate(0); }
+          25% { transform: rotate(-5deg); }
+          75% { transform: rotate(5deg); }
         }
       `}</style>
     </>

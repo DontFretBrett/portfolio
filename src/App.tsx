@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -7,6 +7,7 @@ import CompactHeader from './components/CompactHeader';
 import BackToTop from './components/BackToTop';
 import ScrollToTop from './components/ScrollToTop';
 import { FEATURE_FLAGS } from './config/features';
+import { initGA, logPageView } from './config/analytics';
 import Footer from './components/Footer';
 
 // Lazy load components for better performance
@@ -36,6 +37,17 @@ function PageLoader() {
   );
 }
 
+// Route change tracker component
+function RouteTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    logPageView();
+  }, [location]);
+
+  return null;
+}
+
 // Conditional header based on route
 function ConditionalHeader() {
   const location = useLocation();
@@ -52,6 +64,7 @@ function AppContent() {
         Skip to main content
       </a>
       <ScrollToTop />
+      <RouteTracker />
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <ConditionalHeader />
         <Suspense fallback={<PageLoader />}>
@@ -81,6 +94,11 @@ function AppContent() {
 }
 
 export default function App() {
+  // Initialize GA4 only once on client-side
+  useEffect(() => {
+    initGA();
+  }, []);
+
   return (
     <HelmetProvider>
       <ThemeProvider>
