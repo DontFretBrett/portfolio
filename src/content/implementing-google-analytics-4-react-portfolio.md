@@ -62,18 +62,44 @@ export const logPageView = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
 };
 
-export const logEvent = (category: string, action: string, label?: string) => {
-  ReactGA.event({
-    category,
-    action,
-    ...(label && { label }),
-  });
+// Type definition for GA4 event parameters
+export type GAEventParams = {
+  [key: string]: string | number | boolean;
+};
+
+// GA4 event logging function following GA4's event_name and parameters model
+export const logEvent = (event_name: string, params?: GAEventParams) => {
+  ReactGA.event(event_name, params);
 };
 ```
 
-### 2. Creating Specialized Analytics Functions
+### 2. Proper GA4 Initialization
 
-I created a dedicated analytics utility module with specialized tracking functions for different features:
+To ensure GA4 is properly initialized only once and only on the client side, I implemented it in the root App component:
+
+```typescript
+// src/App.tsx
+export default function App() {
+  // Initialize GA4 only once on client-side
+  useEffect(() => {
+    initGA();
+  }, []);
+
+  return (
+    <HelmetProvider>
+      <ThemeProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </ThemeProvider>
+    </HelmetProvider>
+  );
+}
+```
+
+### 3. Creating Specialized Analytics Functions
+
+I created a dedicated analytics utility module with specialized tracking functions following GA4's event model:
 
 ```typescript
 // src/utils/analytics.ts
@@ -81,36 +107,45 @@ import { logEvent } from '../config/analytics';
 
 // Navigation Events
 export const trackNavigation = (destination: string, source?: string) => {
-  logEvent('Navigation', 'Click', `${source || 'Unknown'} to ${destination}`);
+  logEvent('page_navigation', {
+    destination,
+    source: source || 'unknown'
+  });
 };
 
 // Theme Toggle Events
 export const trackThemeToggle = (newTheme: 'light' | 'dark') => {
-  logEvent('Theme', 'Toggle', newTheme);
+  logEvent('theme_change', {
+    theme: newTheme
+  });
 };
 
 // Blog Interaction Events
-export const trackBlogInteraction = (action: 'View' | 'Tag Click' | 'Comment', detail: string) => {
-  logEvent('Blog', action, detail);
+export const trackBlogInteraction = (action: 'view' | 'tag_click' | 'comment', detail: string) => {
+  logEvent('blog_interaction', {
+    action,
+    detail
+  });
 };
 
 // Gear Page Events
-export const trackGearInteraction = (action: 'Category Click' | 'Image View', detail: string) => {
-  logEvent('Gear', action, detail);
-};
-
-// Chat Events
-export const trackChatInteraction = (action: 'Open' | 'Close' | 'Message') => {
-  logEvent('Chat', action);
+export const trackGearInteraction = (action: 'category_view' | 'image_view', detail: string) => {
+  logEvent('gear_interaction', {
+    action,
+    detail
+  });
 };
 
 // Error Events
 export const trackError = (errorType: string, errorMessage: string) => {
-  logEvent('Error', errorType, errorMessage);
+  logEvent('error_occurred', {
+    error_type: errorType,
+    error_message: errorMessage
+  });
 };
 ```
 
-### 3. Implementing Route Tracking
+### 4. Implementing Route Tracking
 
 For a React SPA, tracking route changes requires special handling. I created a dedicated component for this:
 
@@ -127,7 +162,7 @@ function RouteTracker() {
 }
 ```
 
-### 4. Real-World Implementation Examples
+### 5. Real-World Implementation Examples
 
 Here are some practical examples of how I implemented analytics tracking across different components:
 
@@ -154,7 +189,7 @@ function ThemeToggle() {
 ```typescript
 function TagCloud({ posts, onTagToggle }) {
   const handleTagClick = (tag: string) => {
-    trackBlogInteraction('Tag Click', tag);
+    trackBlogInteraction('tag_click', tag);
     onTagToggle(tag);
   };
 
@@ -170,44 +205,30 @@ function TagCloud({ posts, onTagToggle }) {
 }
 ```
 
-#### Gear Image Modal
-```typescript
-function ImageModal({ src, alt, isOpen }) {
-  useEffect(() => {
-    if (isOpen) {
-      trackGearInteraction('Image View', alt || 'Unknown Image');
-    }
-  }, [isOpen, alt]);
+## GA4 Event Model Best Practices
 
-  return (
-    <div className="modal">
-      <img src={src} alt={alt} />
-    </div>
-  );
-}
-```
+When implementing GA4 events, I followed these best practices:
 
-#### Navigation Tracking
-```typescript
-function CompactHeader() {
-  const location = useLocation();
+1. **Event Names**:
+   - Use snake_case for consistency
+   - Keep names descriptive and specific
+   - Follow GA4's recommended naming conventions
 
-  const handleNavigation = (to: string) => {
-    trackNavigation(to, location.pathname);
-  };
+2. **Parameters**:
+   - Use meaningful parameter names
+   - Include relevant context
+   - Keep values concise and typed appropriately
 
-  return (
-    <nav>
-      <Link to="/blog" onClick={() => handleNavigation('/blog')}>
-        Blog
-      </Link>
-      <Link to="/ai-projects" onClick={() => handleNavigation('/ai-projects')}>
-        AI Projects
-      </Link>
-    </nav>
-  );
-}
-```
+3. **Event Structure**:
+   - Each event has a clear purpose
+   - Parameters provide additional context
+   - Avoid redundant information
+
+4. **Common Events**:
+   - page_view: Track route changes
+   - user_engagement: Track interactions
+   - error: Track issues and failures
+   - custom_event: For specific features
 
 ## Comprehensive Analytics Coverage
 
@@ -244,12 +265,23 @@ The implementation now tracks:
 
 The implementation has minimal impact on performance because:
 
-1. The GA4 script loads asynchronously
-2. Route tracking uses React's built-in hooks
-3. Event tracking is lightweight and non-blocking
-4. The configuration is tree-shakeable
-5. Event handlers are properly memoized
-6. Analytics calls are batched where possible
+1. GA4 initialization happens:
+   - Only once per session
+   - Only on the client side
+   - After the app is mounted
+   - Without blocking rendering
+
+2. Event tracking is optimized:
+   - Non-blocking operations
+   - Efficient parameter structures
+   - Batched where possible
+   - Properly memoized handlers
+
+3. Code organization:
+   - Tree-shakeable utilities
+   - Lazy-loaded components
+   - Efficient bundling
+   - Type-safe implementation
 
 ## Privacy and Security
 
