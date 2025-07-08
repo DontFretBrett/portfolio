@@ -5,7 +5,7 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleChat = () => {
-    const action = !isOpen ? 'Open' : 'Close';
+    const action = !isOpen ? 'open' : 'close';
     setIsOpen(!isOpen);
     trackChatInteraction(action);
   };
@@ -86,10 +86,11 @@ const Chatbot = () => {
             
             {/* Gradio App Container */}
             <div className="flex-1 overflow-hidden">
-              <gradio-app 
+              <iframe
                 src="https://dontfretbrett-career-conversation.hf.space"
-                className="w-full h-full"
-                onLoad={() => trackChatInteraction('Message')}
+                className="w-full h-full border-0"
+                onLoad={() => trackChatInteraction('message')}
+                title="Chat with Brett"
               />
             </div>
           </div>

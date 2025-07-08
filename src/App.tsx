@@ -10,9 +10,6 @@ import { FEATURE_FLAGS } from './config/features';
 import { initGA, logPageView } from './config/analytics';
 import Footer from './components/Footer';
 
-// Initialize GA4 when the app loads
-initGA();
-
 // Lazy load components for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
 const AIProjectsPage = React.lazy(() => import('./pages/AIProjectsPage'));
@@ -97,6 +94,11 @@ function AppContent() {
 }
 
 export default function App() {
+  // Initialize GA4 only once on client-side
+  useEffect(() => {
+    initGA();
+  }, []);
+
   return (
     <HelmetProvider>
       <ThemeProvider>

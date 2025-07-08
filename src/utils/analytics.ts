@@ -2,40 +2,58 @@ import { logEvent } from '../config/analytics';
 
 // Navigation Events
 export const trackNavigation = (destination: string, source?: string) => {
-  logEvent('Navigation', 'Click', `${source || 'Unknown'} to ${destination}`);
+  logEvent('page_navigation', {
+    destination,
+    source: source || 'unknown'
+  });
 };
 
 // Theme Toggle Events
 export const trackThemeToggle = (newTheme: 'light' | 'dark') => {
-  logEvent('Theme', 'Toggle', newTheme);
+  logEvent('theme_change', {
+    theme: newTheme
+  });
 };
 
 // Social Link Events
 export const trackSocialClick = (platform: string) => {
-  logEvent('Social', 'Click', platform);
+  logEvent('social_click', {
+    platform
+  });
 };
 
 // Blog Interaction Events
-export const trackBlogInteraction = (action: 'View' | 'Tag Click' | 'Comment', detail: string) => {
-  logEvent('Blog', action, detail);
+export const trackBlogInteraction = (action: 'view' | 'tag_click' | 'comment', detail: string) => {
+  logEvent('blog_interaction', {
+    action,
+    detail
+  });
 };
 
 // Gear Page Events
-export const trackGearInteraction = (action: 'Category Click' | 'Image View', detail: string) => {
-  logEvent('Gear', action, detail);
+export const trackGearInteraction = (action: 'category_view' | 'image_view', detail: string) => {
+  logEvent('gear_interaction', {
+    action,
+    detail
+  });
 };
 
 // Chat Events
-export const trackChatInteraction = (action: 'Open' | 'Close' | 'Message') => {
-  logEvent('Chat', action);
+export const trackChatInteraction = (action: 'open' | 'close' | 'message') => {
+  logEvent('chat_interaction', {
+    action
+  });
 };
 
 // Back to Top Events
 export const trackBackToTop = () => {
-  logEvent('Navigation', 'Back to Top');
+  logEvent('back_to_top_click');
 };
 
 // Error Events
 export const trackError = (errorType: string, errorMessage: string) => {
-  logEvent('Error', errorType, errorMessage);
+  logEvent('error_occurred', {
+    error_type: errorType,
+    error_message: errorMessage
+  });
 }; 
