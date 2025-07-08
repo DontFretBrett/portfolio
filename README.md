@@ -18,6 +18,17 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **Dynamic Content Loading**: Lazy-loaded blog posts with caching
 - **SEO Optimized Posts**: Individual meta tags and structured data per post
 - **Comments System**: GitHub Discussions-powered comments via Giscus integration
+- **Tag Cloud**: Interactive tag filtering system with visual weighting and selection management
+- **Post Filtering**: Dynamic filtering by multiple tags with clear visual feedback
+
+### Gear Showcase
+- **Equipment Gallery**: Comprehensive display of professional gear and equipment
+- **Category Organization**: Equipment organized by type with visual category indicators
+- **Rich Details**: Detailed specifications, features, pros/cons for each item
+- **Interactive Images**: Modal image viewer for detailed equipment photos
+- **Affiliate Integration**: Amazon affiliate links with clear disclosure
+- **Stock Status**: Real-time stock availability indicators
+- **Rating System**: Visual star rating system for equipment reviews
 
 ### AI Projects Showcase
 - **Project Gallery**: Dedicated AI projects section
@@ -71,11 +82,13 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **ESLint** - Code linting with TypeScript support
 - **PostCSS** - CSS processing with Autoprefixer
 - **Terser** - JavaScript minification
+- **pnpm** - Fast, disk space efficient package manager
 
 ### Deployment & Performance
 - **Vercel** - Production deployment platform
 - **Code Splitting** - Automatic and manual chunk optimization
-- **Image Optimization** - WebP format with fallbacks
+- **Compression** - Gzip and Brotli compression for assets
+- **Modern Build Target** - ES2022+ for optimized bundles
 
 ## 🏃‍♂️ Getting Started
 
@@ -110,6 +123,16 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
    pnpm lint
    ```
 
+7. **Type check the code**
+   ```bash
+   pnpm typecheck
+   ```
+
+8. **Run full build validation**
+   ```bash
+   pnpm test:build
+   ```
+
 ## 📁 Project Structure
 
 ```
@@ -117,10 +140,12 @@ src/
 ├── components/         # Reusable UI components
 ├── pages/             # Route-specific page components
 ├── content/           # Markdown blog posts
-├── data/              # Static data (projects, blog metadata)
+├── data/              # Static data (projects, blog metadata, gear)
 ├── types/             # TypeScript type definitions
 ├── utils/             # Utility functions
-└── config/            # Feature flags and configuration
+├── config/            # Feature flags and configuration
+├── contexts/          # React Context providers (ThemeContext)
+└── actions/           # Server actions and utilities
 ```
 
 ## 🚀 Deployment
@@ -154,9 +179,10 @@ To configure Giscus for your own repository:
    - Mapping preferences
 
 ### Content Management
-- **Blog Posts**: Add markdown files to `src/content/`
+- **Blog Posts**: Add markdown files to `src/content/` and update metadata in `src/data/blogPosts.ts`
 - **AI Projects**: Update `src/data/aiProjects.ts`
-- **Skills/Experience**: Modify respective component files
+- **Gear Reviews**: Update `src/data/gear.ts`
+- **Skills/Experience**: Modify respective component files in `src/components/`
 
 ## 📱 Browser Support
 
