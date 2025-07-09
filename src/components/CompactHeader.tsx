@@ -48,7 +48,10 @@ export default function CompactHeader() {
   };
 
   return (
-    <header className="relative bg-gradient-to-r from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-4 border-b border-gray-700/50 dark:border-gray-600/50">
+    <header className="relative bg-gradient-to-r from-slate-900 via-gray-900 to-slate-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-4 border-b border-gray-700/50 dark:border-gray-600/50 shadow-lg">
+      {/* Enhanced dark overlay for better text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/10 to-black/20 dark:from-black/30 dark:via-black/15 dark:to-black/30 z-10"></div>
+      
       {/* Theme Toggle - positioned with more space from right edge */}
       <div className="absolute top-3 right-2 z-30">
         <ThemeToggle />
@@ -61,14 +64,14 @@ export default function CompactHeader() {
           <Link
             to={backLink.to}
             onClick={() => handleNavigation(backLink.to)}
-            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium flex-shrink-0"
+            className="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 transition-colors text-sm font-medium flex-shrink-0 drop-shadow-sm"
           >
             <ArrowLeft className="w-4 h-4" aria-hidden="true" />
             <span className="hidden sm:inline">{backLink.text}</span>
             <span className="sm:hidden">{backLink.shortText}</span>
           </Link>
           
-          <div className="hidden sm:block text-gray-400 flex-shrink-0">•</div>
+          <div className="hidden sm:block text-gray-300 flex-shrink-0 drop-shadow-sm">•</div>
           
           <Link 
             to="/" 
@@ -80,7 +83,7 @@ export default function CompactHeader() {
               <img
                 src="/me-64.jpg"
                 alt="Brett Sanders"
-                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/10 hover:ring-white/20 dark:ring-gray-300/10 dark:hover:ring-gray-300/20"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/20 hover:ring-white/30 dark:ring-gray-300/10 dark:hover:ring-gray-300/20 shadow-lg"
                 loading="eager"
                 decoding="async"
                 width="40"
@@ -88,8 +91,8 @@ export default function CompactHeader() {
               />
             </picture>
             <div className="min-w-0">
-              <h1 className="text-sm sm:text-lg font-bold text-white truncate">Brett Sanders</h1>
-              <p className="text-xs text-gray-300 hidden sm:block">Engineering Leader</p>
+              <h1 className="text-sm sm:text-lg font-bold text-white truncate drop-shadow-md">Brett Sanders</h1>
+              <p className="text-xs text-gray-200 hidden sm:block drop-shadow-sm">Engineering Leader</p>
             </div>
           </Link>
         </div>
@@ -99,7 +102,7 @@ export default function CompactHeader() {
           <Link
             to="/"
             onClick={() => handleNavigation('/')}
-            className="px-2 py-1.5 sm:px-3 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm"
+            className="px-2 py-1.5 sm:px-3 bg-white/15 hover:bg-white/25 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-white hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/20 hover:border-white/30 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm font-medium drop-shadow-sm"
           >
             <span className="hidden sm:inline">Home</span>
             <span className="sm:hidden">H</span>
@@ -107,7 +110,7 @@ export default function CompactHeader() {
           <Link
             to="/ai-projects"
             onClick={() => handleNavigation('/ai-projects')}
-            className="px-2 py-1.5 sm:px-3 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm"
+            className="px-2 py-1.5 sm:px-3 bg-white/15 hover:bg-white/25 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-white hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/20 hover:border-white/30 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm font-medium drop-shadow-sm"
           >
             <span className="hidden sm:inline">AI Projects</span>
             <span className="sm:hidden">AI</span>
@@ -115,7 +118,7 @@ export default function CompactHeader() {
           <Link
             to="/gear"
             onClick={() => handleNavigation('/gear')}
-            className="px-2 py-1.5 sm:px-3 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm"
+            className="px-2 py-1.5 sm:px-3 bg-white/15 hover:bg-white/25 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-white hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/20 hover:border-white/30 dark:border-gray-600/30 dark:hover:border-gray-500/40 text-sm font-medium drop-shadow-sm"
           >
             <span className="hidden sm:inline">Gear</span>
             <span className="sm:hidden">G</span>
@@ -126,7 +129,7 @@ export default function CompactHeader() {
             <a 
               href="https://github.com/DontFretBrett" 
               onClick={() => trackSocialClick('GitHub')}
-              className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
+              className="p-1.5 hover:bg-white/15 rounded-full transition-colors text-white drop-shadow-sm"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -136,7 +139,7 @@ export default function CompactHeader() {
             <a 
               href="https://www.linkedin.com/in/imbrett/" 
               onClick={() => trackSocialClick('LinkedIn')}
-              className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
+              className="p-1.5 hover:bg-white/15 rounded-full transition-colors text-white drop-shadow-sm"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -146,7 +149,7 @@ export default function CompactHeader() {
             <a 
               href="https://x.com/WontFretBrett" 
               onClick={() => trackSocialClick('X')}
-              className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
+              className="p-1.5 hover:bg-white/15 rounded-full transition-colors text-white drop-shadow-sm"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X (Twitter)"
