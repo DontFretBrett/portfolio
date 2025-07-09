@@ -1,5 +1,5 @@
 import { BlogPost, BlogMetadata } from '../types/blog';
-import { blogPosts } from '../data/blogPosts';
+import { getAllBlogPosts as getAllBlogPostsInternal, getBlogPost as getBlogPostInternal } from '../data/blogPosts';
 
 // Function to calculate reading time
 export function calculateReadingTime(content: string): number {
@@ -116,14 +116,7 @@ export function formatDate(dateString: string): string {
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
-    const posts = await blogPosts;
-    const post = posts.find(p => p.slug === slug);
-    
-    if (!post) {
-      return null;
-    }
-    
-    return post;
+    return await getBlogPostInternal(slug);
   } catch (error) {
     console.error('Error loading blog post:', error);
     return null;
@@ -132,7 +125,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
   try {
-    const posts = await blogPosts;
+    const posts = await getAllBlogPostsInternal();
     return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   } catch (error) {
     console.error('Error loading blog posts:', error);

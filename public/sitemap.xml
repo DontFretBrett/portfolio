@@ -30,6 +30,27 @@
   
   <!-- Blog posts -->
   <url>
+    <loc>https://www.brettsanders.com/blog/making-ai-portfolio-crawlable-seo-guide</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.brettsanders.com/blog/implementing-google-analytics-4-react-portfolio</loc>
+    <lastmod>2025-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.brettsanders.com/blog/implementing-2025-web-development-best-practices</loc>
+    <lastmod>2025-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://www.brettsanders.com/blog/implementing-react-19-best-practices-portfolio</loc>
     <lastmod>2025-07-03</lastmod>
     <changefreq>monthly</changefreq>
