@@ -37,7 +37,16 @@
       ]
     },
     {
-      "source": "/me-*.jpg",
+      "source": "/me-128.jpg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/me-64.jpg",
       "headers": [
         {
           "key": "Cache-Control",
