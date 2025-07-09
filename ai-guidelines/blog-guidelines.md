@@ -180,6 +180,7 @@ Automatic JSON-LD structured data includes:
 3. **Reading Time**: Automatically calculated (200 words/minute)
 4. **Slug Generation**: Based on filename
 5. **Static Generation**: HTML versions created for crawlers
+6. **Error Handling**: Robust loading with Promise.allSettled to prevent partial failures
 
 ### TypeScript Types
 Blog posts conform to the `BlogPost` interface:
@@ -201,8 +202,9 @@ interface BlogPost {
 ### Automatic Processing
 - Reading time calculation
 - Content caching for performance
-- Lazy loading of markdown files
-- Error handling for malformed posts
+- Lazy loading of markdown files with robust error handling
+- Promise.allSettled-based loading prevents partial failures
+- Improved error resilience for individual post loading issues
 
 ---
 
@@ -278,12 +280,17 @@ These static files ensure AI crawlers can access your content.
 **Error**: Blog post not loading
 **Solution**: Verify file is in `/src/content/` with `.md` extension
 
+#### Blog Loading Issues
+**Error**: Only some posts load on first visit, rest appear after refresh
+**Solution**: System now uses Promise.allSettled for robust loading - if this occurs, check console for individual post errors
+
 ### Static Generation Issues
 If static HTML isn't generating:
 1. Check console for build errors
 2. Verify all frontmatter is valid
 3. Ensure no syntax errors in markdown
 4. Run `pnpm build` to see specific errors
+5. Check for individual post loading failures (system handles partial failures gracefully)
 
 ### SEO Issues
 If SEO meta tags are missing:
@@ -340,6 +347,26 @@ Next.js 14 represents a significant step forward in React development...
 
 ---
 
+## 🔄 Recent Improvements
+
+### Blog Loading Reliability (July 2025)
+- **Issue Fixed**: Blog posts would sometimes only partially load on first visit
+- **Root Cause**: Circular dependency between blogPosts.ts and blog.ts caused race conditions
+- **Solution**: Refactored imports and implemented Promise.allSettled for robust loading
+- **Result**: All blog posts now load consistently on first visit
+
+### Error Handling Enhancements
+- **Improvement**: Individual post loading failures no longer affect other posts
+- **Implementation**: Promise.allSettled ensures graceful degradation
+- **Benefit**: More resilient blog loading experience
+
+### Technical Debt Cleanup
+- **Removed**: Unused puppeteer dependency and prerender scripts
+- **Cleaned**: Circular dependencies in the codebase
+- **Improved**: Build process reliability and performance
+
+---
+
 ## 🔄 Maintenance Notes
 
 ### Regular Updates
@@ -353,6 +380,7 @@ Next.js 14 represents a significant step forward in React development...
 - Check crawlability with tools like Google Search Console
 - Analyze reading time accuracy
 - Review SEO performance
+- Monitor blog loading consistency (should load all posts on first visit)
 
 ### Content Audit
 - Quarterly review of all blog posts
