@@ -9,7 +9,7 @@
           "value": ".*(bot|crawler|spider|crawling|ChatGPT|Claude|Anthropic|OpenAI|Bard|Google|Bing|Yahoo|DuckDuckGo|Baidu|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram|slack).*"
         }
       ],
-      "destination": "/blog/:path*/index.html"
+      "destination": "/static/blog/:path*/index.html"
     },
     {
       "source": "/blog",
@@ -20,7 +20,7 @@
           "value": ".*(bot|crawler|spider|crawling|ChatGPT|Claude|Anthropic|OpenAI|Bard|Google|Bing|Yahoo|DuckDuckGo|Baidu|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram|slack).*"
         }
       ],
-      "destination": "/blog/index.html"
+      "destination": "/static/blog/index.html"
     },
     {
       "source": "/(.*)",

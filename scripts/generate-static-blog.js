@@ -228,7 +228,7 @@ function generateBlogPostHTML(post) {
 async function generateStaticFiles() {
   const blogPosts = await loadBlogPosts();
   const distDir = path.join(__dirname, '../dist');
-  const blogDir = path.join(distDir, 'blog');
+  const blogDir = path.join(distDir, 'static', 'blog');
   
   // Create directories if they don't exist
   if (!fs.existsSync(distDir)) {
