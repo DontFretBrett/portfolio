@@ -211,7 +211,7 @@ The portfolio includes comprehensive AI crawlability features:
 - **Automated Build Process**: Static generation integrated into the build pipeline
 - **Blog Guidelines**: Comprehensive guidelines ensure consistent, crawlable content
 
-The static HTML files are generated in `/dist/blog/` and include:
+The static HTML files are generated in `/dist/static/blog/` and include:
 - Blog index page with all posts
 - Individual post pages with full metadata
 - Proper SEO tags and structured data

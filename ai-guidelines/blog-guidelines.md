@@ -145,7 +145,7 @@ tags: ["tag1", "tag2", "tag3"]
 
 ### Static HTML Generation
 - All blog posts automatically generate static HTML for crawlers
-- Located in `/dist/blog/{slug}/index.html` after build
+- Located in `/dist/static/blog/{slug}/index.html` after build
 - Contains full metadata and structured data
 
 ### Meta Tags
@@ -252,9 +252,9 @@ This automatically:
 5. Optimizes assets
 
 ### Static Blog Generation
-The build process creates static HTML versions in `/dist/blog/`:
-- `/dist/blog/index.html` - Blog index page
-- `/dist/blog/{slug}/index.html` - Individual post pages
+The build process creates static HTML versions in `/dist/static/blog/`:
+- `/dist/static/blog/index.html` - Blog index page
+- `/dist/static/blog/{slug}/index.html` - Individual post pages
 
 These static files ensure AI crawlers can access your content.
 
@@ -297,7 +297,7 @@ If SEO meta tags are missing:
 1. Check frontmatter completeness
 2. Verify description and keywords fields
 3. Ensure proper quote formatting
-4. Check generated HTML in `/dist/blog/`
+4. Check generated HTML in `/dist/static/blog/`
 
 ---
 
