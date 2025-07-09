@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import yaml from 'js-yaml';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -15,29 +16,22 @@ async function loadBlogPosts() {
     const filePath = path.join(contentDir, file);
     const content = fs.readFileSync(filePath, 'utf8');
     
-    // Parse frontmatter
-    const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
-    if (!frontmatterMatch) continue;
+    // Parse frontmatter (more flexible: allows optional whitespace, optional trailing newline, and logs skipped files)
+    const frontmatterMatch = content.match(/^---\s*\r?\n([\s\S]*?)\r?\n---(?:\s*\r?\n)?/);
+    if (!frontmatterMatch) {
+      console.warn(`[generate-static-blog] Skipping file "${file}" - frontmatter not found or malformed.`);
+      continue;
+    }
     
     const frontmatter = frontmatterMatch[1];
-    const data = {};
     
-    // Simple YAML parsing
-    const lines = frontmatter.split('\n');
-    for (const line of lines) {
-      const colonIndex = line.indexOf(':');
-      if (colonIndex > 0) {
-        const key = line.substring(0, colonIndex).trim();
-        const value = line.substring(colonIndex + 1).trim();
-        
-        if (value.startsWith('[') && value.endsWith(']')) {
-          // Array handling
-          data[key] = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, ''));
-        } else {
-          // String handling
-          data[key] = value.replace(/"/g, '');
-        }
-      }
+    // Parse YAML with js-yaml for robust handling of complex structures
+    let data;
+    try {
+      data = yaml.load(frontmatter) || {};
+    } catch (error) {
+      console.warn(`[generate-static-blog] Skipping file "${file}" - invalid YAML frontmatter:`, error.message);
+      continue;
     }
     
     // Calculate reading time
