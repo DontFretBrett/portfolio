@@ -5,6 +5,31 @@ Crawl-delay: 1
 # Sitemap
 Sitemap: https://www.brettsanders.com/sitemap.xml
 
+# Explicitly allow AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OpenAI-SearchBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: OpenAI
+Allow: /
+
 # Block common spam bots
 User-agent: SemrushBot
 Disallow: /

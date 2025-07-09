@@ -1,7 +1,10 @@
 ---
 title: "Building a Modern 3D Towers of Hanoi Game with Three.js and GSAP"
 date: "2024-11-10"
-description: "A deep dive into creating an interactive 3D Towers of Hanoi puzzle using Three.js, GSAP, and modern web technologies"
+excerpt: "Create an interactive 3D Towers of Hanoi game using Three.js, React, and TypeScript with smooth animations and user interactions."
+description: "A deep dive into creating an interactive 3D Towers of Hanoi puzzle using Three.js, GSAP, and modern web technologies by Brett Sanders."
+keywords: "Three.js, React, TypeScript, 3D Graphics, Game Development, Brett Sanders"
+tags: ["Three.js", "React", "TypeScript", "3D Graphics", "Game Development"]
 ---
 
 # Building a Modern 3D Towers of Hanoi Game with Three.js and GSAP
