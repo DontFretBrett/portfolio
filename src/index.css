@@ -22,7 +22,6 @@
 /* Content Visibility for Performance */
 .below-fold-section {
   content-visibility: auto;
-  contain-intrinsic-size: auto 300px;
 }
 
 /* Modern Focus Management - WCAG 2.2 Compliance */
