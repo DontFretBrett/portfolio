@@ -1,6 +1,28 @@
 {
   "rewrites": [
     {
+      "source": "/blog/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(bot|crawler|spider|crawling|ChatGPT|Claude|Anthropic|OpenAI|Bard|Google|Bing|Yahoo|DuckDuckGo|Baidu|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram|slack).*"
+        }
+      ],
+      "destination": "/blog/:path*/index.html"
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(bot|crawler|spider|crawling|ChatGPT|Claude|Anthropic|OpenAI|Bard|Google|Bing|Yahoo|DuckDuckGo|Baidu|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram|slack).*"
+        }
+      ],
+      "destination": "/blog/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
