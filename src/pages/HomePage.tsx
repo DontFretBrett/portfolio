@@ -26,6 +26,7 @@ export default function HomePage() {
         <meta name="keywords" content="Software Engineering Director, Full Stack Developer, AWS Certified, SAFe Agile, San Diego, Technology Leader, Node.js, React, TypeScript, AI Engineering" />
         
         {/* Performance optimizations */}
+        <link rel="preload" href="/me.webp" as="image" type="image/webp" />
         <link rel="preload" href="/me-128.jpg" as="image" type="image/jpeg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://api.analytics.com" />
