@@ -10,7 +10,7 @@ const Certifications = lazy(() => import('../components/Certifications'));
 // Enhanced loading component with better UX
 function ComponentLoader({ message = "Loading..." }: { message?: string }) {
   return (
-    <section className="p-16 text-center bg-gray-50 dark:bg-gray-900">
+    <section className="py-16 text-center bg-gray-50 dark:bg-gray-900">
       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
       <p className="mt-4 text-gray-600 dark:text-gray-400">{message}</p>
     </section>
@@ -206,14 +206,12 @@ export default function HomePage() {
         <Skills />
         
         {/* Below-the-fold content with performance optimization */}
-        <div className="below-fold-section">
-          <Suspense fallback={<ComponentLoader message="Loading certifications..." />}>
-            <Certifications />
-          </Suspense>
-          <Suspense fallback={<ComponentLoader message="Loading experience..." />}>
-            <Experience />
-          </Suspense>
-        </div>
+        <Suspense fallback={<ComponentLoader message="Loading certifications..." />}>
+          <Certifications />
+        </Suspense>
+        <Suspense fallback={<ComponentLoader message="Loading experience..." />}>
+          <Experience />
+        </Suspense>
       </main>
     </>
   );

@@ -19,10 +19,7 @@
   }
 }
 
-/* Content Visibility for Performance */
-.below-fold-section {
-  content-visibility: auto;
-}
+
 
 /* Modern Focus Management - WCAG 2.2 Compliance */
 .focus-visible {
