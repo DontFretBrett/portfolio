@@ -20,17 +20,17 @@
     <meta property="og:url" content="https://www.brettsanders.com" />
     <meta property="og:site_name" content="Brett Sanders Portfolio" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="https://www.brettsanders.com/me.jpeg" />
+    <meta property="og:image" content="https://www.brettsanders.com/me-128.jpg" />
     <meta property="og:image:alt" content="Brett Sanders - Engineering Leader & Full Stack Software Engineer" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="128" />
+    <meta property="og:image:height" content="128" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Brett Sanders - Engineering Leader & Full Stack Software Engineer" />
     <meta name="twitter:description" content="Technology leader with 15+ years of experience in financial sector. Expertise in full stack development, AWS, and team leadership." />
     <meta name="twitter:creator" content="@WontFretBrett" />
-    <meta name="twitter:image" content="https://www.brettsanders.com/me.jpeg" />
+    <meta name="twitter:image" content="https://www.brettsanders.com/me-128.jpg" />
     <meta name="twitter:image:alt" content="Brett Sanders - Engineering Leader & Full Stack Software Engineer" />
     
     <!-- Canonical URL will be set by individual pages -->
@@ -42,9 +42,14 @@
     <meta name="msapplication-TileColor" content="#2563eb" />
     
     <!-- Performance optimization hints -->
-    <link rel="dns-prefetch" href="//gradio.s3-us-west-2.amazonaws.com">
-    <link rel="preload" href="/me.webp" as="image" type="image/webp">
-    <link rel="preload" href="/me.jpeg" as="image" type="image/jpeg">
+    <link rel="preload" href="/me-128.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="/me-64.jpg" as="image" type="image/jpeg">
+    
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     
     <!-- Resource hints for better caching -->
     <meta name="format-detection" content="telephone=no">
@@ -58,7 +63,7 @@
       "jobTitle": "Software Engineering Director",
       "description": "Technology leader with 15+ years of experience in financial sector. Expertise in full stack development, AWS, and team leadership.",
       "url": "https://www.brettsanders.com",
-      "image": "https://www.brettsanders.com/me.jpeg",
+      "image": "https://www.brettsanders.com/me-128.jpg",
       "sameAs": [
         "https://www.linkedin.com/in/imbrett/",
         "https://github.com/DontFretBrett",
@@ -107,11 +112,8 @@
     }
     </script>
     
-    <!-- Gradio Chatbot Script -->
-    <script
-      type="module"
-      src="https://gradio.s3-us-west-2.amazonaws.com/5.33.1/gradio.js"
-    ></script>
+    <!-- Gradio Chatbot Script - Loaded conditionally when chatbot is enabled -->
+    <!-- This script will be loaded dynamically when the chatbot is enabled -->
   </head>
   <body>
     <div id="root"></div>

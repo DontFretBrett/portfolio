@@ -78,7 +78,7 @@ export default function CompactHeader() {
             <picture className="flex-shrink-0">
               <source srcSet="/me.webp" type="image/webp" />
               <img
-                src="/me.jpeg"
+                src="/me-64.jpg"
                 alt="Brett Sanders"
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-full transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/10 hover:ring-white/20 dark:ring-gray-300/10 dark:hover:ring-gray-300/20"
                 loading="eager"

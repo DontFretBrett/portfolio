@@ -90,7 +90,7 @@ export default function Header() {
           <picture>
             <source srcSet="/me.webp" type="image/webp" />
             <img
-              src="/me.jpeg"
+              src="/me-128.jpg"
               alt="Brett Sanders"
               className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-6 cursor-pointer transition-transform duration-200 group-hover:scale-105 ring-4 ring-white/10 hover:ring-white/20 dark:ring-gray-300/10 dark:hover:ring-gray-300/20"
               loading="eager"

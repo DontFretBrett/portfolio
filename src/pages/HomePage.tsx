@@ -26,7 +26,7 @@ export default function HomePage() {
         <meta name="keywords" content="Software Engineering Director, Full Stack Developer, AWS Certified, SAFe Agile, San Diego, Technology Leader, Node.js, React, TypeScript, AI Engineering" />
         
         {/* Performance optimizations */}
-        <link rel="preload" href="/me.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/me-128.jpg" as="image" type="image/jpeg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://api.analytics.com" />
         
@@ -35,15 +35,15 @@ export default function HomePage() {
         <meta property="og:description" content="Technology leader with 15+ years of experience in financial sector. Expertise in full stack development, AWS, and team leadership." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.brettsanders.com" />
-        <meta property="og:image" content="https://www.brettsanders.com/me.webp" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image" content="https://www.brettsanders.com/me-128.jpg" />
+        <meta property="og:image:width" content="128" />
+        <meta property="og:image:height" content="128" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Brett Sanders - Engineering Leader & Full Stack Software Engineer" />
         <meta name="twitter:description" content="Technology leader with 15+ years of experience in financial sector. Expertise in full stack development, AWS, and team leadership." />
-        <meta name="twitter:image" content="https://www.brettsanders.com/me.webp" />
+        <meta name="twitter:image" content="https://www.brettsanders.com/me-128.jpg" />
         
         <link rel="canonical" href="https://www.brettsanders.com" />
         

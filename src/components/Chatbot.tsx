@@ -1,8 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { trackChatInteraction } from '../utils/analytics';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [gradioLoaded, setGradioLoaded] = useState(false);
+
+  // Load Gradio script dynamically when needed
+  useEffect(() => {
+    if (isOpen && !gradioLoaded) {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://gradio.s3-us-west-2.amazonaws.com/5.33.1/gradio.js';
+      script.onload = () => setGradioLoaded(true);
+      document.head.appendChild(script);
+    }
+  }, [isOpen, gradioLoaded]);
 
   const handleToggleChat = () => {
     const action = !isOpen ? 'open' : 'close';
@@ -86,12 +98,19 @@ const Chatbot = () => {
             
             {/* Gradio App Container */}
             <div className="flex-1 overflow-hidden">
-              <iframe
-                src="https://dontfretbrett-career-conversation.hf.space"
-                className="w-full h-full border-0"
-                onLoad={() => trackChatInteraction('message')}
-                title="Chat with Brett"
-              />
+              {gradioLoaded ? (
+                <iframe
+                  src="https://dontfretbrett-career-conversation.hf.space"
+                  className="w-full h-full border-0"
+                  onLoad={() => trackChatInteraction('message')}
+                  title="Chat with Brett"
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  <span className="ml-3 text-gray-600">Loading chat...</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
