@@ -15,13 +15,14 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 ### Blog System
 - **Markdown Blog Posts**: Full blog functionality with markdown support
 - **Syntax Highlighting**: Code blocks with highlight.js
-- **Dynamic Content Loading**: Lazy-loaded blog posts with caching
+- **Dynamic Content Loading**: Lazy-loaded blog posts with improved error handling
 - **SEO Optimized Posts**: Individual meta tags and structured data per post
 - **Comments System**: GitHub Discussions-powered comments via Giscus integration
 - **Tag Cloud**: Interactive tag filtering system with visual weighting and selection management
 - **Post Filtering**: Dynamic filtering by multiple tags with clear visual feedback
 - **AI Crawlable**: Static HTML generation for all blog posts and index pages
 - **Blog Guidelines**: Comprehensive guidelines for consistent content creation
+- **Robust Loading**: Promise.allSettled-based loading prevents partial failures
 
 ### Gear Showcase
 - **Equipment Gallery**: Comprehensive display of professional gear and equipment

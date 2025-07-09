@@ -335,7 +335,9 @@ The static generation seamlessly integrates with the existing build process:
   "scripts": {
     "build": "tsc && vite build && node scripts/generate-static-blog.js",
     "build:analyze": "tsc && vite build --mode analyze",
-    "build:prerender": "tsc && vite build && node scripts/prerender.js"
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test:build": "npm run typecheck && npm run lint && npm run build"
   }
 }
 ```
@@ -441,7 +443,7 @@ The sitemap is automatically updated with new content:
 const markdownModules = import.meta.glob('../content/*.md', { 
   query: '?raw', 
   import: 'default',
-  eager: false
+  eager: false // Lazy loading with improved error handling
 });
 ```
 
@@ -449,13 +451,14 @@ const markdownModules = import.meta.glob('../content/*.md', {
 
 **Problem**: Static generation added significant build time.
 
-**Solution**: Implemented parallel processing and content caching:
+**Solution**: Implemented parallel processing with improved error handling:
 
 ```javascript
-// Parallel processing for better performance
+// Parallel processing with robust error handling
 const loadPromises = Object.entries(markdownModules).map(async ([path, importFn]) => {
   try {
     const content = await importFn() as string;
+    const filename = path.split('/').pop() || 'untitled.md';
     return processMarkdown(content, filename);
   } catch (error) {
     console.warn(`Failed to load ${path}:`, error);
@@ -463,7 +466,11 @@ const loadPromises = Object.entries(markdownModules).map(async ([path, importFn]
   }
 });
 
-const results = await Promise.all(loadPromises);
+// Use Promise.allSettled for better error resilience
+const results = await Promise.allSettled(loadPromises);
+const posts = results
+  .filter(result => result.status === 'fulfilled' && result.value)
+  .map(result => result.value);
 ```
 
 ### Challenge 3: SEO Metadata Consistency
