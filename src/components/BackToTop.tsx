@@ -41,7 +41,6 @@ export default function BackToTop() {
     
     // Setup element-specific logic
     element.setAttribute('data-component', 'back-to-top');
-    console.log('Back to top button mounted');
     
     // Define event handlers that we can properly clean up
     const handleFocus = () => {
@@ -60,7 +59,6 @@ export default function BackToTop() {
     
     // Return cleanup function (React 19 feature) - CRITICAL for memory management
     return () => {
-      console.log('Back to top button cleanup');
       element.removeAttribute('data-component');
       
       // ✅ Properly remove event listeners to prevent memory leaks
@@ -87,4 +85,4 @@ export default function BackToTop() {
       )}
     </AnimatePresence>
   );
-} 
+}  
