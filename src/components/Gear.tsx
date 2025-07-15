@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo, useMemo } from 'react';
 import { Star, ShoppingCart, Check, X } from 'lucide-react';
 import type { GearItem, GearCategory } from '../types/gear';
 import { trackGearInteraction } from '../utils/analytics';
@@ -28,7 +28,7 @@ function ImageModal({ src, alt, isOpen, onClose }: ImageModalProps) {
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
-      trackGearInteraction('Image View', alt || 'Unknown Image');
+      trackGearInteraction('image_view', alt || 'Unknown Image');
     }
 
     return () => {
@@ -84,7 +84,7 @@ function StarRating({ rating }: { rating: number }) {
   return <div className="flex items-center gap-1">{stars}</div>;
 }
 
-function GearCard({ item, category, onImageClick }: { item: GearItem; category: GearCategory; onImageClick: (src: string, alt: string) => void }) {
+const GearCard = memo(function GearCard({ item, category, onImageClick }: { item: GearItem; category: GearCategory; onImageClick: (src: string, alt: string) => void }) {
   const [imageError, setImageError] = useState(false);
   return (
     <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-gray-200 dark:border-gray-700">
@@ -248,9 +248,9 @@ function GearCard({ item, category, onImageClick }: { item: GearItem; category: 
       </div>
     </article>
   );
-}
+});
 
-export default function Gear({ items, categories, showCategories = false, limit }: GearProps) {
+const Gear = memo(function Gear({ items, categories, showCategories = false, limit }: GearProps) {
   const [modalImage, setModalImage] = useState<{ src: string; alt: string } | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   
@@ -264,15 +264,18 @@ export default function Gear({ items, categories, showCategories = false, limit 
 
   const handleCategoryClick = (categoryId: string) => {
     setSelectedCategory(categoryId);
-    trackGearInteraction('Category Click', categoryId);
+    trackGearInteraction('category_view', categoryId);
   };
 
-  // Filter items based on selected category
-  const filteredItems = selectedCategory 
-    ? items.filter(item => item.category === selectedCategory)
-    : items;
+  const filteredItems = useMemo(() => {
+    return selectedCategory 
+      ? items.filter(item => item.category === selectedCategory)
+      : items;
+  }, [items, selectedCategory]);
 
-  const displayItems = limit ? filteredItems.slice(0, limit) : filteredItems;
+  const displayItems = useMemo(() => {
+    return limit ? filteredItems.slice(0, limit) : filteredItems;
+  }, [filteredItems, limit]);
   
   return (
     <section id="gear" className="py-16 bg-gray-50 dark:bg-gray-900">
@@ -362,4 +365,6 @@ export default function Gear({ items, categories, showCategories = false, limit 
       </div>
     </section>
   );
-} 
+});
+
+export default Gear;     
