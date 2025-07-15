@@ -337,3 +337,7 @@ textarea:focus-visible,
 .animate-float-particle:not(:hover) {
   will-change: auto;
 }
+
+img, picture {
+  background: transparent !important;
+}
