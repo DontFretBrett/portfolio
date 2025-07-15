@@ -21,7 +21,7 @@ export default function Header() {
   ];
   
   return (
-    <header className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-20 overflow-hidden">
+    <header className="relative bg-linear-to-br from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-20 overflow-hidden">
       {/* Theme Toggle - positioned absolutely in top right */}
       <div className="absolute top-4 right-4 z-30">
         <ThemeToggle />
@@ -29,7 +29,7 @@ export default function Header() {
 
       {/* Animated Code Background */}
       <div className="absolute inset-0 overflow-hidden opacity-40 dark:opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent dark:from-gray-950/90 dark:via-gray-950/50 z-10"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-gray-900/90 via-gray-900/50 to-transparent dark:from-gray-950/90 dark:via-gray-950/50 z-10"></div>
         
         {/* Immediate visible code snippets for instant activity */}
         {codeSnippets.slice(0, 3).map((snippet, index) => (
@@ -82,7 +82,7 @@ export default function Header() {
       </div>
 
       {/* Content overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-900/60 via-transparent to-gray-900/60 dark:from-gray-950/70 dark:via-transparent dark:to-gray-950/70 z-15"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-gray-900/60 via-transparent to-gray-900/60 dark:from-gray-950/70 dark:via-transparent dark:to-gray-950/70 z-15"></div>
 
       {/* Existing content with relative positioning */}
       <div className="container mx-auto px-4 flex flex-col items-center justify-center md:flex-row md:items-start relative z-20">

@@ -34,7 +34,7 @@ const Chatbot = () => {
           
           <button
             onClick={handleToggleChat}
-            className="relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white p-5 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 animate-bounce"
+            className="relative bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white p-5 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 animate-bounce"
             style={{
               animation: 'bounce 2s infinite, jiggle 3s infinite 1s'
             }}
@@ -70,7 +70,7 @@ const Chatbot = () => {
           {/* Chat Container */}
           <div className="relative bg-white rounded-lg shadow-xl w-full max-w-lg h-[600px] flex flex-col">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
+            <div className="flex items-center justify-between p-4 border-b bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
               <h3 className="text-lg font-semibold">
                 💬 Chat with Brett
               </h3>
