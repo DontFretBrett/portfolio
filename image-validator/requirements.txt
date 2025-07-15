@@ -66,9 +66,9 @@ autogen-ext==0.6.2 \
     --hash=sha256:f8b483416525b0cecfdc3b1622ee58e5cf28ad6975bba24f205b3fc6b86b7abd \
     --hash=sha256:fd7a8aa5b7ced37d5fb50632b3db1c3d15347ab515c436fca254b8617567725a
     # via image-validator
-certifi==2025.6.15 \
-    --hash=sha256:2e0c7ce7cb5d8f8634ca55d2ba7e6ec2689a2fd6537d8dec1296a477a4910057 \
-    --hash=sha256:d747aa5a8b9bbbb1bb8c22bb13e22bd1f18e9796defa16bab421f7f7a317323b
+certifi==2025.7.14 \
+    --hash=sha256:6b31f564a415d79ee77df69d757bb49a5bb53bd9f756cbbe24394ffd6fc1f4b2 \
+    --hash=sha256:8ea99dbdfaaf2ba2f9bac77b9249ef62ec5218e7c2b2e903378ed5fccf765995
     # via
     #   httpcore
     #   httpx
