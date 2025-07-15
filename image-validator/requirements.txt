@@ -51,9 +51,9 @@ audioop-lts==0.2.1 ; python_full_version >= '3.13' \
     --hash=sha256:fd1345ae99e17e6910f47ce7d52673c6a1a70820d78b67de1b7abb3af29c426a \
     --hash=sha256:ff3f97b3372c97782e9c6d3d7fdbe83bce8f70de719605bd7ee1839cd1ab360a
     # via gradio
-autogen-agentchat==0.6.2 \
-    --hash=sha256:283009bc12154832ee50918eccce61b507bdb6bc7de73dc58ca48be5567daa27 \
-    --hash=sha256:a3965bb28a1b6a3813c3c6783e8f037bad572546d0ee4e275f3429ab6988983c
+autogen-agentchat==0.6.4 \
+    --hash=sha256:441f884af0eb9edb953451b0ec06077ac782a7d60d591ce7ea57d94fefad2098 \
+    --hash=sha256:a50ba1a97f3881693084677807756714f237da89fd481207e6d139c930b2b3f8
     # via image-validator
 autogen-core==0.6.4 \
     --hash=sha256:0c0ea2aa2794d5ec28e55eb2385480761e591f07c34dbd814feb71a21407aa0d \
