@@ -79,9 +79,9 @@ export default function CompactHeader() {
             className="flex items-center gap-2 group min-w-0"
           >
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-transparent flex-shrink-0">
-              <picture className="flex-shrink-0 bg-transparent rounded-full overflow-hidden block w-full h-full">
-                <source srcSet="/me.webp" type="image/webp" />
-                <img
+<picture className="flex-shrink-0 bg-transparent rounded-full overflow-hidden">
+  <source srcSet="/me.webp" type="image/webp" />
+  <img className="block w-full h-full"
                   src="/me-64.jpg"
                   alt="Brett Sanders"
                   className="w-full h-full rounded-full transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/20 hover:ring-white/30 dark:ring-gray-300/10 dark:hover:ring-gray-300/20 shadow-lg bg-transparent object-cover"
