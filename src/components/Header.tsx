@@ -87,18 +87,20 @@ export default function Header() {
       {/* Existing content with relative positioning */}
       <div className="container mx-auto px-4 flex flex-col items-center justify-center md:flex-row md:items-start relative z-20">
         <Link to="/" className="group">
-          <picture className="bg-transparent rounded-full overflow-hidden block">
-            <source srcSet="/me.webp" type="image/webp" />
-            <img
-              src="/me-128.jpg"
-              alt="Brett Sanders"
-              className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-6 cursor-pointer transition-transform duration-200 group-hover:scale-105 ring-4 ring-white/10 hover:ring-white/20 dark:ring-gray-300/10 dark:hover:ring-gray-300/20 bg-transparent object-cover"
-              loading="eager"
-              decoding="async"
-              width="128"
-              height="128"
-            />
-          </picture>
+          <div className="w-32 h-32 rounded-full overflow-hidden bg-transparent mb-6 md:mb-0 md:mr-6">
+            <picture className="bg-transparent rounded-full overflow-hidden block w-full h-full">
+              <source srcSet="/me.webp" type="image/webp" />
+              <img
+                src="/me-128.jpg"
+                alt="Brett Sanders"
+                className="w-full h-full rounded-full cursor-pointer transition-transform duration-200 group-hover:scale-105 ring-4 ring-white/10 hover:ring-white/20 dark:ring-gray-300/10 dark:hover:ring-gray-300/20 bg-transparent object-cover"
+                loading="eager"
+                decoding="async"
+                width="128"
+                height="128"
+              />
+            </picture>
+          </div>
         </Link>
         <div className="text-center md:text-left">
           <h1 className="text-5xl font-bold mb-4 drop-shadow-lg text-shadow-strong text-white">Brett Sanders</h1>

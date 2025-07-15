@@ -78,18 +78,20 @@ export default function CompactHeader() {
             onClick={() => handleNavigation('/')}
             className="flex items-center gap-2 group min-w-0"
           >
-            <picture className="flex-shrink-0 bg-transparent rounded-full overflow-hidden block">
-              <source srcSet="/me.webp" type="image/webp" />
-              <img
-                src="/me-64.jpg"
-                alt="Brett Sanders"
-                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/20 hover:ring-white/30 dark:ring-gray-300/10 dark:hover:ring-gray-300/20 shadow-lg bg-transparent object-cover"
-                loading="eager"
-                decoding="async"
-                width="40"
-                height="40"
-              />
-            </picture>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-transparent flex-shrink-0">
+              <picture className="flex-shrink-0 bg-transparent rounded-full overflow-hidden block w-full h-full">
+                <source srcSet="/me.webp" type="image/webp" />
+                <img
+                  src="/me-64.jpg"
+                  alt="Brett Sanders"
+                  className="w-full h-full rounded-full transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/20 hover:ring-white/30 dark:ring-gray-300/10 dark:hover:ring-gray-300/20 shadow-lg bg-transparent object-cover"
+                  loading="eager"
+                  decoding="async"
+                  width="40"
+                  height="40"
+                />
+              </picture>
+            </div>
             <div className="min-w-0">
               <h1 className="text-sm sm:text-lg font-bold text-white truncate drop-shadow-md">Brett Sanders</h1>
               <p className="text-xs text-gray-200 hidden sm:block drop-shadow-sm">Engineering Leader</p>
