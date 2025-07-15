@@ -87,12 +87,12 @@ export default function Header() {
       {/* Existing content with relative positioning */}
       <div className="container mx-auto px-4 flex flex-col items-center justify-center md:flex-row md:items-start relative z-20">
         <Link to="/" className="group">
-          <picture>
+          <picture className="bg-transparent rounded-full overflow-hidden block">
             <source srcSet="/me.webp" type="image/webp" />
             <img
               src="/me-128.jpg"
               alt="Brett Sanders"
-              className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-6 cursor-pointer transition-transform duration-200 group-hover:scale-105 ring-4 ring-white/10 hover:ring-white/20 dark:ring-gray-300/10 dark:hover:ring-gray-300/20"
+              className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-6 cursor-pointer transition-transform duration-200 group-hover:scale-105 ring-4 ring-white/10 hover:ring-white/20 dark:ring-gray-300/10 dark:hover:ring-gray-300/20 bg-transparent object-cover"
               loading="eager"
               decoding="async"
               width="128"

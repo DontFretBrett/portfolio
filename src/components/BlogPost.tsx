@@ -133,7 +133,7 @@ export default function BlogPost({ post }: BlogPostProps) {
             <img
               src="/me.jpeg"
               alt="Brett Sanders"
-              className="w-16 h-16 rounded-full ring-2 ring-blue-500 hover:ring-4 transition-all"
+              className="w-16 h-16 rounded-full ring-2 ring-blue-500 hover:ring-4 transition-all bg-transparent object-cover"
             />
           </Link>
           <div className="flex-1">
