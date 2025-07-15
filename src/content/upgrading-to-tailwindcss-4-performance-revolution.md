@@ -239,6 +239,18 @@ The gradient system has been completely enhanced:
 <div class="bg-radial-[at_25%_25%] from-white to-zinc-900 to-75%"></div>
 ```
 
+**⚠️ Breaking Change Alert**: During migration, all `bg-gradient-*` classes need to be updated:
+
+```html
+<!-- Before (TailwindCSS v3) -->
+<div class="bg-gradient-to-r from-blue-500 to-purple-600"></div>
+<div class="bg-gradient-to-br from-gray-900 to-slate-800"></div>
+
+<!-- After (TailwindCSS v4.1.11) -->
+<div class="bg-linear-to-r from-blue-500 to-purple-600"></div>
+<div class="bg-linear-to-br from-gray-900 to-slate-800"></div>
+```
+
 ### 5. Dynamic Utilities
 
 No more extending configuration for simple values:
@@ -318,8 +330,9 @@ After upgrading my portfolio, the performance improvements were immediately noti
 
 ### Potential Challenges
 1. **Plugin compatibility**: Some third-party plugins may need updates
-2. **Custom utility patterns**: Complex CSS-in-JS patterns may require refactoring
-3. **Team onboarding**: CSS-first configuration requires a mindset shift
+2. **Gradient class breaking change**: `bg-gradient-*` classes need to be updated to `bg-linear-*`
+3. **Custom utility patterns**: Complex CSS-in-JS patterns may require refactoring
+4. **Team onboarding**: CSS-first configuration requires a mindset shift
 
 ### Recommended Migration Strategy
 ```
@@ -328,9 +341,10 @@ TailwindCSS 4.1.11 Migration Checklist
 ├── 2. Convert PostCSS configuration
 ├── 3. Migrate theme to CSS @theme directive
 ├── 4. Update CSS imports (@import "tailwindcss")
-├── 5. Remove old tailwind.config.js
-├── 6. Test build process
-└── 7. Verify all utilities work correctly
+├── 5. Update gradient classes (bg-gradient-* → bg-linear-*)
+├── 6. Remove old tailwind.config.js
+├── 7. Test build process
+└── 8. Verify all utilities work correctly
 ```
 
 ## The Future of CSS Frameworks

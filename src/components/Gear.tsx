@@ -90,7 +90,7 @@ function GearCard({ item, category, onImageClick }: { item: GearItem; category: 
     <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-gray-200 dark:border-gray-700">
       {/* Product Image */}
       {item.image && (
-        <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
+                  <div className="relative h-64 bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
           {!imageError ? (
             <img
               src={item.image}
@@ -107,7 +107,7 @@ function GearCard({ item, category, onImageClick }: { item: GearItem; category: 
             </div>
           )}
           {/* Subtle overlay for better image presentation */}
-          <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/5 dark:to-black/5 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-transparent to-white/5 dark:to-black/5 pointer-events-none"></div>
         </div>
       )}
       

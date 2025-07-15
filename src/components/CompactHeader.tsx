@@ -48,9 +48,9 @@ export default function CompactHeader() {
   };
 
   return (
-    <header className="relative bg-gradient-to-r from-slate-900 via-gray-900 to-slate-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-4 border-b border-gray-700/50 dark:border-gray-600/50 shadow-lg">
+    <header className="relative bg-linear-to-r from-slate-900 via-gray-900 to-slate-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-4 border-b border-gray-700/50 dark:border-gray-600/50 shadow-lg">
       {/* Enhanced dark overlay for better text contrast */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/10 to-black/20 dark:from-black/30 dark:via-black/15 dark:to-black/30 z-10"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-black/20 via-black/10 to-black/20 dark:from-black/30 dark:via-black/15 dark:to-black/30 z-10"></div>
       
       {/* Theme Toggle - positioned with more space from right edge */}
       <div className="absolute top-3 right-2 z-30">

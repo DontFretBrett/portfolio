@@ -172,7 +172,7 @@ export default function BlogPost({ post }: BlogPostProps) {
       </aside>
 
       {/* Related Content Section */}
-      <aside className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg">
+              <aside className="mt-8 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Explore More</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <Link
