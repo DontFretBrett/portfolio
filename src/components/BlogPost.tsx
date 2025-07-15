@@ -130,11 +130,13 @@ export default function BlogPost({ post }: BlogPostProps) {
       <aside className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
         <div className="flex items-start gap-4">
           <Link to="/" className="flex-shrink-0">
-            <img
-              src="/me.jpeg"
-              alt="Brett Sanders"
-              className="w-16 h-16 rounded-full ring-2 ring-blue-500 hover:ring-4 transition-all bg-transparent object-cover"
-            />
+            <div className="w-16 h-16 rounded-full overflow-hidden bg-transparent">
+              <img
+                src="/me.jpeg"
+                alt="Brett Sanders"
+                className="w-full h-full rounded-full ring-2 ring-blue-500 hover:ring-4 transition-all bg-transparent object-cover"
+              />
+            </div>
           </Link>
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
