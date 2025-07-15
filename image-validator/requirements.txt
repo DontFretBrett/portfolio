@@ -556,9 +556,9 @@ opentelemetry-sdk==1.34.1 \
     # via
     #   image-validator
     #   opentelemetry-exporter-otlp-proto-grpc
-opentelemetry-semantic-conventions==0.55b1 \
-    --hash=sha256:5da81dfdf7d52e3d37f8fe88d5e771e191de924cfff5f550ab0b8f7b2409baed \
-    --hash=sha256:ef95b1f009159c28d7a7849f5cbc71c4c34c845bb514d66adfdf1b3fff3598b3
+opentelemetry-semantic-conventions==0.56b0 \
+    --hash=sha256:c114c2eacc8ff6d3908cb328c811eaf64e6d68623840be9224dc829c4fd6c2ea \
+    --hash=sha256:df44492868fd6b482511cc43a942e7194be64e94945f572db24df2e279a001a2
     # via
     #   autogen-core
     #   opentelemetry-sdk
