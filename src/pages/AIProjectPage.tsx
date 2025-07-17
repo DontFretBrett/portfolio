@@ -177,19 +177,19 @@ export default function AIProjectPage() {
                   const isInline = !className;
                   if (isInline) {
                     return (
-                      <code className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-1 py-0.5 rounded text-sm">
+                      <code className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-1 py-0.5 rounded text-sm border border-gray-200 dark:border-gray-700">
                         {children}
                       </code>
                     );
                   }
                   return (
-                    <div className="bg-gray-100 dark:bg-gray-950 p-4 rounded-lg overflow-x-auto max-w-full">
+                    <div className="bg-white dark:bg-gray-950 p-4 rounded-lg overflow-x-auto max-w-full border border-gray-200 dark:border-gray-700">
                       <code className={className}>{children}</code>
                     </div>
                   );
                 },
                 pre: ({ children }) => (
-                  <div className="bg-gray-100 dark:bg-gray-950 rounded-lg overflow-x-auto mb-6 max-w-full">
+                  <div className="bg-white dark:bg-gray-950 rounded-lg overflow-x-auto mb-6 max-w-full border border-gray-200 dark:border-gray-700">
                     <pre className="p-4 text-sm">{children}</pre>
                   </div>
                 ),

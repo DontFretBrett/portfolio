@@ -101,7 +101,7 @@ textarea:focus-visible,
 
 /* Light mode syntax highlighting */
 .hljs {
-  background: transparent !important;
+  background: white !important;
   color: #374151 !important;
   padding: 0 !important;
   border-radius: 0 !important;
