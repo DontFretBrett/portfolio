@@ -41,7 +41,7 @@ function createTheme(value: string): ThemeResult<Theme> {
 }
 
 // Enhanced function to get initial theme with better error handling
-const getInitialTheme = (defaultTheme: Theme = 'light' as Theme): Theme => {
+const getInitialTheme = (defaultTheme: Theme = 'dark' as Theme): Theme => {
   if (typeof window === 'undefined') {
     return defaultTheme;
   }
@@ -98,7 +98,7 @@ const useSystemTheme = () => {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ 
   children, 
-  defaultTheme = 'light' as Theme 
+  defaultTheme = 'dark' as Theme 
 }) => {
   const [theme, setThemeState] = useState<Theme>(() => getInitialTheme(defaultTheme));
   const isSystemDark = useSystemTheme();

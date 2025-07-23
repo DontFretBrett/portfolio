@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "README Scripts Sync",
+  "description": "Automatically updates the site README whenever package.json scripts section changes to keep documentation in sync",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "package.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The package.json file has been modified. Please review the scripts section and update the README.md file to reflect any changes to the available commands. Make sure the README accurately documents all npm/pnpm scripts including development, building, code quality, and any other commands. Keep the existing README structure and style while ensuring the command documentation is current and complete."
+  }
+}
