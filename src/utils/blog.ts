@@ -100,6 +100,10 @@ export function processMarkdown(markdownContent: string, filename: string): Blog
   if (Array.isArray(metadata.keywords)) {
     blogPost.keywords = metadata.keywords;
   }
+  const podcastUrl = metadata.podcast;
+  if (typeof podcastUrl === 'string' && podcastUrl.trim() !== '' && podcastUrl !== 'PODCAST_URL_HERE') {
+    blogPost.podcast = podcastUrl;
+  }
   
   return blogPost;
 }

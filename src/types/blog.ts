@@ -8,6 +8,7 @@ export interface BlogPost {
   tags?: string[];
   description?: string;
   keywords?: string;
+  podcast?: string;
 }
 
 export interface BlogMetadata {
@@ -17,4 +18,5 @@ export interface BlogMetadata {
   description?: string;
   keywords?: string;
   tags?: string[];
+  podcast?: string;
 } 

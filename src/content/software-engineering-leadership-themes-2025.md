@@ -5,6 +5,7 @@ tags: ["Software Engineering", "Leadership", "Team Management", "AI", "Technolog
 excerpt: "Essential leadership themes that distinguish high-performing software engineering teams in 2025, from vision and psychological safety to AI integration and customer focus. Real-world examples from tech giants and startups."
 description: "Discover the 10 key software engineering leadership themes for building high-performing teams in 2025, including practical examples from Microsoft, Google, Amazon, and other industry leaders. Learn how AI is reshaping leadership approaches."
 keywords: "Software Engineering Leadership, High-Performing Teams, Engineering Management, Tech Leadership, AI Leadership, Psychological Safety, Engineering Culture, Microsoft, Google, Amazon, Team Performance"
+podcast: "/podcasts/SWEL2025.mp3"
 ---
 
 In today's fast-paced tech world, effective software engineering leadership blends time-tested principles with fresh perspectives for modern challenges. Great leaders in technology create an environment where teams thrive – from Silicon Valley giants to lean startups. As we navigate 2025, the landscape continues to evolve, particularly with AI reshaping how we build and lead engineering organizations.
