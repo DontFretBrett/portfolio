@@ -69,7 +69,7 @@ function parseFrontmatter(markdownContent: string): { data: Record<string, strin
     }
   }
   
-  return { data, content };
+  return { data, content: content || '' };
 }
 
 // Function to process markdown content
