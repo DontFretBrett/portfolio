@@ -13,6 +13,32 @@ interface BlogPostProps {
   post: BlogPostType;
 }
 
+// Function to generate heading IDs from text content
+function generateHeadingId(children: React.ReactNode): string {
+  // Extract text content from React children
+  const textContent = React.Children.toArray(children)
+    .map(child => {
+      if (typeof child === 'string') return child;
+      if (typeof child === 'number') return child.toString();
+      if (React.isValidElement(child)) {
+        const props = child.props as { children?: React.ReactNode };
+        if (props.children) {
+          return generateHeadingId(props.children);
+        }
+      }
+      return '';
+    })
+    .join(' ');
+  
+  // Convert to URL-friendly ID
+  return textContent
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+}
+
 export default function BlogPost({ post }: BlogPostProps) {
   return (
     <article className="max-w-4xl mx-auto px-4 py-8 dark:bg-gray-900 min-h-screen">
@@ -78,6 +104,31 @@ export default function BlogPost({ post }: BlogPostProps) {
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight, rehypeRaw]}
           components={{
+            // Generate heading IDs for anchor links
+            h1: ({ children, ...props }) => {
+              const id = generateHeadingId(children);
+              return <h1 id={id} {...props}>{children}</h1>;
+            },
+            h2: ({ children, ...props }) => {
+              const id = generateHeadingId(children);
+              return <h2 id={id} {...props}>{children}</h2>;
+            },
+            h3: ({ children, ...props }) => {
+              const id = generateHeadingId(children);
+              return <h3 id={id} {...props}>{children}</h3>;
+            },
+            h4: ({ children, ...props }) => {
+              const id = generateHeadingId(children);
+              return <h4 id={id} {...props}>{children}</h4>;
+            },
+            h5: ({ children, ...props }) => {
+              const id = generateHeadingId(children);
+              return <h5 id={id} {...props}>{children}</h5>;
+            },
+            h6: ({ children, ...props }) => {
+              const id = generateHeadingId(children);
+              return <h6 id={id} {...props}>{children}</h6>;
+            },
             // Enhanced link component with external link indicators
             a: ({ href, children, ...props }) => {
               const isExternal = href?.startsWith('http') && !href.includes('brettsanders.com');
