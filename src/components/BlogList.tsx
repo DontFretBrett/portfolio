@@ -29,7 +29,7 @@ export default function BlogList({ posts, allPosts, selectedTags, onTagToggle, o
             posts={allPosts}
             selectedTags={selectedTags}
             onTagToggle={onTagToggle}
-            onClearAll={onClearAllTags}
+            {...(onClearAllTags && { onClearAll: onClearAllTags })}
           />
         </div>
       )}

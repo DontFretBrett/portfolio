@@ -8,9 +8,59 @@ import rehypeRaw from 'rehype-raw';
 import type { BlogPost as BlogPostType } from '../types/blog';
 import { formatDate } from '../utils/blog';
 import GiscusComments from './Giscus';
+import PodcastPlayer from './PodcastPlayer';
 
 interface BlogPostProps {
   post: BlogPostType;
+}
+
+// Function to generate unique heading IDs from text content
+function generateHeadingId(children: React.ReactNode): string {
+  // Extract text content from React children
+  const textContent = React.Children.toArray(children)
+    .map(child => {
+      if (typeof child === 'string') return child;
+      if (typeof child === 'number') return child.toString();
+      if (React.isValidElement(child)) {
+        const props = child.props as { children?: React.ReactNode };
+        if (props.children) {
+          return generateHeadingId(props.children);
+        }
+      }
+      return '';
+    })
+    .join(' ');
+  
+  // Convert to URL-friendly ID
+  const baseId = textContent
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+  
+  // Ensure uniqueness by checking existing IDs and appending counter if needed
+  const existingIds = new Set(
+    Array.from(document.querySelectorAll('[id]')).map(el => el.id)
+  );
+  
+  let uniqueId = baseId;
+  let counter = 1;
+  while (existingIds.has(uniqueId)) {
+    uniqueId = `${baseId}-${counter}`;
+    counter++;
+  }
+  
+  return uniqueId;
+}
+
+// Factory function to create heading components with automatic ID generation
+function createHeadingComponent(level: 1 | 2 | 3 | 4 | 5 | 6) {
+  return ({ children, ...props }: React.ComponentProps<`h${typeof level}`>) => {
+    const id = generateHeadingId(children);
+    const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
+    return React.createElement(HeadingTag, { id, ...props }, children);
+  };
 }
 
 export default function BlogPost({ post }: BlogPostProps) {
@@ -70,6 +120,11 @@ export default function BlogPost({ post }: BlogPostProps) {
             {post.excerpt}
           </div>
         )}
+
+        {/* Podcast Player */}
+        {post.podcast && post.podcast !== 'PODCAST_URL_HERE' && (
+          <PodcastPlayer src={post.podcast} />
+        )}
       </header>
 
       {/* Article Content */}
@@ -78,6 +133,13 @@ export default function BlogPost({ post }: BlogPostProps) {
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight, rehypeRaw]}
           components={{
+            // Generate heading IDs for anchor links using factory function
+            h1: createHeadingComponent(1),
+            h2: createHeadingComponent(2),
+            h3: createHeadingComponent(3),
+            h4: createHeadingComponent(4),
+            h5: createHeadingComponent(5),
+            h6: createHeadingComponent(6),
             // Enhanced link component with external link indicators
             a: ({ href, children, ...props }) => {
               const isExternal = href?.startsWith('http') && !href.includes('brettsanders.com');
@@ -174,7 +236,7 @@ export default function BlogPost({ post }: BlogPostProps) {
       </aside>
 
       {/* Related Content Section */}
-              <aside className="mt-8 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg">
+      <aside className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Explore More</h3>
         <div className="grid md:grid-cols-3 gap-4">
           <Link

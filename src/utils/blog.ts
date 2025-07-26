@@ -69,7 +69,7 @@ function parseFrontmatter(markdownContent: string): { data: Record<string, strin
     }
   }
   
-  return { data, content };
+  return { data, content: content || '' };
 }
 
 // Function to process markdown content
@@ -99,6 +99,10 @@ export function processMarkdown(markdownContent: string, filename: string): Blog
   }
   if (Array.isArray(metadata.keywords)) {
     blogPost.keywords = metadata.keywords;
+  }
+  const podcastUrl = metadata.podcast;
+  if (typeof podcastUrl === 'string' && podcastUrl.trim() !== '' && podcastUrl !== 'PODCAST_URL_HERE') {
+    blogPost.podcast = podcastUrl;
   }
   
   return blogPost;

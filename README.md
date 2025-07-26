@@ -14,6 +14,8 @@ A modern, responsive portfolio website built from scratch with React, TypeScript
 
 ### Blog System
 - **Markdown Blog Posts**: Full blog functionality with markdown support
+- **Anchor Link Navigation**: Automatic heading ID generation with quick navigation sections for long-form content
+- **Podcast Integration**: Native HTML5 audio player for AI-generated NotebookLM podcasts
 - **Syntax Highlighting**: Code blocks with highlight.js
 - **Dynamic Content Loading**: Lazy-loaded blog posts with improved error handling
 - **SEO Optimized Posts**: Individual meta tags and structured data per post
@@ -161,6 +163,7 @@ scripts/              # Build and automation scripts
 └── ...               # Other build scripts
 
 public/               # Static assets
+├── podcasts/         # Audio files for blog post podcasts
 ├── robots.txt        # AI crawler permissions and SEO directives
 ├── sitemap.xml       # Search engine sitemap
 └── ...               # Other static files
@@ -198,9 +201,28 @@ To configure Giscus for your own repository:
 
 ### Content Management
 - **Blog Posts**: Add markdown files to `src/content/` following the guidelines in `ai-guidelines/blog-guidelines.md`
+  - **Anchor Navigation**: Automatically generated for H2-H6 headings with quick navigation sections
+  - **Podcast Support**: Add `podcast: "/path/to/audio.mp3"` in frontmatter for integrated audio player
 - **AI Projects**: Update `src/data/aiProjects.ts`
 - **Gear Reviews**: Update `src/data/gear.ts`
 - **Skills/Experience**: Modify respective component files in `src/components/`
+
+#### Adding Podcasts to Blog Posts
+To add a podcast to any blog post:
+1. Place your audio file (MP3, WAV, or OGG) in `public/podcasts/`
+2. Add the `podcast` field to your blog post's frontmatter:
+   ```yaml
+   ---
+   title: "Your Blog Post Title"
+   date: "2025-07-25"
+   podcast: "/podcasts/your-audio-file.mp3"
+   ---
+   ```
+3. The audio player will automatically appear at the top of the blog post with:
+   - Native HTML5 controls
+   - Dark mode compatibility
+   - NotebookLM AI-generation labeling
+   - Fallback download link
 
 ### AI Crawlability
 The portfolio includes comprehensive AI crawlability features:
