@@ -257,4 +257,39 @@ The rise of AI is just the latest example of why leaders must remain learners. A
 
 By blending enduring leadership concepts with fresh thinking about technology's impact, software engineering leaders can guide their teams to be high-functioning, innovative, and resilient in the face of change. The result? Teams that not only deliver great software, but also push the boundaries of what's possible, year after year.
 
-The future belongs to leaders who can balance technical excellence with human development, data-driven decisions with visionary thinking, and stability with adaptability. These ten themes provide a roadmap for that journey. 
+The future belongs to leaders who can balance technical excellence with human development, data-driven decisions with visionary thinking, and stability with adaptability. These ten themes provide a roadmap for that journey.
+
+## Additional Reading
+
+To deepen your understanding of software engineering leadership in 2025, here are carefully curated articles and resources that complement the themes discussed in this post:
+
+### AI and Leadership Transformation
+- **<a href="https://brianvanderwaal.com/how-is-ai-redefining-leadership" target="_blank">How AI Is Redefining Leadership and Management in 2025</a>** - Comprehensive analysis of AI's transformative impact on leadership roles and decision-making processes
+- **<a href="https://medium.com/@asierr/engineering-leadership-trends-for-2025-remote-work-ai-driven-management-and-team-well-being-255489c0a99a" target="_blank">Engineering Leadership Trends for 2025: Remote Work, AI-Driven Management, and Team Well-Being</a>** - Current trends shaping engineering leadership in the AI era
+- **<a href="https://johnmikey.medium.com/15-leadership-trends-shaping-2025-harness-ai-while-preserving-the-human-touch-6c7789169b65" target="_blank">15 Leadership Trends Shaping 2025: Harness AI While Preserving the Human Touch</a>** - Strategic approaches to balancing AI capabilities with human leadership qualities
+
+### Psychological Safety and Team Effectiveness
+- **<a href="https://psychsafety.com/googles-project-aristotle/" target="_blank">Google's Project Aristotle: The Science of Team Effectiveness</a>** - In-depth exploration of Google's groundbreaking research on psychological safety and high-performing teams
+- **<a href="https://www.aristotleperformance.com/post/project-aristotle-google-s-data-driven-insights-on-high-performing-teams" target="_blank">Project Aristotle: Google's Data-Driven Insights on High-Performing Teams</a>** - Detailed analysis of the key factors that drive team success, backed by data
+- **<a href="https://softwareleads.substack.com/p/3-areas-to-drive-clarity-for-sustained" target="_blank">3 Areas to Drive Clarity for Sustained High-Performance in Teams</a>** - Practical framework for building clarity of purpose, direction, and roles
+
+### Engineering Performance and Metrics
+- **<a href="https://dora.dev/research/2024/dora-report/" target="_blank">DORA Research: 2024 Accelerate State of DevOps Report</a>** - The latest research on software delivery performance and organizational outcomes
+- **<a href="https://dora.dev/guides/how-to-empower-software-delivery-teams/" target="_blank">How to Empower Software Delivery Teams as a Business Leader</a>** - Evidence-based guide for measuring and improving engineering team performance
+- **<a href="https://dora.dev/research/" target="_blank">DORA Metrics and Engineering Excellence</a>** - Comprehensive resource on measuring software delivery performance
+
+### Organizational Culture and Innovation
+- **<a href="https://perfcap.blogspot.com/2011/12/how-netflix-gets-out-of-way-of.html" target="_blank">How Netflix Gets Out of the Way of Innovation</a>** - Adrian Cockcroft's insider perspective on Netflix's culture of freedom and responsibility
+- **<a href="https://www.slideshare.net/slideshow/culture-1798664/1798664" target="_blank">Netflix Culture: Freedom and Responsibility</a>** - The legendary Netflix culture deck that transformed how we think about high-performance teams
+- **<a href="https://www.corporate-culture-institute.com/blog/inside-netflix-a-culture-of-freedom-and-responsibility" target="_blank">Inside Netflix: A Culture of Freedom and Responsibility</a>** - Analysis of Netflix's unique approach to empowerment and autonomy
+
+### Engineering Management Excellence
+- **<a href="https://blog.practicalengineering.management/how-to-be-a-better-software-engineering-leader-286a82ec278e" target="_blank">How to Be a Better Software Engineering Leader</a>** - Practical strategies for elevating your engineering leadership effectiveness
+- **<a href="https://www.oreilly.com/library/view/leading-effective-engineering/9781098148232/ch04.html" target="_blank">Leading Effective Engineering Teams (O'Reilly)</a>** - Research-based approaches to effective management behaviors in engineering contexts
+- **<a href="https://www.linkedin.com/pulse/my-approach-leading-engineering-teams-2025-petr-ludv%C3%ADk-3enne" target="_blank">My Approach for Leading Engineering Teams in 2025</a>** - Contemporary perspectives on treating teams as dynamic, evolving systems
+
+### Academic Research and Industry Studies
+- **<a href="https://www.mdpi.com/2079-8954/12/12/570" target="_blank">Influence of Artificial Intelligence on Engineering Management Decision-Making</a>** - Peer-reviewed research on AI's impact on engineering management with transformational leadership as a mediating factor
+- **<a href="https://www.scirp.org/journal/paperinformation?paperid=132403" target="_blank">Impact of Artificial Intelligence on Corporate Leadership</a>** - Academic study examining both positive and negative implications of AI adoption in leadership contexts
+
+These resources provide both theoretical foundations and practical applications for implementing the leadership themes discussed in this post.
