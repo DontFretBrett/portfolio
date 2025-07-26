@@ -257,4 +257,23 @@ The rise of AI is just the latest example of why leaders must remain learners. A
 
 By blending enduring leadership concepts with fresh thinking about technology's impact, software engineering leaders can guide their teams to be high-functioning, innovative, and resilient in the face of change. The result? Teams that not only deliver great software, but also push the boundaries of what's possible, year after year.
 
-The future belongs to leaders who can balance technical excellence with human development, data-driven decisions with visionary thinking, and stability with adaptability. These ten themes provide a roadmap for that journey. 
+The future belongs to leaders who can balance technical excellence with human development, data-driven decisions with visionary thinking, and stability with adaptability. These ten themes provide a roadmap for that journey.
+
+## Additional Reading
+
+To deepen your understanding of software engineering leadership in 2025, here are additional resources that complement the themes discussed in this post:
+
+### Essential Research and Frameworks
+- **[Google's Project Aristotle: The Science of Team Effectiveness](https://psychsafety.com/googles-project-aristotle/)** - Foundational research on psychological safety and high-performing teams
+- **[DORA Research: 2024 Accelerate State of DevOps Report](https://dora.dev/research/2024/dora-report/)** - Latest research on software delivery performance and organizational outcomes
+- **[How to Be a Better Software Engineering Leader](https://blog.practicalengineering.management/how-to-be-a-better-software-engineering-leader-286a82ec278e)** - Practical strategies for elevating engineering leadership effectiveness
+
+### AI and Leadership Evolution
+- **[How AI Is Redefining Leadership and Management in 2025](https://brianvanderwaal.com/how-is-ai-redefining-leadership)** - Comprehensive analysis of AI's transformative impact on leadership roles
+- **[Influence of Artificial Intelligence on Engineering Management Decision-Making](https://www.mdpi.com/2079-8954/12/12/570)** - Academic research on AI's impact with transformational leadership as mediating factor
+
+### Team Performance and Clarity
+- **[3 Areas to Drive Clarity for Sustained High-Performance](https://softwareleads.substack.com/p/3-areas-to-drive-clarity-for-sustained)** - Framework for building clarity of purpose, direction, and roles
+- **[How to Empower Software Delivery Teams as a Business Leader](https://dora.dev/guides/how-to-empower-software-delivery-teams/)** - Evidence-based guide for measuring and improving team performance
+
+These resources provide both theoretical foundations and practical applications for implementing the leadership themes discussed in this post.
