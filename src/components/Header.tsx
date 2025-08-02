@@ -1,6 +1,7 @@
 import { MapPin, Github, Linkedin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import NavLink from './NavLink';
 
 export default function Header() {
   const location = useLocation();
@@ -143,36 +144,11 @@ export default function Header() {
             </a>
           </div>
           <nav aria-label="Page sections" className="flex flex-wrap justify-center md:justify-start gap-3">
-            <Link
-              to="/"
-              className="px-4 py-2 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40"
-            >
-              Home
-            </Link>
-            <Link
-              to="/ai-projects"
-              className="px-4 py-2 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40"
-            >
-              AI Projects
-            </Link>
-            <Link
-              to="/blog"
-              className="px-4 py-2 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40"
-            >
-              Blog
-            </Link>
-            <Link
-              to="/gear"
-              className="px-4 py-2 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40"
-            >
-              Gear
-            </Link>
-            <Link
-              to="/music"
-              className="px-4 py-2 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40"
-            >
-              Music
-            </Link>
+            <NavLink to="/" variant="header">Home</NavLink>
+            <NavLink to="/ai-projects" variant="header">AI Projects</NavLink>
+            <NavLink to="/blog" variant="header">Blog</NavLink>
+            <NavLink to="/gear" variant="header">Gear</NavLink>
+            <NavLink to="/music" variant="header">Music</NavLink>
             {isHomePage && ['summary', 'skills', 'certifications', 'experience'].map((section) => (
               <a
                 key={section}
