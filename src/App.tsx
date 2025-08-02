@@ -17,6 +17,7 @@ const AIProjectPage = React.lazy(() => import('./pages/AIProjectPage'));
 const BlogPage = React.lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = React.lazy(() => import('./pages/BlogPostPage'));
 const GearPage = React.lazy(() => import('./pages/GearPage'));
+const MusicPage = React.lazy(() => import('./pages/MusicPage'));
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 const LegalPage = React.lazy(() => import('./pages/legal'));
 
@@ -76,6 +77,7 @@ function AppContent() {
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/gear" element={<GearPage />} />
+              <Route path="/music" element={<MusicPage />} />
               <Route path="/legal" element={<LegalPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>

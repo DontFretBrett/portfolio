@@ -167,6 +167,12 @@ export default function Header() {
             >
               Gear
             </Link>
+            <Link
+              to="/music"
+              className="px-4 py-2 bg-white/10 hover:bg-white/20 dark:bg-gray-800/30 dark:hover:bg-gray-700/40 backdrop-blur-sm rounded-full transition-all duration-200 text-gray-100 hover:text-white dark:text-gray-200 dark:hover:text-white border border-white/10 hover:border-white/20 dark:border-gray-600/30 dark:hover:border-gray-500/40"
+            >
+              Music
+            </Link>
             {isHomePage && ['summary', 'skills', 'certifications', 'experience'].map((section) => (
               <a
                 key={section}
