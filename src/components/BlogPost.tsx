@@ -208,8 +208,8 @@ export default function BlogPost({ post }: BlogPostProps) {
             </h3>
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3">
               Software Engineering Director with 15+ years of experience in the financial sector. 
-              Expert in AI engineering, full-stack development, and technology leadership. 
-              Currently building cutting-edge AI agents and autonomous systems.
+              AI engineering enthusiast, full-stack development, and technology leadership. 
+              Currently experimenting with building cutting-edge AI agents and autonomous systems.
             </p>
             <div className="flex gap-4 text-sm">
               <Link 
