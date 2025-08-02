@@ -24,11 +24,11 @@ export const musicVideos: MusicVideo[] = [
   {
     id: "video-2", 
     title: "Stutter",
-    description: "An energetic EDM track with dynamic visuals created using artificial intelligence.",
+    description: "An energetic electronic track with dynamic visuals created using artificial intelligence.",
     youtubeId: "HY3-0SoWLjU",
     publishedDate: "2025-01-14",
-    tags: ["EDM", "Electronic"],
-    genre: "EDM",
+    tags: ["Electronic"],
+    genre: "Electronic",
     duration: "4:12"
   },
   {
@@ -56,7 +56,6 @@ export const musicVideos: MusicVideo[] = [
 export const musicCategories = [
   "All",
   "Electronic", 
-  "EDM",
   "Indie",
   "Pop"
 ];
