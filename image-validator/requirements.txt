@@ -527,9 +527,9 @@ openai==1.95.1 \
     --hash=sha256:8bbdfeceef231b1ddfabbc232b179d79f8b849aab5a7da131178f8d10e0f162f \
     --hash=sha256:f089b605282e2a2b6776090b4b46563ac1da77f56402a222597d591e2dcc1086
     # via image-validator
-opentelemetry-api==1.35.0 \
-    --hash=sha256:a111b959bcfa5b4d7dffc2fbd6a241aa72dd78dd8e79b5b1662bda896c5d2ffe \
-    --hash=sha256:c4ea7e258a244858daf18474625e9cc0149b8ee354f37843415771a40c25ee06
+opentelemetry-api==1.36.0 \
+    --hash=sha256:02f20bcacf666e1333b6b1f04e647dc1d5111f86b8e510238fcc56d7762cda8c \
+    --hash=sha256:9a72572b9c416d004d492cbc6e61962c0501eaf945ece9b5a0f56597d8348aa0
     # via
     #   autogen-core
     #   image-validator
