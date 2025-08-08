@@ -23,7 +23,7 @@
       "destination": "/static/blog/index.html"
     },
     {
-      "source": "/((?!assets/|.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|mp3|mp4|webp|xml|txt)).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
