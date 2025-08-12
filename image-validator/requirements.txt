@@ -175,9 +175,9 @@ gradio==5.38.0 \
     --hash=sha256:448f395bce46ae103da237647c5a44b2581570b5876957f8d2544b3b1351e495 \
     --hash=sha256:d0ddd19986f66c91c07ba5706aeb74c83764c58e6892a363b249da1047cf4d9a
     # via image-validator
-gradio-client==1.11.0 \
-    --hash=sha256:377c31d8082173663b230dad341614b127b2460fe24d5fd72ed456fb3f0b3a9e \
-    --hash=sha256:afb714aea50224f6f04679fe2ce79c1be75011012d0dc3b3ee575610a0dc8eb2
+gradio-client==1.11.1 \
+    --hash=sha256:0d4885fea23b0d5ff8f4c34824839e0aa7fd1ba4f120928a7fc3a6ebde42abab \
+    --hash=sha256:eb7870c2eb0c18f22613f0635a50ca805fdf6e8ddeb71d9f06b398b876372487
     # via gradio
 groovy==0.1.2 \
     --hash=sha256:25c1dc09b3f9d7e292458aa762c6beb96ea037071bf5e917fc81fb78d2231083 \
