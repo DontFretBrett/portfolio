@@ -171,9 +171,9 @@ googleapis-common-protos==1.70.0 \
     --hash=sha256:0e1b44e0ea153e6594f9f394fef15193a68aaaea2d843f83e2742717ca753257 \
     --hash=sha256:b8bfcca8c25a2bb253e0e0b0adaf8c00773e5e6af6fd92397576680b807e0fd8
     # via opentelemetry-exporter-otlp-proto-grpc
-gradio==5.38.0 \
-    --hash=sha256:448f395bce46ae103da237647c5a44b2581570b5876957f8d2544b3b1351e495 \
-    --hash=sha256:d0ddd19986f66c91c07ba5706aeb74c83764c58e6892a363b249da1047cf4d9a
+gradio==5.42.0 \
+    --hash=sha256:3e11c076f4eaa2d545fb176551a2a72e951374882b8543aeebd45739085da5d2 \
+    --hash=sha256:74c8e18a3e6b7bd26396e8ed949521c0cde9bed68a15f589a9706f7cbcb8685f
     # via image-validator
 gradio-client==1.11.0 \
     --hash=sha256:377c31d8082173663b230dad341614b127b2460fe24d5fd72ed456fb3f0b3a9e \
