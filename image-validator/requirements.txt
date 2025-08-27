@@ -558,9 +558,9 @@ numpy==2.3.1 ; python_full_version >= '3.11' \
     # via
     #   gradio
     #   pandas
-openai==1.99.8 \
-    --hash=sha256:426b981079cffde6dd54868b9b84761ffa291cde77010f051b96433e1835b47d \
-    --hash=sha256:4b49845983eb4d5ffae9bae5d98bd5c0bd3a709a30f8b994fc8f316961b6d566
+openai==1.101.0 \
+    --hash=sha256:29f56df2236069686e64aca0e13c24a4ec310545afb25ef7da2ab1a18523f22d \
+    --hash=sha256:6539a446cce154f8d9fb42757acdfd3ed9357ab0d34fcac11096c461da87133b
     # via image-validator
 opentelemetry-api==1.36.0 \
     --hash=sha256:02f20bcacf666e1333b6b1f04e647dc1d5111f86b8e510238fcc56d7762cda8c \
