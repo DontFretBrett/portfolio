@@ -62,9 +62,9 @@ autogen-core==0.7.4 \
     #   autogen-agentchat
     #   autogen-ext
     #   image-validator
-autogen-ext==0.7.2 \
-    --hash=sha256:46800a8052b19d47e09fd5052eceecfca8719662baba87717563d9ac6187d9ca \
-    --hash=sha256:d039ce220eda87b4aa8a7c83b263dfba1dd8f7067ed958fa872d54e54fb3f782
+autogen-ext==0.7.4 \
+    --hash=sha256:1d69b37afa79787b43a401a10c857572d73b1d89e71950087543a81c8df02d27 \
+    --hash=sha256:5afb47c8108168bce7b61eb476ed1bf025548f404da3742d322443fedad79e32
     # via image-validator
 certifi==2025.8.3 \
     --hash=sha256:e564105f78ded564e3ae7c923924435e1daa7463faeab5bb932bc53ffae63407 \
