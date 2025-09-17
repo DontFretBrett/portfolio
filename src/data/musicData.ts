@@ -12,24 +12,23 @@ export interface MusicVideo {
 
 export const musicVideos: MusicVideo[] = [
   {
-    id: "video-5",
-    title: "My Vices (Unplugged)",
-    description: "An intimate acoustic arrangement featuring creative AI-generated visual storytelling and cinematography.",
-    youtubeId: "tGBDga2NGko",
-    publishedDate: "2025-08-04",
-    tags: ["Indie", "Alternative", "Acoustic"],
-    genre: "Indie",
-    duration: "3:28"
-  },
-  {
     id: "video-6",
     title: "Right Now",
-    description: "An electronic track brought to life through innovative AI-powered video creation and visual effects.",
+    description: "A pop track brought to life through innovative AI-powered video creation and visual effects.",
     youtubeId: "KTHqBUERSvk",
     publishedDate: "2025-08-04",
-    tags: ["Electronic"],
-    genre: "Electronic",
+    tags: ["Pop"],
+    genre: "Pop",
     duration: "3:15"
+  },
+  {
+    id: "video-7",
+    title: "Horizon Sequence (Instrumental)",
+    description: "An electronic instrumental track presented through an AI-generated music video.",
+    youtubeId: "YL3gm4QToo4",
+    publishedDate: "2025-09-17",
+    tags: ["Electronic"],
+    genre: "Electronic"
   },
   {
     id: "video-1",
