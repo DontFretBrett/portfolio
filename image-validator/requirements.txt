@@ -575,9 +575,9 @@ opentelemetry-exporter-otlp-proto-common==1.36.0 \
     --hash=sha256:0fc002a6ed63eac235ada9aa7056e5492e9a71728214a61745f6ad04b923f840 \
     --hash=sha256:6c496ccbcbe26b04653cecadd92f73659b814c6e3579af157d8716e5f9f25cbf
     # via opentelemetry-exporter-otlp-proto-grpc
-opentelemetry-exporter-otlp-proto-grpc==1.36.0 \
-    --hash=sha256:734e841fc6a5d6f30e7be4d8053adb703c70ca80c562ae24e8083a28fadef211 \
-    --hash=sha256:b281afbf7036b325b3588b5b6c8bb175069e3978d1bd24071f4a59d04c1e5bbf
+opentelemetry-exporter-otlp-proto-grpc==1.37.0 \
+    --hash=sha256:aee5104835bf7993b7ddaaf380b6467472abaedb1f1dbfcc54a52a7d781a3890 \
+    --hash=sha256:f55bcb9fc848ce05ad3dd954058bc7b126624d22c4d9e958da24d8537763bec5
     # via image-validator
 opentelemetry-proto==1.36.0 \
     --hash=sha256:0f10b3c72f74c91e0764a5ec88fd8f1c368ea5d9c64639fb455e2854ef87dd2f \
