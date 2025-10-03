@@ -7,7 +7,7 @@
 
 export const FEATURE_FLAGS = {
   // Chatbot feature - set to false to completely disable the chatbot
-  ENABLE_CHATBOT: true,
+  ENABLE_CHATBOT: false,
 } as const;
 
 export default FEATURE_FLAGS; 
