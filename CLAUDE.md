@@ -19,7 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Architecture Overview
 
 ### Core Technologies
-- **React 19** with TypeScript and concurrent rendering
+- **React 19.2** with TypeScript and concurrent rendering
 - **Vite** as build tool with advanced optimization
 - **Tailwind CSS** for styling with dark mode support
 - **React Router DOM** for client-side routing

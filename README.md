@@ -72,7 +72,7 @@ Real-time monitoring of site availability and performance. View current status, 
 ## 🛠 Tech Stack
 
 ### Core Framework
-- **React 19** - Latest React with concurrent features
+- **React 19.2** - Latest React with concurrent features
 - **TypeScript** - Full type safety
 - **Vite** - Fast build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework with class-based dark mode
