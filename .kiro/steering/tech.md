@@ -1,7 +1,7 @@
 # Technology Stack
 
 ## Core Framework
-- **React 19** with TypeScript - Latest React features and full type safety
+- **React 19.2** with TypeScript - Latest React features and full type safety
 - **Vite** - Fast build tool and development server
 - **Tailwind CSS 4** - Utility-first CSS with class-based dark mode
 - **pnpm** - Package manager (preferred over npm/yarn)
