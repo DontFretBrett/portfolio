@@ -12,6 +12,16 @@ export interface MusicVideo {
 
 export const musicVideos: MusicVideo[] = [
   {
+    id: "video-8",
+    title: "Secret Name",
+    description: "An atmospheric electronic track exploring themes of desire and connection through pulsing beats and vivid imagery, brought to life with AI-generated visuals.",
+    youtubeId: "1d9rKiSgVg4",
+    publishedDate: "2025-10-07",
+    tags: ["Electronic"],
+    genre: "Electronic",
+    duration: "3:14"
+  },
+  {
     id: "video-6",
     title: "Right Now",
     description: "A pop track brought to life through innovative AI-powered video creation and visual effects.",
