@@ -1,4 +1,4 @@
-# Brett Sanders Portfolio
+# Brett Sanders Site
 
 A modern, responsive portfolio website built from scratch with React, TypeScript, and Tailwind CSS. Features smooth animations, accessibility-first design, SEO optimization, blog functionality, and AI projects showcase.
 
