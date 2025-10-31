@@ -196,8 +196,8 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
       <div 
         id="tag-cloud-content"
         className={`transition-all duration-300 ease-in-out ${
-          isExpanded ? 'max-h-[80vh] sm:max-h-[60vh] opacity-100' : 'max-h-0 opacity-0'
-        } overflow-y-auto overflow-x-hidden`}
+          isExpanded ? 'max-h-none opacity-100' : 'max-h-0 opacity-0'
+        } overflow-hidden`}
       >
         <div className="p-6 pt-4">
           <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 w-full min-w-0">
