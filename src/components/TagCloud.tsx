@@ -84,9 +84,22 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
 
   const hasMoreTags = sortedTags.length > INITIAL_TAG_LIMIT;
 
+  // Calculate the limited tag count (what would be shown when showAllTags is false)
+  const limitedTagCount = useMemo(() => {
+    if (sortedTags.length <= INITIAL_TAG_LIMIT) {
+      return sortedTags.length;
+    }
+    const selectedTagSet = new Set(selectedTags);
+    const selectedTagObjects = sortedTags.filter(t => selectedTagSet.has(t.tag));
+    const otherTags = sortedTags.filter(t => !selectedTagSet.has(t.tag));
+    const remainingSlots = Math.max(0, INITIAL_TAG_LIMIT - selectedTagObjects.length);
+    const topTags = otherTags.slice(0, remainingSlots);
+    return selectedTagObjects.length + topTags.length;
+  }, [sortedTags, selectedTags]);
+
   // Memoize callback functions
   const handleTagToggle = useCallback((tag: string) => {
-    trackBlogInteraction('Tag Click', tag);
+    trackBlogInteraction('tag_click', tag);
     onTagToggle(tag);
   }, [onTagToggle]);
 
@@ -94,7 +107,7 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
     e.stopPropagation();
     if (onClearAll) {
       onClearAll();
-      trackBlogInteraction('Tag Click', 'Clear All');
+      trackBlogInteraction('tag_click', 'Clear All');
     } else {
       // Fallback: capture current selected tags to avoid race conditions
       const tagsToToggle = [...selectedTags];
@@ -104,8 +117,9 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
 
   const handleToggleShowAll = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    setShowAllTags(!showAllTags);
-    trackBlogInteraction('Tag Click', showAllTags ? 'Show Less Tags' : 'Show More Tags');
+    const newShowAllTags = !showAllTags;
+    setShowAllTags(newShowAllTags);
+    trackBlogInteraction('tag_click', newShowAllTags ? 'Show More Tags' : 'Show Less Tags');
   }, [showAllTags]);
 
   const handleExpandToggle = useCallback(() => {
@@ -221,7 +235,7 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
                 aria-label={showAllTags ? `Show less tags (currently showing ${sortedTags.length})` : `Show more tags (showing ${displayedTags.length} of ${sortedTags.length})`}
               >
                 {showAllTags 
-                  ? `Show less (${sortedTags.length - INITIAL_TAG_LIMIT} fewer)` 
+                  ? `Show less (${sortedTags.length - limitedTagCount} fewer)` 
                   : `See more tags (${sortedTags.length - displayedTags.length} more)`
                 }
               </button>
