@@ -1,0 +1,6 @@
+{
+  "setup-worktree": [
+    "pnpm install",
+    "cd $ROOT_WORKTREE_PATH/ && pnpm dev"
+  ]
+}
