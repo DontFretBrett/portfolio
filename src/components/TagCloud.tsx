@@ -27,6 +27,10 @@ const getTagSize = (count: number, maxCount: number): string => {
 
 const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onClearAll, className = '', onError }: TagCloudProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showAllTags, setShowAllTags] = useState(false);
+  
+  // Number of tags to show initially (most popular tags)
+  const INITIAL_TAG_LIMIT = 30;
   
   // Memoize expensive computations
   const tagCounts = useMemo(() => {
@@ -61,9 +65,41 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
       .sort((a, b) => b.count - a.count);
   }, [tagCounts]);
 
+  // Determine which tags to display
+  const displayedTags = useMemo(() => {
+    // Always show selected tags, even if they're not in the top N
+    const selectedTagSet = new Set(selectedTags);
+    const selectedTagObjects = sortedTags.filter(t => selectedTagSet.has(t.tag));
+    const otherTags = sortedTags.filter(t => !selectedTagSet.has(t.tag));
+    
+    if (showAllTags || sortedTags.length <= INITIAL_TAG_LIMIT) {
+      return sortedTags;
+    }
+    
+    // Show all selected tags + top other tags up to INITIAL_TAG_LIMIT total
+    const remainingSlots = Math.max(0, INITIAL_TAG_LIMIT - selectedTagObjects.length);
+    const topTags = otherTags.slice(0, remainingSlots);
+    return [...selectedTagObjects, ...topTags].sort((a, b) => b.count - a.count);
+  }, [sortedTags, showAllTags, selectedTags]);
+
+  const hasMoreTags = sortedTags.length > INITIAL_TAG_LIMIT;
+
+  // Calculate the limited tag count (what would be shown when showAllTags is false)
+  const limitedTagCount = useMemo(() => {
+    if (sortedTags.length <= INITIAL_TAG_LIMIT) {
+      return sortedTags.length;
+    }
+    const selectedTagSet = new Set(selectedTags);
+    const selectedTagObjects = sortedTags.filter(t => selectedTagSet.has(t.tag));
+    const otherTags = sortedTags.filter(t => !selectedTagSet.has(t.tag));
+    const remainingSlots = Math.max(0, INITIAL_TAG_LIMIT - selectedTagObjects.length);
+    const topTags = otherTags.slice(0, remainingSlots);
+    return selectedTagObjects.length + topTags.length;
+  }, [sortedTags, selectedTags]);
+
   // Memoize callback functions
   const handleTagToggle = useCallback((tag: string) => {
-    trackBlogInteraction('Tag Click', tag);
+    trackBlogInteraction('tag_click', tag);
     onTagToggle(tag);
   }, [onTagToggle]);
 
@@ -71,13 +107,28 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
     e.stopPropagation();
     if (onClearAll) {
       onClearAll();
-      trackBlogInteraction('Tag Click', 'Clear All');
+      trackBlogInteraction('tag_click', 'Clear All');
     } else {
       // Fallback: capture current selected tags to avoid race conditions
       const tagsToToggle = [...selectedTags];
       tagsToToggle.forEach(tag => handleTagToggle(tag));
     }
   }, [selectedTags, handleTagToggle, onClearAll]);
+
+  const handleToggleShowAll = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    const newShowAllTags = !showAllTags;
+    setShowAllTags(newShowAllTags);
+    trackBlogInteraction('tag_click', newShowAllTags ? 'Show More Tags' : 'Show Less Tags');
+  }, [showAllTags]);
+
+  const handleExpandToggle = useCallback(() => {
+    setIsExpanded(!isExpanded);
+    // Reset showAllTags when collapsing
+    if (isExpanded) {
+      setShowAllTags(false);
+    }
+  }, [isExpanded]);
 
   // Early returns after all hooks
   if (!posts || posts.length === 0) {
@@ -101,7 +152,7 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
       aria-labelledby="tag-cloud-heading"
     >
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleExpandToggle}
         className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
         aria-expanded={isExpanded}
         aria-controls="tag-cloud-content"
@@ -145,12 +196,12 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
       <div 
         id="tag-cloud-content"
         className={`transition-all duration-300 ease-in-out ${
-          isExpanded ? 'max-h-[80vh] sm:max-h-[60vh] opacity-100' : 'max-h-0 opacity-0'
-        } overflow-y-auto overflow-x-hidden`}
+          isExpanded ? 'max-h-none opacity-100' : 'max-h-0 opacity-0'
+        } overflow-hidden`}
       >
         <div className="p-6 pt-4">
           <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 w-full min-w-0">
-            {sortedTags.map(({ tag, count }) => {
+            {displayedTags.map(({ tag, count }) => {
               const isSelected = selectedTags.includes(tag);
               const sizeClass = getTagSize(count, maxCount);
               
@@ -176,6 +227,20 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
               );
             })}
           </div>
+          {hasMoreTags && (
+            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 text-center">
+              <button
+                onClick={handleToggleShowAll}
+                className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 hover:underline transition-colors duration-200"
+                aria-label={showAllTags ? `Show less tags (currently showing ${sortedTags.length})` : `Show more tags (showing ${displayedTags.length} of ${sortedTags.length})`}
+              >
+                {showAllTags 
+                  ? `Show less (${sortedTags.length - limitedTagCount} fewer)` 
+                  : `See more tags (${sortedTags.length - displayedTags.length} more)`
+                }
+              </button>
+            </div>
+          )}
           {selectedTags.length > 0 && (
             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between">
