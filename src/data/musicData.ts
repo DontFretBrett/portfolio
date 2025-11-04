@@ -72,6 +72,15 @@ export const musicVideos: MusicVideo[] = [
     duration: "3:14"
   },
   {
+    id: "video-7",
+    title: "Horizon Sequence (Instrumental)",
+    description: "An electronic instrumental track presented through an AI-generated music video.",
+    youtubeId: "YL3gm4QToo4",
+    publishedDate: "2025-09-17",
+    tags: ["Electronic"],
+    genre: "Electronic"
+  },
+  {
     id: "video-6",
     title: "Right Now",
     description: "A pop track brought to life through innovative AI-powered video creation and visual effects.",
@@ -80,15 +89,6 @@ export const musicVideos: MusicVideo[] = [
     tags: ["Pop"],
     genre: "Pop",
     duration: "3:15"
-  },
-  {
-    id: "video-7",
-    title: "Horizon Sequence (Instrumental)",
-    description: "An electronic instrumental track presented through an AI-generated music video.",
-    youtubeId: "YL3gm4QToo4",
-    publishedDate: "2025-09-17",
-    tags: ["Electronic"],
-    genre: "Electronic"
   },
   {
     id: "video-1",
