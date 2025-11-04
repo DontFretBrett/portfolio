@@ -12,6 +12,56 @@ export interface MusicVideo {
 
 export const musicVideos: MusicVideo[] = [
   {
+    id: "video-13",
+    title: "Zero Point",
+    description: "An atmospheric electronic track with immersive AI-generated visuals exploring themes of transcendence and connection.",
+    youtubeId: "BE9pfwX88ns",
+    publishedDate: "2025-11-01",
+    tags: ["Electronic"],
+    genre: "Electronic",
+    duration: "3:34"
+  },
+  {
+    id: "video-12",
+    title: "Chasing Sounds",
+    description: "An electronic track featuring dynamic AI-generated visuals and innovative sound design.",
+    youtubeId: "9rTNfSCAKvA",
+    publishedDate: "2025-11-01",
+    tags: ["Electronic"],
+    genre: "Electronic",
+    duration: "4:36"
+  },
+  {
+    id: "video-11",
+    title: "Prism Veins",
+    description: "An electronic track presented through creative AI-generated visual storytelling and vivid imagery.",
+    youtubeId: "i0Z1cxPXxlQ",
+    publishedDate: "2025-10-22",
+    tags: ["Electronic"],
+    genre: "Electronic",
+    duration: "3:36"
+  },
+  {
+    id: "video-10",
+    title: "Heir to the Hush",
+    description: "An atmospheric electronic track with AI-generated visuals exploring themes of silence and introspection.",
+    youtubeId: "YkSKywkKmsw",
+    publishedDate: "2025-10-21",
+    tags: ["Electronic"],
+    genre: "Electronic",
+    duration: "2:53"
+  },
+  {
+    id: "video-9",
+    title: "State Of Mind",
+    description: "An electronic track featuring innovative AI-powered video creation and dynamic visual effects.",
+    youtubeId: "uy26ioboy-E",
+    publishedDate: "2025-10-13",
+    tags: ["Electronic"],
+    genre: "Electronic",
+    duration: "4:49"
+  },
+  {
     id: "video-8",
     title: "Secret Name",
     description: "An atmospheric electronic track exploring themes of desire and connection through pulsing beats and vivid imagery, brought to life with AI-generated visuals.",
@@ -22,6 +72,15 @@ export const musicVideos: MusicVideo[] = [
     duration: "3:14"
   },
   {
+    id: "video-7",
+    title: "Horizon Sequence (Instrumental)",
+    description: "An electronic instrumental track presented through an AI-generated music video.",
+    youtubeId: "YL3gm4QToo4",
+    publishedDate: "2025-09-17",
+    tags: ["Electronic"],
+    genre: "Electronic"
+  },
+  {
     id: "video-6",
     title: "Right Now",
     description: "A pop track brought to life through innovative AI-powered video creation and visual effects.",
@@ -30,15 +89,6 @@ export const musicVideos: MusicVideo[] = [
     tags: ["Pop"],
     genre: "Pop",
     duration: "3:15"
-  },
-  {
-    id: "video-7",
-    title: "Horizon Sequence (Instrumental)",
-    description: "An electronic instrumental track presented through an AI-generated music video.",
-    youtubeId: "YL3gm4QToo4",
-    publishedDate: "2025-09-17",
-    tags: ["Electronic"],
-    genre: "Electronic"
   },
   {
     id: "video-1",
