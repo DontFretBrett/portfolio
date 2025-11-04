@@ -123,6 +123,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Security headers (X-Frame-Options, CSP, etc.)
 - Asset caching strategies (1 year for assets, 1 day for sitemaps)
 - Content-Type headers for XML/text files
+- Automatic deployments from main branch
+- AI crawler detection and static blog HTML serving via rewrites
+
+#### Vercel MCP Integration
+- **MCP Server**: Configured in Cursor via `~/.cursor/mcp.json` (global config)
+- **Endpoint**: `https://mcp.vercel.com`
+- **Deployment Workflow**: 
+  - **DO NOT** use MCP tools for regular deployments
+  - Deployments are **automatic** via Vercel when PRs are merged to main branch
+  - Vercel automatically picks up changes from the main branch and deploys
+- **Available Tools** (for monitoring/management only):
+  - `list_projects` - List all Vercel projects
+  - `get_project` - Get specific project details
+  - `list_deployments` - View deployment history and status
+  - `get_deployment` - Inspect specific deployment by ID/URL
+  - `get_deployment_build_logs` - Retrieve build logs for debugging failed builds
+  - `get_access_to_vercel_url` - Create shareable links for protected deployments
+  - `web_fetch_vercel_url` - Access Vercel Authentication-protected URLs
+  - `check_domain_availability_and_price` - Check domain availability
+  - `search_vercel_documentation` - Search Vercel docs from within Cursor
+  - `use_vercel_cli` - Execute Vercel CLI commands
+  - `deploy_to_vercel` - **Emergency use only** - not for regular workflow
+- **Usage**: Use MCP tools for checking deployment status, viewing logs, managing projects, or searching docs. Do NOT use for regular deployments.
+- **Authorization**: OAuth-based authentication via Cursor's MCP connection
 
 #### Security Measures
 - Content Security Policy headers

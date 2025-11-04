@@ -57,6 +57,19 @@ type Theme = 'light' | 'dark';
    - Centralized in `src/config/features.ts`
    - Used for conditional feature loading
 
+4. **Vercel MCP Integration**:
+   - Vercel MCP server is configured in Cursor (via `~/.cursor/mcp.json`)
+   - **Important**: Deployments happen automatically via Vercel when PRs are merged to main branch - do NOT use MCP tools for regular deployments
+   - Use Vercel MCP tools for monitoring and management only:
+     - Checking deployment status: `list_deployments`, `get_deployment`
+     - Viewing build logs: `get_deployment_build_logs` (for debugging failed builds)
+     - Managing projects: `list_projects`, `get_project`
+     - Domain operations: `check_domain_availability_and_price`
+     - Searching Vercel docs: `search_vercel_documentation`
+     - `deploy_to_vercel` tool exists but should only be used for ad-hoc/emergency situations, not regular workflow
+   - Project is deployed on Vercel with automatic deployments from main branch (no manual deployment needed)
+   - Configuration in `vercel.json` includes SPA routing, security headers, and AI crawler rewrites
+
 ## Type Safety Requirements
 - No `any` types allowed
 - Use branded types for enhanced safety
