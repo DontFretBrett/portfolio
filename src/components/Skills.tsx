@@ -67,7 +67,7 @@ export default function Skills() {
         </svg>
       ),
       title: 'Cloud & Deployment',
-      skills: 'AWS Console, IAM, S3, EC2, EBS, Lambda, Azure VM, SQL, App Services, Storage, Virtual Network, SSL, Hugging Face Spaces, Docker, CI/CD pipelines, Infrastructure as Code',
+      skills: 'AWS Console, IAM, S3, EC2, EBS, Lambda, Azure VM, SQL, App Services, Storage, Virtual Network, SSL, Hugging Face Spaces, Docker, CI/CD pipelines, Infrastructure as Code, Vercel, Terraform',
       itemProp: 'knowsAbout'
     }
   ];
