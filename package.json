@@ -50,7 +50,7 @@
     "tailwindcss": "^4.1.13",
     "terser": "^5.43.1",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.46.3",
+    "typescript-eslint": "^8.46.4",
     "vite": "^7.1.12",
     "vite-plugin-compression": "^0.5.1"
   }
