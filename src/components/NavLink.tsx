@@ -5,7 +5,7 @@ import { startViewTransition } from '../utils/viewTransition';
 interface NavLinkProps {
   to: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   className?: string;
   variant?: 'header' | 'compact';
   shortText?: string;

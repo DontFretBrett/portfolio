@@ -33,9 +33,9 @@ export function startViewTransition(callback: TransitionCallback) {
   }
 
   // Let the browser manage the snapshots and animation; we just wrap the DOM update.
-  anyDocument.startViewTransition(() => {
-    callback();
-  });
+  // IMPORTANT: return the callback result so the View Transition API can await
+  // any Promise it returns before capturing the new DOM snapshot.
+  anyDocument.startViewTransition(() => callback());
 }
 
 
