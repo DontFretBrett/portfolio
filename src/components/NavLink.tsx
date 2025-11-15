@@ -31,7 +31,7 @@ export default function NavLink({
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     // Allow caller to run side effects (analytics, etc.)
     if (onClick) {
-      onClick();
+      onClick(event);
     }
 
     // Respect defaultPrevented or modifier keys (open in new tab, etc.)
