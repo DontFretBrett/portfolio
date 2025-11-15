@@ -46,6 +46,8 @@ export default function NavLink({
       return;
     }
 
+    event.preventDefault();
+
     // Avoid redundant navigation (compare pathname, search, and hash)
     if (typeof window !== 'undefined') {
       try {
@@ -62,8 +64,6 @@ export default function NavLink({
         // If URL parsing fails for any reason, fall through and let navigation proceed.
       }
     }
-
-    event.preventDefault();
 
     startViewTransition(() => {
       navigate(to);
