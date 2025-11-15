@@ -46,9 +46,21 @@ export default function NavLink({
       return;
     }
 
-    // Avoid redundant navigation
-    if (location.pathname === to) {
-      return;
+    // Avoid redundant navigation (compare pathname, search, and hash)
+    if (typeof window !== 'undefined') {
+      try {
+        const targetUrl = new URL(to, window.location.origin);
+        const isSameLocation =
+          location.pathname === targetUrl.pathname &&
+          location.search === targetUrl.search &&
+          location.hash === targetUrl.hash;
+
+        if (isSameLocation) {
+          return;
+        }
+      } catch {
+        // If URL parsing fails for any reason, fall through and let navigation proceed.
+      }
     }
 
     event.preventDefault();
