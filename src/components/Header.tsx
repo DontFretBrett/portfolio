@@ -3,24 +3,51 @@ import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import NavLink from './NavLink';
 
+// Precomputed layout helpers to keep the component pure and deterministic
+const codeSnippets = [
+  'const developer = { name: "Brett", role: "Engineering Leader" };',
+  'function buildAmazingThings() { return innovation + passion; }',
+  'if (challenge.isComplex()) { solution = teamwork + creativity; };',
+  'async function leadTeam() { await inspire(team); return success; }',
+  'const skills = ["React", "AWS", "Node.js", "Leadership"];',
+  'export default class TechLeader extends Engineer {}',
+  'const vision = await transform(ideas, reality);',
+  '// Turning concepts into scalable solutions',
+  'npm run build-the-future',
+  'git commit -m "Making tech dreams reality"'
+] as const;
+
+const immediateSnippetLayout = [
+  { left: 28, top: 38, rotate: -2.5 },
+  { left: 52, top: 48, rotate: 1.5 },
+  { left: 72, top: 62, rotate: 3 }
+] as const;
+
+function getFloatingSnippetLayout(index: number) {
+  // Deterministic pseudo-layout based on index
+  const base = index + 1;
+  const left = (base * 17) % 100; // 0–99
+  const top = (base * 29) % 100; // 0–99
+  const duration = 15 + (base * 7) % 10; // 15–24
+  const rotate = (base * 11) % 10 - 5; // -5–4
+
+  return { left, top, duration, rotate };
+}
+
+function getParticleLayout(index: number) {
+  const base = index + 1;
+  const left = (base * 23) % 100;
+  const top = (base * 31) % 100;
+  const delay = (base * 9) % 3; // 0–2
+  const duration = 20 + (base * 13) % 15; // 20–34
+
+  return { left, top, delay, duration };
+}
+
 export default function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  // Code snippets that will animate
-  const codeSnippets = [
-    'const developer = { name: "Brett", role: "Engineering Leader" };',
-    'function buildAmazingThings() { return innovation + passion; }',
-    'if (challenge.isComplex()) { solution = teamwork + creativity; }',
-    'async function leadTeam() { await inspire(team); return success; }',
-    'const skills = ["React", "AWS", "Node.js", "Leadership"];',
-    'export default class TechLeader extends Engineer {}',
-    'const vision = await transform(ideas, reality);',
-    '// Turning concepts into scalable solutions',
-    'npm run build-the-future',
-    'git commit -m "Making tech dreams reality"'
-  ];
-  
   return (
     <header className="relative bg-linear-to-br from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 text-white py-20 overflow-hidden">
       {/* Theme Toggle - positioned absolutely in top right */}
@@ -33,20 +60,23 @@ export default function Header() {
         <div className="absolute inset-0 bg-linear-to-t from-gray-900/90 via-gray-900/50 to-transparent dark:from-gray-950/90 dark:via-gray-950/50 z-10"></div>
         
         {/* Immediate visible code snippets for instant activity */}
-        {codeSnippets.slice(0, 3).map((snippet, index) => (
+        {codeSnippets.slice(0, 3).map((snippet, index) => {
+          const layout = immediateSnippetLayout[index] ?? immediateSnippetLayout[0];
+          return (
           <div
             key={`immediate-${index}`}
             className="absolute text-green-400/60 dark:text-green-300/50 font-mono text-sm whitespace-nowrap"
             style={{
-              left: `${20 + Math.random() * 60}%`,
-              top: `${30 + Math.random() * 40}%`,
-              transform: `rotate(${Math.random() * 6 - 3}deg)`,
+              left: `${layout.left}%`,
+              top: `${layout.top}%`,
+              transform: `rotate(${layout.rotate}deg)`,
               animation: `pulse 3s ease-in-out infinite ${index * 0.5}s`
             }}
           >
             {snippet}
           </div>
-        ))}
+        );
+        })}
         
         {/* Floating animated code snippets */}
         {codeSnippets.map((snippet, index) => (
@@ -54,11 +84,11 @@ export default function Header() {
             key={index}
             className="absolute text-green-400/80 dark:text-green-300/60 font-mono text-base whitespace-nowrap animate-float-code"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${getFloatingSnippetLayout(index).left}%`,
+              top: `${getFloatingSnippetLayout(index).top}%`,
               animationDelay: `${index * 0.3}s`,
-              animationDuration: `${15 + Math.random() * 10}s`,
-              transform: `rotate(${Math.random() * 10 - 5}deg)`
+              animationDuration: `${getFloatingSnippetLayout(index).duration}s`,
+              transform: `rotate(${getFloatingSnippetLayout(index).rotate}deg)`
             }}
           >
             {snippet}
@@ -73,10 +103,10 @@ export default function Header() {
             key={i}
             className="absolute w-1 h-1 bg-blue-400/40 dark:bg-blue-300/30 rounded-full animate-float-particle"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${20 + Math.random() * 15}s`
+              left: `${getParticleLayout(i).left}%`,
+              top: `${getParticleLayout(i).top}%`,
+              animationDelay: `${getParticleLayout(i).delay}s`,
+              animationDuration: `${getParticleLayout(i).duration}s`
             }}
           />
         ))}

@@ -341,3 +341,36 @@ textarea:focus-visible,
 img, picture {
   background: transparent !important;
 }
+
+/* View Transition API enhancements for smoother SPA navigation */
+@supports (view-transition-name: none) {
+  body {
+    view-transition-name: body-root;
+  }
+
+  /* Treat the main content as a distinct transition group */
+  #main-content {
+    view-transition-name: main-content;
+  }
+
+  ::view-transition-old(body-root),
+  ::view-transition-new(body-root) {
+    animation-duration: 220ms;
+    animation-timing-function: ease-in-out;
+  }
+
+  ::view-transition-old(main-content),
+  ::view-transition-new(main-content) {
+    animation-duration: 260ms;
+    animation-timing-function: ease-in-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(body-root),
+    ::view-transition-new(body-root),
+    ::view-transition-old(main-content),
+    ::view-transition-new(main-content) {
+      animation-duration: 0.01ms;
+    }
+  }
+}
