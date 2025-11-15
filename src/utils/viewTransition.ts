@@ -1,7 +1,8 @@
 // Lightweight wrapper around the View Transition API for SPA route changes.
 // Docs: https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API
+// The callback may be async, matching the underlying API's Promise-aware design.
 
-type TransitionCallback = () => void;
+type TransitionCallback = () => void | Promise<void>;
 
 function shouldReduceMotion(): boolean {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -23,7 +24,7 @@ export function startViewTransition(callback: TransitionCallback) {
   }
 
   const anyDocument = document as Document & {
-    startViewTransition?: (cb: () => void) => unknown;
+    startViewTransition?: (cb: () => void | Promise<void>) => unknown;
   };
 
   if (typeof anyDocument.startViewTransition !== 'function') {
