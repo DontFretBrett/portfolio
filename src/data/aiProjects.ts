@@ -250,7 +250,20 @@ export function getAllProjects(): Project[] {
   return projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
+// Filter function to identify AI-related projects
+function isAIProject(project: Project): boolean {
+  const aiKeywords = ['AI', 'AutoGen', 'OpenAI', 'Computer Vision', 'Multi-Agent Systems', 'MCP', 'AI Agents', 'Machine Learning', 'Deep Learning', 'Neural Network', 'GPT', 'LLM', 'NLP', 'Natural Language Processing'];
+  return project.tags?.some(tag => 
+    aiKeywords.some(keyword => tag.includes(keyword))
+  ) ?? false;
+}
+
 // Legacy function names for backward compatibility
-export const aiProjects = projects;
-export const getAIProjectBySlug = getProjectBySlug;
-export const getAllAIProjects = getAllProjects; 
+// Only include AI-related projects for legacy routes
+export const aiProjects: Project[] = projects.filter(isAIProject);
+export function getAIProjectBySlug(slug: string): Project | null {
+  return aiProjects.find(project => project.slug === slug) || null;
+}
+export function getAllAIProjects(): Project[] {
+  return aiProjects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+} 
