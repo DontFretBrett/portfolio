@@ -247,7 +247,7 @@ export function getProjectBySlug(slug: string): Project | null {
 }
 
 export function getAllProjects(): Project[] {
-  return projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return [...projects].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 // Filter function to identify AI-related projects
@@ -265,5 +265,5 @@ export function getAIProjectBySlug(slug: string): Project | null {
   return aiProjects.find(project => project.slug === slug) || null;
 }
 export function getAllAIProjects(): Project[] {
-  return aiProjects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return [...aiProjects].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 } 
