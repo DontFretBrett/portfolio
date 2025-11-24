@@ -1,4 +1,4 @@
-export interface AIProject {
+export interface Project {
   slug: string;
   title: string;
   description: string;
@@ -11,7 +11,7 @@ export interface AIProject {
   content: string;
 }
 
-export interface AIProjectMetadata {
+export interface ProjectMetadata {
   title: string;
   description: string;
   excerpt: string;
@@ -20,4 +20,8 @@ export interface AIProjectMetadata {
   githubUrl?: string;
   liveUrl?: string;
   embedCode?: string;
-} 
+}
+
+// Legacy type alias for backward compatibility
+export type AIProject = Project;
+export type AIProjectMetadata = ProjectMetadata; 

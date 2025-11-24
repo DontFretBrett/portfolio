@@ -175,7 +175,7 @@ export default function Header() {
           </div>
           <nav aria-label="Page sections" className="flex flex-wrap justify-center md:justify-start gap-3">
             <NavLink to="/" variant="header">Home</NavLink>
-            <NavLink to="/ai-projects" variant="header">AI Projects</NavLink>
+            <NavLink to="/projects" variant="header">Projects</NavLink>
             <NavLink to="/blog" variant="header">Blog</NavLink>
             <NavLink to="/gear" variant="header">Gear</NavLink>
             <NavLink to="/music" variant="header">Music</NavLink>

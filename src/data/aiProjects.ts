@@ -1,6 +1,6 @@
-import type { AIProject } from '../types/projects';
+import type { Project } from '../types/projects';
 
-export const aiProjects: AIProject[] = [
+export const projects: Project[] = [
   {
     slug: 'ai-image-validator',
     title: 'AI Image Validator',
@@ -137,13 +137,133 @@ Gradio-based interface deployed on Hugging Face Spaces with real-time statistics
 - Full-stack integration bridging protocols with user interfaces
 
 This project showcases the future of AI-service integration through standardized protocols while delivering both technical depth and user delight.`
+  },
+  {
+    slug: 'heres-your-link',
+    title: 'Here\'s Your Link',
+    description: 'A fast, anonymous link and text sharing service that enables instant device-to-device handoffs. Users can paste text or URLs and instantly receive a short link and QR code for seamless sharing across devices.',
+    excerpt: 'Here\'s Your Link is a privacy-first, zero-friction sharing service built with TanStack Start. Create short links for text or URLs without authentication, with smart expiry options and edge caching for global performance.',
+    date: '2025-11-23',
+    tags: ['TanStack Start', 'React', 'TypeScript', 'SSR', 'Neon Postgres', 'Drizzle ORM', 'Vercel KV', 'Redis', 'QR Codes', 'Edge Computing', 'Tailwind CSS'],
+    githubUrl: '',
+    liveUrl: 'https://heresyourlink.com',
+    content: `# Here's Your Link
+
+A fast, anonymous link and text sharing service that enables instant device-to-device handoffs. Users can paste text or URLs and instantly receive a short link and QR code for seamless sharing across devices.
+
+## Features
+
+- **Zero-Friction Sharing**: Create short links for text or URLs without authentication
+- **Dual Delivery**: Every share includes both a short URL and high-contrast QR code
+- **Smart Expiry**: Set links to auto-expire in 1, 7, 30 days, or never
+- **Privacy-First**: Unique, unguessable links with optional auto-expiry
+- **Edge Caching**: Vercel KV + Redis fallback keep redirects fast worldwide
+- **Safe Rendering**: Sanitized text viewer with copy helpers and character limits
+- **No Sign-up Required**: Completely anonymous and instant
+
+## Tech Stack
+
+- **Framework**: TanStack Start (React, TypeScript, SSR)
+- **Styling**: Tailwind CSS with custom design tokens (glassmorphism design)
+- **Database**: Neon Postgres (via Drizzle ORM)
+- **Cache**: Vercel KV (REST) or Redis via Docker
+- **Hosting**: Vercel (Edge + Serverless functions)
+- **QR Codes**: \`qrcode.react\`
+- **ORM**: Drizzle ORM
+- **Rate Limiting**: Custom implementation with Vercel KV
+
+## Technical Highlights
+
+- **Server-Side Rendering**: Built with TanStack Start for optimal performance
+- **Edge Caching**: Vercel KV caches share lookups for 24 hours (reduces database load)
+- **Rate Limiting**: 10 requests per minute per IP address (prevents abuse)
+- **Auto-scaling**: Vercel automatically scales serverless functions based on demand
+- **Security**: Input validation, HTML escaping, URL scheme validation, CSP headers
+- **Monitoring**: Automated Neon database usage monitoring via GitHub Actions
+
+## Project Structure
+
+\`\`\`
+├── app/
+│   ├── api/shares.ts        # Server function for creating shares
+│   ├── lib/                  # DB, KV, validation, rate limit helpers
+│   ├── routes/
+│   │   ├── index.tsx         # Landing page + share builder UI
+│   │   ├── s.$slug.tsx       # Share resolution + text viewer
+│   │   ├── about.tsx         # About page with creator info
+│   │   ├── 404.tsx           # Not found screen
+│   │   └── error.tsx         # Error boundary UI
+│   └── utils/qr.tsx          # QR code renderer
+├── scripts/
+│   └── monitor-neon-usage.ts # Database usage monitoring script
+└── .github/workflows/
+    └── monitor-neon-usage.yml # Automated monitoring workflow
+\`\`\`
+
+## Design
+
+- **Style**: Modern glassmorphism design with dark theme
+- **UI**: Responsive layout with accessible focus states
+- **Colors**: Slate-950 background with indigo/cyan accent colors
+- **Typography**: Inter for body text, Space Grotesk for headings
+
+## Key Metrics
+
+- **Payload Limit**: 64 KB per share
+- **Expiry Options**: 1, 7, 30 days, or never
+- **Slug Length**: 6 characters (base62, ~56 billion combinations)
+- **Rate Limit**: 10 requests/minute per IP
+- **Cache TTL**: 24 hours (or match expiry if shorter)
+
+## Infrastructure
+
+- **Hosting**: Vercel (free tier)
+- **Database**: Neon Postgres (free tier - 0.5 GB storage, 192 hours/month compute)
+- **Cache**: Vercel KV (free tier - 256 MB storage, 10,000 commands/day)
+- **Monitoring**: GitHub Actions for automated database usage monitoring
+
+## Notable Features
+
+1. **QR Code Generation**: Instant QR code generation for every share
+2. **Expiry Management**: Automatic cleanup of expired shares
+3. **Rate Limiting**: Built-in protection against abuse
+4. **Edge Caching**: Optimized for global performance
+5. **Privacy-Focused**: No user accounts, no tracking, anonymous sharing
+
+## Development Notes
+
+- Uses Docker Compose for local development (Postgres + Redis)
+- Environment-based configuration (local vs production)
+- Comprehensive monitoring and alerting setup
+- Well-documented with README and MONITORING.md
+
+This project demonstrates modern full-stack development with edge computing, serverless architecture, and privacy-first design principles.`
   }
 ];
 
-export function getAIProjectBySlug(slug: string): AIProject | null {
-  return aiProjects.find(project => project.slug === slug) || null;
+// New function names
+export function getProjectBySlug(slug: string): Project | null {
+  return projects.find(project => project.slug === slug) || null;
 }
 
-export function getAllAIProjects(): AIProject[] {
-  return aiProjects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+export function getAllProjects(): Project[] {
+  return [...projects].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+// Filter function to identify AI-related projects
+function isAIProject(project: Project): boolean {
+  const aiKeywords = ['AI', 'AutoGen', 'OpenAI', 'Computer Vision', 'Multi-Agent Systems', 'MCP', 'AI Agents', 'Machine Learning', 'Deep Learning', 'Neural Network', 'GPT', 'LLM', 'NLP', 'Natural Language Processing'];
+  return project.tags?.some(tag => 
+    aiKeywords.some(keyword => tag.includes(keyword))
+  ) ?? false;
+}
+
+// Legacy function names for backward compatibility
+// Only include AI-related projects for legacy routes
+export const aiProjects: Project[] = projects.filter(isAIProject);
+export function getAIProjectBySlug(slug: string): Project | null {
+  return aiProjects.find(project => project.slug === slug) || null;
+}
+export function getAllAIProjects(): Project[] {
+  return [...aiProjects].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 } 

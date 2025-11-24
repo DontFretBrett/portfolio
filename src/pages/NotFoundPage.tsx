@@ -68,10 +68,10 @@ export default function NotFoundPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <Link 
-                to="/ai-projects" 
+                to="/projects" 
                 className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline"
               >
-                AI Projects
+                Projects
               </Link>
               <Link 
                 to="/blog" 

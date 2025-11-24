@@ -12,6 +12,9 @@ import Footer from './components/Footer';
 
 // Lazy load components for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
+const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
+const ProjectPage = React.lazy(() => import('./pages/ProjectPage'));
+// Legacy imports for backward compatibility
 const AIProjectsPage = React.lazy(() => import('./pages/AIProjectsPage'));
 const AIProjectPage = React.lazy(() => import('./pages/AIProjectPage'));
 const BlogPage = React.lazy(() => import('./pages/BlogPage'));
@@ -72,6 +75,9 @@ function AppContent() {
           <main id="main-content" tabIndex={-1}>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects/:slug" element={<ProjectPage />} />
+              {/* Legacy routes for backward compatibility */}
               <Route path="/ai-projects" element={<AIProjectsPage />} />
               <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
               <Route path="/blog" element={<BlogPage />} />
