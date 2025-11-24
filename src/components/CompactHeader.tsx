@@ -11,7 +11,14 @@ export default function CompactHeader() {
   const getBackLink = () => {
     const path = location.pathname;
     
-    if (path.startsWith('/projects/') || path.startsWith('/ai-projects/')) {
+    if (path.startsWith('/ai-projects/')) {
+      // Individual project page via legacy route - back to AI projects list
+      return {
+        to: '/ai-projects',
+        text: 'Back to Projects',
+        shortText: 'Projects'
+      };
+    } else if (path.startsWith('/projects/')) {
       // Individual project page - back to projects list
       return {
         to: '/projects',
