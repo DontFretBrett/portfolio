@@ -18,8 +18,8 @@ export default function BlogList({ posts, allPosts, selectedTags, onTagToggle, o
       <header className="text-center mb-6">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Technology Blog</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Insights on <Link to="/ai-projects" className="text-blue-600 dark:text-blue-400 hover:underline">AI engineering</Link>, 
-          software architecture, leadership, and the latest in technology innovation.
+          Insights on <Link to="/projects" className="text-blue-600 dark:text-blue-400 hover:underline">software engineering</Link>, 
+          architecture, leadership, and the latest in technology innovation.
         </p>
       </header>
 
@@ -121,10 +121,10 @@ export default function BlogList({ posts, allPosts, selectedTags, onTagToggle, o
               {/* Contextual internal links based on content */}
               {post.tags?.includes('AI') && (
                 <Link
-                  to="/ai-projects"
+                  to="/projects"
                   className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
-                  View AI Projects →
+                  View Projects →
                 </Link>
               )}
             </footer>
@@ -145,7 +145,7 @@ export default function BlogList({ posts, allPosts, selectedTags, onTagToggle, o
         <div className="text-center py-12">
           <p className="text-gray-600 dark:text-gray-400 text-lg">No blog posts yet. Check back soon!</p>
           <p className="text-gray-500 dark:text-gray-500 text-sm mt-2">
-            In the meantime, explore my <Link to="/ai-projects" className="text-blue-600 dark:text-blue-400 hover:underline">AI projects</Link> or 
+            In the meantime, explore my <Link to="/projects" className="text-blue-600 dark:text-blue-400 hover:underline">projects</Link> or 
             learn more <Link to="/" className="text-blue-600 dark:text-blue-400 hover:underline">about my experience</Link>.
           </p>
         </div>
@@ -157,12 +157,12 @@ export default function BlogList({ posts, allPosts, selectedTags, onTagToggle, o
           <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Explore More</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <Link
-              to="/ai-projects"
+              to="/projects"
               className="block p-4 bg-white dark:bg-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
             >
-              <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-2">AI Projects</h3>
+              <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Projects</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Explore hands-on AI engineering projects featuring AutoGen, MCP, and cutting-edge frameworks.
+                Explore hands-on projects featuring web applications, AI implementations, and innovative software solutions.
               </p>
             </Link>
             <Link

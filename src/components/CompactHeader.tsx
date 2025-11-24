@@ -11,10 +11,10 @@ export default function CompactHeader() {
   const getBackLink = () => {
     const path = location.pathname;
     
-    if (path.startsWith('/ai-projects/')) {
-      // Individual AI project page - back to AI projects list
+    if (path.startsWith('/projects/') || path.startsWith('/ai-projects/')) {
+      // Individual project page - back to projects list
       return {
-        to: '/ai-projects',
+        to: '/projects',
         text: 'Back to Projects',
         shortText: 'Projects'
       };
@@ -25,8 +25,8 @@ export default function CompactHeader() {
         text: 'Back to Blog',
         shortText: 'Blog'
       };
-    } else if (path === '/ai-projects' || path === '/blog' || path === '/gear' || path === '/music') {
-      // AI projects list, blog list, gear page, or music page - back to home
+    } else if (path === '/projects' || path === '/ai-projects' || path === '/blog' || path === '/gear' || path === '/music') {
+      // Projects list, blog list, gear page, or music page - back to home
       return {
         to: '/',
         text: 'Back to Home',
@@ -103,7 +103,7 @@ export default function CompactHeader() {
         {/* Right side - compact navigation with space for theme toggle */}
         <nav className="flex items-center gap-2 flex-shrink-0 ml-4">
           <NavLink to="/" onClick={() => handleNavigation('/')} variant="compact" shortText="H">Home</NavLink>
-          <NavLink to="/ai-projects" onClick={() => handleNavigation('/ai-projects')} variant="compact" shortText="AI">AI Projects</NavLink>
+          <NavLink to="/projects" onClick={() => handleNavigation('/projects')} variant="compact" shortText="P">Projects</NavLink>
           <NavLink to="/blog" onClick={() => handleNavigation('/blog')} variant="compact" shortText="B">Blog</NavLink>
           <NavLink to="/gear" onClick={() => handleNavigation('/gear')} variant="compact" shortText="G">Gear</NavLink>
           <NavLink to="/music" onClick={() => handleNavigation('/music')} variant="compact" shortText="M">Music</NavLink>

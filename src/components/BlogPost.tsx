@@ -219,10 +219,10 @@ export default function BlogPost({ post }: BlogPostProps) {
                 View Profile
               </Link>
               <Link 
-                to="/ai-projects" 
+                to="/projects" 
                 className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
               >
-                AI Projects
+                Projects
               </Link>
               <Link 
                 to="/blog" 
@@ -251,12 +251,12 @@ export default function BlogPost({ post }: BlogPostProps) {
           
           {post.tags?.some(tag => ['AI', 'Machine Learning', 'AutoGen', 'MCP'].includes(tag)) && (
             <Link
-              to="/ai-projects"
+              to="/projects"
               className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm"
             >
-              <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">AI Projects</h4>
+              <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Projects</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Explore hands-on AI engineering projects and live demonstrations.
+                Explore hands-on projects and live demonstrations.
               </p>
             </Link>
           )}
