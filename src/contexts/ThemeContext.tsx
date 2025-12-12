@@ -144,10 +144,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     setTheme,
   }), [theme, toggleTheme, isSystemDark, setTheme]);
 
-  // React 19 simplified provider syntax - use Context directly
+  // Provide the context value to descendants
   return (
-    <ThemeContext value={contextValue}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
-    </ThemeContext>
+    </ThemeContext.Provider>
   );
 }; 
