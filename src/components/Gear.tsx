@@ -166,7 +166,7 @@ const GearCard = memo(function GearCard({ item, category, onImageClick }: { item
             </li>
           ))}
           {item.features.length > 3 && (
-            <li className="text-sm text-gray-500 dark:text-gray-500 ml-5">
+            <li className="text-sm text-gray-500 dark:text-gray-300 ml-5">
               +{item.features.length - 3} more features
             </li>
           )}
