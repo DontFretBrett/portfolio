@@ -2,12 +2,7 @@
 
 A modern, responsive portfolio website built from scratch with React, TypeScript, and Tailwind CSS. Features smooth animations, accessibility-first design, SEO optimization, blog functionality, and AI projects showcase.
 
-## 📊 Site Status
-
-[![Site Status](https://img.shields.io/badge/status-monitoring-brightgreen)](https://stats.uptimerobot.com/NZttu5IrHi) **[Live Status Page →](https://stats.uptimerobot.com/NZttu5IrHi)**
-
-Real-time monitoring of site availability and performance. View current status, uptime statistics, and historical data.
-
+## 🚀 Features
 ## 🚀 Features
 
 ### Core Portfolio Features
