@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import CompactHeader from './components/CompactHeader';
@@ -113,6 +114,7 @@ export default function App() {
         <Router>
           <AppContent />
         </Router>
+        <Analytics />
       </ThemeProvider>
     </HelmetProvider>
   );
