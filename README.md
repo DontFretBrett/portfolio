@@ -245,3 +245,4 @@ The static HTML files are generated in `/dist/static/blog/` and include:
 - Mobile browsers (iOS Safari, Chrome Mobile)
 - Progressive enhancement for older browsers
 
+
