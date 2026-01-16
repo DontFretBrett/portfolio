@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback, startTransition } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BlogList from '../components/BlogList';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -32,17 +32,21 @@ export default function BlogPage() {
     );
   }, [posts, selectedTags]);
 
-  const handleTagToggle = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
-    );
-  };
+  const handleTagToggle = useCallback((tag: string) => {
+    startTransition(() => {
+      setSelectedTags(prev => 
+        prev.includes(tag) 
+          ? prev.filter(t => t !== tag)
+          : [...prev, tag]
+      );
+    });
+  }, []);
 
-  const handleClearAllTags = () => {
-    setSelectedTags([]);
-  };
+  const handleClearAllTags = useCallback(() => {
+    startTransition(() => {
+      setSelectedTags([]);
+    });
+  }, []);
 
   if (loading) {
     return (

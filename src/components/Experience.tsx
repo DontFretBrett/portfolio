@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Calendar } from 'lucide-react';
 
 // Add interfaces at the top of the file
@@ -63,7 +64,7 @@ const experiences: Experience[] = [
   }
 ];
 
-export default function Experience() {
+const Experience = memo(function Experience() {
   return (
     <section 
       id="experience" 
@@ -126,4 +127,6 @@ export default function Experience() {
       </div>
     </section>
   );
-}
+});
+
+export default Experience;

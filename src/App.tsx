@@ -103,9 +103,15 @@ function AppContent() {
 }
 
 export default function App() {
-  // Initialize GA4 only once on client-side
+  // Defer analytics until after page is interactive to prevent blocking initial render
   useEffect(() => {
-    initGA();
+    if (document.readyState === 'complete') {
+      // Page already loaded, initialize immediately
+      initGA();
+    } else {
+      // Wait for page load event
+      window.addEventListener('load', () => initGA(), { once: true });
+    }
   }, []);
 
   return (

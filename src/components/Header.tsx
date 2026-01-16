@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { MapPin, Github, Linkedin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
@@ -44,7 +45,7 @@ function getParticleLayout(index: number) {
   return { left, top, delay, duration };
 }
 
-export default function Header() {
+const Header = memo(function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -194,4 +195,6 @@ export default function Header() {
       </div>
     </header>
   );
-}
+});
+
+export default Header;
