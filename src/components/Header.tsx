@@ -137,7 +137,7 @@ const Header = memo(function Header() {
         <div className="text-center md:text-left">
           <h1 className="text-5xl font-bold mb-4 drop-shadow-lg text-shadow-strong text-white">Brett Sanders</h1>
           <h2 className="text-2xl text-gray-100 dark:text-gray-200 mb-6 drop-shadow-md text-shadow">
-            Engineering Leader • Full Stack Software Engineer • SAFe Agile Certified • AWS Certified
+            Engineering Leader • Full Stack Software Engineer • Agentic AI Certified • AWS Certified
           </h2>
           <div className="flex flex-wrap gap-6 text-gray-100 dark:text-gray-200 mb-8 justify-center md:justify-start">
             <div className="flex items-center gap-2">
