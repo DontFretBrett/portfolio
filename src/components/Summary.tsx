@@ -51,7 +51,7 @@ export default function Summary() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>SAFe Agile Certified</strong> practitioner with proven team leadership capabilities</span>
+                <span><strong>Agentic AI Certified</strong> practitioner with proven team leadership capabilities</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
