@@ -195,7 +195,7 @@ A fast, anonymous link and text sharing service that enables instant device-to-d
 │   │   └── error.tsx         # Error boundary UI
 │   └── utils/qr.tsx          # QR code renderer
 ├── scripts/
-│   └── monitor-neon-usage.ts # Database usage monitoring script
+│   └── monitor-neon-usage.ts # Server function for creating shares
 └── .github/workflows/
     └── monitor-neon-usage.yml # Automated monitoring workflow
 \`\`\`
@@ -238,6 +238,60 @@ A fast, anonymous link and text sharing service that enables instant device-to-d
 - Well-documented with README and MONITORING.md
 
 This project demonstrates modern full-stack development with edge computing, serverless architecture, and privacy-first design principles.`
+  },
+  {
+    slug: 'ai-assistant-human-questionnaire',
+    title: 'AI Assistant Human Questionnaire',
+    description: 'A privacy-first, browser-local questionnaire designed to build comprehensive human profiles for AI assistants, ensuring data never leaves the user\'s device.',
+    excerpt: 'Bridge the context gap between humans and AI. This tool helps you document your work, values, and life details in an AI-ready format while keeping 100% of your data on your own device.',
+    date: '2026-01-30',
+    tags: ['React 19', 'Vite', 'Tailwind CSS 4', 'Framer Motion', 'shadcn/ui', 'AI Context', 'Privacy-First', 'Local Storage'],
+    githubUrl: 'https://github.com/DontFretBrett/ai-assistant-human-questionairre',
+    liveUrl: 'https://ai-assistant-human-questionnaire.vercel.app',
+    embedCode: `<iframe
+	src="https://ai-assistant-human-questionnaire.vercel.app"
+	frameborder="0"
+	style="width: 100%; min-height: 800px; border-radius: 8px;"
+></iframe>`,
+    content: `# AI Assistant Human Questionnaire
+
+The **AI Assistant Human Questionnaire** is a tool built to solve a fundamental problem in the AI era: context. While AI models are becoming more capable, they still lack a deep, persistent understanding of the individuals they assist. This project provides a structured way to build that "user manual for yourself."
+
+## 🛡️ Privacy by Design
+
+In an age of data harvesting, this tool takes a hard stance on privacy:
+- **100% Client-Side**: All logic runs in your browser.
+- **Local Storage**: Your answers are saved to your browser's \`localStorage\`.
+- **Zero Backend**: There is no database. No data is sent to a server.
+- **Export Control**: You decide when to export your data and where to paste it.
+
+## ✨ Key Features
+
+- **Categorized Self-Reflection**: Questions spanning Basics, Work, Hobbies, Worldview, Ambitions, and more.
+- **Progress Tracking**: Visual indicators show how much of each category you've completed.
+- **Theme Support**: Polished Light and Dark modes with persistence.
+- **AI-Optimized Export**: Generates a clean Markdown file perfectly formatted for ingestion by LLMs like Claude, ChatGPT, or Gemini.
+- **Fluid UI**: Smooth transitions powered by Framer Motion and a modern aesthetic using Tailwind CSS 4.
+
+## 🛠️ Technical Implementation
+
+### Modern Frontend Stack
+Built with the latest web technologies to ensure a fast, maintainable, and type-safe codebase:
+- **React 19**: Leveraging the newest features of the React ecosystem.
+- **Tailwind CSS 4**: Utilizing the next generation of utility-first styling with high-performance CSS variables.
+- **Vite**: Ultra-fast build tool and development server.
+- **Framer Motion**: Orchestrating complex layout animations and category transitions.
+
+### Persistence & State
+The app uses a custom \`useLocalStorage\` hook to bridge React state with browser storage, ensuring that users can leave the page and return to their progress without losing a single keystroke.
+
+## 🤖 Built with AI, for AI
+
+This project wasn't just built to *help* with AI—it was built *by* an AI. Developed by Brett Sanders in collaboration with his **OpenClaw** bot (Johnny5), it serves as a testament to the power of human-agent pair programming.
+
+## Why This Matters
+
+As we move toward agents that can perform tasks on our behalf, the bottleneck is no longer "how do I do this?" but "how would *you* want me to do this?" This questionnaire provides the answer. It creates a portable, private, and comprehensive context file that turns a generic AI into *your* personalized assistant.`
   }
 ];
 
