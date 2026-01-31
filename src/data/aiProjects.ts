@@ -246,7 +246,7 @@ This project demonstrates modern full-stack development with edge computing, ser
     excerpt: 'Bridge the context gap between humans and AI. This tool helps you document your work, values, and life details in an AI-ready format while keeping 100% of your data on your own device.',
     date: '2026-01-30',
     tags: ['React 19', 'Vite', 'Tailwind CSS 4', 'Framer Motion', 'shadcn/ui', 'AI Context', 'Privacy-First', 'Local Storage'],
-    githubUrl: 'https://github.com/DontFretBrett/ai-assistant-human-questionairre',
+    githubUrl: 'https://github.com/DontFretBrett/ai-assistant-human-questionnaire',
     liveUrl: 'https://ai-assistant-human-questionnaire.vercel.app',
     content: `# AI Assistant Human Questionnaire
 
