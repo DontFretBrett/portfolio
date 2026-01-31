@@ -195,7 +195,7 @@ A fast, anonymous link and text sharing service that enables instant device-to-d
 │   │   └── error.tsx         # Error boundary UI
 │   └── utils/qr.tsx          # QR code renderer
 ├── scripts/
-│   └── monitor-neon-usage.ts # Server function for creating shares
+│   └── monitor-neon-usage.ts # Database usage monitoring script
 └── .github/workflows/
     └── monitor-neon-usage.yml # Automated monitoring workflow
 \`\`\`
@@ -248,11 +248,6 @@ This project demonstrates modern full-stack development with edge computing, ser
     tags: ['React 19', 'Vite', 'Tailwind CSS 4', 'Framer Motion', 'shadcn/ui', 'AI Context', 'Privacy-First', 'Local Storage'],
     githubUrl: 'https://github.com/DontFretBrett/ai-assistant-human-questionairre',
     liveUrl: 'https://ai-assistant-human-questionnaire.vercel.app',
-    embedCode: `<iframe
-	src="https://ai-assistant-human-questionnaire.vercel.app"
-	frameborder="0"
-	style="width: 100%; min-height: 800px; border-radius: 8px;"
-></iframe>`,
     content: `# AI Assistant Human Questionnaire
 
 The **AI Assistant Human Questionnaire** is a tool built to solve a fundamental problem in the AI era: context. While AI models are becoming more capable, they still lack a deep, persistent understanding of the individuals they assist. This project provides a structured way to build that "user manual for yourself."
