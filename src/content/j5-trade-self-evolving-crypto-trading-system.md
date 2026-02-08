@@ -7,7 +7,7 @@ description: "Deep dive into J5-Trade: a self-evolving multi-model crypto tradin
 keywords: "algorithmic trading, crypto trading bot, self-evolving AI, multi-model trading, Bitcoin trading, Python trading system, React dashboard, machine learning trading, automated trading, risk management"
 ---
 
-Over the past few months, I've been building something that represents one of the most technically challenging and intellectually rewarding projects of my career: **J5-Trade**, a self-evolving automated Bitcoin trading system. Not just another trading bot, but a system that thinks in multiple timeframes simultaneously, learns from its mistakes, and continuously adapts its strategies—all while you sleep.
+Over the past few weeks, I've been building something that represents one of the most technically challenging and intellectually rewarding projects of my career: **J5-Trade**, a self-evolving automated Bitcoin trading system — built with the help of my AI coding assistant. Not just another trading bot, but a system that thinks in multiple timeframes simultaneously, learns from its mistakes, and continuously adapts its strategies—all while you sleep.
 
 ## The Core Concept: Why Multiple Models?
 
@@ -236,7 +236,7 @@ No amount of engineering brilliance can overcome a bad strategy. Stay humble. Me
 
 ## Wrapping Up
 
-J5-Trade represents months of late nights, countless refactors, and more than a few "oh crap" moments when something broke in production. But it's also one of the most technically satisfying projects I've built.
+J5-Trade represents weeks of intense building, countless refactors, and more than a few "oh crap" moments when something broke in production. But it's also one of the most technically satisfying projects I've built.
 
 It's not just a trading bot—it's a self-improving system that gets smarter over time, learns from mistakes, and operates with military-grade risk management. The combination of multi-model architecture, real-time context awareness, automated evolution, and full-stack observability creates something greater than the sum of its parts.
 
