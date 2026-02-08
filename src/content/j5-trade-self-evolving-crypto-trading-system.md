@@ -22,7 +22,7 @@ The day trader. Rapid-fire momentum bursts, mean reversion plays, and trend-foll
 The disciplined trader. Multi-timeframe trend alignment with stricter entry criteria. Only takes trades when 15-minute and 1-hour signals agree. Daily loss limit: $700. Volatility-scaled position sizing.
 
 ### 3. Big-Picture Model (1h / 4h / daily timeframes)
-The strategist. Regime classification and macro-level posture. Determines whether we're in risk-on or risk-off conditions based on ISM manufacturing data, funding rates, and volatility regimes. Daily loss limit: $600. Maximum 2 trades per week.
+The strategist. Regime classification and macro-level posture. Determines whether we're in risk-on or risk-off conditions based on funding rates, volatility regimes, and market sentiment. Daily loss limit: $600. Maximum 2 trades per week.
 
 Each model has its own personality, its own risk tolerance, and most importantly—its own ability to **veto the others** when market conditions don't align.
 
@@ -56,17 +56,13 @@ Every change is logged to the database and visible in the dashboard's Evolution 
 J5-Trade doesn't trade in a vacuum. It integrates three layers of context:
 
 **1. News Sentiment Analysis**  
-Polls CryptoPanic and RSS feeds for breaking headlines. Uses OpenAI/Gemini to score sentiment on a -1.0 (panic) to +1.0 (moon) scale. When RSI screams "BUY" but news headlines scream "EXCHANGE HACK," the system stays flat.
+Polls crypto news feeds for breaking headlines. Uses OpenAI/Gemini to score sentiment on a -1.0 (panic) to +1.0 (moon) scale. When RSI screams "BUY" but news headlines scream "EXCHANGE HACK," the system stays flat.
 
-**2. Macro Regime Tracking**  
-Monitors ISM Manufacturing PMI to classify economic regimes:
-- `STRONG_EXPANSION` (ISM ≥ 52): Full risk-on, +25% clip size
-- `EXPANSION` (ISM 50-52): Normal parameters  
-- `CONTRACTION` (ISM 47-50): Defensive mode, -25% clip size
-- `DEEP_CONTRACTION` (ISM < 47): Very conservative, -50% clip size
+**2. Derivatives Context**  
+Tracks funding rates, open interest, and liquidation zones. When funding rates spike positive (overleveraged longs), the system knows a correction is more likely. High open interest with extreme funding often precedes volatility.
 
-**3. Derivatives Context**  
-Tracks funding rates, open interest, and liquidation zones. When funding rates spike positive (overleveraged longs), the system knows a correction is more likely.
+**3. Volatility Regime Detection**  
+Classifies current market conditions to adjust risk appetite. In high-volatility regimes, the system tightens position sizes and widens stop thresholds. In low-volatility consolidation, it watches for breakout setups.
 
 ### ⚖️ Signal Resolver: The Orchestra Conductor
 
