@@ -46,23 +46,23 @@ The self-evolution cycle works like this:
 - If capturing alpha but position sizes too small → increase clip size incrementally
 - If trading actively but losing money → tighten entry filters and increase cooldown periods
 
-Every change is logged to the `strategy_adaptations` table and visible in the dashboard's Evolution Log panel. If a change makes things worse, I can roll it back with a single command: `python strategy_evolver.py --rollback`.
+Every change is logged to the database and visible in the dashboard's Evolution Log panel. If a change makes things worse, the system supports one-click rollback to previous parameter values.
 
 ### 🧠 Context-Aware Trading: Beyond Technical Indicators
 
 J5-Trade doesn't trade in a vacuum. It integrates three layers of context:
 
-**1. News Sentiment (brain_news.py)**  
+**1. News Sentiment Analysis**  
 Polls CryptoPanic and RSS feeds for breaking headlines. Uses OpenAI/Gemini to score sentiment on a -1.0 (panic) to +1.0 (moon) scale. When RSI screams "BUY" but news headlines scream "EXCHANGE HACK," the system stays flat.
 
-**2. Macro Regime Tracking (brain_funding.py)**  
+**2. Macro Regime Tracking**  
 Monitors ISM Manufacturing PMI to classify economic regimes:
 - `STRONG_EXPANSION` (ISM ≥ 52): Full risk-on, +25% clip size
 - `EXPANSION` (ISM 50-52): Normal parameters  
 - `CONTRACTION` (ISM 47-50): Defensive mode, -25% clip size
 - `DEEP_CONTRACTION` (ISM < 47): Very conservative, -50% clip size
 
-**3. Derivatives Context (brain_funding.py)**  
+**3. Derivatives Context**  
 Tracks funding rates, open interest, and liquidation zones. When funding rates spike positive (overleveraged longs), the system knows a correction is more likely.
 
 ### ⚖️ Signal Resolver: The Orchestra Conductor
@@ -88,40 +88,40 @@ It also handles:
 
 J5-Trade has multiple safety layers:
 
-- **Per-model daily loss limits** enforced by `guard_dog.py`
+- **Per-model daily loss limits** enforced by a dedicated risk management module
 - **Global kill-switch at $2,000** cumulative loss
 - **Consecutive loss cooldowns** (Aggressive: 3 losses = 30min cooldown, Balanced: 5 losses = 60min, Big-Picture: 3 losses = cooldown)
 - **Stale data thresholds** - if price feed goes quiet, freeze new entries
 - **Circuit breakers** on API calls to prevent rate limiting
 - **Edge decay tracking** - rolling 30-day Sharpe per model, alerts when <0.5
 
-The core BTC stack (0.092 BTC) is **never touched**. Only trading with allocated risk capital.
+The core BTC holdings are **never touched**. Only trading with allocated risk capital.
 
 ## The Tech Stack
 
-Building a system that processes WebSocket streams, scores news with LLMs, maintains 16+ SQLite tables, and serves a real-time React dashboard required careful technology choices.
+Building a system that processes WebSocket streams, scores news with LLMs, maintains a comprehensive data persistence layer, and serves a real-time React dashboard required careful technology choices.
 
 ### Backend
-- **Python 3.13** with asyncio for concurrent daemon processes
-- **WebSocket** connection to Coinbase Advanced Trade API
-- **SQLite with WAL mode** for concurrent reads/writes (16 tables: price_history, trade_ledger, model_signals, missed_opportunities, strategy_adaptations, etc.)
-- **12 background daemons** managed by `health_monitor.py` with auto-restart on crash
+- **Python** with asyncio for concurrent background processes
+- **WebSocket** connection to exchange API
+- **SQLite with WAL mode** for concurrent reads/writes across multiple data tables
+- **Multiple background processes** with health monitoring and auto-restart capabilities
 
 ### Frontend  
-- **React 19 + TypeScript** for type-safe UI components
-- **Vite** for blazing-fast dev server and builds
-- **TailwindCSS 4** for styling
+- **React + TypeScript** for type-safe UI components
+- **Modern build tooling** for fast development and optimized production builds
+- **TailwindCSS** for styling
 - **Recharts** for real-time charts and visualizations
-- **Radix UI** for accessible component primitives
+- **Component library** for accessible, polished UI primitives
 - **Selective polling** - different components poll at different intervals to balance responsiveness vs API load
 
 ### API Server
-- **Bun** runtime for the API server (`server.ts`)  
+- **Modern JavaScript runtime** for the API server
 - RESTful endpoints for all system data
 - Server-sent events (SSE) for live log streaming
 
 ### AI Integration
-- **OpenAI GPT-4o-mini** and **Google Gemini-Flash** for news sentiment scoring
+- **OpenAI** and **Google Gemini** for news sentiment scoring
 - **Circuit breaker pattern** prevents API overuse and handles rate limiting gracefully
 
 ## The Dashboard: Full Visibility
@@ -131,68 +131,65 @@ Built a comprehensive real-time dashboard that gives me complete visibility into
 **System Overview Tab:**
 - Current BTC price with 24h change
 - Total PnL and loss budget remaining  
-- Daemon health status (12 processes, green/red indicators)
+- Process health status with visual indicators
 - Current macro regime and multipliers
-- Cron countdown until next heartbeat
+- System uptime and status
 
 **Models Tab:**
 - Per-model panels showing status, realized PnL, daily loss, trades today
-- Signal history for each model (last 50 signals)
+- Signal history visualization
 - Execution quality metrics: fill ratio, average slippage, cancel rate
 - 30-day rolling Sharpe and edge decay warnings
 
 **Evolution Log Tab:**
 - Every parameter adaptation: param name, old value → new value, change %, reason
-- Family additions (when new strategy families get enabled)
-- Rollback status and one-click rollback button
+- Strategy family additions and removals
+- Rollback status and one-click rollback capability
 
 **Missed Opportunities Tab:**
 - Visualizes captured alpha vs missed alpha
-- 7-day trend: optimal PnL, actual PnL, capture rate
+- Multi-day trend analysis: optimal PnL, actual PnL, capture rate
 - Top miss reasons (e.g., "no signal generated", "signal vetoed", "spread too wide")
 
 **Intel Feed Tab:**
 - Live news headlines with sentiment scores and color-coded indicators
 - Breaking/urgent news highlighted
-- Click to expand full article analysis
+- Expandable full article analysis
 
-**Live Health Logs:**
-- Real-time tail of all 12 daemon logs
-- Filterable by daemon, searchable, auto-scroll
+**System Logs:**
+- Real-time monitoring of all background processes
+- Filterable, searchable, with auto-scroll
 
 ## Architecture Highlights
 
-### The `j5` Command
-Single entry point that works on any machine:
+### Modular Backend Design
+The system consists of multiple independent Python processes that communicate through the shared database:
 
-```bash
-./j5 setup     # Creates venv, installs deps, initializes DB
-./j5 start     # Launches all 12 daemons + dashboard
-./j5 stop      # Stops everything cleanly
-./j5 status    # Shows daemon health
-./j5 logs      # Tail all logs live
-```
+**Market Data Layer:**
+- Real-time WebSocket price feed ingestion
+- OHLCV candle aggregation across multiple timeframes (1m through daily)
+- Historical data management for backtesting and analysis
 
-All paths resolve dynamically. No hardcoded directories.
+**Intelligence Layer:**
+- Three independent trading model processes (Aggressive, Balanced, Big-Picture)
+- News sentiment analysis with LLM scoring
+- Macro regime classification and derivatives monitoring
+- Missed opportunity tracking and analysis
 
-### Daemon Architecture
-12 independent processes that communicate via SQLite:
+**Execution Layer:**
+- Signal resolution and conflict management
+- Order execution with sophisticated retry logic
+- Risk enforcement and position tracking
 
-1. **observer.py** - WebSocket price feed from Coinbase
-2. **candle_aggregator.py** - Builds OHLCV candles (1m, 5m, 15m, 1h, 4h, daily)
-3. **aggressive_model.py** - Generates aggressive signals (15-second loop)
-4. **balanced_model.py** - Generates balanced signals (60-second loop)
-5. **bigpicture_model.py** - Generates macro signals (5-minute loop)
-6. **signal_resolver.py** - Resolves conflicts and creates execution queue
-7. **live_engine.py** - Executes trades on Coinbase
-8. **guard_dog.py** - Enforces risk limits
-9. **health_monitor.py** - Auto-restarts crashed daemons
-10. **brain_news.py** - Sentiment ingestion with circuit breaker
-11. **brain_funding.py** - Derivatives regime tracker
-12. **missed_opportunity_tracker.py** - Hourly missed-alpha analysis
+**Operational Layer:**
+- Health monitoring with automatic process recovery
+- System logging and metrics collection
+- Performance analytics and edge decay detection
 
-### Ghost Trading Mode
-Before risking real money, J5-Trade runs in "ghost mode"—simulated trading with real market data. Every trade gets a `ghost` flag in the ledger, PnL is tracked separately, and I can see exactly what would have happened without risking capital.
+All processes run concurrently, with a management interface that handles orchestration, startup, shutdown, and health checks.
+
+### Simulation Mode
+Before risking real capital, the system supports a simulation mode—paper trading with real market data. All trade logic executes identically, PnL is tracked separately, and I can validate strategy changes without financial risk.
 
 ## Future Plans
 
@@ -251,11 +248,12 @@ Either way, I've learned an enormous amount about trading, real-time systems, ri
 ---
 
 **Interested in the technical details?** The system uses some fascinating patterns:
-- SQLite WAL mode for concurrent daemon access
+- Concurrent process communication via shared data layer
 - Server-sent events for real-time log streaming
 - Circuit breaker pattern for API stability  
 - Veto hierarchies for multi-agent decision-making
 - Time-series analysis for missed opportunity detection
+- Automatic parameter tuning within safety guardrails
 
 Want to discuss algorithmic trading, multi-model systems, or just chat about the engineering challenges? Feel free to reach out. Always happy to talk shop with fellow engineers tackling complex problems.
 
