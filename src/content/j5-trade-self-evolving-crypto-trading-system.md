@@ -205,7 +205,7 @@ Expand beyond BTC to ETH, SOL, and other majors. The architecture is already ass
 A meta-model that learns which model to trust in which regime. "Balanced model historically does better during high-volatility contraction; give it more weight right now."
 
 **Advanced Position Sizing:**  
-Kelly Criterion and volatility targeting at the portfolio level, not just per-model.
+Kelly criterion and volatility targeting at the portfolio level, not just per-model.
 
 **Regime Detection 2.0:**  
 Volatility clustering via GARCH models, correlation analysis across crypto/equities/bonds.
