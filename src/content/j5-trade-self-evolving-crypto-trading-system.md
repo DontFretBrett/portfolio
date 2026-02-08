@@ -48,6 +48,9 @@ The self-evolution cycle works like this:
 
 Every change is logged to the database and visible in the dashboard's Evolution Log panel. If a change makes things worse, the system supports one-click rollback to previous parameter values.
 
+![J5-Trade Dashboard showing Missed Opportunities analysis and Evolution Log](/images/blog/j5-trade-evolution-dashboard.jpg)
+*The self-evolution system in action: Left panel shows missed alpha analysis with 7-day trends and hourly breakdowns. Right panel shows the Evolution Log with automatic parameter adjustments — the system loosening filters after detecting too many windows with no signals generated.*
+
 ### 🧠 Context-Aware Trading: Beyond Technical Indicators
 
 J5-Trade doesn't trade in a vacuum. It integrates three layers of context:
