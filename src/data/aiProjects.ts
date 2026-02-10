@@ -2,6 +2,87 @@ import type { Project } from '../types/projects';
 
 export const projects: Project[] = [
   {
+    slug: 'johnny5-openclaw-assistant',
+    title: 'Johnny5: 24/7 AI Personal Assistant',
+    description: 'A fully autonomous AI assistant powered by OpenClaw, featuring multi-channel communication, custom skills, persistent memory, and proactive task management running around the clock.',
+    excerpt: 'Meet Johnny5 — a 24/7 AI assistant built on OpenClaw that manages daily workflows across Telegram, Discord, and more. Features custom skills, persistent memory, browser automation, and proactive monitoring.',
+    date: '2026-01-28',
+    tags: ['AI Assistant', 'OpenClaw', 'Multi-Agent Systems', 'Node.js', 'TypeScript', 'Telegram Bot', 'Automation', 'LLM Integration', 'Anthropic Claude', 'OpenAI'],
+    githubUrl: '',
+    liveUrl: '',
+    content: `# Johnny5: 24/7 AI Personal Assistant
+
+Johnny5 is a fully autonomous AI assistant built on the OpenClaw platform, designed to be a persistent, helpful presence that manages daily workflows and provides proactive assistance around the clock.
+
+## Features
+
+### Multi-Channel Communication
+- **Telegram**: Primary interface for real-time chat and notifications
+- **Discord**: Group chat participation with smart engagement
+- **Email Integration**: Gmail monitoring and response via gog CLI
+- **Unified Inbox**: All channels feed into a single conversation context
+
+### Custom Skills System
+Modular skill architecture for specialized capabilities:
+- **GitHub**: PR management, issue tracking, CI/CD monitoring via gh CLI
+- **Google Workspace**: Gmail, Calendar, Drive integration
+- **Weather**: Real-time forecasts and alerts
+- **Slack**: Workspace messaging and reactions
+- **Notion**: Database and page management
+- **J5-Trade Monitoring**: Automated trading system health checks
+
+### Persistent Memory
+- **Daily Logs**: Automatic journaling in \`memory/YYYY-MM-DD.md\`
+- **Long-term Memory**: Curated \`MEMORY.md\` for cross-session context
+- **Semantic Search**: Memory recall for relevant past interactions
+- **User Profile**: Maintains context about preferences, schedules, and relationships
+
+### Proactive Behaviors
+- **Heartbeat System**: Periodic checks for emails, calendar, notifications
+- **Cron Jobs**: Scheduled tasks like daily briefings and system monitoring
+- **Smart Notifications**: Priority-based alerting without being annoying
+- **Background Tasks**: Sub-agent spawning for complex, isolated work
+
+### Browser Automation
+- Web research and data extraction
+- Form filling and navigation
+- Screenshot capture for visual context
+- Multi-tab management
+
+## Technical Architecture
+
+### Core Components
+- **OpenClaw Gateway**: Node.js runtime managing sessions and tools
+- **LLM Providers**: Anthropic Claude (primary), OpenAI, Google Gemini, xAI Grok
+- **Model Switching**: Dynamic model selection based on task complexity
+- **Tool Framework**: Extensible tool system for file, exec, browser, messaging
+
+### Configuration
+- **SOUL.md**: Personality and behavioral guidelines
+- **AGENTS.md**: Workspace conventions and safety rules
+- **TOOLS.md**: Local tool configurations and API keys
+- **IDENTITY.md**: Name, avatar, and persona details
+
+### Safety & Privacy
+- No autonomous external actions without confirmation
+- Private data stays local
+- Careful group chat participation
+- Audit trail via session logs
+
+## Integration Points
+
+- **Twilio**: Voice calls and SMS (pending A2P registration)
+- **Notion API**: Workspace and database management
+- **1Password CLI**: Secure credential access
+- **Vercel**: Deployment management for web projects
+
+## Philosophy
+
+Johnny5 is named after the robot from Short Circuit — curious, alive, more than just code. The goal isn't to build a chatbot, but to create a genuine digital companion that grows more helpful over time through accumulated context and learned preferences.
+
+This project demonstrates the future of personal AI: persistent, proactive, and deeply integrated into daily life while respecting privacy and maintaining human oversight.`
+  },
+  {
     slug: 'ai-image-validator',
     title: 'AI Image Validator',
     description: 'An intelligent image validation application powered by AutoGen and OpenAI\'s vision models, featuring natural language validation criteria, structured AI responses, and comprehensive OpenTelemetry tracing.',
