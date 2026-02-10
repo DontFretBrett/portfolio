@@ -21,9 +21,8 @@ export default function Summary() {
           </p>
           <p className="mt-4">
             Now a <span itemProp="jobTitle" className="text-blue-600 dark:text-blue-400 font-medium">Software Engineering Director</span> at 
-            Truist Bank with 13+ years of experience in financial services, in roles from developer to director. Expertise in hands-on building, 
-            architecting, planning, and leading projects from concept to completion, on time and under budget. Currently leading 4 delivery teams 
-            (20 direct reports) across web, iOS, and Android for 24/7 operation of LightStream division.
+            Truist Bank with 15+ years of experience in financial services, in roles from developer to director. Expertise in hands-on building, 
+            architecting, planning, and leading projects from concept to completion, on time and under budget.
           </p>
           <p className="mt-4">
             Most recently, I've been diving deep into the world of AI agents and autonomous systems, building production systems with 
@@ -43,11 +42,11 @@ export default function Summary() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>13+ years</strong> of hands-on software engineering experience in financial services</span>
+                <span><strong>15+ years</strong> of hands-on software engineering experience in financial services</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>Software Engineering Director</strong> at Truist Bank (Fortune 500 financial institution) leading 4 teams with 20 direct reports</span>
+                <span><strong>Software Engineering Director</strong> at Truist Bank (Fortune 500 financial institution)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
@@ -79,10 +78,6 @@ export default function Summary() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>Launched State Farm partnership</strong> driving $74.3M+ in funded loans since 2023</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                 <span><strong>Achieved 100% ADA compliance</strong> for public website using industry-leading accessibility tools and standards</span>
               </li>
             </ul>
@@ -96,7 +91,7 @@ export default function Summary() {
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-              <span>Based in El Cajon, CA (San Diego area)</span>
+              <span>Based in San Diego, CA</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
