@@ -20,19 +20,21 @@ export default function Summary() {
             immensely rewarding.
           </p>
           <p className="mt-4">
-            Now a <span itemProp="jobTitle" className="text-blue-600 dark:text-blue-400 font-medium">technology leader</span> with over 15 years of experience mostly in the financial sector 
-            in roles from developer to director. Expertise in hands on building, architecting, planning, and leading projects from concept to completion, on time and under budget.
+            Now a <span itemProp="jobTitle" className="text-blue-600 dark:text-blue-400 font-medium">Software Engineering Director</span> at 
+            Truist Bank with 13+ years of experience in financial services, in roles from developer to director. Expertise in hands-on building, 
+            architecting, planning, and leading projects from concept to completion, on time and under budget. Currently leading 4 delivery teams 
+            (20 direct reports) across web, iOS, and Android for 24/7 operation of LightStream division.
           </p>
           <p className="mt-4">
             Most recently, I've been diving deep into the world of AI agents and autonomous systems, building production systems with 
             OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). I've built an autonomous multi-model 
-            cryptocurrency trading platform (J5-Trade) that runs 24/7 with real-time market analysis, and a personal AI assistant (Johnny5) 
-            powered by OpenClaw that manages my daily workflows across multiple channels. I believe we're at a pivotal moment where AI will 
-            fundamentally transform how we build and interact with software systems.
+            cryptocurrency trading platform (J5-Trade) that runs 24/7 with real-time market analysis featuring 3 independent AI-driven trading models 
+            and 12+ background daemons. I also run a personal AI assistant (Johnny5) powered by OpenClaw that manages my daily workflows across 
+            multiple channels. I believe we're at a pivotal moment where AI will fundamentally transform how we build and interact with software systems.
           </p>
           <p className="mt-4">
             I'm passionate about building high quality maintainable systems, efficiency, automation, sharing my knowledge and experience, 
-            mentoring, and fostering high performing teams. <span itemProp="knowsAbout" className="text-blue-600 dark:text-blue-400 font-medium">Proficient in a wide range of full stack technologies including SQL Server, Node.js, C# .NET, Angular, Web and Azure/AWS cloud services, and cutting-edge AI agent frameworks</span>.
+            mentoring, and fostering high performing teams. <span itemProp="knowsAbout" className="text-blue-600 dark:text-blue-400 font-medium">Proficient in a wide range of full stack technologies including SQL Server, TypeScript, Python, Node.js, C# .NET, Angular, React, AWS/Azure cloud services, and cutting-edge AI agent frameworks</span>.
           </p>
           
           {/* Enhanced author credentials section */}
@@ -41,31 +43,47 @@ export default function Summary() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>15+ years</strong> of hands-on software engineering experience in financial technology</span>
+                <span><strong>13+ years</strong> of hands-on software engineering experience in financial services</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>Software Engineering Director</strong> at Truist Bank (Fortune 500 financial institution)</span>
+                <span><strong>Software Engineering Director</strong> at Truist Bank (Fortune 500 financial institution) leading 4 teams with 20 direct reports</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>AWS Certified Cloud Practitioner</strong> with strong cloud services knowledge</span>
+                <span><strong>Saved ~$2 million</strong> at Truist by finding secure solution for deprecated web framework</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>Agentic AI Certified</strong> practitioner with proven team leadership capabilities</span>
+                <span><strong>Maintained 99.9% uptime</strong> for customer-facing web experiences at LightStream division</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>AI Engineering Specialist</strong> with expertise in OpenAI, AutoGen, CrewAI, LangGraph, and Model Context Protocol</span>
+                <span><strong>AWS Certified Cloud Practitioner</strong> with deep cloud architecture expertise</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>Production AI Systems Builder</strong> — autonomous trading platform (J5-Trade) and 24/7 AI assistant (Johnny5/OpenClaw)</span>
+                <span><strong>SAFe Agile Certified</strong> with proven experience scaling agile practices across enterprise teams</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span><strong>AI Agentic Engineering Certified</strong> (Ed Donner) — expert in OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Model Context Protocol</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span><strong>Production AI Systems Builder</strong> — autonomous trading platform (J5-Trade) with 3 AI models and 12+ daemons, plus 24/7 AI assistant (Johnny5/OpenClaw)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                 <span><strong>Published Technical Author</strong> with articles on AI engineering, React, and software architecture</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span><strong>Launched State Farm partnership</strong> driving $74.3M+ in funded loans since 2023</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span><strong>Achieved 100% ADA compliance</strong> for public website using industry-leading accessibility tools and standards</span>
               </li>
             </ul>
           </div>
@@ -78,11 +96,11 @@ export default function Summary() {
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-              <span>Based in San Diego, CA</span>
+              <span>Based in El Cajon, CA (San Diego area)</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-              <span>Professionally active in tech community since 2008</span>
+              <span>Professionally active in tech community since 2011</span>
             </div>
           </div>
         </div>
