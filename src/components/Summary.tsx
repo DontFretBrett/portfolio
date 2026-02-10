@@ -24,9 +24,11 @@ export default function Summary() {
             in roles from developer to director. Expertise in hands on building, architecting, planning, and leading projects from concept to completion, on time and under budget.
           </p>
           <p className="mt-4">
-            Most recently, I've been diving deep into the world of AI agents and autonomous systems, exploring cutting-edge frameworks like 
-            OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). I believe we're at a pivotal moment 
-            where AI will fundamentally transform how we build and interact with software systems.
+            Most recently, I've been diving deep into the world of AI agents and autonomous systems, building production systems with 
+            OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). I've built an autonomous multi-model 
+            cryptocurrency trading platform (J5-Trade) that runs 24/7 with real-time market analysis, and a personal AI assistant (Johnny5) 
+            powered by OpenClaw that manages my daily workflows across multiple channels. I believe we're at a pivotal moment where AI will 
+            fundamentally transform how we build and interact with software systems.
           </p>
           <p className="mt-4">
             I'm passionate about building high quality maintainable systems, efficiency, automation, sharing my knowledge and experience, 
@@ -55,7 +57,11 @@ export default function Summary() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>AI Engineering Specialist</strong> with expertise in OpenAI, AutoGen, CrewAI, and Model Context Protocol</span>
+                <span><strong>AI Engineering Specialist</strong> with expertise in OpenAI, AutoGen, CrewAI, LangGraph, and Model Context Protocol</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span><strong>Production AI Systems Builder</strong> — autonomous trading platform (J5-Trade) and 24/7 AI assistant (Johnny5/OpenClaw)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>

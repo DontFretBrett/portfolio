@@ -57,7 +57,19 @@ export default function Skills() {
         </svg>
       ),
       title: 'AI Agents & Automation',
-      skills: 'OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, Model Context Protocol (MCP), FastMCP, Gradio, Python async programming, Multi-agent systems, Agent workflows, Protocol design, AI automation, Anthropic Claude, OpenAI GPT, Prompt engineering',
+      skills: 'OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, Model Context Protocol (MCP), OpenClaw, Anthropic Claude, OpenAI GPT, Google Gemini, xAI Grok, DeepSeek, Prompt Engineering, RAG Systems, Multi-agent Systems, Autonomous Trading Algorithms, Real-time AI Pipelines',
+      itemProp: 'knowsAbout'
+    },
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 20V10"/>
+          <path d="M18 20V4"/>
+          <path d="M6 20v-4"/>
+        </svg>
+      ),
+      title: 'AI Development Tools',
+      skills: 'Cursor IDE, Windsurf IDE, Claude Code, Codex CLI, VS Code + AI Extensions, Hugging Face Spaces, Gradio, FastMCP, Python AsyncIO, WebSocket Data Feeds, SQLite/PostgreSQL for AI State',
       itemProp: 'knowsAbout'
     },
     {

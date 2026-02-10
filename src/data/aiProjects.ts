@@ -2,6 +2,158 @@ import type { Project } from '../types/projects';
 
 export const projects: Project[] = [
   {
+    slug: 'j5-trade',
+    title: 'J5-Trade: Autonomous Multi-Model Trading Platform',
+    description: 'A production-grade autonomous cryptocurrency trading system featuring three independent AI-driven models, real-time market analysis, and comprehensive risk management running 24/7 on Coinbase Advanced Trade.',
+    excerpt: 'An autonomous multi-model crypto trading platform with AI-powered sentiment analysis, real-time WebSocket feeds, and sophisticated risk management. Three independent models collaborate through a signal resolver for coordinated execution.',
+    date: '2026-02-01',
+    tags: ['AI Trading', 'Multi-Agent Systems', 'Python', 'AsyncIO', 'WebSockets', 'SQLite', 'TypeScript', 'Bun', 'Real-time Systems', 'Risk Management', 'Coinbase API'],
+    githubUrl: '',
+    liveUrl: '',
+    content: `# J5-Trade: Autonomous Multi-Model Trading Platform
+
+A production-grade autonomous cryptocurrency trading system for BTC-USD on Coinbase Advanced Trade. Three independent AI-driven trading models generate signals through a unified resolver, with per-model risk budgets and portfolio-level safety overlays.
+
+## Architecture
+
+The system runs 12+ background daemons coordinating market data, signal generation, execution, and risk management:
+
+### Trading Models
+
+| Model | Timeframes | Style | Daily Loss Limit |
+|-------|-----------|-------|-----------------|
+| **Aggressive** | 1m, 5m | Momentum bursts, mean reversion | $300 |
+| **Balanced** | 15m, 1h | Multi-TF trend alignment | $300 |
+| **Big-Picture** | 1h, 4h, daily | Regime classification, volatility targeting | $400 |
+
+### Core Components
+
+- **Observer**: Real-time WebSocket price feed from Coinbase
+- **Candle Aggregator**: Builds OHLCV candles from tick data
+- **Signal Resolver**: Aggregates model signals with veto hierarchy
+- **Live Engine**: Executes trades on Coinbase Advanced Trade
+- **Guard Dog**: Per-model risk limits & budget enforcement
+- **Health Monitor**: Auto-restarts crashed daemons
+
+### AI-Powered Analysis
+
+- **Brain News**: Sentiment analysis using OpenAI/Gemini with circuit breakers
+- **Brain Funding**: Derivatives regime tracking from funding rates, OI, and Fear & Greed Index
+- **Missed Opportunity Tracker**: Logs skipped signals for strategy evolution
+
+## Technical Implementation
+
+### Real-time Data Pipeline
+- WebSocket connection to Coinbase for sub-second price updates
+- Automatic reconnection with stale data detection
+- Multi-timeframe candle aggregation (1m, 5m, 15m, 1h, 4h, daily)
+
+### Risk Management
+- Global kill-switch at $2,000 cumulative loss
+- Per-model daily loss budgets with automatic cooldowns
+- Consecutive loss limits with configurable cooldown periods
+- Core BTC shield (untouched reserve)
+
+### Dashboard
+Full-stack monitoring dashboard built with Vite + Bun:
+- Real-time PnL tracking per model
+- Daemon health status
+- Emergency kill controls
+- Trade history and execution logs
+
+## Technology Stack
+
+- **Backend**: Python 3.10+, AsyncIO, pandas, numpy
+- **Database**: SQLite for trade ledger and state
+- **API**: Coinbase Advanced Trade REST + WebSocket
+- **Dashboard**: TypeScript, Vite, Bun
+- **AI Integration**: OpenAI GPT, Google Gemini for sentiment
+- **Deployment**: Background daemons with health monitoring
+
+This project demonstrates production-grade autonomous systems combining real-time data processing, multi-agent decision making, and comprehensive risk management.`
+  },
+  {
+    slug: 'johnny5-openclaw-assistant',
+    title: 'Johnny5: 24/7 AI Personal Assistant',
+    description: 'A fully autonomous AI assistant powered by OpenClaw, featuring multi-channel communication, custom skills, persistent memory, and proactive task management running around the clock.',
+    excerpt: 'Meet Johnny5 — a 24/7 AI assistant built on OpenClaw that manages daily workflows across Telegram, Discord, and more. Features custom skills, persistent memory, browser automation, and proactive monitoring.',
+    date: '2026-01-28',
+    tags: ['AI Assistant', 'OpenClaw', 'Multi-Agent Systems', 'Node.js', 'TypeScript', 'Telegram Bot', 'Automation', 'LLM Integration', 'Anthropic Claude', 'OpenAI'],
+    githubUrl: '',
+    liveUrl: '',
+    content: `# Johnny5: 24/7 AI Personal Assistant
+
+Johnny5 is a fully autonomous AI assistant built on the OpenClaw platform, designed to be a persistent, helpful presence that manages daily workflows and provides proactive assistance around the clock.
+
+## Features
+
+### Multi-Channel Communication
+- **Telegram**: Primary interface for real-time chat and notifications
+- **Discord**: Group chat participation with smart engagement
+- **Email Integration**: Gmail monitoring and response via gog CLI
+- **Unified Inbox**: All channels feed into a single conversation context
+
+### Custom Skills System
+Modular skill architecture for specialized capabilities:
+- **GitHub**: PR management, issue tracking, CI/CD monitoring via gh CLI
+- **Google Workspace**: Gmail, Calendar, Drive integration
+- **Weather**: Real-time forecasts and alerts
+- **Slack**: Workspace messaging and reactions
+- **Notion**: Database and page management
+- **J5-Trade Monitoring**: Automated trading system health checks
+
+### Persistent Memory
+- **Daily Logs**: Automatic journaling in \`memory/YYYY-MM-DD.md\`
+- **Long-term Memory**: Curated \`MEMORY.md\` for cross-session context
+- **Semantic Search**: Memory recall for relevant past interactions
+- **User Profile**: Maintains context about preferences, schedules, and relationships
+
+### Proactive Behaviors
+- **Heartbeat System**: Periodic checks for emails, calendar, notifications
+- **Cron Jobs**: Scheduled tasks like daily briefings and system monitoring
+- **Smart Notifications**: Priority-based alerting without being annoying
+- **Background Tasks**: Sub-agent spawning for complex, isolated work
+
+### Browser Automation
+- Web research and data extraction
+- Form filling and navigation
+- Screenshot capture for visual context
+- Multi-tab management
+
+## Technical Architecture
+
+### Core Components
+- **OpenClaw Gateway**: Node.js runtime managing sessions and tools
+- **LLM Providers**: Anthropic Claude (primary), OpenAI, Google Gemini, xAI Grok
+- **Model Switching**: Dynamic model selection based on task complexity
+- **Tool Framework**: Extensible tool system for file, exec, browser, messaging
+
+### Configuration
+- **SOUL.md**: Personality and behavioral guidelines
+- **AGENTS.md**: Workspace conventions and safety rules
+- **TOOLS.md**: Local tool configurations and API keys
+- **IDENTITY.md**: Name, avatar, and persona details
+
+### Safety & Privacy
+- No autonomous external actions without confirmation
+- Private data stays local
+- Careful group chat participation
+- Audit trail via session logs
+
+## Integration Points
+
+- **Twilio**: Voice calls and SMS (pending A2P registration)
+- **Notion API**: Workspace and database management
+- **1Password CLI**: Secure credential access
+- **Vercel**: Deployment management for web projects
+
+## Philosophy
+
+Johnny5 is named after the robot from Short Circuit — curious, alive, more than just code. The goal isn't to build a chatbot, but to create a genuine digital companion that grows more helpful over time through accumulated context and learned preferences.
+
+This project demonstrates the future of personal AI: persistent, proactive, and deeply integrated into daily life while respecting privacy and maintaining human oversight.`
+  },
+  {
     slug: 'ai-image-validator',
     title: 'AI Image Validator',
     description: 'An intelligent image validation application powered by AutoGen and OpenAI\'s vision models, featuring natural language validation criteria, structured AI responses, and comprehensive OpenTelemetry tracing.',
