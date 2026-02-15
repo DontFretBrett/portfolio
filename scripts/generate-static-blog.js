@@ -5,6 +5,50 @@ import yaml from 'js-yaml';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/**
+ * Validates and sanitizes a path segment to prevent directory traversal attacks.
+ * @param {string} segment - The path segment to validate (e.g., a slug)
+ * @param {string} baseDir - The base directory that the segment should be relative to
+ * @returns {string} - The validated absolute path
+ * @throws {Error} - If the path is invalid or attempts directory traversal
+ */
+function validatePathSegment(segment, baseDir) {
+  // Reject null, undefined, or empty segments
+  if (!segment || typeof segment !== 'string') {
+    throw new Error('Invalid path segment: must be a non-empty string');
+  }
+  
+  // Reject absolute paths
+  if (path.isAbsolute(segment)) {
+    throw new Error('Invalid path segment: absolute paths are not allowed');
+  }
+  
+  // Reject segments containing null bytes
+  if (segment.includes('\0')) {
+    throw new Error('Invalid path segment: null bytes are not allowed');
+  }
+  
+  // Normalize the segment to remove any '..' or '.' components
+  const normalizedSegment = path.normalize(segment);
+  
+  // Reject if normalized segment contains path separators (e.g., '/', '\')
+  // This prevents subdirectory traversal like 'a/b' or '..\\'
+  if (normalizedSegment.includes(path.sep)) {
+    throw new Error('Invalid path segment: directory separators are not allowed');
+  }
+  
+  // Resolve the full path and ensure it starts with the base directory
+  const resolvedPath = path.resolve(baseDir, normalizedSegment);
+  const normalizedBase = path.resolve(baseDir);
+  
+  // Ensure the resolved path is within the base directory
+  if (!resolvedPath.startsWith(normalizedBase + path.sep) && resolvedPath !== normalizedBase) {
+    throw new Error(`Invalid path segment: resolved path "${resolvedPath}" is outside base directory "${normalizedBase}"`);
+  }
+  
+  return resolvedPath;
+}
+
 // Function to load blog posts dynamically from the content directory
 async function loadBlogPosts() {
   const contentDir = path.join(__dirname, '../src/content');
@@ -244,12 +288,19 @@ async function generateStaticFiles() {
   
   // Generate individual blog posts
   blogPosts.forEach(post => {
-    const postDir = path.join(blogDir, post.slug);
-    if (!fs.existsSync(postDir)) {
-      fs.mkdirSync(postDir, { recursive: true });
+    try {
+      // Validate the slug to prevent path traversal attacks
+      const postDir = validatePathSegment(post.slug, blogDir);
+      
+      if (!fs.existsSync(postDir)) {
+        fs.mkdirSync(postDir, { recursive: true });
+      }
+      fs.writeFileSync(path.join(postDir, 'index.html'), generateBlogPostHTML(post));
+      console.log(`✓ Generated ${post.slug}/index.html`);
+    } catch (error) {
+      console.error(`✗ Failed to generate blog post for slug "${post.slug}":`, error.message);
+      // Continue processing other posts even if one fails
     }
-    fs.writeFileSync(path.join(postDir, 'index.html'), generateBlogPostHTML(post));
-    console.log(`✓ Generated ${post.slug}/index.html`);
   });
   
   console.log('Static blog files generated successfully!');
