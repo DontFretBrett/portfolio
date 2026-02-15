@@ -41,9 +41,28 @@ function validatePathSegment(segment, baseDir) {
   const resolvedPath = path.resolve(baseDir, normalizedSegment);
   const normalizedBase = path.resolve(baseDir);
   
-  // Ensure the resolved path is within the base directory
-  if (!resolvedPath.startsWith(normalizedBase + path.sep) && resolvedPath !== normalizedBase) {
+  // Ensure the resolved path is within the base directory and not the base directory itself
+  if (!resolvedPath.startsWith(normalizedBase + path.sep)) {
     throw new Error(`Invalid path segment: resolved path "${resolvedPath}" is outside base directory "${normalizedBase}"`);
+  }
+  
+  return resolvedPath;
+}
+
+/**
+ * Validates a complete file path to ensure it's safe for filesystem operations.
+ * @param {string} filePath - The complete file path to validate
+ * @param {string} baseDir - The base directory that the path should be within
+ * @returns {string} - The validated absolute path
+ * @throws {Error} - If the path is invalid or attempts directory traversal
+ */
+function validateFilePath(filePath, baseDir) {
+  const normalizedBase = path.resolve(baseDir);
+  const resolvedPath = path.resolve(filePath);
+  
+  // Ensure the resolved path is within the base directory
+  if (!resolvedPath.startsWith(normalizedBase + path.sep)) {
+    throw new Error(`Invalid file path: resolved path "${resolvedPath}" is outside base directory "${normalizedBase}"`);
   }
   
   return resolvedPath;
@@ -295,7 +314,10 @@ async function generateStaticFiles() {
       if (!fs.existsSync(postDir)) {
         fs.mkdirSync(postDir, { recursive: true });
       }
-      fs.writeFileSync(path.join(postDir, 'index.html'), generateBlogPostHTML(post));
+      
+      // Validate the final file path before writing
+      const indexPath = validateFilePath(path.join(postDir, 'index.html'), blogDir);
+      fs.writeFileSync(indexPath, generateBlogPostHTML(post));
       console.log(`✓ Generated ${post.slug}/index.html`);
     } catch (error) {
       console.error(`✗ Failed to generate blog post for slug "${post.slug}":`, error.message);
