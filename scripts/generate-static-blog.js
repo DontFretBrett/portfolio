@@ -315,8 +315,8 @@ async function generateStaticFiles() {
         fs.mkdirSync(postDir, { recursive: true });
       }
       
-      // Validate the final file path before writing
-      const indexPath = validateFilePath(path.join(postDir, 'index.html'), blogDir);
+      // Validate the final file path before writing (should be within postDir, not just blogDir)
+      const indexPath = validateFilePath(path.join(postDir, 'index.html'), postDir);
       fs.writeFileSync(indexPath, generateBlogPostHTML(post));
       console.log(`✓ Generated ${post.slug}/index.html`);
     } catch (error) {
