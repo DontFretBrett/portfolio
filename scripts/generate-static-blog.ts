@@ -5,12 +5,93 @@ import yaml from 'js-yaml';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  tags: string[];
+  readingTime: string;
+  excerpt: string;
+}
+
+interface FrontmatterData {
+  title?: string;
+  description?: string;
+  excerpt?: string;
+  date?: string;
+  tags?: string[];
+}
+
+/**
+ * Validates and sanitizes a path segment to prevent directory traversal attacks.
+ * @param segment - The path segment to validate (e.g., a slug)
+ * @param baseDir - The base directory that the segment should be relative to
+ * @returns The validated absolute path
+ * @throws Error - If the path is invalid or attempts directory traversal
+ */
+function validatePathSegment(segment: string, baseDir: string): string {
+  // Reject null, undefined, or empty segments
+  if (!segment || typeof segment !== 'string') {
+    throw new Error('Invalid path segment: must be a non-empty string');
+  }
+  
+  // Reject absolute paths
+  if (path.isAbsolute(segment)) {
+    throw new Error('Invalid path segment: absolute paths are not allowed');
+  }
+  
+  // Reject segments containing null bytes
+  if (segment.includes('\0')) {
+    throw new Error('Invalid path segment: null bytes are not allowed');
+  }
+  
+  // Normalize the segment to remove any '..' or '.' components
+  const normalizedSegment = path.normalize(segment);
+  
+  // Reject if normalized segment contains path separators (e.g., '/', '\')
+  // This prevents subdirectory traversal like 'a/b' or '..\\'
+  if (normalizedSegment.includes(path.sep)) {
+    throw new Error('Invalid path segment: directory separators are not allowed');
+  }
+  
+  // Resolve the full path and ensure it starts with the base directory
+  const resolvedPath = path.resolve(baseDir, normalizedSegment);
+  const normalizedBase = path.resolve(baseDir);
+  
+  // Ensure the resolved path is within the base directory and not the base directory itself
+  if (!resolvedPath.startsWith(normalizedBase + path.sep)) {
+    throw new Error(`Invalid path segment: resolved path "${resolvedPath}" is outside base directory "${normalizedBase}"`);
+  }
+  
+  return resolvedPath;
+}
+
+/**
+ * Validates a complete file path to ensure it's safe for filesystem operations.
+ * @param filePath - The complete file path to validate
+ * @param baseDir - The base directory that the path should be within
+ * @returns The validated absolute path
+ * @throws Error - If the path is invalid or attempts directory traversal
+ */
+function validateFilePath(filePath: string, baseDir: string): string {
+  const normalizedBase = path.resolve(baseDir);
+  const resolvedPath = path.resolve(filePath);
+  
+  // Ensure the resolved path is within the base directory
+  if (!resolvedPath.startsWith(normalizedBase + path.sep)) {
+    throw new Error(`Invalid file path: resolved path "${resolvedPath}" is outside base directory "${normalizedBase}"`);
+  }
+  
+  return resolvedPath;
+}
+
 // Function to load blog posts dynamically from the content directory
-async function loadBlogPosts() {
+async function loadBlogPosts(): Promise<BlogPost[]> {
   const contentDir = path.join(__dirname, '../src/content');
   const files = fs.readdirSync(contentDir).filter(file => file.endsWith('.md'));
   
-  const blogPosts = [];
+  const blogPosts: BlogPost[] = [];
   
   for (const file of files) {
     const filePath = path.join(contentDir, file);
@@ -26,11 +107,12 @@ async function loadBlogPosts() {
     const frontmatter = frontmatterMatch[1];
     
     // Parse YAML with js-yaml for robust handling of complex structures
-    let data;
+    let data: FrontmatterData;
     try {
-      data = yaml.load(frontmatter) || {};
+      data = (yaml.load(frontmatter) as FrontmatterData) || {};
     } catch (error) {
-      console.warn(`[generate-static-blog] Skipping file "${file}" - invalid YAML frontmatter:`, error.message);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.warn(`[generate-static-blog] Skipping file "${file}" - invalid YAML frontmatter:`, errorMessage);
       continue;
     }
     
@@ -50,11 +132,11 @@ async function loadBlogPosts() {
   }
   
   // Sort by date (newest first)
-  return blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  return blogPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 // Generate static HTML for blog index
-function generateBlogIndexHTML(blogPosts) {
+function generateBlogIndexHTML(blogPosts: BlogPost[]): string {
 
   return `
 <!DOCTYPE html>
@@ -150,7 +232,7 @@ function generateBlogIndexHTML(blogPosts) {
 }
 
 // Generate static HTML for individual blog posts
-function generateBlogPostHTML(post) {
+function generateBlogPostHTML(post: BlogPost): string {
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -225,7 +307,7 @@ function generateBlogPostHTML(post) {
 }
 
 // Generate all static files
-async function generateStaticFiles() {
+async function generateStaticFiles(): Promise<void> {
   const blogPosts = await loadBlogPosts();
   const distDir = path.join(__dirname, '../dist');
   const blogDir = path.join(distDir, 'static', 'blog');
@@ -244,12 +326,23 @@ async function generateStaticFiles() {
   
   // Generate individual blog posts
   blogPosts.forEach(post => {
-    const postDir = path.join(blogDir, post.slug);
-    if (!fs.existsSync(postDir)) {
-      fs.mkdirSync(postDir, { recursive: true });
+    try {
+      // Validate the slug to prevent path traversal attacks
+      const postDir = validatePathSegment(post.slug, blogDir);
+      
+      if (!fs.existsSync(postDir)) {
+        fs.mkdirSync(postDir, { recursive: true });
+      }
+      
+      // Validate the final file path before writing (should be within postDir, not just blogDir)
+      const indexPath = validateFilePath(path.join(postDir, 'index.html'), postDir);
+      fs.writeFileSync(indexPath, generateBlogPostHTML(post));
+      console.log(`✓ Generated ${post.slug}/index.html`);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`✗ Failed to generate blog post for slug "${post.slug}":`, errorMessage);
+      // Continue processing other posts even if one fails
     }
-    fs.writeFileSync(path.join(postDir, 'index.html'), generateBlogPostHTML(post));
-    console.log(`✓ Generated ${post.slug}/index.html`);
   });
   
   console.log('Static blog files generated successfully!');
