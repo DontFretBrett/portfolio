@@ -58,6 +58,8 @@
   },
   "pnpm": {
     "overrides": {
+      "ajv": ">=8.18.0",
+      "eslint>ajv": "^6.12.6",
       "mdast-util-to-hast": ">=13.2.1",
       "minimatch": ">=10.2.1"
     },
