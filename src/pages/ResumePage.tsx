@@ -574,7 +574,14 @@ export default function ResumePage() {
             role="button"
             tabIndex={0}
             aria-label="View infographic full size"
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setInfographicOpen(true); }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === ' ') {
+                  e.preventDefault();
+                }
+                setInfographicOpen(true);
+              }
+            }}
           >
             <img
               src="/infographic.png"
