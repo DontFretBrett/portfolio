@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion';
 import {
   Briefcase,
   Code2,
@@ -26,6 +26,8 @@ import {
   BookOpen,
   Play,
   Sparkles,
+  X,
+  ZoomIn,
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
 
@@ -433,6 +435,28 @@ const selfStudyTopics = [
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function ResumePage() {
+  const [infographicOpen, setInfographicOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!infographicOpen) return;
+    // Lock body scroll
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    // Move focus into dialog
+    closeBtnRef.current?.focus();
+    // Escape key to close
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setInfographicOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener('keydown', onKey);
+      // Restore focus to trigger
+      triggerRef.current?.focus();
+    };
+  }, [infographicOpen]);
+
   return (
     <>
       <Helmet>
@@ -553,24 +577,69 @@ export default function ResumePage() {
         {/* ── Infographic ──────────────────────────────────────────────────── */}
         <section className="container mx-auto px-4 pb-16 max-w-6xl">
           <SectionHeader icon={<Award size={20} />} title="At a Glance" />
-          <motion.div
+          <motion.button
+            ref={triggerRef}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/40"
+            className="relative group w-full rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/40 cursor-zoom-in text-left"
+            onClick={() => setInfographicOpen(true)}
+            aria-label="View infographic full size"
           >
             <img
               src="/infographic.png"
               alt="Brett Sanders – Engineering Leadership & Agentic AI Specialist infographic"
               width={2752}
               height={1536}
-              className="w-full h-auto block"
+              className="w-full h-auto block transition-transform duration-300 group-hover:scale-[1.01]"
               loading="lazy"
               decoding="async"
             />
-          </motion.div>
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/70 text-white rounded-full px-4 py-2 flex items-center gap-2 text-sm font-medium backdrop-blur-sm">
+                <ZoomIn size={16} />
+                Click to expand
+              </div>
+            </div>
+          </motion.button>
         </section>
+
+        {/* ── Infographic Lightbox ──────────────────────────────────────────── */}
+        <AnimatePresence>
+          {infographicOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+              onClick={() => setInfographicOpen(false)}
+              aria-modal="true"
+              role="dialog"
+              aria-label="Infographic full size view"
+            >
+              <button
+                ref={closeBtnRef}
+                className="absolute top-4 right-4 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors"
+                onClick={() => setInfographicOpen(false)}
+                aria-label="Close"
+              >
+                <X size={24} />
+              </button>
+              <motion.img
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                src="/infographic.png"
+                alt="Brett Sanders – Engineering Leadership & Agentic AI Specialist infographic"
+                className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* ── Achievement Infographic ───────────────────────────────────────── */}
         <section className="container mx-auto px-4 pb-16 max-w-6xl">
