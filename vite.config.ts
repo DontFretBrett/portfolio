@@ -73,31 +73,9 @@ export default defineConfig({
     // Enable tree shaking and compression
     rollupOptions: {
       output: {
-        // Enhanced code splitting strategy
-        manualChunks: (id) => {
-          // Vendor libraries
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-              return 'react-vendor';
-            }
-            if (id.includes('framer-motion') || id.includes('lucide-react')) {
-              return 'ui-vendor';
-            }
-            if (id.includes('markdown') || id.includes('highlight') || id.includes('rehype') || id.includes('remark')) {
-              return 'markdown-vendor';
-            }
-            if (id.includes('helmet')) {
-              return 'seo-vendor';
-            }
-            return 'vendor';
-          }
-          
-          // App chunks by feature
-          if (id.includes('/components/')) return 'components';
-          if (id.includes('/pages/')) return 'pages';
-          if (id.includes('/utils/')) return 'utils';
-          if (id.includes('/data/')) return 'data';
-        },
+        // Let Vite handle chunking automatically to avoid circular dependencies
+        // Manual chunking was causing circular deps: vendor <-> components
+        // Automatic chunking will handle dependencies correctly
         // Don't use compact mode - it can break module exports
         // compact: true,
         
