@@ -63,28 +63,9 @@ export default defineConfig({
     // Disable source maps for production for better performance and security
     sourcemap: false,
     
-    // Enable minification for production with enhanced settings
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        // Remove console logs in production
-        drop_console: true,
-        drop_debugger: true,
-        // Remove unused code more aggressively
-        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
-        passes: 2, // Multiple passes for better compression
-        unsafe: false, // Disable unsafe optimizations to prevent React import issues
-      },
-      mangle: {
-        // Mangle variable names for smaller bundle size
-        safari10: true,
-        toplevel: false, // Don't mangle top-level to preserve module exports
-        reserved: ['React', 'createContext', 'useContext', 'useState', 'useEffect'], // Preserve React APIs
-      },
-      format: {
-        comments: false, // Remove all comments
-      }
-    },
+    // Use esbuild minifier which handles React exports better than terser
+    minify: 'esbuild',
+    // esbuild automatically preserves module exports and handles React correctly
     
     // Reduce chunk size limit warnings
     chunkSizeWarningLimit: 1000,
@@ -117,7 +98,8 @@ export default defineConfig({
           if (id.includes('/utils/')) return 'utils';
           if (id.includes('/data/')) return 'data';
         },
-        compact: true,
+        // Don't use compact mode - it can break module exports
+        // compact: true,
         
         // Optimize chunk file names
         chunkFileNames: `assets/js/[name]-[hash].js`,
