@@ -1,269 +1,697 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { 
-  Briefcase, 
-  GraduationCap, 
-  Code2, 
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+import {
+  Briefcase,
+  GraduationCap,
+  Code2,
   Brain,
   ExternalLink,
   Award,
-  Calendar
+  MapPin,
+  Github,
+  Linkedin,
+  TrendingUp,
+  Shield,
+  Zap,
+  Users,
+  DollarSign,
+  Activity,
+  Star,
+  ChevronRight,
+  Terminal,
+  Cloud,
+  Database,
+  Globe,
+  Cpu,
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
 
+// ─── Animated Counter ────────────────────────────────────────────────────────
+function AnimatedCounter({
+  value,
+  prefix = '',
+  suffix = '',
+  duration = 1.8,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  duration?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+  const motionValue = useMotionValue(0);
+  const spring = useSpring(motionValue, { duration: duration * 1000, bounce: 0 });
+
+  useEffect(() => {
+    if (inView) {
+      motionValue.set(value);
+    }
+  }, [inView, motionValue, value]);
+
+  useEffect(() => {
+    spring.on('change', (latest) => {
+      if (ref.current) {
+        ref.current.textContent = prefix + Math.round(latest).toLocaleString() + suffix;
+      }
+    });
+  }, [spring, prefix, suffix]);
+
+  return <span ref={ref}>{prefix}0{suffix}</span>;
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const stats = [
+  { icon: <TrendingUp size={22} />, value: 15, suffix: '+', label: 'Years Experience', color: 'from-blue-500 to-cyan-500' },
+  { icon: <Users size={22} />, value: 20, suffix: '', label: 'Direct Reports', color: 'from-purple-500 to-pink-500' },
+  { icon: <DollarSign size={22} />, value: 2, prefix: '$', suffix: 'M Saved', label: 'Cost Savings Delivered', color: 'from-green-500 to-emerald-500' },
+  { icon: <Activity size={22} />, value: 99, suffix: '.9%', label: 'Uptime Maintained', color: 'from-orange-500 to-red-500' },
+];
+
+const timeline = [
+  {
+    period: 'Oct 2022 – Present',
+    title: 'Software Engineering Director',
+    company: 'Truist Bank (LightStream)',
+    location: 'Remote / San Diego, CA',
+    color: 'blue',
+    highlights: [
+      'Lead 4 delivery teams (20 direct reports) for 24/7 lending platform operations',
+      'Saved ~$2M finding secure solution for deprecated web framework',
+      'Launched State Farm partnership driving $74.3M+ in funded loans',
+      'Achieved 100% ADA compliance (NVDA, Jaws, VoiceOver)',
+      'Maintained 99.9% uptime for all customer-facing web experiences',
+      'Led divisional rebrand: 250+ pages, 50+ email templates',
+    ],
+    tags: ['Leadership', 'Architecture', 'Angular', '.NET', 'AWS'],
+  },
+  {
+    period: 'Nov 2020 – Oct 2022',
+    title: 'Solutions Architect',
+    company: 'Truist Bank (LightStream)',
+    location: 'Remote',
+    color: 'purple',
+    highlights: [
+      'Architected microservice-based distributed systems',
+      'Built analytics infrastructure and comprehensive technical docs',
+      'Led strategic technical initiatives across multiple teams',
+    ],
+    tags: ['Microservices', 'AWS', 'Architecture', 'CI/CD'],
+  },
+  {
+    period: 'Sept 2019 – Nov 2020',
+    title: 'Application Development Manager',
+    company: 'Truist Bank (LightStream)',
+    location: 'San Diego, CA',
+    color: 'cyan',
+    highlights: [
+      'Led development of platform features improving conversion rates',
+      'Modernized dev practices and implemented security improvements',
+      'Managed full-stack delivery team end-to-end',
+    ],
+    tags: ['Team Lead', 'Angular', 'C# .NET', 'Security'],
+  },
+  {
+    period: 'June 2016 – Sept 2019',
+    title: 'Sr. Software Engineer – Team Lead',
+    company: 'SunTrust Bank (LightStream)',
+    location: 'San Diego, CA',
+    color: 'green',
+    highlights: [
+      'Spearheaded complete website rebuild with modern CMS',
+      'Established component libraries and accessibility standards',
+      'Optimized frontend performance across lending platform',
+    ],
+    tags: ['React', 'Angular', 'CMS', 'Accessibility'],
+  },
+  {
+    period: 'Nov 2011 – June 2016',
+    title: 'Senior Software Engineer',
+    company: 'US Bank – SBA Division',
+    location: 'San Diego, CA',
+    color: 'yellow',
+    highlights: [
+      'Developed and maintained lending platforms using .NET',
+      'Implemented database migrations and automated reporting',
+      'Significantly reduced operational costs through automation',
+    ],
+    tags: ['C# .NET', 'SQL Server', 'SSRS', 'ASP.NET'],
+  },
+  {
+    period: 'June 2008 – Oct 2011',
+    title: 'Programmer Analyst – Process Improvement',
+    company: 'US Bank – Manufactured Housing Finance',
+    location: 'San Diego, CA',
+    color: 'pink',
+    highlights: [
+      'Implemented automation solutions enhancing operational efficiency',
+      'Contributed to record-breaking performance metrics',
+      'Built process improvement tools from the ground up',
+    ],
+    tags: ['Automation', 'SQL', '.NET', 'Process Improvement'],
+  },
+];
+
+const skillGroups = [
+  {
+    icon: <Brain size={20} />,
+    label: 'AI & Agents',
+    color: 'purple',
+    skills: ['OpenAI Agents SDK', 'CrewAI', 'LangGraph', 'AutoGen', 'MCP', 'Claude API', 'GPT-4', 'Gemini', 'RAG Systems', 'Prompt Engineering'],
+  },
+  {
+    icon: <Globe size={20} />,
+    label: 'Frontend',
+    color: 'blue',
+    skills: ['React 19', 'TypeScript', 'Angular 6–17', 'Vite', 'Tailwind CSS', 'Framer Motion', 'HTML5/CSS3', 'Accessibility'],
+  },
+  {
+    icon: <Terminal size={20} />,
+    label: 'Backend',
+    color: 'green',
+    skills: ['Node.js', 'Python', 'C# .NET', 'ASP.NET MVC', 'Express', 'RESTful APIs', 'Microservices', 'WebSockets'],
+  },
+  {
+    icon: <Cloud size={20} />,
+    label: 'Cloud & DevOps',
+    color: 'cyan',
+    skills: ['AWS (IAM, S3, EC2, Lambda, RDS)', 'Azure', 'Docker', 'Vercel', 'TeamCity', 'Octopus CD', 'GitHub Actions', 'Terraform'],
+  },
+  {
+    icon: <Database size={20} />,
+    label: 'Data',
+    color: 'orange',
+    skills: ['SQL Server', 'PostgreSQL', 'SQLite', 'DynamoDB', 'Qdrant (Vector DB)', 'ETL', 'SSRS', 'Entity Framework'],
+  },
+  {
+    icon: <Cpu size={20} />,
+    label: 'AI Dev Tools',
+    color: 'pink',
+    skills: ['Cursor IDE', 'Claude Code', 'Codex CLI', 'Hugging Face', 'Gradio', 'Python asyncio', 'OpenClaw', 'Windsurf'],
+  },
+];
+
+const colorMap: Record<string, { bg: string; border: string; text: string; dot: string; tag: string }> = {
+  blue:   { bg: 'bg-blue-500/10',   border: 'border-blue-500',   text: 'text-blue-400',   dot: 'bg-blue-500',   tag: 'bg-blue-500/20 text-blue-300' },
+  purple: { bg: 'bg-purple-500/10', border: 'border-purple-500', text: 'text-purple-400', dot: 'bg-purple-500', tag: 'bg-purple-500/20 text-purple-300' },
+  cyan:   { bg: 'bg-cyan-500/10',   border: 'border-cyan-500',   text: 'text-cyan-400',   dot: 'bg-cyan-500',   tag: 'bg-cyan-500/20 text-cyan-300' },
+  green:  { bg: 'bg-green-500/10',  border: 'border-green-500',  text: 'text-green-400',  dot: 'bg-green-500',  tag: 'bg-green-500/20 text-green-300' },
+  yellow: { bg: 'bg-yellow-500/10', border: 'border-yellow-500', text: 'text-yellow-400', dot: 'bg-yellow-500', tag: 'bg-yellow-500/20 text-yellow-300' },
+  pink:   { bg: 'bg-pink-500/10',   border: 'border-pink-500',   text: 'text-pink-400',   dot: 'bg-pink-500',   tag: 'bg-pink-500/20 text-pink-300' },
+  orange: { bg: 'bg-orange-500/10', border: 'border-orange-500', text: 'text-orange-400', dot: 'bg-orange-500', tag: 'bg-orange-500/20 text-orange-300' },
+};
+
+const skillColorMap: Record<string, string> = {
+  purple: 'bg-purple-500/20 text-purple-300 border border-purple-500/30',
+  blue:   'bg-blue-500/20   text-blue-300   border border-blue-500/30',
+  green:  'bg-green-500/20  text-green-300  border border-green-500/30',
+  cyan:   'bg-cyan-500/20   text-cyan-300   border border-cyan-500/30',
+  orange: 'bg-orange-500/20 text-orange-300 border border-orange-500/30',
+  pink:   'bg-pink-500/20   text-pink-300   border border-pink-500/30',
+};
+
+const certifications = [
+  { year: '2025', title: 'The Complete Agentic AI Engineering Course', org: 'Udemy / Ed Donner', icon: <Brain size={16} />, color: 'purple', url: 'https://www.udemy.com/certificate/UC-816bd9d7-4ad1-4bef-b670-782fabc9ec94/' },
+  { year: '2023', title: 'AWS Certified Cloud Practitioner', org: 'Amazon Web Services', icon: <Cloud size={16} />, color: 'orange' },
+  { year: '2023', title: 'AWS Technical Essentials', org: 'Amazon Web Services', icon: <Cloud size={16} />, color: 'orange' },
+  { year: '2023', title: 'Developing on AWS', org: 'Amazon Web Services', icon: <Cloud size={16} />, color: 'orange' },
+  { year: '2023', title: 'Advanced Developing on AWS', org: 'Amazon Web Services', icon: <Cloud size={16} />, color: 'orange' },
+  { year: '2023', title: 'Architecting on AWS', org: 'Amazon Web Services', icon: <Cloud size={16} />, color: 'orange' },
+  { year: '2023', title: 'Developing Serverless on AWS', org: 'Amazon Web Services', icon: <Cloud size={16} />, color: 'orange' },
+  { year: '2021', title: 'Certified SAFe 5 Practitioner', org: 'Scaled Agile Inc.', icon: <Shield size={16} />, color: 'green' },
+  { year: '2021', title: 'Accessibility for Web Design', org: 'LinkedIn Learning', icon: <Star size={16} />, color: 'blue' },
+];
+
+const projects = [
+  {
+    title: 'J5-Trade',
+    subtitle: 'Autonomous Multi-Model Crypto Trading Platform',
+    period: '2024–Present',
+    color: 'blue',
+    description: 'Production-grade autonomous cryptocurrency trading system for BTC-USD on Coinbase Advanced Trade with 3 independent AI-driven trading models, signal resolver with veto hierarchy, and real-time monitoring dashboard.',
+    tags: ['Python asyncio', 'SQLite', 'WebSockets', 'TypeScript', 'Bun'],
+    icon: <TrendingUp size={20} />,
+  },
+  {
+    title: 'OpenClaw (Johnny5)',
+    subtitle: '24/7 Autonomous AI Personal Assistant',
+    period: '2024–Present',
+    color: 'purple',
+    description: 'Configured and extended a personal AI assistant with multi-channel communication (Telegram, Discord, iMessage). Developed custom skills for GitHub automation, Google Workspace, Slack. Persistent memory with Qdrant vector DB.',
+    tags: ['Node.js', 'TypeScript', 'Qdrant', 'Telegram API', 'Discord API'],
+    icon: <Brain size={20} />,
+  },
+  {
+    title: 'MCP Random Dog',
+    subtitle: 'Model Context Protocol Integration',
+    period: '2025',
+    color: 'green',
+    description: 'Built a FastMCP server to demonstrate Model Context Protocol integrations, showcasing how AI agents can interact with external APIs in real-time through standardized tool interfaces.',
+    tags: ['Python', 'FastMCP', 'Anthropic MCP', 'REST APIs'],
+    icon: <Zap size={20} />,
+  },
+];
+
+// ─── Component ────────────────────────────────────────────────────────────────
 export default function ResumePage() {
   return (
     <>
       <Helmet>
-        <title>Resume - Brett Sanders</title>
-        <meta name="description" content="Professional resume of Brett Sanders - Software Engineering Director, AI/ML Practitioner, and Full Stack Developer with 13+ years of experience." />
-        <meta name="keywords" content="Resume, Software Engineer, AI, Machine Learning, Full Stack, TypeScript, React, Python" />
-        
-        <meta property="og:title" content="Resume - Brett Sanders" />
-        <meta property="og:description" content="Professional resume of Brett Sanders - Software Engineering Director and AI Practitioner." />
-        <meta property="og:type" content="website" />
-        
+        <title>Resume – Brett Sanders</title>
+        <meta name="description" content="Resume of Brett Sanders – Software Engineering Director, AI/ML Practitioner, and Full Stack Developer with 15+ years of experience in financial services." />
         <link rel="canonical" href="https://www.brettsanders.com/resume" />
       </Helmet>
 
-      <main className="container mx-auto px-4 py-8 max-w-5xl dark:bg-gray-900 min-h-screen">
-        <Breadcrumbs 
-          items={[
-            { label: 'Resume', isLast: true }
-          ]}
-          className="mb-6"
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <div className="relative bg-linear-to-br from-gray-900 via-slate-900 to-gray-800 dark:from-gray-950 dark:via-slate-950 dark:to-gray-900 overflow-hidden">
+        {/* Animated grid background */}
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
         />
-        
-        {/* Header */}
-        <header className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-            Brett Sanders
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
-            Software Engineering Director | AI/ML Practitioner
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-            <a href="https://linkedin.com/in/imbrett/" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              <ExternalLink size={14} className="mr-1" />
-              LinkedIn
-            </a>
-            <a href="https://github.com/DontFretBrett" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              <ExternalLink size={14} className="mr-1" />
-              GitHub
-            </a>
-            <a href="https://www.brettsanders.com" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              <ExternalLink size={14} className="mr-1" />
-              Portfolio
-            </a>
-            <a href="https://x.com/wontfretbrett" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              <ExternalLink size={14} className="mr-1" />
-              X/Twitter
-            </a>
-          </div>
-        </header>
+        {/* Glow blobs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Summary */}
-        <section className="mb-12">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 flex items-center">
-              <Briefcase className="mr-3 text-blue-600 dark:text-blue-400" size={24} />
-              Professional Summary
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              Award-winning technology leader with 13+ years driving software engineering excellence in financial services. 
-              Deep expertise in full-stack development, cloud architecture, and emerging AI/ML technologies. Currently building 
-              autonomous AI agents, multi-model trading systems, and production AI assistants. Proven ability to lead cross-functional 
-              teams, delivering high-impact projects on time and under budget. Passionate about leveraging AI to transform business 
-              operations, building maintainable systems, and fostering team growth.
+        <div className="container mx-auto px-4 py-16 relative z-10">
+          <Breadcrumbs items={[{ label: 'Resume', isLast: true }]} className="mb-8 text-gray-400" />
+
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+            {/* Avatar */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="flex-shrink-0"
+            >
+              <picture>
+                <source srcSet="/me.webp" type="image/webp" />
+                <img src="/me-128.jpg" alt="Brett Sanders" width={120} height={120}
+                  className="w-28 h-28 rounded-full ring-4 ring-blue-500/40 object-cover shadow-2xl shadow-blue-500/20"
+                />
+              </picture>
+            </motion.div>
+
+            {/* Name + title */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-center md:text-left"
+            >
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">Brett Sanders</h1>
+              <p className="text-xl text-blue-300 font-medium mb-1">Software Engineering Director</p>
+              <p className="text-base text-gray-400 mb-4">AI/ML Practitioner · Full Stack Engineer · AWS Certified · SAFe Agile</p>
+              <div className="flex flex-wrap justify-center md:justify-start gap-3 text-sm">
+                <a href="https://linkedin.com/in/imbrett/" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-gray-300 hover:text-blue-400 transition-colors">
+                  <Linkedin size={15} /><span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/DontFretBrett" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-gray-300 hover:text-blue-400 transition-colors">
+                  <Github size={15} /><span>GitHub</span>
+                </a>
+                <a href="https://www.brettsanders.com" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-gray-300 hover:text-blue-400 transition-colors">
+                  <ExternalLink size={15} /><span>Portfolio</span>
+                </a>
+                <span className="flex items-center gap-1.5 text-gray-300">
+                  <MapPin size={15} /><span>San Diego, CA</span>
+                </span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ── Stats row ─────────────────────────────────────────────────── */}
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {stats.map((s, i) => (
+              <motion.div key={s.label}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
+                className="relative overflow-hidden rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm p-4 text-center"
+              >
+                <div className={`absolute inset-0 bg-linear-to-br ${s.color} opacity-10`} />
+                <div className={`mx-auto mb-2 w-9 h-9 rounded-full flex items-center justify-center bg-linear-to-br ${s.color} text-white`}>
+                  {s.icon}
+                </div>
+                <div className="text-2xl md:text-3xl font-bold text-white">
+                  <AnimatedCounter value={s.value} prefix={s.prefix ?? ''} suffix={s.suffix ?? ''} />
+                </div>
+                <div className="text-xs text-gray-400 mt-1 leading-tight">{s.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <main className="bg-gray-950 min-h-screen">
+
+        {/* ── Summary ───────────────────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 py-16 max-w-6xl">
+          <SectionHeader icon={<Briefcase size={20} />} title="Professional Summary" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5 }}
+            className="bg-gray-900 border border-gray-800 rounded-2xl p-6 md:p-8"
+          >
+            <p className="text-gray-300 leading-relaxed text-base md:text-lg">
+              Award-winning technology leader with <strong className="text-white">15+ years</strong> driving software engineering excellence
+              in financial services. Deep expertise in full-stack development, cloud architecture, and emerging AI/ML technologies.
+              Currently building autonomous AI agents, multi-model trading systems, and production AI assistants.
+              Proven ability to lead cross-functional teams, delivering high-impact projects on time and under budget.
+              Passionate about leveraging AI to transform business operations and fostering team growth.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">SAFe Agile Certified</span>
-              <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">AWS Certified</span>
-              <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">Full Stack Engineer</span>
-              <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">AI/ML Practitioner</span>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {['SAFe Agile Certified', 'AWS Certified', 'Full Stack Engineer', 'AI/ML Practitioner', 'Engineering Director', 'Agentic AI Engineering'].map((tag) => (
+                <span key={tag} className="px-3 py-1 bg-blue-500/15 text-blue-300 border border-blue-500/30 rounded-full text-sm font-medium">
+                  {tag}
+                </span>
+              ))}
             </div>
+          </motion.div>
+        </section>
+
+        {/* ── Achievement Infographic ───────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<Award size={20} />} title="Career Impact" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <AchievementCard
+              icon={<DollarSign size={24} />}
+              value="$2M"
+              label="Cost Savings"
+              detail="Found secure replacement for deprecated web framework"
+              gradient="from-green-600 to-emerald-600"
+            />
+            <AchievementCard
+              icon={<TrendingUp size={24} />}
+              value="$74.3M+"
+              label="Funded Loans"
+              detail="State Farm partnership launch driving lending volume"
+              gradient="from-blue-600 to-cyan-600"
+            />
+            <AchievementCard
+              icon={<Shield size={24} />}
+              value="99.9%"
+              label="Platform Uptime"
+              detail="Customer-facing lending platform reliability"
+              gradient="from-purple-600 to-violet-600"
+            />
+            <AchievementCard
+              icon={<Users size={24} />}
+              value="20"
+              label="Direct Reports"
+              detail="4 engineering teams in 24/7 operation"
+              gradient="from-orange-600 to-red-600"
+            />
+            <AchievementCard
+              icon={<Star size={24} />}
+              value="100%"
+              label="ADA Compliance"
+              detail="NVDA, Jaws, VoiceOver, Deque Axe DevTools"
+              gradient="from-pink-600 to-rose-600"
+            />
+            <AchievementCard
+              icon={<Globe size={24} />}
+              value="250+"
+              label="Pages Rebranded"
+              detail="Divisional rebrand plus 50+ email templates"
+              gradient="from-teal-600 to-cyan-600"
+            />
           </div>
         </section>
 
-        {/* Technical Skills */}
-        <section className="mb-12">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center">
-              <Code2 className="mr-3 text-blue-600 dark:text-blue-400" size={24} />
-              Technical Skills
-            </h2>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
-                  <Brain className="mr-2 text-purple-600 dark:text-purple-400" size={18} />
-                  AI & Machine Learning
-                </h3>
-                <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
-                  <li>LLM Integration (OpenAI, Anthropic Claude, Google Gemini)</li>
-                  <li>AI Agents (OpenAI Agents SDK, CrewAI, LangGraph, AutoGen)</li>
-                  <li>Model Context Protocol (MCP)</li>
-                  <li>RAG Systems & Vector Databases</li>
-                  <li>Prompt Engineering</li>
-                  <li>Hugging Face Ecosystem</li>
-                  <li>Autonomous Trading Algorithms</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Languages & Frameworks</h3>
-                <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
-                  <li>TypeScript, JavaScript, Python, C# .NET</li>
-                  <li>React, Angular, Node.js</li>
-                  <li>ASP.NET MVC, RESTful APIs</li>
-                  <li>SQL Server, PostgreSQL, SQLite</li>
-                  <li>AWS, Azure, Vercel, Docker</li>
-                  <li>CI/CD (TeamCity, Octopus, GitHub Actions)</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">AI Development Tools</h3>
-              <div className="flex flex-wrap gap-2">
-                {['Cursor IDE', 'Windsurf IDE', 'Claude Code', 'OpenClaw', 'Codex CLI', 'VS Code + AI'].map((tool) => (
-                  <span key={tool} className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm">{tool}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ── Career Timeline ───────────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<Briefcase size={20} />} title="Career Timeline" />
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-blue-500 via-purple-500 to-pink-500 opacity-30 md:-translate-x-px" />
 
-        {/* Featured Projects */}
-        <section className="mb-12">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center">
-              <Award className="mr-3 text-blue-600 dark:text-blue-400" size={24} />
-              Featured AI & ML Projects
-            </h2>
-            
             <div className="space-y-8">
-              <div className="border-l-4 border-blue-500 pl-4">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">J5-Trade: Autonomous Multi-Model Crypto Trading Platform</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Personal Project | 2024-Present | Python, SQLite, TypeScript, Bun</p>
-                <p className="text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">
-                  Built a production-grade autonomous cryptocurrency trading system for BTC-USD on Coinbase Advanced Trade.
-                  Architected 3 independent AI-driven trading models with distinct strategies. Developed signal resolver 
-                  with veto hierarchy and comprehensive risk management. Created real-time monitoring dashboard.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {['Python asyncio', 'SQLite', 'WebSockets', 'REST APIs', 'TypeScript', 'Bun'].map((tech) => (
-                    <span key={tech} className="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded text-xs">{tech}</span>
+              {timeline.map((job, i) => {
+                const c = colorMap[job.color] ?? colorMap.blue;
+                const isRight = i % 2 === 0;
+                return (
+                  <motion.div key={job.title + job.period}
+                    initial={{ opacity: 0, x: isRight ? 40 : -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.5 }}
+                    className={`relative flex items-start gap-6 md:gap-0 ${isRight ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                  >
+                    {/* Dot */}
+                    <div className="relative flex-shrink-0 flex flex-col items-center md:absolute md:left-1/2 md:-translate-x-1/2 md:top-5 z-10">
+                      <div className={`w-4 h-4 rounded-full ${c.dot} shadow-lg ring-4 ring-gray-950`} />
+                    </div>
+
+                    {/* Card */}
+                    <div className={`ml-8 md:ml-0 ${isRight ? 'md:mr-[calc(50%+2rem)] md:ml-0 md:pr-0' : 'md:ml-[calc(50%+2rem)]'} flex-1`}>
+                      <div className={`bg-gray-900 border ${c.border} border-opacity-40 rounded-2xl p-5 hover:border-opacity-70 transition-all duration-300 group`}>
+                        <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+                          <div>
+                            <p className={`text-xs font-mono ${c.text} mb-1`}>{job.period}</p>
+                            <h3 className="text-base md:text-lg font-bold text-white">{job.title}</h3>
+                            <p className="text-gray-400 text-sm">{job.company}</p>
+                          </div>
+                          <span className="flex items-center gap-1 text-xs text-gray-500">
+                            <MapPin size={12} />{job.location}
+                          </span>
+                        </div>
+                        <ul className="space-y-1.5 mb-4">
+                          {job.highlights.map((h) => (
+                            <li key={h} className="flex items-start gap-2 text-sm text-gray-400">
+                              <ChevronRight size={14} className={`${c.text} mt-0.5 flex-shrink-0`} />
+                              <span>{h}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="flex flex-wrap gap-1.5">
+                          {job.tags.map((t) => (
+                            <span key={t} className={`px-2 py-0.5 rounded-md text-xs font-medium ${c.tag}`}>{t}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+
+              {/* Education node */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="relative flex items-start gap-6 md:gap-0"
+              >
+                <div className="relative flex-shrink-0 flex flex-col items-center md:absolute md:left-1/2 md:-translate-x-1/2 md:top-5 z-10">
+                  <div className="w-4 h-4 rounded-full bg-yellow-400 shadow-lg ring-4 ring-gray-950" />
+                </div>
+                <div className="ml-8 md:ml-0 md:mr-[calc(50%+2rem)] flex-1">
+                  <div className="bg-gray-900 border border-yellow-500/40 rounded-2xl p-5">
+                    <p className="text-xs font-mono text-yellow-400 mb-1">2008 · Foundation</p>
+                    <h3 className="text-base md:text-lg font-bold text-white flex items-center gap-2">
+                      <GraduationCap size={18} className="text-yellow-400" />
+                      B.S. Computer Science
+                    </h3>
+                    <p className="text-gray-400 text-sm">California State University – San Marcos</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Skills Infographic ────────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<Code2 size={20} />} title="Technical Skills" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {skillGroups.map((group, i) => (
+              <motion.div key={group.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.07 }}
+                className="bg-gray-900 border border-gray-800 rounded-2xl p-5 hover:border-gray-700 transition-colors"
+              >
+                <div className={`flex items-center gap-2 mb-4 ${skillColorMap[group.color].includes('purple') ? 'text-purple-400' : skillColorMap[group.color].includes('blue') ? 'text-blue-400' : skillColorMap[group.color].includes('green') ? 'text-green-400' : skillColorMap[group.color].includes('cyan') ? 'text-cyan-400' : skillColorMap[group.color].includes('orange') ? 'text-orange-400' : 'text-pink-400'}`}>
+                  {group.icon}
+                  <h3 className="font-semibold text-white">{group.label}</h3>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {group.skills.map((skill) => (
+                    <span key={skill} className={`px-2 py-1 rounded-md text-xs font-medium ${skillColorMap[group.color]}`}>
+                      {skill}
+                    </span>
                   ))}
                 </div>
-              </div>
-
-              <div className="border-l-4 border-purple-500 pl-4">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">OpenClaw AI Assistant (Johnny5)</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Personal Project | 2024-Present | Node.js, TypeScript</p>
-                <p className="text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">
-                  Configured and extended a 24/7 autonomous AI assistant with multi-channel communication. 
-                  Developed custom skills for weather, GitHub automation, Google Workspace, Slack, and iMessage. 
-                  Implemented persistent memory system with Qdrant vector database.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'TypeScript', 'Telegram API', 'Discord API', 'Qdrant'].map((tech) => (
-                    <span key={tech} className="px-2 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded text-xs">{tech}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="border-l-4 border-green-500 pl-4">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">AI Agentic Engineering Certification</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Ed Donner's Master AI Agentic Engineering Course | 2024</p>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Completed intensive 6-week course building autonomous AI agents across multiple frameworks: 
-                  OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and MCP (Model Context Protocol).
-                </p>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
         </section>
 
-        {/* Professional Experience */}
-        <section className="mb-12">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center">
-              <Briefcase className="mr-3 text-blue-600 dark:text-blue-400" size={24} />
-              Professional Experience
-            </h2>
-            
-            <div className="mb-8">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Truist Bank</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Software Engineering Director</p>
-                </div>
-                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0">
-                  <Calendar size={14} className="mr-2" />
-                  June 2016 - Present
-                </div>
-              </div>
-              
-              <div className="space-y-4 text-gray-700 dark:text-gray-300">
-                <p className="font-medium">Leading 4 delivery teams (20 direct reports) for 24/7 operation of LightStream division.</p>
-                
-                <ul className="list-disc list-inside space-y-2 text-sm">
-                  <li><strong>Saved ~$2 million</strong> finding a secure solution for deprecated web framework</li>
-                  <li><strong>Launched State Farm partnership</strong> driving $74.3M+ in funded loans (Angular SPA, .NET, AWS)</li>
-                  <li><strong>Achieved 100% ADA compliance</strong> using NVDA, Jaws, VoiceOver, Deque Axe DevTools</li>
-                  <li><strong>Led divisional rebrand:</strong> 250+ pages, 50+ email templates migrated to Truist branding</li>
-                  <li><strong>Maintained 99.9% uptime</strong> for customer-facing web experiences</li>
-                  <li>Implemented security scanning pipeline (Veracode, Burp, Qualys) with CI/CD integration</li>
-                  <li>Truist Cyber Security Champion member</li>
-                </ul>
-                
-                <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Areas of Ownership:</h4>
-                  <p className="text-sm">Public website, analytics, accessibility, customer portal, authentication, loan applications, teammate sites, partner API integrations, customer correspondence, lending platform, web CMS.</p>
-                </div>
-              </div>
-            </div>
+        {/* ── Featured Projects ─────────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<Zap size={20} />} title="Featured AI Projects" />
+          <div className="grid md:grid-cols-3 gap-5">
+            {projects.map((p, i) => {
+              const c = colorMap[p.color] ?? colorMap.blue;
+              return (
+                <motion.div key={p.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  className={`bg-gray-900 border ${c.border} border-opacity-40 rounded-2xl p-6 hover:border-opacity-70 transition-all duration-300 flex flex-col`}
+                >
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${c.bg} ${c.text}`}>
+                    {p.icon}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between mb-1">
+                      <h3 className="font-bold text-white text-lg">{p.title}</h3>
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${c.tag}`}>{p.period}</span>
+                    </div>
+                    <p className={`text-sm font-medium ${c.text} mb-3`}>{p.subtitle}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed">{p.description}</p>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {p.tags.map((t) => (
+                      <span key={t} className="px-2 py-0.5 bg-gray-800 text-gray-300 rounded text-xs">{t}</span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </section>
 
-        {/* Education */}
-        <section className="mb-12">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center">
-              <GraduationCap className="mr-3 text-blue-600 dark:text-blue-400" size={24} />
-              Education & Certifications
-            </h2>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-semibold text-gray-900 dark:text-gray-100">California State University - San Marcos</h3>
-                <p className="text-gray-700 dark:text-gray-300">Bachelor of Science in Computer Science</p>
-              </div>
-              
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Certifications</h4>
-                <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-                  <li>AWS Certified Cloud Practitioner</li>
-                  <li>SAFe Agile Certified</li>
-                  <li>AI Agentic Engineering (Ed Donner's Master Course)</li>
-                </ul>
-              </div>
-            </div>
+        {/* ── Certifications ────────────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<Award size={20} />} title="Certifications & Training" />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {certifications.map((cert, i) => {
+              const c = colorMap[cert.color] ?? colorMap.blue;
+              return (
+                <motion.div key={cert.title}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.06 }}
+                  className={`bg-gray-900 border border-gray-800 rounded-xl p-4 hover:border-gray-700 transition-colors flex items-start gap-3`}
+                >
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${c.bg} ${c.text}`}>
+                    {cert.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className={`text-xs font-mono ${c.text}`}>{cert.year}</span>
+                      <span className="text-xs text-gray-500">{cert.org}</span>
+                    </div>
+                    {cert.url ? (
+                      <a href={cert.url} target="_blank" rel="noopener noreferrer"
+                        className="text-sm font-medium text-white hover:text-blue-400 transition-colors line-clamp-2 flex items-center gap-1">
+                        {cert.title}<ExternalLink size={11} className="flex-shrink-0" />
+                      </a>
+                    ) : (
+                      <p className="text-sm font-medium text-white line-clamp-2">{cert.title}</p>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="text-center text-sm text-gray-500 dark:text-gray-400 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <p>
-            Full resume available upon request. 
-            <Link to="/contact" className="text-blue-600 dark:text-blue-400 hover:underline ml-2">
-              Get in touch →
-            </Link>
-          </p>
-        </footer>
+        {/* ── Education ─────────────────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<GraduationCap size={20} />} title="Education" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5 }}
+            className="bg-gray-900 border border-yellow-500/30 rounded-2xl p-6 flex items-center gap-6"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-yellow-500/15 flex items-center justify-center flex-shrink-0">
+              <GraduationCap size={28} className="text-yellow-400" />
+            </div>
+            <div>
+              <p className="text-xs text-yellow-400 font-mono mb-1">Computer Science · Graduated 2008</p>
+              <h3 className="text-xl font-bold text-white">Bachelor of Science in Computer Science</h3>
+              <p className="text-gray-400">California State University – San Marcos</p>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ── Footer CTA ───────────────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+            viewport={{ once: true }} transition={{ duration: 0.5 }}
+            className="relative rounded-2xl overflow-hidden bg-linear-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 p-8 text-center"
+          >
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600/5 to-purple-600/5" />
+            <h3 className="text-2xl font-bold text-white mb-2 relative z-10">Let's Build Something Great</h3>
+            <p className="text-gray-400 mb-6 relative z-10">Open to senior engineering leadership and AI-focused opportunities.</p>
+            <div className="flex flex-wrap justify-center gap-4 relative z-10">
+              <a href="https://linkedin.com/in/imbrett/" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-2.5 rounded-full transition-colors">
+                <Linkedin size={16} /> Connect on LinkedIn
+              </a>
+              <a href="https://github.com/DontFretBrett" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-2.5 rounded-full transition-colors">
+                <Github size={16} /> GitHub
+              </a>
+            </div>
+          </motion.div>
+        </section>
+
       </main>
     </>
+  );
+}
+
+// ─── Sub-components ────────────────────────────────────────────────────────────
+
+function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-9 h-9 rounded-lg bg-blue-500/15 flex items-center justify-center text-blue-400 flex-shrink-0">
+        {icon}
+      </div>
+      <h2 className="text-2xl font-bold text-white">{title}</h2>
+      <div className="flex-1 h-px bg-linear-to-r from-blue-500/30 to-transparent ml-2" />
+    </div>
+  );
+}
+
+function AchievementCard({
+  icon, value, label, detail, gradient,
+}: {
+  icon: React.ReactNode;
+  value: string;
+  label: string;
+  detail: string;
+  gradient: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      className="relative overflow-hidden bg-gray-900 border border-gray-800 rounded-2xl p-5 hover:border-gray-700 transition-colors group"
+    >
+      <div className={`absolute inset-0 bg-linear-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+      <div className={`w-10 h-10 rounded-xl bg-linear-to-br ${gradient} flex items-center justify-center text-white mb-3`}>
+        {icon}
+      </div>
+      <div className={`text-3xl font-bold bg-linear-to-r ${gradient} bg-clip-text text-transparent mb-1`}>
+        {value}
+      </div>
+      <div className="text-white font-semibold text-sm mb-1">{label}</div>
+      <div className="text-gray-500 text-xs leading-snug">{detail}</div>
+    </motion.div>
   );
 }
