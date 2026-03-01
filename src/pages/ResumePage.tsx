@@ -23,6 +23,9 @@ import {
   Database,
   Globe,
   Cpu,
+  BookOpen,
+  Play,
+  Sparkles,
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
 
@@ -380,6 +383,51 @@ const courseWeeks = [
         tags: ['MCP', 'Vector Memory', 'Pushover API'],
       },
     ],
+  },
+];
+
+const selfStudyTopics = [
+  {
+    icon: <Brain size={20} />,
+    label: 'Agentic AI Systems',
+    color: 'purple',
+    description: 'Building and studying autonomous AI agent architectures, multi-agent orchestration, and tool-use patterns.',
+    topics: ['AI Agent Development', 'Agentic IDE Tools', 'n8n AI Agent Automation', 'Replit Agent', 'Multi-Agent Orchestration', 'Agent Dev School'],
+  },
+  {
+    icon: <Sparkles size={20} />,
+    label: 'Generative AI & Creative AI',
+    color: 'pink',
+    description: 'Exploring text-to-video, AI music generation, lip-sync synthesis, and creative AI applications.',
+    topics: ['OpenAI Sora (Text-to-Video)', 'AI Music Video Generation', 'AI Lip-Sync Synthesis', 'AI Chord Generation', 'Diffusion Models', 'Creative AI Workflows'],
+  },
+  {
+    icon: <Globe size={20} />,
+    label: 'LLM Ecosystem & APIs',
+    color: 'cyan',
+    description: 'Deep study of large language model APIs, SDKs, AGI research, and the evolving AI compute landscape.',
+    topics: ['OpenAI SDK for .NET', 'AGI Research & Levels', 'AI Compute Infrastructure', 'LLM API Integration', 'AI Engineering Best Practices', 'Model Evaluation & Selection'],
+  },
+  {
+    icon: <TrendingUp size={20} />,
+    label: 'AI Industry & Strategy',
+    color: 'orange',
+    description: 'Following AI industry leaders on workforce impact, U.S.-China AI competition, and the future of AI safety.',
+    topics: ['Geoffrey Hinton (AI Safety)', 'Scale AI & AI Race Strategy', 'AI Workforce Transformation', 'OpenAI Compute Scaling', 'AI & Mass Unemployment Risk', 'AI Industry Leadership'],
+  },
+  {
+    icon: <Code2 size={20} />,
+    label: 'Modern Frontend & Full Stack',
+    color: 'blue',
+    description: 'Staying current with the latest framework releases, language features, and web platform capabilities.',
+    topics: ['React 19 Features', 'Angular 20 Launch', 'TypeScript Innovations', 'Node.js TypeScript Support', 'GraphQL Fundamentals', 'Chrome DevTools Advances'],
+  },
+  {
+    icon: <Cloud size={20} />,
+    label: 'Cloud Architecture & DevOps',
+    color: 'green',
+    description: 'Studying cloud-native architectures, serverless patterns, and distributed database systems.',
+    topics: ['AWS Aurora DSQL Deep Dive', 'AWS re:Invent 2024', 'Azure Portal Fundamentals', 'Serverless Architecture', 'VS Code & IDE Mastery', 'Developer Productivity Tools'],
   },
 ];
 
@@ -776,6 +824,44 @@ export default function ResumePage() {
                     ) : (
                       <p className="text-sm font-medium text-white line-clamp-2">{cert.title}</p>
                     )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ── Continuous Learning ──────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<BookOpen size={20} />} title="Continuous AI & Technology Study" />
+          <p className="text-gray-400 text-sm mb-8 -mt-4">
+            Self-directed study across AI, software engineering, and cloud topics — curated from 200+ hours of technical content.
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {selfStudyTopics.map((topic, i) => {
+              const c = colorMap[topic.color] ?? colorMap.blue;
+              return (
+                <motion.div key={topic.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.07 }}
+                  className={`bg-gray-900 border ${c.border} border-opacity-30 rounded-2xl p-5 hover:border-opacity-60 transition-all duration-300`}
+                >
+                  <div className={`flex items-center gap-2.5 mb-3`}>
+                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${c.bg} ${c.text}`}>
+                      {topic.icon}
+                    </div>
+                    <h3 className="font-semibold text-white text-sm">{topic.label}</h3>
+                  </div>
+                  <p className="text-gray-500 text-xs leading-relaxed mb-3">{topic.description}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {topic.topics.map((t) => (
+                      <span key={t} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium ${c.tag}`}>
+                        <Play size={8} className="flex-shrink-0" />
+                        {t}
+                      </span>
+                    ))}
                   </div>
                 </motion.div>
               );
