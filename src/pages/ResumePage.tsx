@@ -253,6 +253,136 @@ const projects = [
   },
 ];
 
+const courseWeeks = [
+  {
+    label: 'Foundations',
+    color: 'blue',
+    icon: <Terminal size={14} />,
+    projects: [
+      {
+        title: 'Career Conversation Agent',
+        description: 'Personal AI agent that answers questions about my career, skills, and experience using my LinkedIn profile and bio as context. Built with OpenAI + Gradio and deployed to Hugging Face Spaces.',
+        tags: ['OpenAI', 'Gradio', 'Python', 'Hugging Face'],
+      },
+      {
+        title: 'Multi-Tool Agent Labs',
+        description: 'Built progressively complex agents: function calling, tool use, multi-step reasoning, and structured outputs. Explored tracing and observability.',
+        tags: ['OpenAI API', 'Tool Calling', 'Tracing'],
+      },
+    ],
+  },
+  {
+    label: 'OpenAI Agents SDK',
+    color: 'cyan',
+    icon: <Zap size={14} />,
+    projects: [
+      {
+        title: 'Deep Research Agent',
+        description: 'Multi-agent research pipeline: Planner breaks down queries, Search Agents retrieve web data, Research Manager synthesises findings, Writer Agent produces a polished report. Full OpenAI Agents SDK handoff pattern.',
+        tags: ['OpenAI Agents SDK', 'WebSearchTool', 'Handoffs', 'Multi-agent'],
+      },
+      {
+        title: 'Email Notification Agent',
+        description: 'Autonomous agent that monitors tasks and fires push notifications via Pushover when key events occur. Demonstrates tool-calling with side effects.',
+        tags: ['OpenAI SDK', 'Pushover API', 'Async Python'],
+      },
+      {
+        title: 'Multi-Model Router',
+        description: 'Explored routing requests across GPT-4o, GPT-4o-mini, DeepSeek, and Ollama local models — with tracing via OpenAI Dashboard.',
+        tags: ['Multi-model', 'Routing', 'Ollama', 'DeepSeek'],
+      },
+    ],
+  },
+  {
+    label: 'CrewAI',
+    color: 'purple',
+    icon: <Users size={14} />,
+    projects: [
+      {
+        title: 'Engineering Team Crew',
+        description: 'Simulated a full software engineering team — Product Manager, Architect, Developer, and QA Engineer agents collaborating to design and spec a feature end-to-end.',
+        tags: ['CrewAI', 'Role-based Agents', 'Python'],
+      },
+      {
+        title: 'Stock Picker Crew',
+        description: 'Autonomous crew of financial analysts: Research Agent gathers company data, Analyst Agent evaluates fundamentals, Writer Agent produces an investment report with recommendations.',
+        tags: ['CrewAI', 'Financial Analysis', 'Web Search'],
+      },
+      {
+        title: 'Debate Crew',
+        description: 'Two opposing AI agents argue both sides of a topic, moderated by a Judge agent that evaluates arguments and declares a winner. Demonstrates adversarial multi-agent patterns.',
+        tags: ['CrewAI', 'Adversarial Agents', 'Reasoning'],
+      },
+      {
+        title: 'Financial Researcher Crew',
+        description: 'Multi-agent pipeline that researches companies, gathers real-time financial data, and synthesises structured research reports using knowledge base integration.',
+        tags: ['CrewAI', 'Knowledge Base', 'Research Pipeline'],
+      },
+      {
+        title: 'Coder Crew',
+        description: 'Agents collaborating on code generation tasks: a Planner, Developer, and Code Reviewer agent work together to produce tested, documented code from a natural-language spec.',
+        tags: ['CrewAI', 'Code Generation', 'Review Agent'],
+      },
+    ],
+  },
+  {
+    label: 'LangGraph',
+    color: 'green',
+    icon: <Activity size={14} />,
+    projects: [
+      {
+        title: 'Sidekick – Autonomous Agent',
+        description: 'Full autonomous agent with Playwright browser tools, LangChain memory checkpointing (SQLite), an Evaluator loop that judges whether success criteria are met, and a human-in-the-loop escalation path.',
+        tags: ['LangGraph', 'Playwright', 'MemorySaver', 'StateGraph'],
+      },
+      {
+        title: 'Stateful Conversation Graph',
+        description: 'Built progressively complex LangGraph graphs: linear chains, conditional branching, cycles, and persistent state across turns using TypedDict state objects and checkpointers.',
+        tags: ['LangGraph', 'StateGraph', 'Conditional Edges', 'Python'],
+      },
+    ],
+  },
+  {
+    label: 'AutoGen',
+    color: 'orange',
+    icon: <Cpu size={14} />,
+    projects: [
+      {
+        title: 'Distributed Entrepreneur Network',
+        description: 'Network of 20 autonomous agents, each with distinct personas (healthcare, education, fintech specialist, etc.), that asynchronously bounce business ideas off each other using AutoGen Core\'s actor model and message routing.',
+        tags: ['AutoGen Core', 'Distributed Agents', 'Actor Model', 'Async'],
+      },
+      {
+        title: 'AgentChat Pipelines',
+        description: 'Built multi-agent conversation pipelines with AutoGen AgentChat: group chats, sequential handoffs, and termination conditions.',
+        tags: ['AutoGen AgentChat', 'Group Chat', 'GPT-4o-mini'],
+      },
+    ],
+  },
+  {
+    label: 'MCP – Model Context Protocol',
+    color: 'pink',
+    icon: <Globe size={14} />,
+    projects: [
+      {
+        title: 'Trading Floor Simulation',
+        description: 'Gradio-powered trading floor with multiple AI trader agents (each backed by a different LLM), MCP market data server, account management, real-time P&L dashboard, and structured logging. Capstone project of the course.',
+        tags: ['MCP', 'OpenAI Agents SDK', 'Gradio', 'SQLite', 'Plotly'],
+      },
+      {
+        title: 'MCP Server Implementations',
+        description: 'Built custom MCP servers: a market data server streaming live prices, an accounts server managing trader positions, and a push notifications server — all consumed by OpenAI Agents SDK clients.',
+        tags: ['FastMCP', 'MCP Servers', 'Python asyncio', 'WebSockets'],
+      },
+      {
+        title: 'Memory & Push MCP Tools',
+        description: 'Persistent memory MCP server giving agents long-term recall across sessions, plus a push notification tool allowing agents to alert the user via Pushover on task completion.',
+        tags: ['MCP', 'Vector Memory', 'Pushover API'],
+      },
+    ],
+  },
+];
+
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function ResumePage() {
   return (
@@ -564,6 +694,55 @@ export default function ResumePage() {
                 </motion.div>
               );
             })}
+          </div>
+        </section>
+
+        {/* ── Agentic AI Course Projects ────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<Brain size={20} />} title="Agentic AI Engineering – Course Projects" />
+          <p className="text-gray-400 text-sm mb-8 -mt-4">
+            Hands-on projects built across all 6 weeks of{' '}
+            <a href="https://www.udemy.com/certificate/UC-816bd9d7-4ad1-4bef-b670-782fabc9ec94/"
+              target="_blank" rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors">
+              Ed Donner's Master Agentic AI Engineering Course
+            </a>
+            {' '}— covering every major agent framework.
+          </p>
+          <div className="space-y-6">
+            {courseWeeks.map((week, wi) => (
+              <motion.div key={week.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: wi * 0.06 }}
+              >
+                {/* Week header */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold ${colorMap[week.color]?.bg} ${colorMap[week.color]?.text} border ${colorMap[week.color]?.border} border-opacity-40`}>
+                    {week.icon}
+                    <span>Week {wi + 1} – {week.label}</span>
+                  </div>
+                  <div className="flex-1 h-px bg-gray-800" />
+                </div>
+                {/* Project cards */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 pl-0">
+                  {week.projects.map((p) => (
+                    <div key={p.title}
+                      className="bg-gray-900 border border-gray-800 rounded-xl p-4 hover:border-gray-700 transition-colors"
+                    >
+                      <h4 className="font-semibold text-white text-sm mb-1">{p.title}</h4>
+                      <p className="text-gray-400 text-xs leading-relaxed mb-3">{p.description}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {p.tags.map((t) => (
+                          <span key={t} className={`px-1.5 py-0.5 rounded text-xs ${colorMap[week.color]?.tag}`}>{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </section>
 
