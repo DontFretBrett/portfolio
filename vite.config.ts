@@ -73,12 +73,13 @@ export default defineConfig({
         // Remove unused code more aggressively
         pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
         passes: 2, // Multiple passes for better compression
-        unsafe: true, // Enable unsafe optimizations for smaller bundles
+        unsafe: false, // Disable unsafe optimizations to prevent React import issues
       },
       mangle: {
         // Mangle variable names for smaller bundle size
         safari10: true,
-        toplevel: true,
+        toplevel: false, // Don't mangle top-level to preserve module exports
+        reserved: ['React', 'createContext', 'useContext', 'useState', 'useEffect'], // Preserve React APIs
       },
       format: {
         comments: false, // Remove all comments
