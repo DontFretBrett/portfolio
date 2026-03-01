@@ -550,6 +550,28 @@ export default function ResumePage() {
           </motion.div>
         </section>
 
+        {/* ── Infographic ──────────────────────────────────────────────────── */}
+        <section className="container mx-auto px-4 pb-16 max-w-6xl">
+          <SectionHeader icon={<Award size={20} />} title="At a Glance" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/40"
+          >
+            <img
+              src="/infographic.png"
+              alt="Brett Sanders – Engineering Leadership & Agentic AI Specialist infographic"
+              width={2752}
+              height={1536}
+              className="w-full h-auto block"
+              loading="lazy"
+              decoding="async"
+            />
+          </motion.div>
+        </section>
+
         {/* ── Achievement Infographic ───────────────────────────────────────── */}
         <section className="container mx-auto px-4 pb-16 max-w-6xl">
           <SectionHeader icon={<Award size={20} />} title="Career Impact" />
