@@ -436,12 +436,25 @@ const selfStudyTopics = [
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function ResumePage() {
   const [infographicOpen, setInfographicOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!infographicOpen) return;
+    // Lock body scroll
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    // Move focus into dialog
+    closeBtnRef.current?.focus();
+    // Escape key to close
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setInfographicOpen(false); };
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener('keydown', onKey);
+      // Restore focus to trigger
+      triggerRef.current?.focus();
+    };
   }, [infographicOpen]);
 
   return (
@@ -564,24 +577,15 @@ export default function ResumePage() {
         {/* ── Infographic ──────────────────────────────────────────────────── */}
         <section className="container mx-auto px-4 pb-16 max-w-6xl">
           <SectionHeader icon={<Award size={20} />} title="At a Glance" />
-          <motion.div
+          <motion.button
+            ref={triggerRef}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative group rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/40 cursor-zoom-in"
+            className="relative group w-full rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/40 cursor-zoom-in text-left"
             onClick={() => setInfographicOpen(true)}
-            role="button"
-            tabIndex={0}
             aria-label="View infographic full size"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                if (e.key === ' ') {
-                  e.preventDefault();
-                }
-                setInfographicOpen(true);
-              }
-            }}
           >
             <img
               src="/infographic.png"
@@ -598,7 +602,7 @@ export default function ResumePage() {
                 Click to expand
               </div>
             </div>
-          </motion.div>
+          </motion.button>
         </section>
 
         {/* ── Infographic Lightbox ──────────────────────────────────────────── */}
@@ -616,6 +620,7 @@ export default function ResumePage() {
               aria-label="Infographic full size view"
             >
               <button
+                ref={closeBtnRef}
                 className="absolute top-4 right-4 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors"
                 onClick={() => setInfographicOpen(false)}
                 aria-label="Close"
