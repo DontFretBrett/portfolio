@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import {
   Briefcase,
-  GraduationCap,
   Code2,
   Brain,
   ExternalLink,
@@ -491,12 +490,12 @@ export default function ResumePage() {
                 </div>
                 <div className="ml-8 md:ml-0 md:mr-[calc(50%+2rem)] flex-1">
                   <div className="bg-gray-900 border border-yellow-500/40 rounded-2xl p-5">
-                    <p className="text-xs font-mono text-yellow-400 mb-1">2008 · Foundation</p>
+                    <p className="text-xs font-mono text-yellow-400 mb-1">Age 12 · Self-Taught Origin</p>
                     <h3 className="text-base md:text-lg font-bold text-white flex items-center gap-2">
-                      <GraduationCap size={18} className="text-yellow-400" />
-                      B.S. Computer Science
+                      <Terminal size={18} className="text-yellow-400" />
+                      Self-Taught Software Engineer
                     </h3>
-                    <p className="text-gray-400 text-sm">California State University – San Marcos</p>
+                    <p className="text-gray-400 text-sm">Started coding at age 12, before YouTube, Stack Overflow, or AI</p>
                   </div>
                 </div>
               </motion.div>
@@ -607,19 +606,25 @@ export default function ResumePage() {
 
         {/* ── Education ─────────────────────────────────────────────────────── */}
         <section className="container mx-auto px-4 pb-16 max-w-6xl">
-          <SectionHeader icon={<GraduationCap size={20} />} title="Education" />
+          <SectionHeader icon={<Terminal size={20} />} title="How I Learned" />
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.5 }}
-            className="bg-gray-900 border border-yellow-500/30 rounded-2xl p-6 flex items-center gap-6"
+            className="bg-gray-900 border border-yellow-500/30 rounded-2xl p-6 md:p-8"
           >
-            <div className="w-14 h-14 rounded-2xl bg-yellow-500/15 flex items-center justify-center flex-shrink-0">
-              <GraduationCap size={28} className="text-yellow-400" />
-            </div>
-            <div>
-              <p className="text-xs text-yellow-400 font-mono mb-1">Computer Science · Graduated 2008</p>
-              <h3 className="text-xl font-bold text-white">Bachelor of Science in Computer Science</h3>
-              <p className="text-gray-400">California State University – San Marcos</p>
+            <div className="flex items-start gap-5">
+              <div className="w-14 h-14 rounded-2xl bg-yellow-500/15 flex items-center justify-center flex-shrink-0">
+                <Terminal size={28} className="text-yellow-400" />
+              </div>
+              <div>
+                <p className="text-xs text-yellow-400 font-mono mb-1">Self-Taught · No Formal Degree</p>
+                <h3 className="text-xl font-bold text-white mb-2">Built from Curiosity, Not a Classroom</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Started coding obsessively at age 12 — before YouTube tutorials, Stack Overflow, or AI assistants existed.
+                  Everything learned through building real things: tools, games, and systems from scratch.
+                  Turned that early passion into a 15+ year career at major financial institutions, rising from developer to director entirely on merit.
+                </p>
+              </div>
             </div>
           </motion.div>
         </section>
