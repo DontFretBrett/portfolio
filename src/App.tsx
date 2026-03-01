@@ -81,6 +81,7 @@ function AppContent() {
               <Route path="/projects/:slug" element={<ProjectPage />} />
               {/* Legacy routes for backward compatibility */}
               <Route path="/resume" element={<ResumePage />} />
+              <Route path="/resume" element={<ResumePage />} />
               <Route path="/ai-projects" element={<AIProjectsPage />} />
               <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
               <Route path="/blog" element={<BlogPage />} />
