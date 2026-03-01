@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 import { 
   Briefcase, 
   GraduationCap, 
@@ -27,7 +26,7 @@ export default function ResumePage() {
         <link rel="canonical" href="https://www.brettsanders.com/resume" />
       </Helmet>
 
-      <main className="container mx-auto px-4 py-8 max-w-5xl dark:bg-gray-900 min-h-screen">
+      <div className="container mx-auto px-4 py-8 max-w-5xl dark:bg-gray-900 min-h-screen">
         <Breadcrumbs 
           items={[
             { label: 'Resume', isLast: true }
@@ -258,12 +257,12 @@ export default function ResumePage() {
         <footer className="text-center text-sm text-gray-500 dark:text-gray-400 pt-8 border-t border-gray-200 dark:border-gray-700">
           <p>
             Full resume available upon request. 
-            <Link to="/contact" className="text-blue-600 dark:text-blue-400 hover:underline ml-2">
+            <a href="https://linkedin.com/in/imbrett/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline ml-2">
               Get in touch →
-            </Link>
+            </a>
           </p>
         </footer>
-      </main>
+      </div>
     </>
   );
 }

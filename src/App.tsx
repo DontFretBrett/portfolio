@@ -10,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 import { FEATURE_FLAGS } from './config/features';
 import { initGA, logPageView } from './config/analytics';
 import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy load components for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -75,22 +76,23 @@ function AppContent() {
         <ConditionalHeader />
         <Suspense fallback={<PageLoader />}>
           <main id="main-content" tabIndex={-1}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/projects/:slug" element={<ProjectPage />} />
-              {/* Legacy routes for backward compatibility */}
-              <Route path="/resume" element={<ResumePage />} />
-              <Route path="/resume" element={<ResumePage />} />
-              <Route path="/ai-projects" element={<AIProjectsPage />} />
-              <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogPostPage />} />
-              <Route path="/gear" element={<GearPage />} />
-              <Route path="/music" element={<MusicPage />} />
-              <Route path="/legal" element={<LegalPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+            <ErrorBoundary>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/projects/:slug" element={<ProjectPage />} />
+                {/* Legacy routes for backward compatibility */}
+                <Route path="/resume" element={<ResumePage />} />
+                <Route path="/ai-projects" element={<AIProjectsPage />} />
+                <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
+                <Route path="/gear" element={<GearPage />} />
+                <Route path="/music" element={<MusicPage />} />
+                <Route path="/legal" element={<LegalPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </ErrorBoundary>
           </main>
         </Suspense>
         <Footer />
