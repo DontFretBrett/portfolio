@@ -100,7 +100,7 @@ const journeyPhases = [
     subtitle: 'Shipping autonomous agents and real-time trading systems',
     color: 'cyan',
     highlights: [
-      'Adopted n8n early and built OpenClaw (Johnny5): AI automation platform with daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
+      'Built OpenClaw (Johnny5): 24/7 personal AI assistant with daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
       'Configured OpenClaw with cloud model providers and local LLMs, integrating across Telegram, Discord, and email',
       'Explored vector databases, semantic search, and long-term agent memory systems',
     ],
@@ -195,11 +195,11 @@ const productionProjects = [
   },
   {
     title: 'OpenClaw (Johnny5)',
-    subtitle: 'n8n-Powered AI Automation Platform',
+    subtitle: '24/7 Personal AI Assistant',
     period: '2024–Present',
     color: 'purple',
-    description: 'Early adopter of n8n who quickly stood up a comprehensive AI automation platform. Built daily AI-powered newsletters, a Mission Control dashboard for monitoring subagents, cron jobs, and vector memory, and integrated workflows that helped build J5-Trade. Configured with both cloud model providers and local LLMs.',
-    tags: ['n8n', 'AI Newsletters', 'Mission Control', 'Qdrant', 'Local LLMs', 'Claude API', 'Telegram', 'Discord'],
+    description: 'Configured and extended a 24/7 personal AI assistant (Johnny5) with multi-channel communication across Telegram, Discord, and email. Built a Mission Control dashboard for monitoring subagents, cron jobs, and vector memory. Integrated with cloud model providers and local LLMs, with workflows that helped build J5-Trade.',
+    tags: ['AI Newsletters', 'Mission Control', 'Qdrant', 'Local LLMs', 'Claude API', 'Telegram', 'Discord'],
     icon: <Brain size={20} />,
   },
   {
@@ -233,7 +233,7 @@ const aiToolkit = [
     icon: <Network size={20} />,
     label: 'Agent Frameworks',
     color: 'blue',
-    skills: ['OpenAI Agents SDK', 'CrewAI', 'LangGraph', 'AutoGen', 'MCP (FastMCP)', 'n8n (OpenClaw)'],
+    skills: ['OpenAI Agents SDK', 'CrewAI', 'LangGraph', 'AutoGen', 'MCP (FastMCP)', 'n8n'],
   },
   {
     icon: <Wrench size={20} />,
