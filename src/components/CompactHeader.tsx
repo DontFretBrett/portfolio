@@ -32,7 +32,7 @@ export default function CompactHeader() {
         text: 'Back to Blog',
         shortText: 'Blog'
       };
-    } else if (path === '/projects' || path === '/ai-projects' || path === '/blog' || path === '/gear' || path === '/music') {
+    } else if (path === '/projects' || path === '/ai-projects' || path === '/blog' || path === '/gear' || path === '/music' || path === '/ai') {
       // Projects list, blog list, gear page, or music page - back to home
       return {
         to: '/',

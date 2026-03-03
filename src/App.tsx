@@ -25,6 +25,7 @@ const MusicPage = React.lazy(() => import('./pages/MusicPage'));
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 const LegalPage = React.lazy(() => import('./pages/legal'));
 const ResumePage = React.lazy(() => import("./pages/ResumePage"));
+const AIExperiencePage = React.lazy(() => import("./pages/AIExperiencePage"));
 
 // Lazy load chatbot only if enabled
 const Chatbot = FEATURE_FLAGS.ENABLE_CHATBOT 
@@ -81,7 +82,7 @@ function AppContent() {
               <Route path="/projects/:slug" element={<ProjectPage />} />
               {/* Legacy routes for backward compatibility */}
               <Route path="/resume" element={<ResumePage />} />
-              <Route path="/resume" element={<ResumePage />} />
+              <Route path="/ai" element={<AIExperiencePage />} />
               <Route path="/ai-projects" element={<AIProjectsPage />} />
               <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
               <Route path="/blog" element={<BlogPage />} />
