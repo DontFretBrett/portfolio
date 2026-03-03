@@ -73,13 +73,13 @@ const journeyPhases = [
   {
     period: 'Nov 2022 – Mar 2023',
     title: 'Immediate Adoption',
-    subtitle: 'Day-one experimentation with ChatGPT and GPT-4',
+    subtitle: 'Day-one experimentation with ChatGPT and GPT-3.5',
     color: 'blue',
     highlights: [
       'Started using ChatGPT within days of launch — recognized the paradigm shift immediately',
       'Explored prompt engineering patterns, chain-of-thought reasoning, and system prompts',
       'Began integrating LLM-powered workflows into daily engineering leadership work',
-      'Started dedicated 10–20 hr/week AI self-study habit that continues today',
+      'Started dedicated 10–15 hr/week AI self-study habit that continues today',
     ],
   },
   {
@@ -100,7 +100,6 @@ const journeyPhases = [
     subtitle: 'Shipping autonomous agents and real-time trading systems',
     color: 'cyan',
     highlights: [
-      'Built J5-Trade: autonomous multi-agent crypto trading platform with 4-agent analysis system (Pricing, News Sentiment, Trade, and Coordinator agents)',
       'Adopted n8n early and built OpenClaw (Johnny5): AI automation platform with daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
       'Configured OpenClaw with cloud model providers and local LLMs, integrating across Telegram, Discord, and email',
       'Explored vector databases, semantic search, and long-term agent memory systems',
@@ -109,7 +108,7 @@ const journeyPhases = [
   {
     period: 'Jul 2024 – Dec 2024',
     title: 'Framework Mastery',
-    subtitle: 'Systematic deep-dive into every major agent framework',
+    subtitle: 'Systematic deep-dive into the most popular agent frameworks',
     color: 'green',
     highlights: [
       'Completed intensive 6-week Agentic AI Engineering course across all major frameworks',
@@ -127,6 +126,7 @@ const journeyPhases = [
       'Adopted Claude Code and Codex CLI for end-to-end AI-assisted software development',
       'Built AI Image Validator using AutoGen + GPT-4o vision with OpenTelemetry tracing',
       'Created AI Assistant Human Questionnaire — privacy-first AI context builder',
+      'Built J5-Trade: autonomous multi-agent crypto trading platform with 4-agent analysis system (Pricing, News Sentiment, Trade, and Coordinator agents)',
       'Actively shipping production code with agentic development workflows daily',
     ],
   },
@@ -187,7 +187,7 @@ const productionProjects = [
   {
     title: 'J5-Trade',
     subtitle: 'Autonomous Multi-Agent Crypto Trading Platform',
-    period: '2024–Present',
+    period: '2026–Present',
     color: 'blue',
     description: 'Production-grade autonomous cryptocurrency trading system featuring AI-generated trade summaries, an integrated chat assistant, and a 4-agent analysis system: a Pricing Agent, News Sentiment Agent, Trade Agent, and a Coordinator Agent that manages the other three. Includes real-time monitoring dashboard and signal resolver with veto hierarchy.',
     tags: ['Python asyncio', 'SQLite', 'WebSockets', 'TypeScript', '4-Agent System', 'AI Chat Assistant'],
@@ -265,7 +265,7 @@ const enterpriseValue = [
   {
     icon: <Target size={20} />,
     title: 'Framework-Agnostic',
-    description: 'Deep hands-on experience across all major agent frameworks means I can evaluate, select, and implement the right tool for any enterprise AI initiative — not locked into a single vendor.',
+    description: 'Deep hands-on experience across most popular agent frameworks means I can evaluate, select, and implement the right tool for any enterprise AI initiative — not locked into a single vendor.',
     color: 'from-blue-600 to-cyan-600',
   },
   {
@@ -283,7 +283,7 @@ const enterpriseValue = [
   {
     icon: <Sparkles size={20} />,
     title: 'AI-Native Leadership',
-    description: 'Currently leading 4 engineering teams at a major bank while simultaneously building AI projects. I understand both the technical execution and organizational change management required.',
+    description: 'Currently leading engineering teams at a major bank while simultaneously building AI projects. I understand both the technical execution and organizational change management required.',
     color: 'from-orange-600 to-red-600',
   },
 ];
@@ -313,7 +313,7 @@ export default function AIExperiencePage() {
     <>
       <Helmet>
         <title>AI Experience – Brett Sanders</title>
-        <meta name="description" content="Brett Sanders' AI experience: 2,000+ hours of hands-on study, 6 agent frameworks mastered, and 8+ production AI projects shipped since ChatGPT launched in November 2022." />
+        <meta name="description" content="Brett Sanders' AI experience: 2,000+ hours of hands-on study, hands-on experience with 6 agent frameworks, and 8+ production AI projects shipped since ChatGPT launched in November 2022." />
         <link rel="canonical" href="https://www.brettsanders.com/ai" />
       </Helmet>
 
@@ -355,7 +355,7 @@ export default function AIExperiencePage() {
             >
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">AI Experience</h1>
               <p className="text-xl text-purple-300 font-medium mb-1">Brett Sanders</p>
-              <p className="text-base text-gray-400 mb-4">Relentless AI practitioner since day one. 10–20 hours a week, every week, since ChatGPT launched.</p>
+              <p className="text-base text-gray-400 mb-4">Relentless AI practitioner since day one. 10–15 hours a week, every week, since ChatGPT launched.</p>
               <div className="flex flex-wrap justify-center md:justify-start gap-3 text-sm">
                 <a href="https://linkedin.com/in/imbrett/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-gray-300 hover:text-purple-400 transition-colors">
@@ -407,10 +407,10 @@ export default function AIExperiencePage() {
           >
             <p className="text-gray-300 leading-relaxed text-base md:text-lg">
               Since ChatGPT launched on <strong className="text-white">November 30, 2022</strong>, I have dedicated{' '}
-              <strong className="text-white">10–20 hours every single week</strong> to hands-on AI experimentation, study, and building.
+              <strong className="text-white">10–15 hours every single week</strong> to hands-on AI experimentation, study, and building.
               This isn't casual interest — it's an aggressive, sustained investment that has produced real, working AI systems.
-              I've shipped <strong className="text-white">production autonomous agents</strong>, mastered{' '}
-              <strong className="text-white">every major agentic AI framework</strong>, and I bring{' '}
+              I've shipped <strong className="text-white">production autonomous agents</strong>, gained hands-on experience with{' '}
+              <strong className="text-white">most of the popular agentic AI frameworks</strong>, and I bring{' '}
               <strong className="text-white">15+ years of enterprise engineering leadership</strong> to bridge the gap between
               AI capabilities and production-grade software delivery.
             </p>
@@ -475,9 +475,9 @@ export default function AIExperiencePage() {
 
         {/* ── Framework Deep Dives ────────────────────────────────────────── */}
         <section className="container mx-auto px-4 pb-16 max-w-6xl">
-          <SectionHeader icon={<Layers size={20} />} title="Agent Framework Mastery" />
+          <SectionHeader icon={<Layers size={20} />} title="Agent Framework Experience" />
           <p className="text-gray-400 text-sm mb-8 -mt-4">
-            Hands-on, project-based mastery of every major agentic AI framework — not tutorials, real working systems.
+            Hands-on, project-based experience with most of the popular agentic AI frameworks — not tutorials, real working systems.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {frameworkCards.map((fw, i) => {
@@ -632,7 +632,7 @@ export default function AIExperiencePage() {
                     </a>
                   </h3>
                   <p className="text-gray-400 leading-relaxed">
-                    Comprehensive 6-week course covering every major agentic AI framework: OpenAI Agents SDK, CrewAI,
+                    Comprehensive 6-week course covering the most popular agentic AI frameworks: OpenAI Agents SDK, CrewAI,
                     LangGraph, AutoGen, and MCP. Built 20+ hands-on projects from multi-agent research pipelines to
                     distributed trading floor simulations.
                   </p>
