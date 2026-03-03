@@ -604,36 +604,105 @@ export default function AIExperiencePage() {
           </div>
         </section>
 
-        {/* ── Certification ───────────────────────────────────────────────── */}
+        {/* ── AI Education ───────────────────────────────────────────────── */}
         <section className="container mx-auto px-4 pb-16 max-w-6xl">
-          <SectionHeader icon={<Award size={20} />} title="AI Certification" />
-          <motion.div
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.5 }}
-            className="bg-gray-900 border border-purple-500/40 rounded-2xl p-6 md:p-8"
-          >
-            <div className="flex items-start gap-5">
-              <div className="w-14 h-14 rounded-2xl bg-purple-500/15 flex items-center justify-center flex-shrink-0">
-                <Award size={28} className="text-purple-400" />
+          <SectionHeader icon={<Award size={20} />} title="AI Education" />
+          <div className="space-y-5">
+            {/* Completed certification */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.5 }}
+              className="bg-gray-900 border border-purple-500/40 rounded-2xl p-6 md:p-8"
+            >
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-purple-500/15 flex items-center justify-center flex-shrink-0">
+                  <Award size={28} className="text-purple-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-xs text-purple-400 font-mono">2025 · Udemy / Ed Donner</p>
+                    <span className="px-2 py-0.5 bg-green-500/20 text-green-300 border border-green-500/30 rounded-full text-xs font-semibold">Completed</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                    The Complete Agentic AI Engineering Course
+                    <a href="https://www.udemy.com/certificate/UC-816bd9d7-4ad1-4bef-b670-782fabc9ec94/"
+                      target="_blank" rel="noopener noreferrer"
+                      className="text-purple-400 hover:text-purple-300 transition-colors">
+                      <ExternalLink size={16} />
+                    </a>
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    Comprehensive 6-week course covering every major agentic AI framework: OpenAI Agents SDK, CrewAI,
+                    LangGraph, AutoGen, and MCP. Built 20+ hands-on projects from multi-agent research pipelines to
+                    distributed trading floor simulations.
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-xs text-purple-400 font-mono mb-1">2025 · Udemy / Ed Donner</p>
-                <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                  The Complete Agentic AI Engineering Course
-                  <a href="https://www.udemy.com/certificate/UC-816bd9d7-4ad1-4bef-b670-782fabc9ec94/"
-                    target="_blank" rel="noopener noreferrer"
-                    className="text-purple-400 hover:text-purple-300 transition-colors">
-                    <ExternalLink size={16} />
-                  </a>
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  Comprehensive 6-week course covering every major agentic AI framework: OpenAI Agents SDK, CrewAI,
-                  LangGraph, AutoGen, and MCP. Built 20+ hands-on projects from multi-agent research pipelines to
-                  distributed trading floor simulations.
-                </p>
+            </motion.div>
+
+            {/* Currently studying */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-gray-900 border border-cyan-500/40 rounded-2xl p-6 md:p-8"
+            >
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 flex items-center justify-center flex-shrink-0">
+                  <BookOpen size={28} className="text-cyan-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-xs text-cyan-400 font-mono">2026 · Udemy / Ed Donner</p>
+                    <span className="px-2 py-0.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 rounded-full text-xs font-semibold">In Progress</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                    AI Builder: Create Agents, Voice Agents &amp; Automations in n8n
+                    <a href="https://www.udemy.com/course/ai-builder-with-n8n-create-agents-voice-agents/"
+                      target="_blank" rel="noopener noreferrer"
+                      className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                      <ExternalLink size={16} />
+                    </a>
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    3-week intensive on building production AI agents with n8n. Covers autonomous business agents with OpenAI and open-source models,
+                    real-time Voice Agents with ElevenLabs and Twilio, Agentic RAG with Supabase, and a capstone multi-agent Go-To-Market system
+                    using MCP with self-hosted n8n and Ollama.
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-gray-900 border border-cyan-500/40 rounded-2xl p-6 md:p-8"
+            >
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 flex items-center justify-center flex-shrink-0">
+                  <BookOpen size={28} className="text-cyan-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-xs text-cyan-400 font-mono">2026 · Udemy / Ed Donner</p>
+                    <span className="px-2 py-0.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 rounded-full text-xs font-semibold">In Progress</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                    AI Engineer Production Track: Deploy LLMs &amp; Agents at Scale
+                    <a href="https://www.udemy.com/course/generative-and-agentic-ai-in-production/"
+                      target="_blank" rel="noopener noreferrer"
+                      className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                      <ExternalLink size={16} />
+                    </a>
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    4-week production deployment course shipping enterprise-grade AI across Vercel, AWS, GCP, and Azure. Covers SaaS apps with Next.js and Clerk,
+                    AI platform engineering with Bedrock, Lambda, Terraform, and CI/CD, multi-agent systems with Aurora Serverless, SQS, and LangFuse observability,
+                    plus MCP-powered Researcher and Cybersecurity Analyst agents.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </section>
 
         {/* ── The Bottom Line ─────────────────────────────────────────────── */}
