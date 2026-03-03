@@ -100,9 +100,9 @@ const journeyPhases = [
     subtitle: 'Shipping autonomous agents and real-time trading systems',
     color: 'cyan',
     highlights: [
-      'Built J5-Trade: autonomous multi-model crypto trading system with 3 AI-driven models',
-      'Launched OpenClaw (Johnny5): 24/7 AI personal assistant with persistent memory',
-      'Implemented multi-channel agent communication across Telegram, Discord, and email',
+      'Built J5-Trade: autonomous multi-agent crypto trading platform with 4-agent analysis system (Pricing, News Sentiment, Trade, and Coordinator agents)',
+      'Adopted n8n early and built OpenClaw (Johnny5): AI automation platform with daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
+      'Configured OpenClaw with cloud model providers and local LLMs, integrating across Telegram, Discord, and email',
       'Explored vector databases, semantic search, and long-term agent memory systems',
     ],
   },
@@ -178,7 +178,7 @@ const frameworkCards = [
     icon: <MessageSquare size={24} />,
     color: 'blue',
     depth: 'Daily',
-    description: 'Primary LLM for production AI assistant (OpenClaw/Johnny5). Daily use of Claude Code for agentic software development and code generation.',
+    description: 'Primary LLM provider for OpenClaw automations and daily AI development. Daily use of Claude Code for agentic software development and code generation.',
     projects: ['OpenClaw (Johnny5)', 'Claude Code Workflows', 'This Portfolio'],
   },
 ];
@@ -186,20 +186,20 @@ const frameworkCards = [
 const productionProjects = [
   {
     title: 'J5-Trade',
-    subtitle: 'Autonomous Multi-Model Crypto Trading Platform',
+    subtitle: 'Autonomous Multi-Agent Crypto Trading Platform',
     period: '2024–Present',
     color: 'blue',
-    description: 'Production-grade autonomous cryptocurrency trading system with 3 independent AI-driven trading models, signal resolver with veto hierarchy, and real-time monitoring dashboard.',
-    tags: ['Python asyncio', 'SQLite', 'WebSockets', 'TypeScript', 'Multi-Model AI'],
+    description: 'Production-grade autonomous cryptocurrency trading system featuring AI-generated trade summaries, an integrated chat assistant, and a 4-agent analysis system: a Pricing Agent, News Sentiment Agent, Trade Agent, and a Coordinator Agent that manages the other three. Includes real-time monitoring dashboard and signal resolver with veto hierarchy.',
+    tags: ['Python asyncio', 'SQLite', 'WebSockets', 'TypeScript', '4-Agent System', 'AI Chat Assistant'],
     icon: <TrendingUp size={20} />,
   },
   {
     title: 'OpenClaw (Johnny5)',
-    subtitle: '24/7 Autonomous AI Personal Assistant',
+    subtitle: 'n8n-Powered AI Automation Platform',
     period: '2024–Present',
     color: 'purple',
-    description: 'Persistent AI companion with multi-channel communication, custom skill system, long-term vector memory, and proactive task management running around the clock.',
-    tags: ['Node.js', 'TypeScript', 'Qdrant', 'Telegram', 'Discord', 'Claude API'],
+    description: 'Early adopter of n8n who quickly stood up a comprehensive AI automation platform. Built daily AI-powered newsletters, a Mission Control dashboard for monitoring subagents, cron jobs, and vector memory, and integrated workflows that helped build J5-Trade. Configured with both cloud model providers and local LLMs.',
+    tags: ['n8n', 'AI Newsletters', 'Mission Control', 'Qdrant', 'Local LLMs', 'Claude API', 'Telegram', 'Discord'],
     icon: <Brain size={20} />,
   },
   {
@@ -233,7 +233,7 @@ const aiToolkit = [
     icon: <Network size={20} />,
     label: 'Agent Frameworks',
     color: 'blue',
-    skills: ['OpenAI Agents SDK', 'CrewAI', 'LangGraph', 'AutoGen', 'MCP (FastMCP)', 'OpenClaw'],
+    skills: ['OpenAI Agents SDK', 'CrewAI', 'LangGraph', 'AutoGen', 'MCP (FastMCP)', 'n8n (OpenClaw)'],
   },
   {
     icon: <Wrench size={20} />,
