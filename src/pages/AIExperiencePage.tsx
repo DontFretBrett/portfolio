@@ -365,9 +365,6 @@ export default function AIExperiencePage() {
                   className="flex items-center gap-1.5 text-gray-300 hover:text-purple-400 transition-colors">
                   <Github size={15} /><span>GitHub</span>
                 </a>
-                <a href="https://www.brettsanders.com/resume" className="flex items-center gap-1.5 text-gray-300 hover:text-purple-400 transition-colors">
-                  <ExternalLink size={15} /><span>Full Resume</span>
-                </a>
               </div>
             </motion.div>
           </div>
@@ -743,10 +740,6 @@ export default function AIExperiencePage() {
               <a href="https://github.com/DontFretBrett" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-2.5 rounded-full transition-colors">
                 <Github size={16} /> GitHub
-              </a>
-              <a href="https://www.brettsanders.com/resume"
-                className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-2.5 rounded-full transition-colors">
-                <ExternalLink size={16} /> Full Resume
               </a>
             </div>
           </motion.div>
