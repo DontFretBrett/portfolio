@@ -103,7 +103,7 @@ const journeyPhases = [
     ],
   },
   {
-    title: 'Framework Mastery',
+    title: 'Framework Research',
     subtitle: 'Systematic deep-dive into the most popular agent frameworks',
     color: 'green',
     highlights: [
