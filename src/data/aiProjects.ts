@@ -5,14 +5,14 @@ export const projects: Project[] = [
     slug: 'johnny5-openclaw-assistant',
     title: 'Johnny5: 24/7 AI Personal Assistant',
     description: 'A fully autonomous AI assistant powered by OpenClaw, featuring multi-channel communication, custom skills, persistent memory, and proactive task management running around the clock.',
-    excerpt: 'Meet Johnny5 — a 24/7 AI assistant built on OpenClaw that manages daily workflows across Telegram, Discord, and more. Features custom skills, persistent memory, browser automation, and proactive monitoring.',
+    excerpt: 'Meet Johnny5 — my 24/7 AI assistant powered by the open-source OpenClaw platform. Manages daily workflows across Telegram, Discord, and more. Custom skills, persistent memory, browser automation, and proactive monitoring.',
     date: '2026-01-28',
     tags: ['AI Assistant', 'OpenClaw', 'Multi-Agent Systems', 'Node.js', 'TypeScript', 'Telegram Bot', 'Automation', 'LLM Integration', 'Anthropic Claude', 'OpenAI'],
     githubUrl: '',
     liveUrl: '',
     content: `# Johnny5: 24/7 AI Personal Assistant
 
-Johnny5 is a fully autonomous AI assistant built on the OpenClaw platform, designed to be a persistent, helpful presence that manages daily workflows and provides proactive assistance around the clock.
+Johnny5 is my personal AI assistant — the bot alias I use for my instance of OpenClaw, an open-source AI platform released in 2026. Designed to be a persistent, helpful presence that manages daily workflows and provides proactive assistance around the clock.
 
 ## Features
 
@@ -363,7 +363,7 @@ The app uses a custom \`useLocalStorage\` hook to bridge React state with browse
 
 ## 🤖 Built with AI, for AI
 
-This project wasn't just built to *help* with AI—it was built *by* an AI. Developed by Brett Sanders in collaboration with his **OpenClaw** bot (Johnny5), it serves as a testament to the power of human-agent pair programming.
+This project wasn't just built to *help* with AI—it was built *by* an AI. Developed by Brett Sanders in collaboration with **Johnny5** (his AI assistant powered by OpenClaw), it serves as a testament to the power of human-agent pair programming.
 
 ## Why This Matters
 

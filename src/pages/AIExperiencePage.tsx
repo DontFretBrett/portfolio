@@ -71,7 +71,6 @@ const heroStats = [
 
 const journeyPhases = [
   {
-    period: 'Nov 2022 – Mar 2023',
     title: 'Immediate Adoption',
     subtitle: 'Day-one experimentation with ChatGPT and GPT-3.5',
     color: 'blue',
@@ -83,7 +82,6 @@ const journeyPhases = [
     ],
   },
   {
-    period: 'Apr 2023 – Dec 2023',
     title: 'Deep Exploration',
     subtitle: 'API integration, multi-model evaluation, and applied AI',
     color: 'purple',
@@ -95,18 +93,16 @@ const journeyPhases = [
     ],
   },
   {
-    period: 'Jan 2024 – Jun 2024',
     title: 'Building Production AI',
     subtitle: 'Shipping autonomous agents and real-time trading systems',
     color: 'cyan',
     highlights: [
-      'Built OpenClaw (Johnny5): 24/7 personal AI assistant with daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
-      'Configured OpenClaw with cloud model providers and local LLMs, integrating across Telegram, Discord, and email',
+      'Built Johnny5 (personal AI assistant) powered by the open-source OpenClaw platform: daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
+      'Configured Johnny5 with cloud model providers and local LLMs, integrating across Telegram, Discord, and email',
       'Explored vector databases, semantic search, and long-term agent memory systems',
     ],
   },
   {
-    period: 'Jul 2024 – Dec 2024',
     title: 'Framework Mastery',
     subtitle: 'Systematic deep-dive into the most popular agent frameworks',
     color: 'green',
@@ -118,7 +114,6 @@ const journeyPhases = [
     ],
   },
   {
-    period: 'Jan 2025 – Present',
     title: 'AI-Native Development',
     subtitle: 'Full-stack AI-assisted engineering with Claude Code, Codex, and agentic IDEs',
     color: 'orange',
@@ -179,7 +174,7 @@ const frameworkCards = [
     color: 'blue',
     depth: 'Daily',
     description: 'Primary LLM provider for OpenClaw automations and daily AI development. Daily use of Claude Code for agentic software development and code generation.',
-    projects: ['OpenClaw (Johnny5)', 'Claude Code Workflows', 'This Portfolio'],
+    projects: ['Johnny5 (OpenClaw)', 'Claude Code Workflows', 'This Portfolio'],
   },
 ];
 
@@ -194,11 +189,11 @@ const productionProjects = [
     icon: <TrendingUp size={20} />,
   },
   {
-    title: 'OpenClaw (Johnny5)',
-    subtitle: '24/7 Personal AI Assistant',
-    period: '2024–Present',
+    title: 'Johnny5',
+    subtitle: '24/7 AI Assistant powered by OpenClaw',
+    period: '2026–Present',
     color: 'purple',
-    description: 'Configured and extended a 24/7 personal AI assistant (Johnny5) with multi-channel communication across Telegram, Discord, and email. Built a Mission Control dashboard for monitoring subagents, cron jobs, and vector memory. Integrated with cloud model providers and local LLMs, with workflows that helped build J5-Trade.',
+    description: 'Personal AI assistant (Johnny5) powered by the open-source OpenClaw platform. Multi-channel communication across Telegram, Discord, and email. Mission Control dashboard for monitoring subagents, cron jobs, and vector memory. Integrated with cloud model providers and local LLMs, with workflows that helped build J5-Trade.',
     tags: ['AI Newsletters', 'Mission Control', 'Qdrant', 'Local LLMs', 'Claude API', 'Telegram', 'Discord'],
     icon: <Brain size={20} />,
   },
@@ -450,7 +445,6 @@ export default function AIExperiencePage() {
                     {/* Card */}
                     <div className="flex-1 -mt-1">
                       <div className={`bg-gray-900 border ${c.border} border-opacity-40 rounded-2xl p-5 hover:border-opacity-70 transition-all duration-300`}>
-                        <p className={`text-xs font-mono ${c.text} mb-1`}>{phase.period}</p>
                         <h3 className="text-base md:text-lg font-bold text-white">{phase.title}</h3>
                         <p className={`text-sm ${c.text} mb-3 opacity-80`}>{phase.subtitle}</p>
                         <ul className="space-y-1.5">

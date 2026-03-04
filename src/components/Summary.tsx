@@ -70,7 +70,7 @@ export default function Summary() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>Production AI Systems Builder</strong> — autonomous trading platform (J5-Trade) with 3 AI models and 12+ daemons, plus 24/7 AI assistant (Johnny5/OpenClaw)</span>
+                <span><strong>Production AI Systems Builder</strong> — autonomous trading platform (J5-Trade) with 3 AI models and 12+ daemons, plus 24/7 AI assistant (Johnny5 on OpenClaw)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>

@@ -239,12 +239,12 @@ const projects = [
     icon: <TrendingUp size={20} />,
   },
   {
-    title: 'OpenClaw (Johnny5)',
-    subtitle: '24/7 Autonomous AI Personal Assistant',
-    period: '2024–Present',
+    title: 'Johnny5',
+    subtitle: '24/7 AI Assistant powered by OpenClaw',
+    period: '2026–Present',
     color: 'purple',
-    description: 'Configured and extended a personal AI assistant with multi-channel communication (Telegram, Discord, iMessage). Developed custom skills for GitHub automation, Google Workspace, Slack. Persistent memory with Qdrant vector DB.',
-    tags: ['Node.js', 'TypeScript', 'Qdrant', 'Telegram API', 'Discord API'],
+    description: 'Personal AI assistant (Johnny5) powered by the open-source OpenClaw platform. Multi-channel communication (Telegram, Discord, iMessage), custom skills for GitHub, Google Workspace, Slack. Persistent memory with Qdrant vector DB.',
+    tags: ['OpenClaw', 'Node.js', 'TypeScript', 'Qdrant', 'Telegram API', 'Discord API'],
     icon: <Brain size={20} />,
   },
   {
