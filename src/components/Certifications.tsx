@@ -3,31 +3,40 @@ import { motion } from 'framer-motion';
 
 const certifications = [
   {
+    year: '2025',
     title: 'The Complete Agentic AI Engineering Course',
     url: 'https://www.udemy.com/certificate/UC-816bd9d7-4ad1-4bef-b670-782fabc9ec94/'
   },
   {
+    year: '2023',
     title: 'AWS Certified Cloud Practitioner'
   },
   {
+    year: '2023',
     title: 'AWS Technical Essentials'
   },
   {
+    year: '2023',
     title: 'Developing on AWS'
   },
   {
+    year: '2023',
     title: 'Advanced Developing on AWS'
   },
   {
+    year: '2023',
     title: 'Architecting on AWS'
   },
   {
+    year: '2023',
     title: 'Developing Serverless on AWS'
   },
   {
+    year: '2021',
     title: 'Accessibility for Web Design'
   },
   {
+    year: '2021',
     title: 'Certified SAFe 5 Practitioner'
   }
 ];
@@ -55,6 +64,7 @@ export default function Certifications() {
             >
               <div className="flex items-center gap-3 mb-2">
                 <Award className="text-blue-600 dark:text-blue-400" size={20} aria-hidden="true" />
+                <time className="text-gray-500 dark:text-gray-400" itemProp="dateCreated">{cert.year}</time>
               </div>
               <h3 className="text-lg font-medium text-gray-800 dark:text-gray-100" itemProp="name">
                 {cert.url ? (
