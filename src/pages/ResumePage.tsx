@@ -449,11 +449,13 @@ export default function ResumePage() {
     // Escape key to close
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setInfographicOpen(false); };
     document.addEventListener('keydown', onKey);
+    // Store ref value for cleanup
+    const triggerElement = triggerRef.current;
     return () => {
       document.body.style.overflow = prevOverflow;
       document.removeEventListener('keydown', onKey);
       // Restore focus to trigger
-      triggerRef.current?.focus();
+      triggerElement?.focus();
     };
   }, [infographicOpen]);
 
