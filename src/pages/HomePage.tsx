@@ -1,5 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { motion } from 'framer-motion';
+import { Linkedin, Github, Brain } from 'lucide-react';
 import Summary from '../components/Summary';
 import Skills from '../components/Skills';
 
@@ -10,9 +12,9 @@ const Certifications = lazy(() => import('../components/Certifications'));
 // Enhanced loading component with better UX
 function ComponentLoader({ message = "Loading..." }: { message?: string }) {
   return (
-    <section className="p-16 text-center bg-gray-50 dark:bg-gray-900">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400 mx-auto"></div>
-      <p className="mt-4 text-gray-600 dark:text-gray-400">{message}</p>
+    <section className="p-16 text-center bg-gray-950">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-400 mx-auto"></div>
+      <p className="mt-4 text-gray-500">{message}</p>
     </section>
   );
 }
@@ -201,7 +203,7 @@ export default function HomePage() {
         </script>
       </Helmet>
       
-      <main className="bg-gray-50 dark:bg-gray-900">
+      <main className="bg-gray-950">
         {/* Above-the-fold content loads immediately */}
         <Summary />
         <Skills />
@@ -215,6 +217,49 @@ export default function HomePage() {
             <Experience />
           </Suspense>
         </div>
+
+        {/* CTA Footer */}
+        <section className="py-16 bg-gray-950">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative rounded-2xl overflow-hidden bg-linear-to-r from-purple-600/20 to-cyan-600/20 border border-purple-500/30 p-8 text-center"
+            >
+              <div className="absolute inset-0 bg-linear-to-r from-purple-600/5 to-cyan-600/5" />
+              <h2 className="text-2xl font-bold text-white mb-2 relative z-10">Let's Build Something Together</h2>
+              <p className="text-gray-400 mb-6 relative z-10 max-w-xl mx-auto">
+                Engineering leader, AI builder, full-stack developer. Always open to interesting problems and great teams.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 relative z-10">
+                <a
+                  href="https://linkedin.com/in/imbrett/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold px-6 py-2.5 rounded-full transition-colors"
+                >
+                  <Linkedin size={16} aria-hidden="true" /> Connect on LinkedIn
+                </a>
+                <a
+                  href="https://github.com/DontFretBrett"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-2.5 rounded-full transition-colors"
+                >
+                  <Github size={16} aria-hidden="true" /> GitHub
+                </a>
+                <a
+                  href="/ai"
+                  className="inline-flex items-center gap-2 bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/40 text-cyan-300 font-semibold px-6 py-2.5 rounded-full transition-colors"
+                >
+                  <Brain size={16} aria-hidden="true" /> View AI Experience
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       </main>
     </>
   );

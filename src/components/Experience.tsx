@@ -1,5 +1,18 @@
 import { memo } from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, Briefcase } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-9 h-9 rounded-lg bg-purple-500/15 flex items-center justify-center text-purple-400 flex-shrink-0" aria-hidden="true">
+        {icon}
+      </div>
+      <h2 className="text-2xl font-bold text-white">{title}</h2>
+      <div className="flex-1 h-px bg-linear-to-r from-purple-500/30 to-transparent ml-2" />
+    </div>
+  );
+}
 
 // Add interfaces at the top of the file
 interface Role {
@@ -66,53 +79,56 @@ const experiences: Experience[] = [
 
 const Experience = memo(function Experience() {
   return (
-    <section 
-      id="experience" 
-      className="py-16 bg-white dark:bg-gray-800"
+    <section
+      id="experience"
+      className="py-16 bg-gray-950"
       itemScope
       itemType="https://schema.org/Person"
     >
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-gray-800 dark:text-gray-100">Professional Experience</h2>
-        
-        <div className="space-y-12">
-          {experiences.map((exp) => (
-            <div key={exp.company} className="border-l-4 border-blue-600 dark:border-blue-400 pl-6">
-              <div className="flex items-center gap-4 mb-4">
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">{exp.company}</h3>
-                <span className="text-gray-500 dark:text-gray-400 flex items-center gap-1 whitespace-nowrap">
-                  <Calendar size={16} aria-hidden="true" />
+      <div className="container mx-auto px-4 max-w-6xl">
+        <SectionHeader icon={<Briefcase size={20} />} title="Professional Experience" />
+
+        <div className="space-y-8">
+          {experiences.map((exp, expIndex) => (
+            <motion.div
+              key={exp.company}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.08 * expIndex }}
+              className="bg-gray-900 border border-gray-800 rounded-2xl p-6 md:p-8"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-6">
+                <h3 className="text-xl font-semibold text-white">{exp.company}</h3>
+                <span className="text-gray-400 flex items-center gap-1 text-sm">
+                  <Calendar size={14} aria-hidden="true" />
                   {exp.period}
                 </span>
               </div>
-              
-              <div className="space-y-8">
+
+              <div className="space-y-6 border-l-2 border-purple-500/30 pl-5">
                 {exp.roles.map((role) => (
-                  <div 
-                    key={role.title} 
-                    className="ml-4"
+                  <div
+                    key={role.title}
                     itemScope
                     itemType="https://schema.org/OrganizationRole"
                   >
-                    <div className="flex items-center gap-4 mb-3">
-                      <h4 className="text-xl font-medium text-gray-700 dark:text-gray-200" itemProp="roleName">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-2">
+                      <h4 className="text-base font-medium text-purple-300" itemProp="roleName">
                         {role.title}
                       </h4>
                       {role.period && (
-                        <span className="text-gray-500 dark:text-gray-400 flex items-center gap-1 whitespace-nowrap">
-                          <Calendar size={14} aria-hidden="true" />
+                        <span className="text-gray-500 flex items-center gap-1 text-xs">
+                          <Calendar size={12} aria-hidden="true" />
                           <time itemProp="startDate">{role.period}</time>
                         </span>
                       )}
                     </div>
-                    
                     {role.description && (
-                      <p className="text-gray-600 dark:text-gray-300 mb-4" itemProp="description">
+                      <p className="text-gray-400 text-sm leading-relaxed" itemProp="description">
                         {role.description}
                       </p>
                     )}
-                    
-                    {/* Hidden structured data */}
                     <div className="hidden">
                       <span itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
                         <span itemProp="name">{exp.company}</span>
@@ -121,7 +137,7 @@ const Experience = memo(function Experience() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -1,124 +1,133 @@
 import { motion } from 'framer-motion';
+import { Database, Server, Globe, Wrench, Bot, Cpu, Cloud, LucideIcon } from 'lucide-react';
+
+function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-9 h-9 rounded-lg bg-purple-500/15 flex items-center justify-center text-purple-400 flex-shrink-0" aria-hidden="true">
+        {icon}
+      </div>
+      <h2 className="text-2xl font-bold text-white">{title}</h2>
+      <div className="flex-1 h-px bg-linear-to-r from-purple-500/30 to-transparent ml-2" />
+    </div>
+  );
+}
+
+const colorMap: Record<string, { border: string; icon: string; tag: string }> = {
+  blue:   { border: 'border-blue-500/30',   icon: 'text-blue-400',   tag: 'bg-blue-500/20   text-blue-300   border border-blue-500/30' },
+  green:  { border: 'border-green-500/30',  icon: 'text-green-400',  tag: 'bg-green-500/20  text-green-300  border border-green-500/30' },
+  cyan:   { border: 'border-cyan-500/30',   icon: 'text-cyan-400',   tag: 'bg-cyan-500/20   text-cyan-300   border border-cyan-500/30' },
+  orange: { border: 'border-orange-500/30', icon: 'text-orange-400', tag: 'bg-orange-500/20 text-orange-300 border border-orange-500/30' },
+  purple: { border: 'border-purple-500/30', icon: 'text-purple-400', tag: 'bg-purple-500/20 text-purple-300 border border-purple-500/30' },
+  pink:   { border: 'border-pink-500/30',   icon: 'text-pink-400',   tag: 'bg-pink-500/20   text-pink-300   border border-pink-500/30' },
+};
+
+interface SkillCategory {
+  icon: LucideIcon;
+  title: string;
+  color: string;
+  skills: string[];
+  itemProp: string;
+}
+
+const skillCategories: SkillCategory[] = [
+  {
+    icon: Database,
+    title: 'Database Technologies',
+    color: 'blue',
+    skills: ['SQL Server', 'SQL', 'SSMS', 'SSRS', 'ETL', 'Entity Framework', 'ADO.NET', 'AWS RDS', 'DynamoDB'],
+    itemProp: 'knowsAbout',
+  },
+  {
+    icon: Server,
+    title: 'Server-Side Development',
+    color: 'green',
+    skills: ['Node.js', 'Express', 'C# .NET', 'ASP.NET', 'MVC', 'Microservices', 'SOA', 'IIS', 'RESTful APIs', 'PowerShell', 'Gulp'],
+    itemProp: 'knowsAbout',
+  },
+  {
+    icon: Globe,
+    title: 'Front-End Development',
+    color: 'cyan',
+    skills: ['React', 'Vite', 'Angular', 'SPA', 'JavaScript', 'TypeScript', 'CSS/SASS', 'Flexbox', 'CSS Grid', 'HTML', 'Bootstrap', 'Razor'],
+    itemProp: 'knowsAbout',
+  },
+  {
+    icon: Wrench,
+    title: 'Development Tools',
+    color: 'orange',
+    skills: ['VS Code', 'Visual Studio', 'TeamCity CI', 'Octopus CD', 'Postman', 'Git', 'GitHub', 'Azure DevOps', 'Figma', 'Miro', 'Confluence'],
+    itemProp: 'knowsAbout',
+  },
+  {
+    icon: Bot,
+    title: 'AI Agents & Automation',
+    color: 'purple',
+    skills: ['OpenAI Agents SDK', 'CrewAI', 'LangGraph', 'AutoGen', 'MCP', 'OpenClaw', 'Claude', 'GPT', 'Gemini', 'Prompt Engineering', 'RAG', 'Multi-agent Systems'],
+    itemProp: 'knowsAbout',
+  },
+  {
+    icon: Cpu,
+    title: 'AI Development Tools',
+    color: 'pink',
+    skills: ['Cursor IDE', 'Windsurf IDE', 'Claude Code', 'Codex CLI', 'GitHub Copilot', 'FastMCP', 'Python AsyncIO', 'WebSockets', 'Gradio', 'SQLite'],
+    itemProp: 'knowsAbout',
+  },
+  {
+    icon: Cloud,
+    title: 'Cloud & Deployment',
+    color: 'blue',
+    skills: ['AWS', 'IAM', 'S3', 'EC2', 'Lambda', 'Azure', 'Docker', 'CI/CD', 'Terraform', 'Vercel', 'Infrastructure as Code'],
+    itemProp: 'knowsAbout',
+  },
+];
 
 export default function Skills() {
-  const skillCategories = [
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <ellipse cx="12" cy="5" rx="9" ry="3"/>
-          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-        </svg>
-      ),
-      title: 'Database Technologies',
-      skills: 'SQL Server, SQL, SSMS, SSRS, ETL, Entity Framework, ADO.NET, AWS RDS, DynamoDB',
-      itemProp: 'knowsAbout'
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
-          <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
-          <line x1="6" x2="6" y1="6" y2="6"/>
-          <line x1="6" x2="6" y1="18" y2="18"/>
-        </svg>
-      ),
-      title: 'Server-Side Development',
-      skills: 'Node.js, Express, C# .NET (Framework/Core), ASP.NET, MVC, Microservices, SOA, IIS, RESTful APIs, PowerShell, Gulp',
-      itemProp: 'knowsAbout'
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-          <path d="M3 9h18"/>
-          <path d="M9 21V9"/>
-        </svg>
-      ),
-      title: 'Front-End Development',
-      skills: 'React, Vite, Angular 6-17, Angular Forms Reactive/Template-Driven, SPA, JavaScript, TypeScript, CSS/SASS Grid/Flexbox, CSS Variables, HTML, Foundation/Bootstrap CSS, Media Queries, Responsiveness, Razor syntax',
-      itemProp: 'knowsAbout'
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-        </svg>
-      ),
-      title: 'Development Tools',
-      skills: 'Visual Studio, VS Code, TeamCity CI, Octopus CD, Postman, Artifactory, Proget, TFS/Git, GitHub, Azure DevOps, npm, nuget, TS Lint, Miro, Figma, Invision, AirTable, Slack, Teams, Discord, Confluence, Discourse',
-      itemProp: 'knowsAbout'
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
-          <path d="M14.5 6A2.5 2.5 0 0 1 17 8.5c0 .38-.07.74-.22 1.07a3 3 0 0 1 .95 5.53 2.5 2.5 0 0 1-1.32 4.24 2.5 2.5 0 0 1-1.98 3A2.5 2.5 0 0 1 12 19.5V8.5A2.5 2.5 0 0 1 14.5 6Z"/>
-        </svg>
-      ),
-      title: 'AI Agents & Automation',
-      skills: 'OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, Model Context Protocol (MCP), OpenClaw, Anthropic Claude, OpenAI GPT, Google Gemini, xAI Grok, DeepSeek, Prompt Engineering, RAG Systems, Multi-agent Systems, Autonomous Trading Algorithms, Real-time AI Pipelines',
-      itemProp: 'knowsAbout'
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 20V10"/>
-          <path d="M18 20V4"/>
-          <path d="M6 20v-4"/>
-        </svg>
-      ),
-      title: 'AI Development Tools',
-      skills: 'Cursor IDE, Windsurf IDE, Claude Code, Codex CLI, VS Code + AI Extensions, Hugging Face Spaces, Gradio, FastMCP, Python AsyncIO, WebSocket Data Feeds, SQLite/PostgreSQL for AI State',
-      itemProp: 'knowsAbout'
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
-        </svg>
-      ),
-      title: 'Cloud & Deployment',
-      skills: 'AWS Console, IAM, S3, EC2, EBS, Lambda, Azure VM, SQL, App Services, Storage, Virtual Network, SSL, Hugging Face Spaces, Docker, CI/CD pipelines, Infrastructure as Code, Vercel, Terraform',
-      itemProp: 'knowsAbout'
-    }
-  ];
-
   return (
-    <motion.section 
+    <section
       id="skills"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.4 }}
+      className="py-16 bg-gray-950"
       style={{ contentVisibility: 'auto' }}
-      className="py-16 bg-gray-50 dark:bg-gray-900"
       itemScope
       itemType="https://schema.org/Person"
     >
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-gray-800 dark:text-gray-100">Technical Skills & Expertise</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md dark:shadow-gray-900/20 dark:hover:shadow-gray-900/40 transition-all duration-200 border border-gray-100 dark:border-gray-700"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-blue-600 dark:text-blue-400" aria-hidden="true">
-                  {category.icon}
-                </span>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{category.title}</h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed" itemProp={category.itemProp}>
-                {category.skills}
-              </p>
-            </motion.div>
-          ))}
+      <div className="container mx-auto px-4 max-w-6xl">
+        <SectionHeader icon={<Globe size={20} />} title="Technical Skills & Expertise" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillCategories.map((category, index) => {
+            const c = colorMap[category.color] ?? colorMap.blue;
+            const Icon = category.icon;
+            return (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.05 * index }}
+                className={`bg-gray-900 rounded-2xl p-6 border ${c.border} hover:border-opacity-60 transition-all duration-200`}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className={c.icon} aria-hidden="true">
+                    <Icon size={22} />
+                  </span>
+                  <h3 className="text-base font-semibold text-white">{category.title}</h3>
+                </div>
+                <div
+                  className="flex flex-wrap gap-2"
+                  itemProp={category.itemProp}
+                  aria-label={`${category.title} skills`}
+                >
+                  {category.skills.map((skill) => (
+                    <span key={skill} className={`text-xs px-2.5 py-1 rounded-full font-medium ${c.tag}`}>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
