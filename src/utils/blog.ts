@@ -121,8 +121,8 @@ export function formatDate(dateString: string): string {
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
     return await getBlogPostInternal(slug);
-  } catch (error) {
-    console.error('Error loading blog post:', error);
+  } catch {
+    // Error loading blog post - return null silently
     return null;
   }
 }
@@ -131,8 +131,8 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
   try {
     const posts = await getAllBlogPostsInternal();
     return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  } catch (error) {
-    console.error('Error loading blog posts:', error);
+  } catch {
+    // Error loading blog posts - return empty array silently
     return [];
   }
 }

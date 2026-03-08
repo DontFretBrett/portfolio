@@ -54,7 +54,7 @@ const getInitialTheme = (defaultTheme: Theme = 'dark' as Theme): Theme => {
       if (themeResult.success) {
         return themeResult.data;
       }
-      console.warn(`Invalid theme in localStorage: ${savedTheme}`);
+      // Invalid theme in localStorage - silently fall back to default
     }
     
     // If no saved theme, check OS preference
@@ -63,7 +63,7 @@ const getInitialTheme = (defaultTheme: Theme = 'dark' as Theme): Theme => {
       return 'dark' as Theme;
     }
   } catch (error) {
-    console.warn('Failed to get initial theme:', error);
+    // Failed to get initial theme - silently use default
   }
   
   return defaultTheme;
@@ -107,7 +107,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   const setTheme = React.useCallback((newTheme: Theme): void => {
     const themeResult = createTheme(newTheme);
     if (!themeResult.success) {
-      console.error('Invalid theme:', themeResult.error);
+      // Invalid theme - silently return without updating
       return;
     }
     setThemeState(themeResult.data);
@@ -127,7 +127,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     try {
       localStorage.setItem('theme', theme);
     } catch (error) {
-      console.warn('Failed to save theme to localStorage:', error);
+      // Failed to save theme - silently continue
     }
   }, [theme]);
 

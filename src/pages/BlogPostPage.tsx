@@ -17,8 +17,8 @@ function BlogPostContent({ slug }: { slug: string }) {
       try {
         const blogPost = await getBlogPost(slug);
         setPost(blogPost);
-      } catch (error) {
-        console.error('Failed to load blog post:', error);
+      } catch {
+        // Failed to load blog post - set to null
         setPost(null);
       } finally {
         setLoading(false);

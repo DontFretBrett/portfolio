@@ -18,8 +18,8 @@ async function loadBlogPosts(): Promise<BlogPost[]> {
       const content = await importFn() as string;
       const filename = path.split('/').pop() || 'untitled.md';
       return processMarkdown(content, filename);
-    } catch (error) {
-      console.warn(`Failed to load blog post from ${path}:`, error);
+    } catch {
+      // Failed to load blog post - return null silently
       return null;
     }
   });
@@ -31,8 +31,7 @@ async function loadBlogPosts(): Promise<BlogPost[]> {
     if (result.status === 'fulfilled' && result.value) {
       posts.push(result.value);
     } else if (result.status === 'rejected') {
-      const path = Object.keys(markdownModules)[index];
-      console.warn(`Failed to load blog post from ${path}:`, result.reason);
+      // Failed to load blog post - silently skip
     }
   });
   

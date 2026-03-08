@@ -51,8 +51,7 @@ const TagCloud = memo(function TagCloud({ posts, selectedTags, onTagToggle, onCl
         // In development, throw to aid debugging
         throw error;
       } else {
-        // In production, log and optionally call onError
-        console.error('Error computing tagCounts:', error);
+        // In production, silently handle error
         onError?.(error as Error);
         return {};
       }
