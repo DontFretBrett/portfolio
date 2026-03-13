@@ -142,8 +142,22 @@ export default function BlogPost({ post }: BlogPostProps) {
             h6: createHeadingComponent(6),
             // Enhanced link component with external link indicators
             a: ({ href, children, ...props }) => {
-              const isExternal = href?.startsWith('http') && !href.includes('brettsanders.com');
-              const isInternal = href?.startsWith('/') || href?.includes('brettsanders.com');
+              let hostname: string | null = null;
+              if (href) {
+                try {
+                  const url = new URL(href, window.location.origin);
+                  hostname = url.hostname;
+                } catch {
+                  hostname = null;
+                }
+              }
+
+              const isSameDomain =
+                hostname === 'brettsanders.com' ||
+                (hostname !== null && hostname.endsWith('.brettsanders.com'));
+
+              const isExternal = !!href && href.startsWith('http') && !isSameDomain;
+              const isInternal = (!!href && href.startsWith('/')) || isSameDomain;
               
               if (isExternal) {
                 return (
