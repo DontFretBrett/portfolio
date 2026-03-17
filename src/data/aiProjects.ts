@@ -2,6 +2,131 @@ import type { Project } from '../types/projects';
 
 export const projects: Project[] = [
   {
+    slug: 'agent-fleet-orchestration-platform',
+    title: 'Agent Fleet: Local-First AI Orchestration Platform',
+    description: 'A local-first multi-agent orchestration platform for turning project ideas into decomposed work, routed execution, consultation-driven implementation, and transparent delivery tracking.',
+    excerpt: 'Agent Fleet combines project decomposition, specialist-agent delegation, consultation-gated execution, multi-model routing, and Kanban/task visibility in a single SQLite-backed orchestration system.',
+    date: '2026-03-17',
+    tags: ['AI', 'Multi-Agent Systems', 'TypeScript', 'Next.js', 'SQLite', 'Workflow Orchestration', 'Kanban', 'SSE', 'LLM Routing'],
+    githubUrl: '',
+    liveUrl: '',
+    content: `# Agent Fleet: Local-First AI Orchestration Platform
+
+Agent Fleet is the project execution layer inside BMC: a **local-first orchestration platform** built to take an idea, break it into real work, route that work to specialist agents, collect advisor input when needed, and keep the whole process visible through a project hub, task graph, and Kanban board.
+
+At a high level, it solves a problem I kept running into with AI tooling: most agent demos are impressive in isolation, but weak at **planning, coordination, traceability, and human supervision**. Agent Fleet focuses on those gaps.
+
+## What It Does
+
+- **Project decomposition** into features, user stories, and implementation tasks
+- **Specialist routing** via an orchestrator that delegates work to the best-fit agent
+- **Advisor consultations** that feed recommendations directly into the implementation brief
+- **Multi-model execution** across Copilot, Codex, Claude Code, GPT-5.4, LM Studio/Qwen, and more
+- **Kanban visibility** with automatic movement between backlog, ready, in progress, needs attention, and done
+- **Task-level transparency** through full outputs, artifacts, event history, and graph views
+- **Project chat context** so planning can incorporate relevant history from prior work
+
+## Why It’s Interesting
+
+The core idea is simple: **treat AI work like managed delivery work**, not like a one-shot prompt.
+
+Instead of asking a model for a giant answer and hoping for the best, Agent Fleet creates a structured workflow:
+
+1. A project is created with a plain-English description
+2. The platform generates a decomposed plan
+3. Tasks are queued based on dependency readiness
+4. The orchestrator delegates implementation to a specialist
+5. Advisor agents can be consulted before implementation starts
+6. Outputs, status changes, and artifacts are recorded in the UI
+
+That makes the system feel closer to a real delivery engine than a chat wrapper.
+
+## Architecture Highlights
+
+### SQLite-Backed Worker Loop
+
+The runtime is intentionally pragmatic:
+
+- **SQLite** stores projects, features, stories, tasks, messages, dependencies, events, and artifacts
+- The worker runs a **polling loop** against queued tasks
+- SQLite runs with **WAL mode** so reads and writes stay responsive while work is being processed
+- Task state is persisted so the UI can recover cleanly between runs
+
+This is not a distributed orchestration system. It is a **single-node, local-first control plane** designed for clarity, iteration speed, and operator visibility.
+
+### Prompt-Defined Agent System
+
+Agent personas are stored as markdown definitions on disk. That gives the platform a lightweight but powerful agent layer:
+
+- Agents have explicit roles, decision frameworks, and success metrics
+- The roster spans **61 specialized agent definitions**
+- Those agents are organized under a **nine-division taxonomy**
+- The orchestrator can choose a primary owner and optional advisors for a task
+
+I like this design because the platform logic and the specialist behavior are cleanly separated. The worker manages state and execution; the persona files define how each specialist thinks and responds.
+
+### Consultation-Gated Execution
+
+One of the strongest workflow details is the consultation system.
+
+When the orchestrator decides a task would benefit from cross-functional input, it can:
+
+- create consultation subtasks for advisor agents
+- block the implementation task until consultations complete or a deadline expires
+- inject advisor recommendations directly into the implementation brief
+
+That gives implementation agents richer context without pretending the system has perfect autonomous consensus. It is **AI-driven collaboration with human-readable handoffs**, not magic.
+
+### Multi-Model Routing
+
+Agent Fleet supports multiple execution backends and planning models:
+
+- planning can use **GPT-5.4** or **local Qwen via LM Studio**
+- task execution can route to models like **Copilot, Codex, Claude Code, GPT-5.4, and LM Studio**
+- model choice can be assigned by workflow rules and task complexity
+
+This matters because orchestration gets much more useful once model choice becomes a routing concern instead of a hardcoded assumption.
+
+## Product Surface
+
+The product is more than a worker daemon. It has a real operating surface:
+
+- **Employee Directory** for browsing specialist agents
+- **Projects** for planning and execution
+- **Task Center** for running, one-time, and completed work
+- **Project detail hub** with overview, board, timeline, list, activity, and chat
+- **Task detail view** with graph-style hierarchy, output, and event history
+
+The combination of orchestration plus visibility is what makes it compelling. You can see not just that a task ran, but **why it was assigned, what dependencies existed, what advisors said, and what actually shipped**.
+
+## Constraints by Design
+
+I’m careful not to oversell this platform.
+
+Agent Fleet is:
+
+- **local-first**
+- **single-node**
+- **human-supervised**
+- dependent on **CLI/API availability** for the models and tools it calls
+
+It is not claiming enterprise-scale scheduling, distributed fault tolerance, or fully autonomous delivery with hard guarantees. The value is in giving a solo builder or small team a **practical orchestration layer** that is understandable, inspectable, and extensible.
+
+## Why I Built It
+
+I wanted a system that combined the flexibility of modern coding agents with the operational structure of real project execution:
+
+- plans instead of vague intent
+- delegated work instead of generic chat
+- consultation when needed
+- context carried forward between related efforts
+- transparent progress instead of hidden reasoning
+
+Agent Fleet is the result: a platform that turns AI from an isolated assistant into a **visible, trackable project execution system**.
+
+If you want the deeper technical breakdown, the companion blog post walks through the worker loop, project decomposition flow, persona system, consultation injection, and Kanban synchronization architecture in detail.`
+  },
+  {
     slug: 'johnny5-openclaw-assistant',
     title: 'Johnny5: 24/7 AI Personal Assistant',
     description: 'A fully autonomous AI assistant powered by OpenClaw, featuring multi-channel communication, custom skills, persistent memory, and proactive task management running around the clock.',
