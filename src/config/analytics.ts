@@ -1,4 +1,6 @@
-import ReactGA from 'react-ga4';
+import { ReactGAImplementation } from 'react-ga4';
+
+const ReactGA = new ReactGAImplementation();
 
 // GA4 Measurement ID
 const MEASUREMENT_ID = 'G-V4R29ZNVC3';
