@@ -8,8 +8,6 @@ import {
   ExternalLink,
   Award,
   MapPin,
-  Github,
-  Linkedin,
   TrendingUp,
   Shield,
   Zap,
@@ -30,6 +28,7 @@ import {
   ZoomIn,
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
+import { SimpleBrandIcon } from '../components/SimpleBrandIcon';
 
 // ─── Animated Counter ────────────────────────────────────────────────────────
 function AnimatedCounter({
@@ -441,6 +440,7 @@ export default function ResumePage() {
 
   useEffect(() => {
     if (!infographicOpen) return;
+    const triggerEl = triggerRef.current;
     // Lock body scroll
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -453,7 +453,7 @@ export default function ResumePage() {
       document.body.style.overflow = prevOverflow;
       document.removeEventListener('keydown', onKey);
       // Restore focus to trigger
-      triggerRef.current?.focus();
+      triggerEl?.focus();
     };
   }, [infographicOpen]);
 
@@ -507,11 +507,11 @@ export default function ResumePage() {
               <div className="flex flex-wrap justify-center md:justify-start gap-3 text-sm">
                 <a href="https://linkedin.com/in/imbrett/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-gray-300 hover:text-blue-400 transition-colors">
-                  <Linkedin size={15} /><span>LinkedIn</span>
+                  <SimpleBrandIcon brand="linkedin" size={15} /><span>LinkedIn</span>
                 </a>
                 <a href="https://github.com/DontFretBrett" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-gray-300 hover:text-blue-400 transition-colors">
-                  <Github size={15} /><span>GitHub</span>
+                  <SimpleBrandIcon brand="github" size={15} /><span>GitHub</span>
                 </a>
                 <a href="https://www.brettsanders.com" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-gray-300 hover:text-blue-400 transition-colors">
@@ -998,11 +998,11 @@ export default function ResumePage() {
             <div className="flex flex-wrap justify-center gap-4 relative z-10">
               <a href="https://linkedin.com/in/imbrett/" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-2.5 rounded-full transition-colors">
-                <Linkedin size={16} /> Connect on LinkedIn
+                <SimpleBrandIcon brand="linkedin" size={16} /> Connect on LinkedIn
               </a>
               <a href="https://github.com/DontFretBrett" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-2.5 rounded-full transition-colors">
-                <Github size={16} /> GitHub
+                <SimpleBrandIcon brand="github" size={16} /> GitHub
               </a>
             </div>
           </motion.div>
