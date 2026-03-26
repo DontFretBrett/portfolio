@@ -2,6 +2,54 @@ import type { Project } from '../types/projects';
 
 export const projects: Project[] = [
   {
+    slug: 'j5-agent-fleet',
+    title: 'J5 Agent Fleet',
+    description: 'A production agent fleet and operations platform: task and project orchestration, Agent Fleet workspace, Kanban, GitHub integration, costs and usage dashboards, real-time SSE, and a local worker runtime for agentic CLIs. Optional gateway event ingestion when you connect a compatible gateway (e.g. OpenClaw).',
+    excerpt: 'Full-stack mission control for agent operations at scale — Next.js UI, SQLite-backed operations, optional gateway event ingestion, detached workers for Claude Code, Codex, Copilot, and more, with live SSE updates and GitHub-linked repos.',
+    date: '2026-03-25',
+    tags: [
+      'AI Agents',
+      'Next.js',
+      'TypeScript',
+      'React',
+      'Multi-Agent Systems',
+      'MCP',
+      'SQLite',
+      'SSE',
+      'GitHub',
+      'Anthropic Claude',
+    ],
+    githubUrl: 'https://github.com/DontFretBrett/bmc',
+    liveUrl: '',
+    content: `# J5 Agent Fleet
+
+**J5 Agent Fleet** is a **standalone** production platform for orchestrating agent work: a Next.js operator UI, SQLite-backed operations, and a local worker runtime. It is not an OpenClaw product; OpenClaw is one optional integration path when you want gateway events mirrored into the console.
+
+The codebase is open source as [\`DontFretBrett/bmc\`](https://github.com/DontFretBrett/bmc) (legacy names **BMC** / **Bot Mission Control** still appear in env vars and paths for compatibility).
+
+## What it does
+
+- **Task management** — queue, rerun, stop, archive, and bookmark agent-driven work; dedicated creation flows including repo-scoped tasks
+- **Agent Fleet workspace** — employee directory, fleet chat, task center, bookmarks, and recurring views
+- **Project orchestration** — projects with features and user stories, decomposition into executable tasks, start / pause / resume workflows
+- **Kanban** — drag-and-drop columns across backlog through done, including \`needs_attention\` and review states
+- **Project chat** — persistent conversations with full project context (features, stories, tasks)
+- **Attachments** — upload and download files on projects
+- **Repositories** — catalog of local and GitHub-linked repos with overview, activity, and repository-scoped chat
+- **Reports** — period-based narrative reports (today / week / month), history, Markdown, optional PDF export
+- **Costs & usage** — spend and OpenAI usage signals, budget APIs, subscription tracking
+- **Integrations** — GitHub OAuth; QMD (query MCP/docs) configuration and project-scoped knowledge indexing
+- **Real-time UI** — Server-Sent Events (SSE) for live operational updates
+- **Worker runtime** — detached poller executing tasks for \`copilot\`, \`codex\`, \`claude-code\`, \`gemini-cli\`, \`lmstudio-qwen\`, \`gpt-5.4\`, and related agent CLIs
+- **Gateway bridge (optional)** — WebSocket client to a compatible gateway (e.g. OpenClaw) with SQLite persistence and retention policies when enabled
+
+## Why it matters
+
+J5 Agent Fleet is built to **operate** multi-CLI agent fleets the way real teams work: structured tasks and projects, visibility into spend and activity, GitHub-linked repos, and safe execution through a managed worker — with or without a separate gateway layer.
+
+Built end-to-end with production concerns: auth boundaries for GitHub, structured data in SQLite, observable task lifecycles, and a UI that stays in sync with workers and any connected gateway.`
+  },
+  {
     slug: 'johnny5-openclaw-assistant',
     title: 'Johnny5: 24/7 AI Personal Assistant',
     description: 'A fully autonomous AI assistant powered by OpenClaw, featuring multi-channel communication, custom skills, persistent memory, and proactive task management running around the clock.',

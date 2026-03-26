@@ -21,6 +21,7 @@ import {
   MessageSquare,
   Bot,
   Network,
+  LayoutDashboard,
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { SimpleBrandIcon } from '../components/SimpleBrandIcon';
@@ -64,7 +65,7 @@ function AnimatedCounter({
 const heroStats = [
   { icon: <Clock size={22} />, value: 2000, suffix: '+', label: 'Hours of AI Study', color: 'from-purple-500 to-violet-500' },
   { icon: <Layers size={22} />, value: 6, suffix: '', label: 'Agent Frameworks', color: 'from-blue-500 to-cyan-500' },
-  { icon: <Rocket size={22} />, value: 8, suffix: '+', label: 'AI Projects Shipped', color: 'from-green-500 to-emerald-500' },
+  { icon: <Rocket size={22} />, value: 9, suffix: '+', label: 'AI Projects Shipped', color: 'from-green-500 to-emerald-500' },
   { icon: <Clock size={22} />, value: 39, suffix: ' mo', label: 'Since ChatGPT Launch', color: 'from-orange-500 to-red-500' },
 ];
 
@@ -97,6 +98,7 @@ const journeyPhases = [
     color: 'cyan',
     highlights: [
       'Built Johnny5 (personal AI assistant) powered by the open-source OpenClaw platform: daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
+      'Shipped J5 Agent Fleet — production Next.js agent fleet and operations platform: task and project orchestration, agent fleet workspace, Kanban, GitHub OAuth, costs dashboards, SSE live updates, and a detached worker for Claude Code, Codex, Copilot, and more',
       'Configured Johnny5 with cloud model providers and local LLMs, integrating across Telegram, Discord, and email',
       'Explored vector databases, semantic search, and long-term agent memory systems',
     ],
@@ -173,11 +175,20 @@ const frameworkCards = [
     color: 'blue',
     depth: 'Daily',
     description: 'Primary LLM provider for OpenClaw automations and daily AI development. Daily use of Claude Code for agentic software development and code generation.',
-    projects: ['Johnny5 (OpenClaw)', 'Claude Code Workflows', 'This Portfolio'],
+    projects: ['J5 Agent Fleet', 'Johnny5 (OpenClaw)', 'Claude Code Workflows', 'This Portfolio'],
   },
 ];
 
 const productionProjects = [
+  {
+    title: 'J5 Agent Fleet',
+    subtitle: 'Agent fleet & operations platform',
+    period: '2026–Present',
+    color: 'cyan',
+    description: 'Standalone production platform for running agent fleets: task lifecycle with worker execution (Claude Code, Codex, Copilot, Gemini CLI, and more), Agent Fleet workspace with directory and chat, project orchestration with Kanban, per-project chat and attachments, GitHub-linked repository catalog, period reports with PDF export, costs and usage dashboards, QMD/MCP docs indexing, optional gateway WebSocket ingestion into SQLite (including OpenClaw where used), and live updates over SSE.',
+    tags: ['Next.js', 'TypeScript', 'SQLite', 'SSE', 'GitHub OAuth', 'Agent orchestration', 'Worker runtime'],
+    icon: <LayoutDashboard size={20} />,
+  },
   {
     title: 'J5-Trade',
     subtitle: 'Autonomous Multi-Agent Crypto Trading Platform',
@@ -307,7 +318,7 @@ export default function AIExperiencePage() {
     <>
       <Helmet>
         <title>AI Experience – Brett Sanders</title>
-        <meta name="description" content="Brett Sanders' AI experience: 2,000+ hours of hands-on study, hands-on experience with 6 agent frameworks, and 8+ production AI projects shipped since ChatGPT launched in November 2022." />
+        <meta name="description" content="Brett Sanders' AI experience: 2,000+ hours of hands-on study, hands-on experience with 6 agent frameworks, and 9+ production AI projects shipped since ChatGPT launched in November 2022." />
         <link rel="canonical" href="https://www.brettsanders.com/ai" />
       </Helmet>
 
