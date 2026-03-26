@@ -98,7 +98,7 @@ const journeyPhases = [
     color: 'cyan',
     highlights: [
       'Built Johnny5 (personal AI assistant) powered by the open-source OpenClaw platform: daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
-      'Shipped J5 Agent Fleet — production Next.js operator console for OpenClaw: task and project orchestration, agent fleet workspace, Kanban, GitHub OAuth, costs dashboards, SSE live updates, and a detached worker for Claude Code, Codex, Copilot, and more',
+      'Shipped J5 Agent Fleet — production Next.js agent fleet and operations platform: task and project orchestration, agent fleet workspace, Kanban, GitHub OAuth, costs dashboards, SSE live updates, and a detached worker for Claude Code, Codex, Copilot, and more',
       'Configured Johnny5 with cloud model providers and local LLMs, integrating across Telegram, Discord, and email',
       'Explored vector databases, semantic search, and long-term agent memory systems',
     ],
@@ -182,11 +182,11 @@ const frameworkCards = [
 const productionProjects = [
   {
     title: 'J5 Agent Fleet',
-    subtitle: 'OpenClaw / Johnny5 operations console',
+    subtitle: 'Agent fleet & operations platform',
     period: '2026–Present',
     color: 'cyan',
-    description: 'Production-grade operator UI and runtime for OpenClaw agents: task lifecycle with worker execution (Claude Code, Codex, Copilot, Gemini CLI, and more), Agent Fleet workspace with directory and chat, project orchestration with Kanban, per-project chat and attachments, GitHub-linked repository catalog, period reports with PDF export, costs and usage dashboards, QMD/MCP docs indexing, gateway WebSocket ingestion into SQLite, and live updates over SSE.',
-    tags: ['Next.js', 'TypeScript', 'SQLite', 'SSE', 'GitHub OAuth', 'OpenClaw', 'Worker runtime'],
+    description: 'Standalone production platform for running agent fleets: task lifecycle with worker execution (Claude Code, Codex, Copilot, Gemini CLI, and more), Agent Fleet workspace with directory and chat, project orchestration with Kanban, per-project chat and attachments, GitHub-linked repository catalog, period reports with PDF export, costs and usage dashboards, QMD/MCP docs indexing, optional gateway WebSocket ingestion into SQLite (including OpenClaw where used), and live updates over SSE.',
+    tags: ['Next.js', 'TypeScript', 'SQLite', 'SSE', 'GitHub OAuth', 'Agent orchestration', 'Worker runtime'],
     icon: <LayoutDashboard size={20} />,
   },
   {

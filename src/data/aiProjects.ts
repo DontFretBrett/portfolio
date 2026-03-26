@@ -4,12 +4,11 @@ export const projects: Project[] = [
   {
     slug: 'j5-agent-fleet',
     title: 'J5 Agent Fleet',
-    description: 'A production operations console for OpenClaw / Johnny5: task and project orchestration, Agent Fleet workspace, Kanban, GitHub integration, costs and usage dashboards, real-time SSE, and a local worker runtime for agentic CLIs.',
-    excerpt: 'Full-stack mission control for OpenClaw agents — Next.js operator UI, SQLite-backed operations, gateway event ingestion, detached workers for Claude Code, Codex, Copilot, and more, with live SSE updates and GitHub-linked repos.',
+    description: 'A production agent fleet and operations platform: task and project orchestration, Agent Fleet workspace, Kanban, GitHub integration, costs and usage dashboards, real-time SSE, and a local worker runtime for agentic CLIs. Optional gateway event ingestion when you connect a compatible gateway (e.g. OpenClaw).',
+    excerpt: 'Full-stack mission control for agent operations at scale — Next.js UI, SQLite-backed operations, optional gateway event ingestion, detached workers for Claude Code, Codex, Copilot, and more, with live SSE updates and GitHub-linked repos.',
     date: '2026-03-25',
     tags: [
       'AI Agents',
-      'OpenClaw',
       'Next.js',
       'TypeScript',
       'React',
@@ -24,7 +23,7 @@ export const projects: Project[] = [
     liveUrl: '',
     content: `# J5 Agent Fleet
 
-**J5 Agent Fleet** is a standalone operations console for **OpenClaw** / **Johnny5** agents. It combines a Next.js operator UI, a gateway event ingester, and a local worker runtime for agent-managed tasks.
+**J5 Agent Fleet** is a **standalone** production platform for orchestrating agent work: a Next.js operator UI, SQLite-backed operations, and a local worker runtime. It is not an OpenClaw product; OpenClaw is one optional integration path when you want gateway events mirrored into the console.
 
 The codebase is open source as [\`DontFretBrett/bmc\`](https://github.com/DontFretBrett/bmc) (legacy names **BMC** / **Bot Mission Control** still appear in env vars and paths for compatibility).
 
@@ -42,13 +41,13 @@ The codebase is open source as [\`DontFretBrett/bmc\`](https://github.com/DontFr
 - **Integrations** — GitHub OAuth; QMD (query MCP/docs) configuration and project-scoped knowledge indexing
 - **Real-time UI** — Server-Sent Events (SSE) for live operational updates
 - **Worker runtime** — detached poller executing tasks for \`copilot\`, \`codex\`, \`claude-code\`, \`gemini-cli\`, \`lmstudio-qwen\`, \`gpt-5.4\`, and related agent CLIs
-- **Gateway bridge** — WebSocket client to the OpenClaw gateway with SQLite persistence and retention policies
+- **Gateway bridge (optional)** — WebSocket client to a compatible gateway (e.g. OpenClaw) with SQLite persistence and retention policies when enabled
 
 ## Why it matters
 
-J5 Agent Fleet is the layer that turns a personal or team OpenClaw deployment into something you can **operate**: visibility into agents and tasks, structured project work, cost awareness, and safe execution through a managed worker — not just a chat window.
+J5 Agent Fleet is built to **operate** multi-CLI agent fleets the way real teams work: structured tasks and projects, visibility into spend and activity, GitHub-linked repos, and safe execution through a managed worker — with or without a separate gateway layer.
 
-Built end-to-end with production concerns: auth boundaries for GitHub, structured data in SQLite, observable task lifecycles, and a UI that stays in sync with the gateway and workers.`
+Built end-to-end with production concerns: auth boundaries for GitHub, structured data in SQLite, observable task lifecycles, and a UI that stays in sync with workers and any connected gateway.`
   },
   {
     slug: 'johnny5-openclaw-assistant',
