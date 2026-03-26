@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     slug: 'j5-agent-fleet',
     title: 'J5 Agent Fleet',
-    description: 'A production agent fleet and operations platform: task and project orchestration, Agent Fleet workspace, Kanban, GitHub integration, costs and usage dashboards, real-time SSE, and a local worker runtime for agentic CLIs. Optional gateway event ingestion when you connect a compatible gateway (e.g. OpenClaw).',
+    description: 'A standalone production platform for operating a structured AI agent fleet: 65 specialized agents across 9 divisions (Engineering, Design, Marketing, and more), with task lifecycle management, project orchestration, Kanban, GitHub OAuth, costs and usage dashboards, period narrative reports with PDF export, and a local worker runtime executing tasks via Claude Code, Copilot CLI, Codex, and Gemini CLI. Optional OpenClaw gateway ingestion for event bridging.',
     excerpt: 'Full-stack mission control for agent operations at scale — Next.js UI, SQLite-backed operations, optional gateway event ingestion, detached workers for Claude Code, Codex, Copilot, and more, with live SSE updates and GitHub-linked repos.',
     date: '2026-03-25',
     tags: [
