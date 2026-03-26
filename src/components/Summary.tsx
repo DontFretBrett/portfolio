@@ -26,7 +26,7 @@ export default function Summary() {
           </p>
           <p className="mt-4">
             Most recently, I've been diving deep into the world of AI agents and autonomous systems, building production systems with 
-            OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). I've built an autonomous multi-model 
+            OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). I shipped <strong className="text-gray-800 dark:text-gray-100">J5 Agent Fleet</strong> — a full-stack operations console for OpenClaw / Johnny5 with task and project orchestration, an agent fleet workspace, Kanban, GitHub integration, costs and usage dashboards, and real-time SSE updates backed by a local worker runtime. I've built an autonomous multi-model 
             cryptocurrency trading platform (J5-Trade) that runs 24/7 with real-time market analysis featuring 3 independent AI-driven trading models 
             and 12+ background daemons. I also run a personal AI assistant (Johnny5) powered by OpenClaw that manages my daily workflows across 
             multiple channels. I believe we're at a pivotal moment where AI will fundamentally transform how we build and interact with software systems.
@@ -70,7 +70,7 @@ export default function Summary() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><strong>Production AI Systems Builder</strong> — autonomous trading platform (J5-Trade) with 3 AI models and 12+ daemons, plus 24/7 AI assistant (Johnny5 on OpenClaw)</span>
+                <span><strong>Production AI Systems Builder</strong> — J5 Agent Fleet (OpenClaw operator console), autonomous trading platform (J5-Trade) with 3 AI models and 12+ daemons, plus 24/7 AI assistant (Johnny5 on OpenClaw)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
