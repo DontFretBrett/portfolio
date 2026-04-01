@@ -54,15 +54,15 @@ export default function CoverLetterPage() {
               <p>
                 When I read the description for the AI Solutions Lead role, one phrase stood out:{' '}
                 <em className="text-slate-900 dark:text-slate-100 not-italic font-medium">execution enabler</em>. That's exactly
-                how I approach AI — not as a theoretical discipline, but as something you build, deploy, and put in the hands of
+                how I approach AI: not as a theoretical discipline, but as something you build, deploy, and put in the hands of
                 people who need it. I'm writing to apply because this role sits at the intersection of everything I've spent the
                 last several years building toward: hands-on AI delivery, financial services domain expertise, and
                 cross-functional enablement.
               </p>
 
               <p>
-                My background is unusually well-matched for this position. I've spent 15+ years in financial services — at US
-                Bank SBA and Truist/LightStream — leading software engineering teams and delivering complex, regulated technology
+                My background is unusually well-matched for this position. I've spent 15+ years in financial services, at US
+                Bank SBA and Truist/LightStream, leading software engineering teams and delivering complex, regulated technology
                 at scale. I understand the risk, compliance, and data considerations that make AI deployment in banking
                 fundamentally different from other industries. I've navigated ADA, Fair Lending, UDAAP, and Veracode security
                 pipelines. I know how to move fast while respecting guardrails.
@@ -74,7 +74,7 @@ export default function CoverLetterPage() {
                 <li className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                   <span>
-                    <span className="font-semibold text-slate-900 dark:text-slate-100">J5 Agent Fleet</span> — a full-stack
+                    <span className="font-semibold text-slate-900 dark:text-slate-100">J5 Agent Fleet</span>: a full-stack
                     multi-agent operations platform orchestrating 60+ AI agents across 9 divisions, with a multi-model execution
                     engine routing work to Claude Code, OpenAI Codex, GitHub Copilot, Gemini, and GPT. This is the kind of
                     agentic infrastructure I'd want to help Celtic Bank build and operate.
@@ -83,15 +83,15 @@ export default function CoverLetterPage() {
                 <li className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                   <span>
-                    <span className="font-semibold text-slate-900 dark:text-slate-100">J5-Trade</span> — a production autonomous
+                    <span className="font-semibold text-slate-900 dark:text-slate-100">J5-Trade</span>: a production autonomous
                     crypto trading system with 3 independent AI models, real-time WebSocket feeds, AI-powered news sentiment
-                    analysis, and a portfolio-level risk overlay — built entirely to run without human intervention.
+                    analysis, and a portfolio-level risk overlay, built entirely to run without human intervention.
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                   <span>
-                    <span className="font-semibold text-slate-900 dark:text-slate-100">OpenClaw/Johnny5</span> — a 24/7
+                    <span className="font-semibold text-slate-900 dark:text-slate-100">OpenClaw/Johnny5</span>: a 24/7
                     autonomous AI assistant integrated with multi-channel communication, proactive scheduling, browser automation,
                     persistent memory, and sub-agent orchestration across different model configurations.
                   </span>
@@ -100,7 +100,7 @@ export default function CoverLetterPage() {
 
               <p>
                 I've also completed Ed Donner's AI Agentic Engineering certification, working hands-on with OpenAI Agents SDK,
-                CrewAI, LangGraph, AutoGen, and MCP. I use Claude Code, Cursor, Codex CLI, and Gemini daily — not as novelties,
+                CrewAI, LangGraph, AutoGen, and MCP. I use Claude Code, Cursor, Codex CLI, and Gemini daily, not as novelties,
                 but as production tools in my workflow.
               </p>
 
@@ -108,8 +108,7 @@ export default function CoverLetterPage() {
                 What I'm particularly drawn to in this role is the organizational layer: facilitating the AI Working Group,
                 establishing frameworks and operating principles, and enabling leaders who don't have deep AI backgrounds to own
                 real outcomes. At Truist, I led 4 delivery teams across 20 direct reports while managing the full lifecycle of a
-                digital lending platform serving hundreds of thousands of customers. Influence without formal authority — across
-                business, technology, risk, and compliance — is the environment I've operated in for years.
+                digital lending platform serving hundreds of thousands of customers. Operating across business, technology, risk, and compliance without formal authority is the environment I've worked in for years.
               </p>
 
               <p>
