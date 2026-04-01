@@ -4,50 +4,98 @@ export const projects: Project[] = [
   {
     slug: 'j5-agent-fleet',
     title: 'J5 Agent Fleet',
-    description: 'A production agent fleet and operations platform: task and project orchestration, Agent Fleet workspace, Kanban, GitHub integration, costs and usage dashboards, real-time SSE, and a local worker runtime for agentic CLIs. Optional gateway event ingestion when you connect a compatible gateway (e.g. OpenClaw).',
-    excerpt: 'Full-stack mission control for agent operations at scale — Next.js UI, SQLite-backed operations, optional gateway event ingestion, detached workers for Claude Code, Codex, Copilot, and more, with live SSE updates and GitHub-linked repos.',
-    date: '2026-03-25',
+    description: 'A standalone production platform for operating 65 specialized AI agents across 9 divisions: task lifecycle management, project orchestration with AI-driven decomposition, consultation-gated execution, Kanban, real-time SSE, React Flow task graphs, GitHub OAuth, PDF reports, and a multi-CLI worker dispatching to Claude Code, Copilot CLI, Codex, Gemini CLI, and more. Ships as two deployment targets: local-first SQLite and cloud-native Neon Postgres + Vercel.',
+    excerpt: 'Full-stack mission control for agent operations at scale — 65 agents across 9 divisions, consultation-gated orchestration, multi-CLI dispatch, Kanban, React Flow graphs, PDF reports, and dual deployment targets: local SQLite and cloud Neon Postgres.',
+    date: '2026-03-28',
     tags: [
       'AI Agents',
       'Next.js',
       'TypeScript',
       'React',
       'Multi-Agent Systems',
-      'MCP',
       'SQLite',
+      'Neon Postgres',
+      'Drizzle ORM',
       'SSE',
-      'GitHub',
+      'React Flow',
+      'Zustand',
+      'Kanban',
+      'GitHub OAuth',
+      'Clerk',
+      'Docker',
+      'Vercel Blob',
+      'Upstash',
+      'PDF Export',
       'Anthropic Claude',
     ],
     githubUrl: 'https://github.com/DontFretBrett/bmc',
     liveUrl: '',
     content: `# J5 Agent Fleet
 
-**J5 Agent Fleet** is a **standalone** production platform for orchestrating agent work: a Next.js operator UI, SQLite-backed operations, and a local worker runtime. It is not an OpenClaw product; OpenClaw is one optional integration path when you want gateway events mirrored into the console.
+**J5 Agent Fleet** is a standalone production platform for orchestrating a structured team of **65 specialized AI agents across 9 divisions**. It combines a Next.js operator UI, a SQLite or cloud Postgres-backed operational store, and a managed worker runtime dispatching tasks via Claude Code, GitHub Copilot CLI, OpenAI Codex, Gemini CLI, LM Studio, and GPT API.
 
-The codebase is open source as [\`DontFretBrett/bmc\`](https://github.com/DontFretBrett/bmc) (legacy names **BMC** / **Bot Mission Control** still appear in env vars and paths for compatibility).
+The codebase is open source as [\`DontFretBrett/bmc\`](https://github.com/DontFretBrett/bmc).
 
-## What it does
+## The Agent Fleet: 9 Divisions
 
-- **Task management** — queue, rerun, stop, archive, and bookmark agent-driven work; dedicated creation flows including repo-scoped tasks
-- **Agent Fleet workspace** — employee directory, fleet chat, task center, bookmarks, and recurring views
-- **Project orchestration** — projects with features and user stories, decomposition into executable tasks, start / pause / resume workflows
-- **Kanban** — drag-and-drop columns across backlog through done, including \`needs_attention\` and review states
-- **Project chat** — persistent conversations with full project context (features, stories, tasks)
-- **Attachments** — upload and download files on projects
-- **Repositories** — catalog of local and GitHub-linked repos with overview, activity, and repository-scoped chat
-- **Reports** — period-based narrative reports (today / week / month), history, Markdown, optional PDF export
-- **Costs & usage** — spend and OpenAI usage signals, budget APIs, subscription tracking
-- **Integrations** — GitHub OAuth; QMD (query MCP/docs) configuration and project-scoped knowledge indexing
-- **Real-time UI** — Server-Sent Events (SSE) for live operational updates
-- **Worker runtime** — detached poller executing tasks for \`copilot\`, \`codex\`, \`claude-code\`, \`gemini-cli\`, \`lmstudio-qwen\`, \`gpt-5.4\`, and related agent CLIs
-- **Gateway bridge (optional)** — WebSocket client to a compatible gateway (e.g. OpenClaw) with SQLite persistence and retention policies when enabled
+| Division | Agents | Role |
+|----------|--------|------|
+| Engineering | 11 | Frontend, backend, DevOps, cloud, mobile, AI engineering, terminal automation |
+| Design | 7 | UX architecture, UI design, brand, visual storytelling, image prompting |
+| Marketing | 8 | Content, social media, growth, Reddit, TikTok, Instagram, ASO |
+| Product | 3 | Feedback synthesis, sprint prioritization, trend research |
+| Project Management | 5 | Studio producers, project shepherds, senior PMs, operations |
+| Testing | 7 | API testing, performance benchmarking, reality checking, evidence collection |
+| Support | 8 | Legal/compliance, finance, infrastructure, analytics |
+| Specialized | 9 | Orchestrator, PDF creation, data consolidation, sales extraction |
+| Spatial Computing | in dev | Emerging division for spatial/AR/VR workflows |
 
-## Why it matters
+Each agent is a Markdown persona file defining role, decision framework, tone, and expertise. The platform separates *who* does work from *how* it gets executed.
 
-J5 Agent Fleet is built to **operate** multi-CLI agent fleets the way real teams work: structured tasks and projects, visibility into spend and activity, GitHub-linked repos, and safe execution through a managed worker — with or without a separate gateway layer.
+## Dual Deployment Targets
 
-Built end-to-end with production concerns: auth boundaries for GitHub, structured data in SQLite, observable task lifecycles, and a UI that stays in sync with workers and any connected gateway.`
+| | Local | Cloud |
+|---|---|---|
+| **Database** | SQLite (WAL, better-sqlite3) | Neon Postgres (serverless) |
+| **ORM** | Drizzle ORM | Drizzle ORM |
+| **Auth** | GitHub OAuth | Clerk |
+| **Worker** | Detached Node + TSX process | Docker container |
+| **File storage** | Local filesystem | Vercel Blob |
+| **Task queue** | DB polling every 5s | Upstash QStash |
+| **Deployment** | localhost | Vercel |
+
+A \`db:migrate:sqlite-to-postgres\` script provides a repeatable migration path between the two targets.
+
+## Key Features
+
+- **Task lifecycle** — queue, rerun, stop, archive, bookmark; repo-scoped task creation
+- **Project orchestration** — AI-driven decomposition into features → user stories → tasks with dependencies; start/pause/resume workflows
+- **Consultation-gated execution** — orchestrator spawns advisor subtasks; implementation waits for consultant input before proceeding
+- **Kanban board** — auto-synced drag-and-drop: \`backlog → ready → in_progress → review → needs_attention → done\`
+- **Task hierarchy graph** — React Flow visualization of orchestrator/primary/collaborator execution trees
+- **Agent Fleet workspace** — employee directory, hire/fire, task assignment, per-agent chat with persona-backed responses
+- **Project chat** — persistent per-project conversations with full project context injected
+- **Repositories** — local and GitHub-linked repo catalog with overview, activity, and repo-scoped chat
+- **Reports** — period-based narrative reports (today/week/month) with optional PDF export via \`pdf-lib\`
+- **Costs & usage** — OpenAI spend signals, budget APIs, subscription tracking
+- **Real-time SSE** — every state change pushes to the browser; no polling
+
+## Multi-CLI Worker Dispatch
+
+The worker routes each task to the configured execution target:
+
+- \`claude-code\` — Anthropic's agentic coding CLI
+- \`copilot\` — GitHub Copilot CLI (agent mode)
+- \`codex\` — OpenAI Codex CLI
+- \`gemini-cli\` — Google's terminal AI agent
+- \`lmstudio-qwen\` — fully offline execution via LM Studio
+- \`gpt-5.4\` — OpenAI API for structured tasks
+
+Model is a per-task routing decision. The orchestrator can assign it automatically based on task type.
+
+## Tech Stack
+
+Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · Zustand · Zod · Drizzle ORM · Radix UI · React Flow (\`@xyflow/react\`) · \`better-sqlite3\` (local) · Neon Postgres (cloud) · Clerk (cloud auth) · Upstash QStash (cloud queue) · Vercel Blob (cloud storage) · Svix · \`pdf-lib\` · \`react-markdown\` + \`remark-gfm\` · Bun · Docker`
   },
   {
     slug: 'johnny5-openclaw-assistant',
