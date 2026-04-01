@@ -91,7 +91,7 @@ function AppContent() {
               <Route path="/gear" element={<GearPage />} />
               <Route path="/music" element={<MusicPage />} />
               <Route path="/legal" element={<LegalPage />} />
-              <Route path="/cl-2026" element={<CoverLetterPage />} />
+              <Route path="/celtic-cover" element={<CoverLetterPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
