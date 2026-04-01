@@ -26,7 +26,7 @@ export default function Summary() {
           </p>
           <p className="mt-4">
             Most recently, I've been diving deep into the world of AI agents and autonomous systems, building production systems with 
-            OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). I shipped <strong className="text-gray-800 dark:text-gray-100">J5 Agent Fleet</strong> — a full-stack agent fleet and operations platform (Next.js) with task and project orchestration, an agent fleet workspace, Kanban, GitHub integration, costs and usage dashboards, and real-time SSE updates backed by a local worker runtime. I've built an autonomous multi-model 
+            OpenAI Agents SDK, CrewAI, LangGraph, AutoGen, and Anthropic's Model Context Protocol (MCP). I shipped <strong className="text-gray-800 dark:text-gray-100">J5 Agent Fleet</strong> — a standalone agent fleet operations platform built on Next.js: a structured team of 65 specialized AI agents across 9 divisions (Engineering, Design, Marketing, and more), with task and project orchestration, Kanban, GitHub OAuth, costs dashboards, real-time SSE, and a local worker runtime dispatching tasks via Claude Code, GitHub Copilot CLI, Codex, and Gemini CLI. I've built an autonomous multi-model 
             cryptocurrency trading platform (J5-Trade) that runs 24/7 with real-time market analysis featuring 3 independent AI-driven trading models 
             and 12+ background daemons. I also run a personal AI assistant (Johnny5) powered by OpenClaw that manages my daily workflows across 
             multiple channels. I believe we're at a pivotal moment where AI will fundamentally transform how we build and interact with software systems.
