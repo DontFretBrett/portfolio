@@ -185,7 +185,7 @@ const productionProjects = [
     subtitle: 'Agent fleet & operations platform',
     period: '2026–Present',
     color: 'cyan',
-    description: 'Standalone production platform for running agent fleets: task lifecycle with worker execution (Claude Code, Codex, Copilot, Gemini CLI, and more), Agent Fleet workspace with directory and chat, project orchestration with Kanban, per-project chat and attachments, GitHub-linked repository catalog, period reports with PDF export, costs and usage dashboards, QMD/MCP docs indexing, optional gateway WebSocket ingestion into SQLite (including OpenClaw where used), and live updates over SSE.',
+    description: 'Standalone production platform managing a structured fleet of 65 specialized AI agents across 9 divisions (Engineering, Design, Marketing, and more): task lifecycle with worker execution via Claude Code, GitHub Copilot CLI, Codex, and Gemini CLI, Agent Fleet workspace with directory and chat, project orchestration with Kanban, per-project chat and attachments, GitHub-linked repository catalog, period reports with PDF export, costs and usage dashboards, QMD/MCP docs indexing, and live updates over SSE.',
     tags: ['Next.js', 'TypeScript', 'SQLite', 'SSE', 'GitHub OAuth', 'Agent orchestration', 'Worker runtime'],
     icon: <LayoutDashboard size={20} />,
   },
