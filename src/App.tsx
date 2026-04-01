@@ -26,6 +26,7 @@ const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 const LegalPage = React.lazy(() => import('./pages/legal'));
 const ResumePage = React.lazy(() => import("./pages/ResumePage"));
 const AIExperiencePage = React.lazy(() => import("./pages/AIExperiencePage"));
+const CoverLetterPage = React.lazy(() => import("./pages/CoverLetterPage"));
 
 // Lazy load chatbot only if enabled
 const Chatbot = FEATURE_FLAGS.ENABLE_CHATBOT 
@@ -90,6 +91,7 @@ function AppContent() {
               <Route path="/gear" element={<GearPage />} />
               <Route path="/music" element={<MusicPage />} />
               <Route path="/legal" element={<LegalPage />} />
+              <Route path="/cl-2026" element={<CoverLetterPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
