@@ -17,7 +17,7 @@ export default function CoverLetterPage() {
           <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 px-10 py-12 text-slate-700 dark:text-slate-300">
             {/* Header */}
             <header className="mb-10">
-              <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">Brett Sanders</p>
+              <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Brett Sanders</h1>
               <p className="text-base text-slate-500 dark:text-slate-400 mt-0.5">
                 El Cajon, CA 92020 &nbsp;·&nbsp; 858-703-7172 &nbsp;·&nbsp;{' '}
                 <a
