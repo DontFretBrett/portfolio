@@ -28,13 +28,11 @@ export const projects: Project[] = [
       'PDF Export',
       'Anthropic Claude',
     ],
-    githubUrl: 'https://github.com/DontFretBrett/bmc',
+    githubUrl: '',
     liveUrl: '',
     content: `# J5 Agent Fleet
 
 **J5 Agent Fleet** is a standalone production platform for orchestrating a structured team of **65 specialized AI agents across 9 divisions**. It combines a Next.js operator UI, a SQLite or cloud Postgres-backed operational store, and a managed worker runtime dispatching tasks via Claude Code, GitHub Copilot CLI, OpenAI Codex, Gemini CLI, LM Studio, and GPT API.
-
-The codebase is open source as [\`DontFretBrett/bmc\`](https://github.com/DontFretBrett/bmc).
 
 ## The Agent Fleet: 9 Divisions
 
