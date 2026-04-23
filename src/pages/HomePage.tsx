@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Summary from '../components/Summary';
 import Skills from '../components/Skills';
+import YouTubeEmbed from '../components/YouTubeEmbed';
 
 // Lazy load larger components with better performance
 const Experience = lazy(() => import('../components/Experience'));
@@ -202,6 +203,24 @@ export default function HomePage() {
       </Helmet>
       
       <main className="bg-gray-50 dark:bg-gray-900">
+        {/* Demo Video Section - Added for visual impact and proof of work */}
+        <section className="py-12 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="mb-8 shadow-2xl rounded-2xl overflow-hidden ring-1 ring-gray-200 dark:ring-gray-700">
+              <YouTubeEmbed 
+                videoId="43EsYs5e4wQ" 
+                title="Brett Sanders - Portfolio & AI Agent Demo" 
+                className="w-full"
+              />
+            </div>
+            <div className="text-center max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed font-medium italic">
+                Watch a live demonstration of my AI-powered portfolio and the autonomous agent systems I've built, showcasing the real-world application of the technologies described below.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Above-the-fold content loads immediately */}
         <Summary />
         <Skills />
