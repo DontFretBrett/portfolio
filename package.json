@@ -50,7 +50,7 @@
     "globals": "^17.5.0",
     "js-yaml": "^4.1.1",
     "playwright": "1.59.1",
-    "postcss": "^8.5.9",
+    "postcss": "^8.5.10",
     "tailwindcss": "^4.1.18",
     "terser": "^5.46.1",
     "tsx": "^4.21.0",
