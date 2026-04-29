@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Briefcase,
   Code2,
@@ -29,40 +29,7 @@ import {
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { SimpleBrandIcon } from '../components/SimpleBrandIcon';
-
-// ─── Animated Counter ────────────────────────────────────────────────────────
-function AnimatedCounter({
-  value,
-  prefix = '',
-  suffix = '',
-  duration = 1.8,
-}: {
-  value: number;
-  prefix?: string;
-  suffix?: string;
-  duration?: number;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const motionValue = useMotionValue(0);
-  const spring = useSpring(motionValue, { duration: duration * 1000, bounce: 0 });
-
-  useEffect(() => {
-    if (inView) {
-      motionValue.set(value);
-    }
-  }, [inView, motionValue, value]);
-
-  useEffect(() => {
-    spring.on('change', (latest) => {
-      if (ref.current) {
-        ref.current.textContent = prefix + Math.round(latest).toLocaleString() + suffix;
-      }
-    });
-  }, [spring, prefix, suffix]);
-
-  return <span ref={ref}>{prefix}0{suffix}</span>;
-}
+import AnimatedCounter from '../components/AnimatedCounter';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 

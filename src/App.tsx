@@ -9,6 +9,7 @@ import BackToTop from './components/BackToTop';
 import ScrollToTop from './components/ScrollToTop';
 import { FEATURE_FLAGS } from './config/features';
 import { initGA, logPageView } from './config/analytics';
+import ErrorBoundary from './components/ErrorBoundary';
 import Footer from './components/Footer';
 
 // Lazy load components for better performance
@@ -75,27 +76,29 @@ function AppContent() {
       <RouteTracker />
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <ConditionalHeader />
-        <Suspense fallback={<PageLoader />}>
-          <main id="main-content" tabIndex={-1}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/projects/:slug" element={<ProjectPage />} />
-              {/* Legacy routes for backward compatibility */}
-              <Route path="/resume" element={<ResumePage />} />
-              <Route path="/ai" element={<AIExperiencePage />} />
-              <Route path="/ai-projects" element={<AIProjectsPage />} />
-              <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogPostPage />} />
-              <Route path="/gear" element={<GearPage />} />
-              <Route path="/music" element={<MusicPage />} />
-              <Route path="/legal" element={<LegalPage />} />
-              <Route path="/celtic-cover" element={<CoverLetterPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<PageLoader />}>
+            <main id="main-content" tabIndex={-1}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/projects/:slug" element={<ProjectPage />} />
+                {/* Legacy routes for backward compatibility */}
+                <Route path="/resume" element={<ResumePage />} />
+                <Route path="/ai" element={<AIExperiencePage />} />
+                <Route path="/ai-projects" element={<AIProjectsPage />} />
+                <Route path="/ai-projects/:slug" element={<AIProjectPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
+                <Route path="/gear" element={<GearPage />} />
+                <Route path="/music" element={<MusicPage />} />
+                <Route path="/legal" element={<LegalPage />} />
+                <Route path="/celtic-cover" element={<CoverLetterPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </main>
+          </Suspense>
+        </ErrorBoundary>
         <Footer />
         <BackToTop />
         {FEATURE_FLAGS.ENABLE_CHATBOT && Chatbot && (
