@@ -97,8 +97,9 @@ export default defineConfig({
       }
     },
     
-    // Target modern browsers for smaller bundle size
-    target: ['es2022', 'chrome87', 'firefox78', 'safari14', 'edge88'],
+    // Esbuild/Rolldown cannot downlevel some dependency syntax (e.g. framer-motion)
+    // to legacy browser targets; keep production output on modern baseline.
+    target: 'esnext',
     
     // Enable CSS code splitting
     cssCodeSplit: true,
