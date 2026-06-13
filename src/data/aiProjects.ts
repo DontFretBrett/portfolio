@@ -4,9 +4,9 @@ export const projects: Project[] = [
   {
     slug: 'j5-agent-fleet',
     title: 'J5 Agent Fleet',
-    description: 'A standalone production platform for operating 65 specialized AI agents across 9 divisions: task lifecycle management, project orchestration with AI-driven decomposition, consultation-gated execution, Kanban, real-time SSE, React Flow task graphs, GitHub OAuth, PDF reports, and a multi-CLI worker dispatching to Claude Code, Copilot CLI, Codex, Gemini CLI, and more. Ships as two deployment targets: local-first SQLite and cloud-native Neon Postgres + Vercel.',
-    excerpt: 'Full-stack mission control for agent operations at scale — 65 agents across 9 divisions, consultation-gated orchestration, multi-CLI dispatch, Kanban, React Flow graphs, PDF reports, and dual deployment targets: local SQLite and cloud Neon Postgres.',
-    date: '2026-03-28',
+    description: 'A production AI orchestration platform at j5agentfleet.com — 82 specialized agents across 14 divisions, Goal Mode iterative loops, local browser/computer automation, durable runtime with event ledger and signals, multi-tenant Clerk auth, Stripe billing, community agents, inbound email mailbox, Research Lab, Idea Board, Gantt timelines, Composio integrations, native iOS/macOS/Electron apps, and a multi-CLI worker dispatching to Claude Code, Copilot CLI, Codex, Gemini CLI, Kiro, and more.',
+    excerpt: 'Production mission control for AI operations at scale — 82 agents across 14 divisions, Goal Mode loops, local browser automation, durable runtime, community agents, native iOS/macOS/Electron apps, and multi-CLI dispatch. Live at j5agentfleet.com.',
+    date: '2026-06-13',
     tags: [
       'AI Agents',
       'Next.js',
@@ -20,80 +20,111 @@ export const projects: Project[] = [
       'React Flow',
       'Zustand',
       'Kanban',
-      'GitHub OAuth',
       'Clerk',
       'Docker',
       'Vercel Blob',
       'Upstash',
       'PDF Export',
       'Anthropic Claude',
+      'iOS',
+      'SwiftUI',
+      'Electron',
+      'Playwright',
+      'Composio',
+      'Stripe',
+      'Resend',
+      'Fly.dev',
     ],
     githubUrl: '',
-    liveUrl: '',
+    liveUrl: 'https://j5agentfleet.com',
     content: `# J5 Agent Fleet
 
-**J5 Agent Fleet** is a standalone production platform for orchestrating a structured team of **65 specialized AI agents across 9 divisions**. It combines a Next.js operator UI, a SQLite or cloud Postgres-backed operational store, and a managed worker runtime dispatching tasks via Claude Code, GitHub Copilot CLI, OpenAI Codex, Gemini CLI, LM Studio, and GPT API.
+**J5 Agent Fleet** is a production AI orchestration platform for operating a structured team of **82 specialized agents across 14 divisions**. It ships as a Next.js web app, native iOS/macOS apps, and an Electron desktop app — backed by either local SQLite or cloud Neon Postgres — with a local service runner daemon that connects any Mac, Linux, or Windows machine as an execution node.
 
-## The Agent Fleet: 9 Divisions
+**Live at:** [j5agentfleet.com](https://j5agentfleet.com)
+
+## The Agent Fleet: 14 Divisions
 
 | Division | Agents | Role |
 |----------|--------|------|
-| Engineering | 11 | Frontend, backend, DevOps, cloud, mobile, AI engineering, terminal automation |
-| Design | 7 | UX architecture, UI design, brand, visual storytelling, image prompting |
-| Marketing | 8 | Content, social media, growth, Reddit, TikTok, Instagram, ASO |
-| Product | 3 | Feedback synthesis, sprint prioritization, trend research |
+| Engineering | 20 | Frontend, backend, DevOps, cloud, mobile, AI engineering, security, performance, infrastructure |
+| Marketing | 13 | Content, SEO, social media, growth, Reddit, TikTok, Instagram, ASO, competitive intel |
+| Support | 9 | Legal/compliance, finance, infrastructure, analytics, executive summaries |
+| Design | 9 | UX architecture, UI design, brand, accessibility, visual storytelling, image prompting |
 | Project Management | 5 | Studio producers, project shepherds, senior PMs, operations |
 | Testing | 7 | API testing, performance benchmarking, reality checking, evidence collection |
-| Support | 8 | Legal/compliance, finance, infrastructure, analytics |
-| Specialized | 9 | Orchestrator, PDF creation, data consolidation, sales extraction |
-| Spatial Computing | in dev | Emerging division for spatial/AR/VR workflows |
+| Specialized | 8 | Orchestrator, PDF creation, data consolidation, onboarding expert, scientific research |
+| Product | 4 | Feedback synthesis, sprint prioritization, trend research |
+| Operations | 2 | Coordination and operational automation |
+| Data | 1 | Data consolidation and analysis |
+| Finance | 1 | Financial analysis and reporting |
+| Human Resources | 1 | HR workflows and documentation |
+| Legal | 1 | Legal review and compliance |
+| Sales | 1 | Sales extraction and outreach |
 
-Each agent is a Markdown persona file defining role, decision framework, tone, and expertise. The platform separates *who* does work from *how* it gets executed.
+Each agent is a Markdown persona file defining role, decision framework, tone, and areas of expertise. The platform separates *who* does work from *how* it gets executed.
 
-## Dual Deployment Targets
+## Deployment Targets
 
 | | Local | Cloud |
 |---|---|---|
 | **Database** | SQLite (WAL, better-sqlite3) | Neon Postgres (serverless) |
 | **ORM** | Drizzle ORM | Drizzle ORM |
-| **Auth** | GitHub OAuth | Clerk |
-| **Worker** | Detached Node + TSX process | Docker container |
+| **Auth** | Local dev mode | Clerk (multi-tenant) |
+| **Worker** | Local service runner daemon | Managed cloud workers (Fly.dev) |
 | **File storage** | Local filesystem | Vercel Blob |
 | **Task queue** | DB polling every 5s | Upstash QStash |
-| **Deployment** | localhost | Vercel |
+| **Deployment** | localhost:3001 | Vercel |
+| **Billing** | — | Stripe |
 
 A \`db:migrate:sqlite-to-postgres\` script provides a repeatable migration path between the two targets.
 
 ## Key Features
 
-- **Task lifecycle** — queue, rerun, stop, archive, bookmark; repo-scoped task creation
-- **Project orchestration** — AI-driven decomposition into features → user stories → tasks with dependencies; start/pause/resume workflows
+- **Task lifecycle** — queue, rerun, stop, archive, bookmark; scheduling; repo-scoped task creation
+- **Goal Mode** — iterative task loops that keep running until a stated end condition, time cap, budget cap, approval gate, blocker, or human question stops the loop
+- **Project orchestration** — AI-driven decomposition into features → user stories → tasks with dependencies; Gantt-style timeline grouped by feature or agent
 - **Consultation-gated execution** — orchestrator spawns advisor subtasks; implementation waits for consultant input before proceeding
+- **Local automation** — browser actions, authenticated browser profiles, macOS computer control, and screenshots; opt-in from the Controls UI with one-click Chromium provisioning
+- **Approval gates** — human checkpoint gates before high-risk execution continues
+- **Durable runtime** — \`execution_events\` ledger + \`execution_signals\` layer for every task, project, research run, workflow, approval, and Goal Mode loop; stuck-work dashboard and runbook-guided recovery
 - **Kanban board** — auto-synced drag-and-drop: \`backlog → ready → in_progress → review → needs_attention → done\`
-- **Task hierarchy graph** — React Flow visualization of orchestrator/primary/collaborator execution trees
-- **Agent Fleet workspace** — employee directory, hire/fire, task assignment, per-agent chat with persona-backed responses
-- **Project chat** — persistent per-project conversations with full project context injected
-- **Repositories** — local and GitHub-linked repo catalog with overview, activity, and repo-scoped chat
+- **Task hierarchy graph** — React Flow visualization of orchestrator/primary/collaborator execution trees with status overlays
+- **Community agents** — browse, hire, share, and report agents across the platform
+- **Research Lab** — recurring structured research topics on a schedule with AI-authored reports
+- **Idea Board** — color-coded capture and organization of ideas
+- **Workflow intelligence** — dynamic workflow draft generation from a goal; model-tier routing so generated workflows pick the best execution lane
+- **Communication Center** — inbound email mailbox (read/unread/trash/reply), outbound campaigns, AI-generated templates
+- **Integrations** — Composio tool connections, GitHub, GitLab, and Telegram integrations
+- **Agent Fleet workspace** — employee directory, community hire/fire, per-agent chat with persona-backed responses
 - **Reports** — period-based narrative reports (today/week/month) with optional PDF export via \`pdf-lib\`
-- **Costs & usage** — OpenAI spend signals, budget APIs, subscription tracking
-- **Real-time SSE** — every state change pushes to the browser; no polling
+- **Budget policies** — cost tracking by task/agent/model/project; hard-stop guardrails and spend alerts
+- **Real-time SSE** — every state change pushes to the browser; Postgres \`LISTEN/NOTIFY\` fanout for multi-instance Vercel
+- **Wiki** — searchable in-app documentation with synthesized section indexes
 
 ## Multi-CLI Worker Dispatch
 
 The worker routes each task to the configured execution target:
 
-- \`claude-code\` — Anthropic's agentic coding CLI
+- \`claude-code\` / \`claude-code-fable-5\` — Anthropic's agentic coding CLI (including Claude Fable 5)
 - \`copilot\` — GitHub Copilot CLI (agent mode)
 - \`codex\` — OpenAI Codex CLI
 - \`gemini-cli\` — Google's terminal AI agent
+- \`kiro\` — Kiro CLI (subscription-based, no API key)
 - \`lmstudio-qwen\` — fully offline execution via LM Studio
-- \`gpt-5.4\` — OpenAI API for structured tasks
+- \`gpt-5.4\` / \`bedrock-claude-fable-5\` — API models for structured tasks
 
-Model is a per-task routing decision. The orchestrator can assign it automatically based on task type.
+Model is a per-task routing decision. The orchestrator assigns it automatically based on task type and complexity.
+
+## Native Clients
+
+- **iOS app** — full task management, agent fleet, project detail, and Goal Mode controls; TestFlight CI via self-hosted GitHub Actions runner
+- **macOS app** — SwiftUI native app connecting to the local \`j5af-service\` daemon on port 7242
+- **Electron app** — cross-platform desktop (macOS, Windows, Linux) with the full web UI packaged for offline/local use
 
 ## Tech Stack
 
-Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · Zustand · Zod · Drizzle ORM · Radix UI · React Flow (\`@xyflow/react\`) · \`better-sqlite3\` (local) · Neon Postgres (cloud) · Clerk (cloud auth) · Upstash QStash (cloud queue) · Vercel Blob (cloud storage) · Svix · \`pdf-lib\` · \`react-markdown\` + \`remark-gfm\` · Bun · Docker`
+Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · Zustand · Zod · Drizzle ORM · Radix UI · React Flow (\`@xyflow/react\`) · \`better-sqlite3\` (local) · Neon Postgres (cloud) · Clerk · Stripe · Upstash QStash · Vercel Blob · Svix · Resend · Composio · Playwright · \`pdf-lib\` · \`react-markdown\` · Bun · Docker · Fly.dev · SwiftUI (iOS/macOS) · Electron`
   },
   {
     slug: 'johnny5-openclaw-assistant',
