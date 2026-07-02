@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -109,7 +109,7 @@ async function loadBlogPosts(): Promise<BlogPost[]> {
     // Parse YAML with js-yaml for robust handling of complex structures
     let data: FrontmatterData;
     try {
-      data = (yaml.load(frontmatter) as FrontmatterData) || {};
+      data = (load(frontmatter) as FrontmatterData) || {};
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       console.warn(`[generate-static-blog] Skipping file "${file}" - invalid YAML frontmatter:`, errorMessage);
