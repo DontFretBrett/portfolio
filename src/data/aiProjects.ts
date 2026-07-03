@@ -4,8 +4,8 @@ export const projects: Project[] = [
   {
     slug: 'j5-agent-fleet',
     title: 'J5 Agent Fleet',
-    description: 'A production AI orchestration platform at j5agentfleet.com — 82 specialized agents across 14 divisions, Goal Mode iterative loops, local browser/computer automation, durable runtime with event ledger and signals, multi-tenant Clerk auth, Stripe billing, community agents, inbound email mailbox, Research Lab, Idea Board, Gantt timelines, Composio integrations, native iOS/macOS/Electron apps, and a multi-CLI worker dispatching to Claude Code, Copilot CLI, Codex, Gemini CLI, Kiro, and more.',
-    excerpt: 'Production mission control for AI operations at scale — 82 agents across 14 divisions, Goal Mode loops, local browser automation, durable runtime, community agents, native iOS/macOS/Electron apps, and multi-CLI dispatch. Live at j5agentfleet.com.',
+    description: 'A production AI orchestration platform at j5agentfleet.com with 95 specialized agents across 15 divisions, Goal Mode iterative loops, local browser/computer automation, durable runtime telemetry, Slack agent sessions, multi-agent Meetings, token and cost governance, native iOS/macOS/Electron apps, and local or managed-cloud execution through Claude Code, Copilot CLI, Codex, Antigravity, Kiro, LM Studio, and API models.',
+    excerpt: 'Production mission control for AI operations at scale: 95 agents across 15 divisions, Goal Mode loops, Slack, Meetings, local automation, durable runtime telemetry, token governance, native apps, and local or managed-cloud agent execution. Live at j5agentfleet.com.',
     date: '2026-06-13',
     tags: [
       'AI Agents',
@@ -34,16 +34,19 @@ export const projects: Project[] = [
       'Stripe',
       'Resend',
       'Fly.dev',
+      'Slack',
+      'Antigravity',
+      'Token Tracking',
     ],
     githubUrl: '',
     liveUrl: 'https://j5agentfleet.com',
     content: `# J5 Agent Fleet
 
-**J5 Agent Fleet** is a production AI orchestration platform for operating a structured team of **82 specialized agents across 14 divisions**. It ships as a Next.js web app, native iOS/macOS apps, and an Electron desktop app — backed by either local SQLite or cloud Neon Postgres — with a local service runner daemon that connects any Mac, Linux, or Windows machine as an execution node.
+**J5 Agent Fleet** is a production AI orchestration platform for operating a structured team of **95 specialized agents across 15 divisions**. It ships as a Next.js web app, native iOS/macOS apps, and an Electron desktop app, backed by local and cloud execution paths: a local service runner for user-controlled machines, and managed cloud workers for isolated remote execution.
 
 **Live at:** [j5agentfleet.com](https://j5agentfleet.com)
 
-## The Agent Fleet: 14 Divisions
+## The Agent Fleet: 15 Divisions
 
 | Division | Agents | Role |
 |----------|--------|------|
@@ -61,6 +64,7 @@ export const projects: Project[] = [
 | Human Resources | 1 | HR workflows and documentation |
 | Legal | 1 | Legal review and compliance |
 | Sales | 1 | Sales extraction and outreach |
+| Strategy | 13 | Strategic planning and executive decision support |
 
 Each agent is a Markdown persona file defining role, decision framework, tone, and areas of expertise. The platform separates *who* does work from *how* it gets executed.
 
@@ -94,11 +98,13 @@ A \`db:migrate:sqlite-to-postgres\` script provides a repeatable migration path 
 - **Research Lab** — recurring structured research topics on a schedule with AI-authored reports
 - **Idea Board** — color-coded capture and organization of ideas
 - **Workflow intelligence** — dynamic workflow draft generation from a goal; model-tier routing so generated workflows pick the best execution lane
+- **Slack channel** — DM and mention handling, thread-scoped agent sessions, named agent routing, slash-command help, and Slack approval cards
+- **Meetings** — multi-agent rooms with per-seat model, runner, and Composio tools, shared seeded context, round-robin or moderated turns, streaming transcript, evaluator/time/budget end conditions, and Add-to-Task/Project outcomes
 - **Communication Center** — inbound email mailbox (read/unread/trash/reply), outbound campaigns, AI-generated templates
-- **Integrations** — Composio tool connections, GitHub, GitLab, and Telegram integrations
+- **Integrations** — Composio tool connections, GitHub, GitLab, Slack, and Telegram integrations
 - **Agent Fleet workspace** — employee directory, community hire/fire, per-agent chat with persona-backed responses
 - **Reports** — period-based narrative reports (today/week/month) with optional PDF export via \`pdf-lib\`
-- **Budget policies** — cost tracking by task/agent/model/project; hard-stop guardrails and spend alerts
+- **Token and cost governance** — token-level tracking beside dollar spend, subscription token caps, model efficiency tables, missing-telemetry warnings, burn-rate sparklines, anomaly alerts, and UsageBadge surfaces
 - **Real-time SSE** — every state change pushes to the browser; Postgres \`LISTEN/NOTIFY\` fanout for multi-instance Vercel
 - **Wiki** — searchable in-app documentation with synthesized section indexes
 
@@ -109,7 +115,7 @@ The worker routes each task to the configured execution target:
 - \`claude-code\` / \`claude-code-fable-5\` — Anthropic's agentic coding CLI (including Claude Fable 5)
 - \`copilot\` — GitHub Copilot CLI (agent mode)
 - \`codex\` — OpenAI Codex CLI
-- \`gemini-cli\` — Google's terminal AI agent
+- \`antigravity\` — Google's Antigravity CLI
 - \`kiro\` — Kiro CLI (subscription-based, no API key)
 - \`lmstudio-qwen\` — fully offline execution via LM Studio
 - \`gpt-5.4\` / \`bedrock-claude-fable-5\` — API models for structured tasks
@@ -124,7 +130,118 @@ Model is a per-task routing decision. The orchestrator assigns it automatically 
 
 ## Tech Stack
 
-Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · Zustand · Zod · Drizzle ORM · Radix UI · React Flow (\`@xyflow/react\`) · \`better-sqlite3\` (local) · Neon Postgres (cloud) · Clerk · Stripe · Upstash QStash · Vercel Blob · Svix · Resend · Composio · Playwright · \`pdf-lib\` · \`react-markdown\` · Bun · Docker · Fly.dev · SwiftUI (iOS/macOS) · Electron`
+Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · Zustand · Zod · Drizzle ORM · Radix UI · React Flow (\`@xyflow/react\`) · \`better-sqlite3\` (local) · Neon Postgres (cloud) · Clerk · Stripe · Upstash QStash · Vercel Blob · Svix · Resend · Composio · Slack · Playwright · \`pdf-lib\` · \`react-markdown\` · Bun · Docker · Fly.dev · SwiftUI (iOS/macOS) · Electron`
+  },
+  {
+    slug: 'j5-a2a',
+    title: 'J5 A2A',
+    description: 'J5 A2A is a coordination layer for agentic development tools at j5a2a.com. It gives coding assistants, IDE agents, MCP clients, CLIs, scripts, local-model bridges, and humans a shared session for typed events, presence, lease-aware claims, conflict detection, questions, requests, decisions, inbox wake patterns, artifacts, digests, and operator visibility.',
+    excerpt: 'A production Agent-to-Agent coordination layer for coding assistants, IDE agents, MCP clients, CLIs, scripts, local-model bridges, and humans. Shared sessions, typed events, presence, claims, conflict detection, inbox wake patterns, MCP/CLI adapters, and an operations dashboard.',
+    date: '2026-07-03',
+    tags: [
+      'AI Agents',
+      'Agent-to-Agent',
+      'Multi-Agent Systems',
+      'MCP',
+      'Next.js',
+      'TypeScript',
+      'Postgres',
+      'Drizzle ORM',
+      'Redis',
+      'CLI',
+      'Protocol Design',
+      'Coordination',
+      'iOS',
+      'SwiftUI',
+      'Clerk',
+      'Zod',
+    ],
+    githubUrl: '',
+    liveUrl: 'https://www.j5a2a.com',
+    content: `# J5 A2A
+
+**J5 A2A** is a coordination layer for agentic development tools. It gives coding assistants, IDE agents, MCP clients, custom CLIs, scripts, local-model bridges, and humans a shared session where they can announce work, maintain presence, claim resources, ask questions, request reviews, record decisions, and leave a durable event trail.
+
+**Live at:** [j5a2a.com](https://www.j5a2a.com)
+
+## Why It Exists
+
+Modern AI coding work is rarely a single assistant in a single window. Codex may be editing code, Claude Code may be debugging a test failure, Cursor may be reviewing the same files, and a human operator still needs to understand what is happening. Without a coordination layer, every tool has a partial view and collisions show up late as duplicate work or merge conflicts.
+
+J5 A2A makes that coordination explicit. Agents do not need to share a vendor, model, IDE, or runtime. They need to speak a small session contract.
+
+## Core Primitives
+
+- **Sessions** — shared coordination spaces that scope events, participants, claims, requests, inbox items, and artifacts
+- **Session-scoped credentials** — narrow bearer tokens with limited scopes such as \`session:read\`, \`session:write\`, and \`presence:write\`
+- **Participants** — visible identities for agents, humans, services, and system jobs, including capabilities and status
+- **Presence** — live active, idle, blocked, done, stale, and offline signals
+- **Typed events** — durable records such as \`status\`, \`claim.created\`, \`question.asked\`, \`request.completed\`, and \`decision.recorded\`
+- **Lease-aware claims** — soft locks over files, PRs, tasks, artifacts, reviews, or other resources, with stale-claim recovery
+- **Questions and requests** — targeted prompts and one-owner workflows for reviews, testing, debugging, docs, research, and release checks
+- **Inbox wake pattern** — participant-targeted pending items with cursor polling, CLI watch mode, and SSRF-guarded webhook delivery
+- **Digests and briefings** — summarized session state and suggested next actions for agents or humans joining midstream
+
+## Protocol Ladder
+
+The protocol is designed so tools can join incrementally:
+
+| Level | Name | Behavior |
+|---|---|---|
+| L0 | Events-only | Post and read typed coordination events |
+| L1 | Joined presence | Register as a participant and heartbeat |
+| L2 | Resource claims | Claim and release resources before editing or reviewing |
+| L3 | Inbox and questions | Read targeted work and ask or answer questions |
+| L4 | Requests | Create, claim, complete, cancel, or reassign one-owner work |
+| L5 | Full orchestration | Use digests, threaded replies, and heartbeat-based lease renewal |
+
+## Connection Paths
+
+J5 A2A keeps the canonical surface as plain HTTP, then layers adapters over it:
+
+- **REST API** for any tool that can call HTTP endpoints
+- **MCP server** for MCP-capable agent tools
+- **\`a2a\` CLI** for terminal-first workflows and sidecar agents
+- **Web dashboard** for human operators
+- **iOS companion** for observing and directing sessions on the go
+
+The same session state backs all of these paths, so a CLI claim, an MCP status event, a dashboard request, and an iOS push notification all describe the same coordination record.
+
+## Dashboard and Operator Flow
+
+The web dashboard exposes sessions, participants, claims, requests, conflicts, decisions, inbox items, artifacts, digests, and event history. The human workflow is straightforward:
+
+1. Create a session.
+2. Mint a session-scoped token for each agent or tool.
+3. Copy the generated agent instructions into the tool.
+4. Watch presence, claims, requests, inbox, digest, conflicts, and event history.
+5. Ask targeted questions or create review requests when work needs attention.
+6. Revoke tokens when the session or experiment is finished.
+
+## Architecture
+
+J5 A2A is a Turborepo monorepo:
+
+- **\`apps/web\`** — Next.js dashboard, marketing pages, docs, and REST API
+- **\`apps/worker\`** — background processing for digests, semantic advisories, and maintenance
+- **\`apps/stream\`** — Redis-backed realtime event streaming
+- **\`apps/ios\`** — native SwiftUI human-operator companion
+- **\`packages/shared\`** — Zod schemas, event contracts, OpenAPI generation, crypto helpers, and typed clients
+- **\`packages/db\`** — Drizzle schema, data access layer, tenant-scoped services, tests, and migrations
+- **\`packages/mcp\`** — MCP server exposing A2A coordination tools
+- **\`packages/cli\`** — \`a2a\` command-line client
+
+## Security Model
+
+J5 A2A separates human login from agent credentials. Humans authenticate through Clerk; agents receive session-scoped tokens that can be revoked without affecting the human account. Tokens are designed for narrow blast radius, and the repo includes tenant-scoped data access, session ownership checks, credential hashing, and SSRF protection for webhook delivery.
+
+## Current Status
+
+The core orchestration loop is in place: session credentials, participant identity, typed events, presence heartbeats, lease-aware claims, conflict detection, questions, requests, decisions, targeted inbox, digests, MCP and CLI adapters, semantic advisories, artifacts, observability, dashboard surfaces, and a native iOS operator companion. The areas still being hardened are the generalized SDK adapter, expanded resource leasing, large-session dashboard performance, packaging, and public documentation.
+
+## Tech Stack
+
+Next.js · TypeScript · React · Postgres · Drizzle ORM · Redis · Zod · Clerk · MCP · SwiftUI · npm workspaces · Turbo`
   },
   {
     slug: 'johnny5-openclaw-assistant',

@@ -32,8 +32,8 @@ import AnimatedCounter from '../components/AnimatedCounter';
 const heroStats = [
   { icon: <Clock size={22} />, value: 2000, suffix: '+', label: 'Hours of AI Study', color: 'from-purple-500 to-violet-500' },
   { icon: <Layers size={22} />, value: 6, suffix: '', label: 'Agent Frameworks', color: 'from-blue-500 to-cyan-500' },
-  { icon: <Rocket size={22} />, value: 9, suffix: '+', label: 'AI Projects Shipped', color: 'from-green-500 to-emerald-500' },
-  { icon: <Clock size={22} />, value: 39, suffix: ' mo', label: 'Since ChatGPT Launch', color: 'from-orange-500 to-red-500' },
+  { icon: <Rocket size={22} />, value: 10, suffix: '+', label: 'AI Projects Shipped', color: 'from-green-500 to-emerald-500' },
+  { icon: <Clock size={22} />, value: 43, suffix: ' mo', label: 'Since ChatGPT Launch', color: 'from-orange-500 to-red-500' },
 ];
 
 const journeyPhases = [
@@ -65,7 +65,8 @@ const journeyPhases = [
     color: 'cyan',
     highlights: [
       'Built Johnny5 (personal AI assistant) powered by the open-source OpenClaw platform: daily newsletters, Mission Control for monitoring subagents and cron jobs, and vector memory',
-      'Shipped J5 Agent Fleet — production Next.js agent fleet and operations platform: task and project orchestration, agent fleet workspace, Kanban, GitHub OAuth, costs dashboards, SSE live updates, and a detached worker for Claude Code, Codex, Copilot, and more',
+      'Shipped J5 Agent Fleet — production Next.js agent fleet and operations platform: 95 agents across 15 divisions, Goal Mode, Slack, Meetings, durable telemetry, token governance, native apps, and local or managed-cloud runner execution',
+      'Built J5 A2A — an agent-to-agent coordination layer for Codex, Claude Code, Cursor, MCP clients, CLIs, scripts, local-model bridges, and humans working in shared sessions',
       'Configured Johnny5 with cloud model providers and local LLMs, integrating across Telegram, Discord, and email',
       'Explored vector databases, semantic search, and long-term agent memory systems',
     ],
@@ -86,7 +87,7 @@ const journeyPhases = [
     subtitle: 'Full-stack AI-assisted engineering with Claude Code, Codex, and agentic IDEs',
     color: 'orange',
     highlights: [
-      'Adopted Claude Code and Codex CLI for end-to-end AI-assisted software development',
+      'Adopted Claude Code, Codex CLI, GitHub Copilot CLI, Antigravity, and agentic IDE workflows for end-to-end AI-assisted software development',
       'Built AI Image Validator using AutoGen + GPT-4o vision with OpenTelemetry tracing',
       'Created AI Assistant Human Questionnaire — privacy-first AI context builder',
       'Built J5-Trade: autonomous multi-agent crypto trading platform with 4-agent analysis system (Pricing, News Sentiment, Trade, and Coordinator agents)',
@@ -133,8 +134,8 @@ const frameworkCards = [
     icon: <Globe size={24} />,
     color: 'pink',
     depth: 'Deep',
-    description: 'Built production MCP servers for market data, account management, memory persistence, and push notifications — consumed by OpenAI Agents SDK clients.',
-    projects: ['Trading Floor Simulation', 'MCP Server Implementations', 'Memory & Push Tools', 'Random Dog MCP'],
+    description: 'Built production MCP servers and A2A coordination adapters for market data, account management, memory persistence, push notifications, and shared agent sessions.',
+    projects: ['J5 A2A', 'Trading Floor Simulation', 'MCP Server Implementations', 'Random Dog MCP'],
   },
   {
     name: 'Claude & Anthropic',
@@ -152,9 +153,18 @@ const productionProjects = [
     subtitle: 'Agent fleet & operations platform',
     period: '2026–Present',
     color: 'cyan',
-    description: 'Standalone production platform managing a structured fleet of 65 specialized AI agents across 9 divisions (Engineering, Design, Marketing, and more): task lifecycle with worker execution via Claude Code, GitHub Copilot CLI, Codex, and Gemini CLI, Agent Fleet workspace with directory and chat, project orchestration with Kanban, per-project chat and attachments, GitHub-linked repository catalog, period reports with PDF export, costs and usage dashboards, QMD/MCP docs indexing, and live updates over SSE.',
-    tags: ['Next.js', 'TypeScript', 'SQLite', 'SSE', 'GitHub OAuth', 'Agent orchestration', 'Worker runtime'],
+    description: 'Production platform managing 95 specialized AI agents across 15 divisions: Goal Mode task loops, project decomposition, Kanban and Gantt timelines, Slack agent sessions, multi-agent Meetings, approval gates, local browser/computer automation, durable execution events and signals, token/cost governance, native iOS/macOS/Electron surfaces, and local or managed-cloud execution through Claude Code, Copilot CLI, Codex, Antigravity, Kiro, LM Studio, and API models.',
+    tags: ['Next.js', 'TypeScript', 'Neon Postgres', 'SQLite', 'Slack', 'Meetings', 'Token governance', 'Agent orchestration'],
     icon: <LayoutDashboard size={20} />,
+  },
+  {
+    title: 'J5 A2A',
+    subtitle: 'Agent-to-agent coordination protocol',
+    period: '2026–Present',
+    color: 'green',
+    description: 'Coordination layer for agentic development tools at j5a2a.com. Gives coding assistants, IDE agents, MCP clients, CLIs, scripts, local-model bridges, and humans a shared session for typed events, presence, lease-aware claims, conflict detection, questions, requests, decisions, inbox wake patterns, artifacts, digests, semantic advisories, and operator visibility.',
+    tags: ['Next.js', 'TypeScript', 'MCP', 'CLI', 'Postgres', 'Redis', 'Protocol design', 'SwiftUI'],
+    icon: <Network size={20} />,
   },
   {
     title: 'J5-Trade',
@@ -205,13 +215,13 @@ const aiToolkit = [
     icon: <Network size={20} />,
     label: 'Agent Frameworks',
     color: 'blue',
-    skills: ['OpenAI Agents SDK', 'CrewAI', 'LangGraph', 'AutoGen', 'MCP (FastMCP)', 'n8n'],
+    skills: ['OpenAI Agents SDK', 'CrewAI', 'LangGraph', 'AutoGen', 'MCP (FastMCP)', 'A2A coordination', 'n8n'],
   },
   {
     icon: <Wrench size={20} />,
     label: 'AI Development Tools',
     color: 'cyan',
-    skills: ['Cursor IDE', 'Claude Code', 'Codex CLI', 'GitHub Copilot', 'Windsurf', 'Hugging Face'],
+    skills: ['Cursor IDE', 'Claude Code', 'Codex CLI', 'GitHub Copilot', 'Antigravity', 'Windsurf', 'Hugging Face'],
   },
   {
     icon: <Layers size={20} />,
@@ -229,7 +239,7 @@ const aiToolkit = [
     icon: <Globe size={20} />,
     label: 'Deployment & Ops',
     color: 'pink',
-    skills: ['Hugging Face Spaces', 'Vercel', 'Docker', 'AWS Lambda', 'GitHub Actions', 'Telegram/Discord Bots'],
+    skills: ['Hugging Face Spaces', 'Vercel', 'Docker', 'Fly.dev', 'AWS Lambda', 'GitHub Actions', 'Slack/Telegram/Discord Bots'],
   },
 ];
 
@@ -285,7 +295,7 @@ export default function AIExperiencePage() {
     <>
       <Helmet>
         <title>AI Experience – Brett Sanders</title>
-        <meta name="description" content="Brett Sanders' AI experience: 2,000+ hours of hands-on study, hands-on experience with 6 agent frameworks, and 9+ production AI projects shipped since ChatGPT launched in November 2022." />
+        <meta name="description" content="Brett Sanders' AI experience: 2,000+ hours of hands-on study, hands-on experience with 6 agent frameworks, and 10+ production AI projects shipped since ChatGPT launched in November 2022." />
         <link rel="canonical" href="https://www.brettsanders.com/ai" />
       </Helmet>
 
@@ -397,7 +407,7 @@ export default function AIExperiencePage() {
         <section className="container mx-auto px-4 pb-16 max-w-6xl">
           <SectionHeader icon={<TrendingUp size={20} />} title="AI Learning Journey" />
           <p className="text-gray-400 text-sm mb-8 -mt-4">
-            39 months of relentless experimentation — from day-one ChatGPT adoption to shipping production AI systems daily.
+            43 months of relentless experimentation — from day-one ChatGPT adoption to shipping production AI systems daily.
           </p>
           <div className="relative">
             {/* Vertical line */}
@@ -685,7 +695,7 @@ export default function AIExperiencePage() {
               The Bottom Line
             </h3>
             <p className="text-gray-300 leading-relaxed text-base md:text-lg">
-              I don't dabble in AI — I <strong className="text-white">live in it</strong>. Every week for 39 months I've been
+              I don't dabble in AI — I <strong className="text-white">live in it</strong>. Every week for 43 months I've been
               building, breaking, and shipping AI systems. I understand the technology at every layer: from prompt engineering
               and model selection to multi-agent orchestration and production deployment. Combined with 15+ years of engineering
               leadership at major financial institutions, I'm ready to drive real AI impact from day one.

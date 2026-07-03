@@ -1,10 +1,10 @@
 ---
 title: "J5 Agent Fleet: Building a Production Multi-Agent Orchestration Platform"
 date: "2026-06-13"
-tags: ["AI Agents", "Multi-Agent Systems", "Next.js", "TypeScript", "SQLite", "Neon Postgres", "Drizzle ORM", "Orchestration", "SSE", "React Flow", "Kanban", "Claude Code", "GitHub Copilot CLI", "Docker", "iOS", "SwiftUI", "Electron", "Playwright", "Composio", "Stripe"]
-excerpt: "How I designed and built J5 Agent Fleet — a production AI orchestration platform at j5agentfleet.com with 82 agents across 14 divisions, Goal Mode iterative loops, local browser/computer automation, durable runtime, native iOS/macOS/Electron apps, multi-CLI dispatch, and a full product surface for human-supervised agent operations."
-description: "Deep dive into J5 Agent Fleet: a production multi-agent platform at j5agentfleet.com — 82 specialized agents across 14 divisions, Goal Mode loops, local browser automation, durable runtime with event ledger and signals, community agents, Research Lab, Idea Board, native iOS/macOS/Electron clients, and multi-CLI dispatch to Claude Code, Copilot CLI, Codex, Gemini CLI, Kiro, and more."
-keywords: "J5 Agent Fleet, multi-agent orchestration, AI agent platform, Next.js, TypeScript, SQLite, Neon Postgres, Drizzle ORM, Claude Code, GitHub Copilot CLI, OpenAI Codex, Gemini CLI, Kiro, agent fleet, LLM routing, consultation-gated execution, project orchestration, Goal Mode, durable runtime, local browser automation, iOS, SwiftUI, Electron, Composio, Brett Sanders"
+tags: ["AI Agents", "Multi-Agent Systems", "Next.js", "TypeScript", "SQLite", "Neon Postgres", "Drizzle ORM", "Orchestration", "SSE", "React Flow", "Kanban", "Claude Code", "GitHub Copilot CLI", "Codex", "Antigravity", "Slack", "Meetings", "iOS", "SwiftUI", "Electron", "Playwright", "Composio", "Stripe"]
+excerpt: "How I designed and built J5 Agent Fleet — a production AI orchestration platform at j5agentfleet.com with 95 agents across 15 divisions, Goal Mode iterative loops, Slack, multi-agent Meetings, local browser/computer automation, durable runtime, token governance, native apps, multi-CLI dispatch, and a full product surface for human-supervised agent operations."
+description: "Deep dive into J5 Agent Fleet: a production multi-agent platform at j5agentfleet.com — 95 specialized agents across 15 divisions, Goal Mode loops, Slack, Meetings, local automation, durable runtime events and signals, token and cost governance, community agents, Research Lab, Idea Board, native iOS/macOS/Electron clients, and multi-CLI dispatch to Claude Code, Copilot CLI, Codex, Antigravity, Kiro, and more."
+keywords: "J5 Agent Fleet, multi-agent orchestration, AI agent platform, Next.js, TypeScript, SQLite, Neon Postgres, Drizzle ORM, Claude Code, GitHub Copilot CLI, OpenAI Codex, Antigravity, Kiro, agent fleet, LLM routing, consultation-gated execution, project orchestration, Goal Mode, durable runtime, local browser automation, Slack agents, multi-agent meetings, token governance, iOS, SwiftUI, Electron, Composio, Brett Sanders"
 ---
 
 Most "agentic" systems are one-shot wrappers with better marketing copy.
@@ -15,7 +15,7 @@ That's the gap **J5 Agent Fleet** is built to close.
 
 > See the project overview: [J5 Agent Fleet project page](/ai-projects/j5-agent-fleet).
 
-J5 Agent Fleet is a production platform for operating a structured team of **82 specialized agents across 14 divisions**. It ships as a Next.js web app, native iOS/macOS apps, and an Electron desktop app — backed by either local SQLite or cloud Neon Postgres — with a local service runner daemon that connects any Mac, Linux, or Windows machine as an execution node dispatching tasks via Claude Code, GitHub Copilot CLI, OpenAI Codex, Gemini CLI, Kiro, LM Studio, and the GPT API.
+J5 Agent Fleet is a production platform for operating a structured team of **95 specialized agents across 15 divisions**. It ships as a Next.js web app, native iOS/macOS apps, and an Electron desktop app, backed by local and cloud execution paths: a local service runner for user-controlled machines, and managed cloud workers for isolated remote execution through Claude Code, GitHub Copilot CLI, OpenAI Codex, Antigravity, Kiro, LM Studio, and API models.
 
 **Live at:** [j5agentfleet.com](https://j5agentfleet.com)
 
@@ -28,7 +28,7 @@ This post walks through the architecture, the design decisions that shaped it, a
 Before building anything, I defined the questions I wanted the platform to answer:
 
 - How does an idea become tracked, delegated work?
-- How do you decide which agent — out of 82 — should own a given task?
+- How do you decide which agent — out of 95 — should own a given task?
 - How do you bring in specialist feedback without turning execution into chaos?
 - How do you know what a model actually did after it ran?
 - How do you keep a multi-CLI system observable in real time?
@@ -65,11 +65,11 @@ Running the same application on both targets enforced a clean abstraction bounda
 
 ---
 
-## The Agent Fleet: 82 Specialists, 14 Divisions
+## The Agent Fleet: 95 Specialists, 15 Divisions
 
 The word "agent" gets overloaded fast. In J5 Agent Fleet, each agent is a **structured persona file** — a Markdown document that defines a specialist's role, decision framework, tone, and areas of expertise.
 
-The fleet is organized into fourteen divisions:
+The fleet is organized into fifteen divisions:
 
 | Division | Agents | Role |
 |----------|--------|------|
@@ -80,6 +80,7 @@ The fleet is organized into fourteen divisions:
 | **Project Management** | 5 | Studio producers, project shepherds, senior PMs, operations |
 | **Testing** | 7 | API testing, performance benchmarking, reality checking, evidence collection |
 | **Specialized** | 8 | Orchestrator, PDF creation, data consolidation, onboarding expert, scientific research |
+| **Strategy** | 13 | Strategic planning, executive framing, decision support, and market analysis |
 | **Product** | 4 | Feedback synthesis, sprint prioritization, trend research |
 | **Operations** | 2 | Coordination and operational automation |
 | **Data** | 1 | Data consolidation and analysis |
@@ -109,7 +110,7 @@ Supported execution targets:
 - **Claude Code** (`claude-code`, `claude-code-fable-5`) — Anthropic's agentic coding CLI, including Claude Fable 5
 - **GitHub Copilot CLI** (`copilot`) — GitHub's agent-mode CLI
 - **OpenAI Codex CLI** (`codex`) — OpenAI's coding-focused CLI
-- **Gemini CLI** (`gemini-cli`) — Google's terminal AI agent
+- **Antigravity** (`antigravity`) — Google's agentic CLI
 - **Kiro** (`kiro`) — Kiro CLI (subscription-based, no API key required)
 - **LM Studio / local Qwen** (`lmstudio-qwen`) — fully offline execution
 - **GPT API** (`gpt-5.4`) — OpenAI API for structured tasks
@@ -225,6 +226,8 @@ This isn't decorative. When you're debugging a complex orchestration failure, a 
 
 **Costs & usage** tracks per-task, per-agent, per-model, and per-project spend signals with budget policies and hard-stop guardrails.
 
+The newest cost surface treats **tokens as a first-class operational metric**, not just dollars. That matters for subscription-constrained providers where spend may look cheap while token burn is heading toward a cap. The cost page now includes token KPIs, subscription token caps, model efficiency tables, cache-hit ratios, missing-telemetry warnings, token velocity sparklines, anomaly detection, and compact UsageBadge surfaces where generated work appears.
+
 ---
 
 ## The Real-Time Layer: SSE
@@ -253,7 +256,11 @@ This multi-surface approach means agent work is accessible from wherever the ope
 
 **Community agents** let users share, browse, and hire agents across the platform. Per-account controls manage visibility, activation, and reporting/takedown flows.
 
-**Integrations** connect the platform to external systems via Composio (third-party tool connections) and direct integrations with GitHub, GitLab, and Telegram. Repositories can be cataloged and scoped to individual tasks.
+**Slack** gives the fleet a channel-native surface. Users can mention the bot in channels, DM it directly, route messages to configured agent aliases, approve gates from Slack threads, and keep agent sessions scoped to the Slack workspace, channel, and thread.
+
+**Meetings** convene multiple agents in a shared room. Each seat can have its own agent persona, model, runner, and Composio tools. Meetings can be round-robin or moderated, seeded with documents, repositories, projects, and research reports, and concluded by time, budget, token cap, alignment, or goal-reached conditions. The transcript and summary can become a task or project.
+
+**Integrations** connect the platform to external systems via Composio (third-party tool connections) and direct integrations with GitHub, GitLab, Slack, and Telegram. Repositories can be cataloged and scoped to individual tasks.
 
 **Research Lab** runs structured research topics on a recurring schedule with AI-authored reports. Research runs use the same durable runtime layer as tasks, so delays and failures are diagnosable through the same signal inspection workflow.
 
@@ -324,7 +331,7 @@ Both versions share the same core UI stack. The database, infrastructure, and na
 Designing a codebase that runs on SQLite locally and Neon Postgres in the cloud without changing core logic requires clean abstractions. Drizzle ORM handles the translation; the application layer doesn't care which database is underneath.
 
 ### Agent design as a first-class concern
-82 Markdown persona files means 82 opportunities to think carefully about specialist boundaries, decision frameworks, and communication styles. This is knowledge engineering, not just prompting.
+95 Markdown persona files means 95 opportunities to think carefully about specialist boundaries, decision frameworks, and communication styles. This is knowledge engineering, not just prompting.
 
 ### Consultation as a coordination primitive
 The consultation-gated execution pattern is not common. Most orchestration systems skip the "get input before acting" step. J5 Agent Fleet makes it structural: implementation can't start until advisors have weighed in.
@@ -336,16 +343,16 @@ The consultation-gated execution pattern is not common. Most orchestration syste
 Iterative execution with explicit stopping conditions — time caps, budget caps, approval gates, end conditions — is a meaningfully different model than "run once and hope." It's the difference between automation and autonomous execution with human oversight.
 
 ### Multi-CLI dispatch without vendor lock-in
-Routing the same task to Claude Code, Copilot CLI, Codex, Gemini CLI, or Kiro — and swapping routes without changing application logic — is a practical hedge against model provider churn.
+Routing the same task to Claude Code, Copilot CLI, Codex, Antigravity, Kiro, LM Studio, or API models — and swapping routes without changing application logic — is a practical hedge against model provider churn.
 
 ### Real product surface, not a prototype
-Reports with PDF export. Stripe billing. Per-task artifact downloads. Kanban with auto-sync. Drag-and-drop. Recurring tasks. Persistent project chat. React Flow graphs. Community agents. iOS TestFlight CI. Native macOS app. Electron desktop. Inbound email mailbox. These are product features, not research artifacts.
+Reports with PDF export. Stripe billing. Per-task artifact downloads. Kanban with auto-sync. Drag-and-drop. Recurring tasks. Persistent project chat. React Flow graphs. Community agents. Slack agent sessions. Multi-agent Meetings. Token and cost governance. iOS TestFlight CI. Native macOS app. Electron desktop. Inbound email mailbox. These are product features, not research artifacts.
 
 ---
 
 ## What's Next
 
-The platform is live at [j5agentfleet.com](https://j5agentfleet.com) and actively shipping. Recent additions (v0.10.0) include Claude Fable 5 across all execution paths, an inbound email mailbox with full CRUD and reply support, one-click Chromium provisioning for local browser automation, and security hardening around stored secrets and identity headers.
+The platform is live at [j5agentfleet.com](https://j5agentfleet.com) and actively shipping. Recent additions include Claude Fable 5 across all execution paths, an inbound email mailbox with full CRUD and reply support, one-click Chromium provisioning for local browser automation, Slack app events and thread-scoped agent sessions, multi-agent Meetings across web and iOS, token-level usage tracking, subscription token caps, UsageBadge surfaces, Antigravity CLI support, and security hardening around stored secrets, identity headers, native auth, and signed daemon updates.
 
 The core mission stays the same: **turn AI from an isolated assistant into a visible, structured project execution system with a real product surface.**
 
