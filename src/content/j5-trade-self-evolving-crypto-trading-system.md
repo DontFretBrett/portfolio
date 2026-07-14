@@ -1,19 +1,21 @@
 ---
-title: "Building J5-Trade: A Self-Evolving Multi-Model Crypto Trading System"
+title: "Building J5-Trade: A Multi-Model Crypto Trading System"
 date: "2026-02-08"
-tags: ["Trading", "Cryptocurrency", "Python", "React", "TypeScript", "AI", "Machine Learning", "Algorithmic Trading", "Full Stack Development", "WebSocket", "Real-time Systems", "Financial Technology"]
-excerpt: "How I built an automated Bitcoin trading system that learns from its own mistakes. Three independent AI models, real-time sentiment analysis, and a self-evolution engine that adapts strategies based on missed opportunities."
-description: "Deep dive into J5-Trade: a self-evolving multi-model crypto trading system combining Python, React, and AI. Features automated strategy adaptation, real-time sentiment scoring, and comprehensive risk management."
-keywords: "algorithmic trading, crypto trading bot, self-evolving AI, multi-model trading, Bitcoin trading, Python trading system, React dashboard, machine learning trading, automated trading, risk management"
+tags: ["Trading", "Cryptocurrency", "Python", "React", "TypeScript", "AI", "LLM Sentiment Analysis", "Algorithmic Trading", "Full Stack Development", "WebSocket", "Real-time Systems", "Financial Technology"]
+excerpt: "How I built an automated Bitcoin trading system: three independent quantitative strategy models, LLM-based news sentiment analysis, and a heuristic missed-opportunity tracker that tuned parameters within guardrails."
+description: "Deep dive into J5-Trade: a multi-model crypto trading system combining Python, React, and AI. Three quantitative strategy models, LLM news-sentiment scoring, a multi-agent analyst pipeline, and comprehensive risk management."
+keywords: "algorithmic trading, crypto trading bot, multi-model trading, Bitcoin trading, Python trading system, React dashboard, LLM sentiment analysis, automated trading, risk management"
 ---
 
-Over the past few weeks, I've been building something that represents one of the most technically challenging and intellectually rewarding projects of my career: **J5-Trade**, a self-evolving automated Bitcoin trading system — built with the help of my AI coding assistant. Not just another trading bot, but a system that thinks in multiple timeframes simultaneously, learns from its mistakes, and continuously adapts its strategies—all while you sleep.
+> **Update (2026):** The heuristic "self-evolution" parameter-tuning engine described below was an experiment that was **disabled in April 2026** — it was a rule-based tracker (not machine learning), and it wasn't earning its keep. The parts that endure are the three quantitative strategy models, the LLM-based news-sentiment layer, the multi-agent analyst pipeline, and the risk management. I've kept the original write-up below for the historical record, with framing corrected.
+
+Over the past few weeks, I've built one of the most technically challenging and rewarding projects of my career: **J5-Trade**, an automated Bitcoin trading system — built with the help of my AI coding assistant. Not just another trading bot, but a system that evaluates multiple timeframes simultaneously through several independent quantitative strategies, layers in LLM-based news sentiment, and enforces disciplined, guardrailed risk management.
 
 ## The Core Concept: Why Multiple Models?
 
 Most automated trading systems operate with a single strategy and a single timeframe. They make a decision, execute it, and hope for the best. J5-Trade takes a fundamentally different approach inspired by how professional trading desks operate: **multiple independent strategies working in concert**, each with its own risk budget and decision-making authority.
 
-The system runs three distinct trading models simultaneously:
+The system runs three distinct **quantitative strategy models** simultaneously (technical-analysis strategies built with `pandas_ta` — rules and indicators, not machine-learning models):
 
 ### 1. Aggressive Model (1m / 5m timeframes)
 The day trader. Rapid-fire momentum bursts, mean reversion plays, and trend-following signals. Operates on 1-minute and 5-minute candles, looking for short-term inefficiencies. Daily loss limit: $700. Maximum 20 trades per day.
@@ -28,11 +30,13 @@ Each model has its own personality, its own risk tolerance, and most importantly
 
 ## What Makes J5-Trade Unique
 
-### 🧬 Self-Evolution: The System That Learns
+### 🧬 Heuristic Parameter Tuning (later retired)
 
-Here's where things get really interesting. Most trading systems are static—you code a strategy, backtest it, deploy it, and hope the market doesn't change. J5-Trade continuously **measures what it missed** and evolves accordingly.
+> **Note:** This subsystem was a *rule-based heuristic*, not machine learning — and I **disabled it in April 2026**. It's described here as originally built. It measured missed opportunities and nudged strategy parameters within hard guardrails; it never "learned" in any ML sense.
 
-The self-evolution cycle works like this:
+Most trading systems are static—you code a strategy, backtest it, deploy it, and hope the market doesn't change. J5-Trade instead **measured what it missed** and adjusted parameters by rule.
+
+The tuning cycle worked like this:
 
 1. **Missed Opportunity Tracker** runs hourly analysis windows, comparing optimal trades (in hindsight) vs. actual trades executed
 2. **Strategy Evolver** diagnoses *why* alpha was missed—were signals too conservative? Did we miss trending moves? Were filters too tight?
@@ -238,9 +242,9 @@ No amount of engineering brilliance can overcome a bad strategy. Stay humble. Me
 
 J5-Trade represents weeks of intense building, countless refactors, and more than a few "oh crap" moments when something broke in production. But it's also one of the most technically satisfying projects I've built.
 
-It's not just a trading bot—it's a self-improving system that gets smarter over time, learns from mistakes, and operates with military-grade risk management. The combination of multi-model architecture, real-time context awareness, automated evolution, and full-stack observability creates something greater than the sum of its parts.
+It's a multi-model trading system that combines several independent quantitative strategies, an LLM-based news-sentiment layer, a multi-agent analyst pipeline, and disciplined, guardrailed risk management. The combination of multi-model architecture, real-time context awareness, and full-stack observability creates something greater than the sum of its parts. (The heuristic parameter-tuning experiment was later retired — see the note above.)
 
-Is it profitable? That's the $2,000 question (literally—that's the kill-switch threshold). Early results are promising, but I'm still in the validation phase. The real test will be letting it run for months and seeing if the self-evolution truly leads to persistent edge, or if it's just sophisticated overfitting.
+Is it profitable? That's the $2,000 question (literally—that's the kill-switch threshold). Early results were mixed, and I treated it as a validation exercise rather than a money printer — the honest lesson being how hard persistent edge is, and how easily a tuning loop turns into sophisticated overfitting.
 
 Either way, I've learned an enormous amount about trading, real-time systems, risk management, and what it takes to build production-grade financial software. And I've got a system that continuously teaches me about market microstructure, behavioral finance, and the humbling reality that the market always has more lessons to share.
 

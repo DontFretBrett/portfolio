@@ -244,6 +244,124 @@ The core orchestration loop is in place: session credentials, participant identi
 Next.js · TypeScript · React · Postgres · Drizzle ORM · Redis · Zod · Clerk · MCP · SwiftUI · npm workspaces · Turbo`
   },
   {
+    slug: 'j5-trade',
+    title: 'J5-Trade',
+    description: 'J5-Trade is an automated Bitcoin trading system that runs three independent quantitative strategy models in concert, layers in LLM-based news-sentiment analysis and a multi-agent analyst pipeline, and enforces disciplined, guardrailed risk management with a real-time monitoring dashboard.',
+    excerpt: 'An automated multi-model Bitcoin trading system: three independent quantitative strategy models, LLM news-sentiment scoring, a multi-agent analyst pipeline, a signal resolver with a veto hierarchy, and full-stack real-time observability.',
+    date: '2026-02-08',
+    tags: [
+      'Trading',
+      'Cryptocurrency',
+      'Python',
+      'asyncio',
+      'pandas_ta',
+      'LLM Sentiment',
+      'Multi-Agent',
+      'Agno',
+      'React',
+      'TypeScript',
+      'WebSockets',
+      'SQLite',
+      'Risk Management',
+    ],
+    githubUrl: '',
+    liveUrl: '',
+    content: `# J5-Trade
+
+**J5-Trade** is an automated Bitcoin trading system built around a simple idea borrowed from professional trading desks: run several independent strategies in concert, each with its own risk budget, and let a coordinator arbitrate between them.
+
+## Multi-Model Architecture
+
+Three independent **quantitative strategy models** run simultaneously — technical-analysis strategies built with \`pandas_ta\` (rules and indicators, not machine-learning models), each operating on its own timeframes with its own risk limits:
+
+- **Aggressive** — short-timeframe momentum and mean-reversion on 1m/5m candles
+- **Balanced** — trend-following and confirmation on mid-range timeframes
+- **Conservative** — higher-timeframe, lower-frequency positioning
+
+A **signal resolver** with a veto hierarchy reconciles their signals before anything executes.
+
+## Genuine AI Layer
+
+The real LLM work in J5-Trade lives in the context and analysis layers:
+
+- **News-sentiment classification** — polls crypto news feeds and uses an LLM (local LM Studio with OpenAI/Gemini fallback) to score sentiment from -1.0 (panic) to +1.0 (euphoria). When technicals say "buy" but headlines say "exchange hack," the system stays flat.
+- **Multi-agent analyst pipeline** — built on the Agno framework: a Pricing agent, a News-Sentiment agent, and a Trade agent, coordinated by a Coordinator agent.
+- **Chat assistant** — an integrated LLM assistant for querying system state and trade rationale.
+
+## Risk Management
+
+Per-model daily loss limits, position caps, cooldowns, and a global kill-switch threshold. Every decision is logged and streamed to a real-time dashboard via server-sent events.
+
+## A Note on "Self-Evolution"
+
+An early experiment added a **heuristic missed-opportunity tracker** that nudged strategy parameters within hard guardrails. It was rule-based (not machine learning) and I **disabled it in April 2026** — it wasn't earning its keep. The enduring value is the multi-model architecture, the LLM sentiment/analyst layers, and the risk discipline.
+
+## Stack
+
+Python (asyncio) · pandas_ta · Agno · LM Studio / OpenAI / Gemini · React · TypeScript · WebSockets / SSE · SQLite`
+  },
+  {
+    slug: 'j5-ai-test',
+    title: 'J5 AI Test',
+    description: 'J5 AI Test lets anyone write end-to-end browser tests in plain English — an AI agent drives a real browser via Playwright to execute them, removing the need for selectors or framework knowledge. Tests are markdown with YAML frontmatter (version-controllable and diff-able), and failures produce structured, screenshot-rich briefs you can paste straight into an AI coding agent to fix.',
+    excerpt: 'Plain-English end-to-end testing, powered by the AI agent you already use. Describe a test in English; an agent drives a real browser (Playwright) to run it. Markdown tests, multi-provider (Claude/Cursor/Codex/Gemini CLIs + Anthropic/OpenAI/Google APIs), screenshot-rich failure briefs.',
+    date: '2026-05-01',
+    tags: [
+      'AI Agents',
+      'End-to-End Testing',
+      'Playwright',
+      'TypeScript',
+      'Bun',
+      'SQLite',
+      'Multi-Provider',
+      'Agentic QA',
+      'Browser Automation',
+      'Vitest',
+    ],
+    githubUrl: 'https://github.com/DontFretBrett/j5-ai-test',
+    liveUrl: '',
+    content: `# J5 AI Test
+
+**Plain-English end-to-end testing, powered by the AI agent you already use.**
+
+Today, end-to-end testing is gated by engineering: you need JavaScript, selector knowledge, and an understanding of how the test framework wires up. The people who understand the product best often can't write a Playwright test. J5 AI Test removes that gate — **you describe the test in plain English, and an AI agent drives a real browser to execute it.**
+
+## What a Test Looks Like
+
+No imports, no selectors, no setup — just intent:
+
+\`\`\`markdown
+---
+name: Submit feedback from dashboard
+tags: [smoke, feedback]
+---
+
+Navigate to /dashboard.
+Click the "New feedback" button.
+Fill in the title with "Login button is too small on mobile".
+Click Submit.
+Verify a success toast appears.
+\`\`\`
+
+Tests are plain markdown with YAML frontmatter — version-controllable, diff-able, and readable by anyone. The test *is* the prompt; updating one is a single line of English.
+
+## Why an Agent Instead of Scripts
+
+A renamed CSS class breaks a Playwright selector and fails the test; an agent sees a "Submit" button and clicks it. The flakiness budget shifts from "selectors that drift" to "prompts that are ambiguous" — and ambiguous prompts can be fixed by the same AI that runs the tests. When a run passes, the agent can even suggest how to make the English more precise to prevent future flakiness.
+
+## Multi-Provider
+
+Bring the agent you already have. CLI providers use your installed tools' credentials — **Claude Code, Cursor Agent, Codex CLI, Gemini CLI** — or use direct API providers (**Anthropic, OpenAI, Google**). Set a default per project or override per test with a \`provider:\` frontmatter key.
+
+## Failure Reports Built for AI
+
+When something breaks, you get a step-by-step report with screenshots and a one-click brief — intent, what was attempted, where it broke, and suggested next steps — designed to paste straight into Claude, Cursor, or any coding agent to diagnose and fix.
+
+## Stack
+
+TypeScript · Bun · Playwright (Chromium/Firefox/WebKit) · SQLite · Vitest · npm workspaces · MIT-licensed`
+  },
+  {
     slug: 'johnny5-openclaw-assistant',
     title: 'Johnny5: 24/7 AI Personal Assistant',
     description: 'A fully autonomous AI assistant powered by OpenClaw, featuring multi-channel communication, custom skills, persistent memory, and proactive task management running around the clock.',

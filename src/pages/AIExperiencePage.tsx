@@ -22,6 +22,7 @@ import {
   Bot,
   Network,
   LayoutDashboard,
+  FlaskConical,
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { SimpleBrandIcon } from '../components/SimpleBrandIcon';
@@ -174,6 +175,15 @@ const productionProjects = [
     description: 'Production-grade autonomous cryptocurrency trading system featuring AI-generated trade summaries, an integrated chat assistant, and a 4-agent analysis system: a Pricing Agent, News Sentiment Agent, Trade Agent, and a Coordinator Agent that manages the other three. Includes real-time monitoring dashboard and signal resolver with veto hierarchy.',
     tags: ['Python asyncio', 'SQLite', 'WebSockets', 'TypeScript', '4-Agent System', 'AI Chat Assistant'],
     icon: <TrendingUp size={20} />,
+  },
+  {
+    title: 'J5 AI Test',
+    subtitle: 'Plain-English end-to-end testing, driven by an AI agent',
+    period: '2026–Present',
+    color: 'orange',
+    description: 'Write end-to-end browser tests in plain English — an AI agent drives a real browser (Playwright) to execute them, so anyone can author tests without selectors or framework knowledge. Tests are markdown + YAML frontmatter (version-controllable and diff-able); failures produce structured, screenshot-rich briefs you can paste straight into Claude or Cursor to fix. Works across CLI agents (Claude Code, Cursor, Codex, Gemini) and direct API providers (Anthropic, OpenAI, Google).',
+    tags: ['Playwright', 'TypeScript', 'Bun', 'SQLite', 'Multi-Provider', 'Agentic QA'],
+    icon: <FlaskConical size={20} />,
   },
   {
     title: 'Johnny5',
