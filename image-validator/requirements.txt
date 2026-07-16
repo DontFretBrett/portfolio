@@ -2,7 +2,7 @@
 autogen-agentchat>=0.6.0
 autogen-ext>=0.6.0
 autogen-core>=0.7.5
-gradio==6.19.0
+gradio==6.20.0
 python-dotenv>=1.2.2
 pillow>=12.3.0
 pydantic>=2.13.4
